@@ -1,0 +1,37 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+\usepackage{subfiles}
+
+
+\addbibresource{snippets/references.bib} %Imports bibliography file
+
+\title{Tecnología blockchain aplicada a la trazabilidad en la cadena de suministro para lograr una economía circular}
+\author{Rocío Mena}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\subfile{snippets/intro}
+
+\subfile{snippets/motivation}
+
+\subfile{snippets/theoretical-framework}
+
+\subfile{snippets/technologies}
+
+\subfile{snippets/art-state}
+
+\subfile{snippets/glossary}
+
+\nocite{*} % Incluir todas las referencias del archivo .bib
+
+\printbibliography % Imprime la bibliografía
+
+\end{document}
