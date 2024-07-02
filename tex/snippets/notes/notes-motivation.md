@@ -139,6 +139,8 @@ REFERENCIA: cerda2016economia
 
 ---
 
+Fuente: Dormido
+
 Los Objetivos de Desarrollo Sustentable (ODS) son un conjunto de 17 objetivos establecidos por la Organización de las Naciones Unidas (ONU) que representan el mayor acuerdo al que hemos llegado como especie sobre qué es un futuro deseable. Estos objetivos buscan abordar las prioridades globales y están expresados en términos de metas concretas e indicadores.
 
 Algunos de los ODS incluyen:
@@ -196,3 +198,33 @@ https://climatedata.imf.org/pages/about
 --
 
 Desde el anterior informe del IPCC en 2014 hasta el más reciente (el AR6 de 2021), el cambio climático ha causado eventos extremos cada vez más frecuentes e intensos, y ha generado importantes pérdidas y daños a la naturaleza y a las personas. Si bien se puede observar que los esfuerzos de desarrollo y adaptación han contribuido a reducir en parte la vulnerabilidad, el AR6 destaca que las personas y grupos más vulnerables continúan viéndose afectados por el cambio climático de forma desproporcionada. Además, el aumento de los eventos meteorológicos y climáticos extremos ha empujado en muchos casos a los sistemas naturales y humanos más allá de su capacidad de adaptación.
+
+---
+
+1. Introducción al Concepto de Economía Circular
+
+   Definición y principios de la economía circular. Importancia y beneficios de implementar la economía circular. Contexto actual y problemas asociados con los sistemas lineales de producción y consumo.
+
+2. Trazabilidad de Materiales
+
+   Concepto de trazabilidad y su importancia en la gestión de materiales. Métodos tradicionales de trazabilidad y sus limitaciones. Aplicación de tecnologías emergentes para mejorar la trazabilidad.
+
+3. Blockchain: Fundamentos y Aplicaciones
+
+   Definición y características principales de la tecnología blockchain. Principios de descentralización, transparencia e inmutabilidad. Casos de uso relevantes de blockchain en diferentes industrias.
+
+4. Integración de Blockchain en la Trazabilidad de Materiales
+
+   Ventajas de utilizar blockchain para la trazabilidad de materiales. Casos de estudio y proyectos piloto que demuestran la efectividad de blockchain en la trazabilidad. Desafíos técnicos, económicos y regulatorios de implementar blockchain en sistemas de trazabilidad.
+
+5. Economía Circular y Tecnología Blockchain
+
+   Sinergias entre la economía circular y la tecnología blockchain. Cómo blockchain puede facilitar la transición hacia modelos circulares de negocio. Ejemplos específicos de cómo la trazabilidad mediante blockchain puede cerrar ciclos de materiales.
+
+6. Marco Conceptual y Modelos Teóricos
+
+   Desarrollo de un marco conceptual para la aplicación de blockchain en la trazabilidad de materiales. Revisión crítica de modelos teóricos relevantes para tu investigación. Adaptación de modelos existentes para el contexto de la economía circular y blockchain.
+
+7. Implicaciones Sociales, Ambientales y Económicas
+
+   Impacto potencial de la implementación de blockchain en la trazabilidad de materiales sobre aspectos sociales, ambientales y económicos. Consideraciones éticas y de responsabilidad en la gestión de datos en blockchain. Perspectivas futuras y recomendaciones para la implementación práctica.

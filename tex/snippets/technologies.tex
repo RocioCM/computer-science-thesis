@@ -1,4 +1,4 @@
-\documentclass[main.tex]{subfiles}
+\documentclass[theoretical-framework.tex]{subfiles}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage[
@@ -17,9 +17,7 @@ sorting=ynt
 
 \begin{document}
 
-\maketitle
-
-\section{Tecnologías Blockchain}
+\section{Tecnología Blockchain}
 
 La tecnología blockchain es una tecnología de base de datos distribuída. Esta estructura de datos distribuida mantiene un registro inmutable de transacciones o eventos validados mediante técnicas criptográficas que protegen los datos contra la manipulación. La información de esta base de datos se organiza en transacciones, que son validadas y agrupadas en bloques. Cada bloque, junto con un puntero al bloque anterior, forma una cadena de transacciones interconectadas criptográficamente. Una vez que una transacción se ha añadido a la cadena, generalmente no puede ser modificada ni eliminada porque requeriría cambiar todos los bloques posteriores en la cadena, lo cual es computacionalmente impracticable debido a la distribución y la seguridad criptográfica de la red blockchain. En la Figura \ref{fig:blockchain} se muestra un esquema de cómo se procesa una transacción en una blockchain.
 
@@ -36,7 +34,7 @@ En este trabajo se analizan y comparan cinco tecnologías blockchain líderes en
 
 Cada tecnología se compara en distintos aspectos clave relevantes para este trabajo. Como el tipo de tecnología, el protocolo de consenso, el lenguaje de programación, la interoperabilidad, la adopción real y el tamaño de la comunidad. A continuación, se presenta una descripción detallada de cada tecnología y una comparación de sus características.
 
-\section{Hyperledger Fabric}
+\subsection{Hyperledger Fabric}
 
 Hyperledger Fabric es una plataforma de tecnología ledger distribuida (DLT) de código abierto y diseñada para uso en contextos empresariales \footnote{https://hyperledger-fabric.readthedocs.io/en/latest/index.html}. Hyperledger se estableció bajo la Fundación Linux y su sólida comunidad \cite{androulaki2018hyperledger}. 
 
@@ -48,7 +46,7 @@ Fabric puede aprovechar los protocolos de consenso que no requieren una criptomo
 
 La combinación de estas características diferenciadoras de diseño convierte a Fabric en una de las plataformas de mejor rendimiento disponibles en la actualidad tanto en términos de procesamiento de transacciones como de latencia de confirmación de transacciones, y permite privacidad y confidencialidad de transacciones y los contratos inteligentes que los implementan.
 
-\section{Ethereum}
+\subsection{Ethereum}
 
 Ethereum es una plataforma de código abierto basada en blockchain que permite a los desarrolladores crear y desplegar contratos inteligentes y aplicaciones descentralizadas (dApps) \footnote{https://ethereum.org/en/learn/}. Ethereum tiene como objetivo ser una computadora mundial descentralizada que ejecute cualquier tipo de aplicación. Esta plataforma es alimentada por su criptomoneda nativa, Ether, que se utiliza para pagar las transacciones y los servicios de la red \cite{buterin2013ethereum}.
 
@@ -58,7 +56,7 @@ Los contratos inteligentes en Ethereum se escriben en Solidity \cite{dannen2017i
 
 Ethereum utiliza un protocolo de consenso de prueba de trabajo (PoW, Proof of Work) para validar las transacciones y agregar nuevos bloques a la cadena de bloques. Sin embargo, Ethereum está en proceso de migrar a un protocolo de consenso de prueba de participación (PoS, Proof of Stake). 
 
-\section{Polkadot}
+\subsection{Polkadot}
 
 Polkadot es una plataforma de blockchain de código abierto que permite la interoperabilidad entre diferentes blockchains \footnote{https://polkadot.network/}. Polkadot tiene como objetivo crear una red de blockchain escalable, segura e interoperable que pueda soportar una amplia gama de aplicaciones descentralizadas y contratos inteligentes. Esta plataforma es desarrollada por la Web3 Foundation y posee una sólida comunidad de desarrolladores activos \cite{wood2016polkadot}.
 
@@ -68,7 +66,7 @@ Esta plataforma utiliza un protocolo de consenso de PoS llamado "Nominated Proof
 
 Las aplicaciones para Polkadot son desarrolladas utilizando Substrate \footnote{https://docs.substrate.io/}, un framework modular escrito en Rust que facilita la creación de blockchains personalizadas y parachains. Substrate también posee un módulo de compatibilidad con contratos inteligentes escritos en Solidity, el lenguaje de programación utilizado en Ethereum.
 
-\section{VeChain}
+\subsection{VeChain}
 
 VeChain es una plataforma de blockchain de código abierto dedicada a la trazabilidad y que busca asegurar la autenticidad de los productos en la cadena de suministro \footnote{https://docs.vechain.org/introduction-to-vechain/about-the-vechain-blockchain}. VeChain utiliza una combinación de tecnología blockchain, RFID e Internet de las cosas (IoT) para rastrear el movimiento de productos a lo largo de toda la cadena de suministro, desde la producción hasta el consumidor final. Esta plataforma es desarrollada por la Fundación VeChain y tiene como objetivo mejorar la transparencia y la confianza en la cadena de suministro \cite{she2022vechain}.
 
@@ -78,7 +76,7 @@ Esta plataforma utiliza una arquitectura de dos tokens, donde VET es la criptomo
 
 Las aplicaciones para VeChain pueden desarrollarse utilizando el lenguaje de programación Solidity, el mismo utilizado en Ethereum, lo que facilita la migración de aplicaciones existentes de Ethereum a VeChain. A su vez, también se pueden desarrollar aplicaciones personalizadas utilizando el framework de desarrollo de Smart Contracts de VeChain, que proporciona una serie de herramientas y bibliotecas para facilitar el desarrollo de aplicaciones descentralizadas y contratos inteligentes.
 
-\section{Cardano}
+\subsection{Cardano}
 
 Cardano es una plataforma de blockchain de código abierto que busca crear una red de blockchain escalable, segura y sostenible \footnote{https://docs.cardano.org/about-cardano/introduction/\#cardano-explained}. Cardano tiene como objetivo ser una plataforma de contratos inteligentes de tercera generación que pueda soportar una amplia gama de aplicaciones descentralizadas y contratos inteligentes. Cardano se caracteriza por su enfoque científico y riguroso en su desarrollo, utilizando evidencia formal y revisión por pares para garantizar la seguridad y confiabilidad de la plataforma \cite{hoskinson2017we}.
 
@@ -86,7 +84,7 @@ Una de las características distintivas de Cardano es su enfoque en la seguridad
 
 Esta plataforma utiliza un protocolo de consenso de PoS, que es más eficiente energéticamente que los protocolos de PoW. La red posee una criptomoneda nativa llamada ADA, que se utiliza para pagar las transacciones y los servicios de la red.
 
-\section{Comparación de tecnologías}
+\subsection{Comparación de tecnologías}
 
 A continuación se realiza una comparación de las tecnologías blockchain mencionadas anteriormente en términos de tipo de tecnología, protocolo de consenso, lenguaje de programación, interoperabilidad, adopción real y tamaño de la comunidad.
 
@@ -106,7 +104,7 @@ A continuación se realiza una comparación de las tecnologías blockchain menci
 \caption{Comparación de plataformas blockchain}
 \end{table}
 
-\section{Conclusión}
+\subsection{Conclusión}
 
 
 En base al análisis realizado es los distintos aspectos clave de cada plataforma, se elige a Ethereum como la tecnología blockchain más adecuada para el desarrollo de este trabajo por los siguientes motivos:
