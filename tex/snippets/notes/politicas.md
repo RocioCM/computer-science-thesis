@@ -244,3 +244,42 @@ Existen distintos enfoques de responsabilidad extendida del productor para permi
 El esquema de responsabilidad extendida de los países mencionados atribuye a los fabricantes, productores e importadores la gestión total de los residuos, pero no promueve uno de los principios fundamentales de la economía circular que es lograr un cambio en el diseño y la producción de los productos. Esta es la principal limitación de la responsabilidad extendida del productor en América Latina y el Caribe (PNUMA, 2018e).
 
 La responsabilidad también puede ser compartida al integrar a otros actores, tales como consumidores, gestores de residuos y el propio Estado, lo que podría implicar hacerlos socios en el costo y la responsabilidad de la gestión, ya que estos actores deben o pueden modificar aspectos del diseño o la producción. El principio de responsabilidad compartida puede ser perfectamente aplicable a los residuos sólidos comunes donde cada actor en la cadena de la gestión integral tiene un deber específico, desde el generador, que separará en la fuente y pagará por el servicio de recolección y disposición, hasta el Estado en su papel de articulador del sistema y fiscalizador (PNUMA, 2018e). Sin embargo, esta lógica no es aplicable a los residuos de manejo especial, que habitualmente son alcanzados por la responsabilidad extendida del productor y cuyo costo de gestión corresponde al productor.
+
+---
+
+FUENTE: closetheglassloop2020ue
+
+Close the glass loop
+
+Tasa de Recolección de Vidrio para Reciclaje
+
+Close the Glass Loop, en colaboración con nuestros socios y plataformas nacionales, monitorea el avance hacia nuestro ambicioso objetivo de alcanzar una tasa de recolección de vidrio para reciclaje del 90% para 2030. Cada año, durante el mes de junio, coincidiendo con el aniversario del lanzamiento de la plataforma, presentamos con orgullo nuestro informe anual sobre las tasas de reciclaje de vidrio para la UE27 + Reino Unido, Suiza y Noruega. Nuestra última publicación muestra las tasas de reciclaje actuales en un mapa visualmente atractivo e informativo, resaltando el notable progreso que hemos logrado en promover el reciclaje de vidrio sostenible en estas regiones. A medida que continuamos trabajando incansablemente para fomentar prácticas responsables de desecho y reciclaje de vidrio, esperamos compartir nuestras historias de éxito continuas e inspirar a otros a unirse a nosotros en esta misión vital.
+
+En 2022, en la UE27, más del 80.2% del embalaje de vidrio fue recolectado para reciclaje.
+
+Progreso a lo Largo de los Años
+
+Close the Glass Loop permanece dedicado a su compromiso de mejora año tras año, como se muestra vívidamente en la representación visual a continuación. Este crecimiento constante es el resultado directo de nuestra estrecha colaboración con un espectro diverso de sectores y municipios. Nuestro éxito se ve reforzado por campañas de comunicación intensivas y la participación activa con todos los interesados en la industria de recolección y reciclaje de vidrio. Juntos, forjamos asociaciones fuertes para perseguir colectivamente el objetivo de Close the Glass Loop. Este esfuerzo asegura que no solo cumplimos con nuestros objetivos, sino que también establecemos un punto de referencia para el reciclaje de vidrio sostenible, creando un impacto duradero en el medio ambiente y las comunidades.
+
+Acerca de Nosotros
+
+Compartimos una ambición común europea de recolectar más envases de vidrio y reciclarlos de nuevo en nuevos envases de vidrio, para ciclos infinitos.
+
+Nuestra visión es alcanzar una tasa de recolección de envases de vidrio para reciclaje del 90% en la UE para 2030, para que se pueda usar más contenido reciclado en un nuevo ciclo de producción. Nuestra misión es proporcionar una plataforma que apoye el intercambio de mejores prácticas entre todos los operadores y profesionales activos en la recolección y reciclaje de vidrio. Toda la cadena de valor está involucrada: productores de vidrio, marcas y llenadores, organizaciones de Responsabilidad Extendida del Productor, instalaciones de reciclaje de vidrio, municipios, así como el sector de la hostelería. Haz clic en el Logo del Socio para Aprender Más
+
+Acerca del Reciclaje de Vidrio
+
+Ya sea un embalaje reutilizable o reciclable, el vidrio es un recurso infinito y un material permanente en un sistema circular siempre en mejora. Podemos optar por evitar los residuos reciclando y necesitamos que la gente recicle más y mejor.
+
+    Hecho de vidrio reciclado y materias primas (arena, sosa y caliza) encontradas en la naturaleza, el vidrio es 100% y infinitamente reciclable en un ciclo cerrado de botella a botella, haciendo del vidrio reciclado (conocido como casco) un recurso vital para la nueva producción.
+    El vidrio es uno de los pocos Materiales Permanentes que tienen el potencial de ser reciclados una y otra vez, sin perder sus propiedades inherentes.
+    Reciclar vidrio es un paso fácil para contribuir activamente a reducir los residuos de embalaje, reducir el uso de materias primas vírgenes y las emisiones de CO2, y ahorrar energía.
+    El uso de casco reduce la dependencia de materias primas extraídas recientemente y la energía, y las emisiones asociadas con esto.
+
+¿Cuáles son los beneficios clave del reciclaje de vidrio?
+
+Cada vez que se introduce 1 tonelada de casco en un horno de vidrio:
+
+    Reemplaza aproximadamente 1.2 toneladas de materias primas vírgenes.
+    Reduce las emisiones de CO2 en 580 kg en una base de Ciclo de Vida (de cuna a cuna). En promedio, un aumento del 10% de casco en el horno reduce las emisiones de CO2 en un 5% en una base de puerta a puerta.
+    Reduce el consumo de energía del horno: como regla general para hornos grandes, cada aumento del 10% de casco reducirá el consumo de energía del horno en aproximadamente un 2.5% en una base de puerta a puerta, pero esto puede variar dependiendo del tamaño del horno.
