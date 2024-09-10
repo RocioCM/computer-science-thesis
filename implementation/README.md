@@ -53,11 +53,13 @@ El sistema permitirá registrar y auditar las transacciones de los residuos de v
 
 Específicamente nos enfocaremos en la cadena de producción de envases de vidrio, dejando a libre implementación futura la integración con otros actores de la cadena de reciclaje de vidrio.
 
-![image](./assets/glass-production.png.png)
+![image](./assets/glass-production.png)
+
+¿Por qué nos concentramos sólo en esta etapa? Porque en la investigación del estado del arte se descubrió que en la primera parte de la cadena no se encontraron soluciones tecnológicas que resuelvan este problema localmente. Mientras que en la segunda parte de la cadena, la recolección y reciclado de vidrio, ya existen soluciones tecnológicas que permiten mejorar la adopción y la eficiencia de los procesos, que pueden ser integradas en futuras etapas del proyecto.
 
 ### Alcance de arquitectura de la aplicación
 
-1. Desarrollo de un contrato inteligente (o conjunto de contratos inteligentes) en Solidity para registrar información de envases de vidrio generados y reciclados.
+1. Desarrollo de un contrato inteligente (o conjunto de contratos inteligentes) en Solidity para registrar información de envases de vidrio generados y su posterior trazabilidad.
 
 2. Desarrollo de una interfaz web para interactuar con el contrato inteligente desde el punto de vista de los distintos actores y visualizar la información registrada en la blockchain.
 
@@ -69,6 +71,10 @@ Específicamente nos enfocaremos en la cadena de producción de envases de vidri
 
 ![image](./assets/software-architecture.png)
 
+/// ¿Por qué elegí cada tecnología y esta estructura? ...
+
+/// Revisar por que esta división de APIs
+
 ### Entornos
 
 - **Entorno de desarrollo**: Se utilizará un entorno de desarrollo local para el desarrollo y pruebas del prototipo, que incluirá un nodo de blockchain local, una base de datos local y una interfaz web local.
@@ -76,3 +82,5 @@ Específicamente nos enfocaremos en la cadena de producción de envases de vidri
 - **Presentación del prototipo**: Se realizará una presentación del prototipo en un entorno de demostración en la nube, que incluirá el uso de una red blockchain pública de pruebas, una base de datos en la nube y una interfaz web en la nube accesible desde cualquier navegador web.
 
 ### Interfaz externa
+
+/// Empezar a bajar las responsabilidades de cada parte y requerimientos que cumplirán.
