@@ -71,9 +71,19 @@ Específicamente nos enfocaremos en la cadena de producción de envases de vidri
 
 ![image](./assets/software-architecture.png)
 
-/// ¿Por qué elegí cada tecnología y esta estructura? ...
+#### Justificación
 
-/// Revisar por que esta división de APIs
+Esta arquitectura se ha diseñado buscando maximizar la escalabilidad y flexibilidad. Consideramos que estas características son clave para manejar la trazabilidad en las cadenas de suministro, garantizando al mismo tiempo la integridad y la accesibilidad de los datos a través de diferentes actores del ecosistema. Eesta arquitectura no solo cumple con los requisitos técnicos y de negocio de la aplicación actual, sino que busca posicionar el sistema para escalabilidad futura, integración con sistemas nuevos o preexistentes y adaptación a nuevas necesidades o cambios de tecnología.
+
+- Blockchain: Utilizar una tecnología de blockchain para registrar las operaciones garantiza no solo la seguridad y la transparencia, sino también la resistencia a la censura y la manipulación de los registros, factores cruciales cuando se manejan certificaciones y se verifica la procedencia de materiales sensibles en un entorno distribuido con múltiples actores con intereses diversos. Para mayor análisis, dirigirse a la sección de Tecnologías.
+
+- Solidity: se eligió Solidity/Ethereum por ser una blockchain pública e interoperable y con una amplia comunidad de desarrolladores y herramientas disponibles para el desarrollo de contratos inteligentes y un lenguaje de programación simple para la creación de contratos inteligentes.
+
+- Node.js en la API de trazabilidad: El uso de Node.js para desarrollar la API de trazabilidad se debe a que esta API debe comunicarse con la blockchain y actualmente Node.js cuenta con la mayor colección de librerías y herramientas que facilitan la interacción con la red Ethereum y redes compatibles con Solidity, además de una amplia comunidad detrás de estas herramientas. A su vez, Node.js es ideal para operaciones de I/O intensivas y para la gestión de múltiples conexiones simultáneas, lo cual es esencial para el procesamiento en tiempo real necesario en las operaciones de la API de trazabilidad. Esta API seguirá una arquitectura basada en Clean Architecture, que permite separar las capas de presentación, aplicación, dominio e infraestructura, facilitando la escalabilidad del sistema y la integración con otros sistemas de terceros.
+
+- Base de Datos SQL: el uso de una base de datos SQL tradicional permite gestionar de manera eficiente los datos estructurados generados por las aplicaciones, facilitando operaciones complejas de consulta y análisis para la toma de decisiones estratégicas y operacionales por parte de las empresas y entidades regulatorias. A su vez, duplicar la información de la blockchain en una base de datos SQL permite garantizar la disponibilidad de los datos en caso de congestión en la red blockchain, a modo de caché para mejorar la velocidad de respuesta de las aplicaciones y reducir la latencia en la interacción con los usuarios. Esta base de datos se sincronizará con la blockchain a través de la API de trazabilidad, garantizando la consistencia y la integridad de los datos en ambos sistemas.
+
+- Frontend con Next.js: Se ha optado por un frontend web usando el framework Next.js para generar una interfaz accesible desde todo tipo de dispositivos modernos (y no tan modernos), aprovechando la simplicidad de desarrollo que ofrece y la disponibilidad de librerías creadas por la comunidad para un desarrollo acelerado ideal para prototipos, aprovechando a su vez el rendimiento mejorado para el usuario final que ofrece el framework al combinar páginas estáticas con otras renderizadas en el servidor. Esto optimiza la carga y rendimiento de las aplicaciones de productor, comerciante, consumidor y reciclador, proporcionando una experiencia de usuario fluida y rápida, que es esencial para fomentar la adopción del sistema por usuarios con diversas competencias tecnológicas.
 
 ### Entornos
 
@@ -81,6 +91,16 @@ Específicamente nos enfocaremos en la cadena de producción de envases de vidri
 
 - **Presentación del prototipo**: Se realizará una presentación del prototipo en un entorno de demostración en la nube, que incluirá el uso de una red blockchain pública de pruebas, una base de datos en la nube y una interfaz web en la nube accesible desde cualquier navegador web.
 
-### Interfaz externa
+## Análisis de requerimientos
 
-/// Empezar a bajar las responsabilidades de cada parte y requerimientos que cumplirán.
+### Value Proposition Canvas
+
+![image](./assets/value-proposition-canvas.png)
+
+Este es el Canvas de Propuesta de valor de un sistema de trazabilidad completo incluyendo la cadena de producción de envases de vidrio, comercialización, consumo y la cadena de reciclado de vidrio. En este trabajo nos enfocaremos en la cadena de producción de envases de vidrio, dejando a libre implementación futura la integración con los actores de la cadena de reciclaje de vidrio. Por lo que en el resto de análisis de requerimientos se tomará en cuenta sólo la cadena de producción y comercialización de envases de vidrio. Es decir, haremos foco en el actor "productor". Igualmente, en el prototipo presentaremos un pequeño ejemplo de cómo podría utilizar el sistema cada uno de los actores, motivo por el cual hemos incluido los demás actores en el Canvas.
+
+### Requerimientos funcionales
+
+### Requerimientos no funcionales
+
+### Casos de uso
