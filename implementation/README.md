@@ -99,8 +99,4 @@ Esta arquitectura se ha diseñado buscando maximizar la escalabilidad y flexibil
 
 Este es el Canvas de Propuesta de valor de un sistema de trazabilidad completo incluyendo la cadena de producción de envases de vidrio, comercialización, consumo y la cadena de reciclado de vidrio. En este trabajo nos enfocaremos en la cadena de producción de envases de vidrio, dejando a libre implementación futura la integración con los actores de la cadena de reciclaje de vidrio. Por lo que en el resto de análisis de requerimientos se tomará en cuenta sólo la cadena de producción y comercialización de envases de vidrio. Es decir, haremos foco en el actor "productor". Igualmente, en el prototipo presentaremos un pequeño ejemplo de cómo podría utilizar el sistema cada uno de los actores, motivo por el cual hemos incluido los demás actores en el Canvas.
 
-### Requerimientos funcionales
-
-### Requerimientos no funcionales
-
 ### Casos de uso
