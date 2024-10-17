@@ -132,7 +132,9 @@ Hexagonal Architecture se despriorizó debido a que es más compleja de implemen
 
 Clean Architecture fue elegido finalmente ya que es un patrón de arquitectura de software que permite separar las capas de presentación, aplicación, dominio e infraestructura, facilitando la escalabilidad del sistema y la integración con otros sistemas de terceros. Clean Architecture enfatiza la independencia de frameworks, la testabilidad, y la independencia de la UI, la base de datos y cualquier agente externo. Además, Clean Architecture es un modelo de arquitectura de software ampliamente utilizado en la industria, lo que facilita la integración con otros sistemas y la mantenibilidad futura. Mientras que en nuestra aplicación consideramos que la infraestructura de base de datos será estable a lo largo del tiempo, sí contemplamos que la presentación podrían cambiar en el futuro al integrarse con distintos sistemas, pudiendo necesitarse cambios también en la lógica de negocios, motivos por los cuales Clean Architecture resulta apropiado para este proyecto, debido a que permite separar claramente las funciones del negocio de las infraestructuras y las interfaces de usuario. A su vez, este modelo permite separar las responsabilidades del sistema en módulos independientes según dominio o sistema externo con el que se integre, lo que facilita la escalabilidad y mantenibilidad del sistema en módulos desacoplados.
 
-/// Insertar diagrama de arquitectura de routers, handlers y domain services.
+![image](./assets/clean-architecture.png)
+
+/// Insertar diagrama de arquitectura de routers, handlers y domain services específico del proyecto.
 
 ### Capa de Presentación
 
