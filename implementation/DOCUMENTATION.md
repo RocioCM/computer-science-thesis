@@ -28,7 +28,8 @@ Se define la documentación que incluirá el entregable final del proyecto clasi
 
 ## Documentación de pruebas
 
-- Casos de Prueba: Detalla escenarios específicos que se deben probar, incluyendo datos de entrada, resultados esperados y pasos a seguir.
+- Casos de Prueba: Para cada etapa de pruebas, detalla escenarios específicos que se deben probar, incluyendo datos de entrada, resultados esperados y pasos a seguir.
+- Informe de Pruebas: Resultados de las pruebas realizadas, incluyendo los casos de prueba ejecutados y los resultados obtenidos.
 
 ## Documentación para el usuario final
 
