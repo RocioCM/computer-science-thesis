@@ -1,0 +1,14 @@
+.focusButton {
+  transition-property: transform, box-shadow;
+  transition-duration: 0.2s;
+}
+
+.focusButton:not(:disabled):active {
+  transform: scale(0.95);
+  box-shadow: var(--elevation-colored);
+}
+
+/* Hide all button content but keep button width while loading. */
+.loading ~ * {
+  opacity: 0;
+}

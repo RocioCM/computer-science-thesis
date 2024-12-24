@@ -1,0 +1,3 @@
+.inputFocus:active:not(:disabled) {
+  box-shadow: var(--elevation-colored);
+}

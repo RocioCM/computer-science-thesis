@@ -1,0 +1,14 @@
+.bulb svg {
+  transform-origin: center 15px;
+  animation: swing 1.3s ease-in-out infinite alternate;
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(18deg);
+  }
+
+  100% {
+    transform: rotate(-18deg);
+  }
+}

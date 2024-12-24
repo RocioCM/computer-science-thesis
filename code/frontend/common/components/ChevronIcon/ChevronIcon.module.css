@@ -1,0 +1,32 @@
+.container {
+  display: inline-block;
+}
+
+.container svg {
+  width: auto;
+  height: 100%;
+  display: block;
+}
+
+.down {
+  transform: rotate(-90deg);
+}
+
+.up {
+  transform: rotate(90deg);
+}
+
+.right {
+  transform: rotate(-180deg);
+}
+
+.left {
+  transform: rotate(0deg);
+}
+
+.up,
+.down,
+.right,
+.left {
+  transition: transform 0.3s ease-out;
+}
