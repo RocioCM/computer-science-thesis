@@ -701,7 +701,9 @@ const useRichieForm = (initialFormStructure: FieldData[]) => {
           checkboxes={checkboxOptions[inputFullName]}
           radioOptionValue={input.radioOptionValue}
           form={form}
-          options={dropdownOptions[inputFullName]}
+          options={
+            input.dropdownOptions ?? dropdownOptions[inputFullName] ?? []
+          }
           {...extraInputProps}
           {...extraInputProps}
         />

@@ -11,14 +11,12 @@ import {
 import '@/common/services/firebase';
 import { Response } from '@/common/services/request';
 import { HTTP_STATUS } from '@/common/constants';
-import { UserRole } from '../types';
 
 const googleProvider = new GoogleAuthProvider();
 const auth = getAuth();
 
 export interface AuthUserInfo {
   token: string;
-  role: UserRole;
   user: User;
 }
 
@@ -40,10 +38,9 @@ const AuthServices = {
   getFormattedUser: async (authUser: User): Promise<AuthUserInfo> => {
     const tokenResult = await authUser.getIdTokenResult();
     const token = tokenResult.token;
-    const role = `${tokenResult.claims.role}` ?? null;
     const user = authUser;
 
-    const formattedUser: AuthUserInfo = { token, role, user };
+    const formattedUser: AuthUserInfo = { token, user };
     return formattedUser;
   },
 

@@ -58,6 +58,10 @@ export interface FormBuilderField {
   colorToggle?: 'black' | 'white';
   value?: FieldValue;
   radioOptionValue?: string;
+  dropdownOptions?: Array<{
+    value: FieldValue;
+    label: string;
+  }>;
 }
 
 export type FormBuilderType = (

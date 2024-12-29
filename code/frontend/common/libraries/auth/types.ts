@@ -9,7 +9,7 @@ export interface LoginPayload {
 
 // ---------- CONTEXT ---------- //
 
-export type UserRole = string | null;
+export type UserRole = number;
 
 export interface User extends APIUser {
   sessionToken: string;

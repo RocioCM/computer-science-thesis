@@ -1,4 +1,3 @@
-.container {
-  width: 100%;
-  height: 100%;
+.dropdonwFocus:active:not(:disabled) {
+  box-shadow: var(--elevation-colored);
 }
