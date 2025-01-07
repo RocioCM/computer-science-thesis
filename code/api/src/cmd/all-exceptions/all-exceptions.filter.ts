@@ -5,10 +5,13 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
+import { logger } from 'src/pkg/shared/helpers/logger';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
   catch(exception: unknown, host: ArgumentsHost) {
+    logger('Exception', exception, host);
+
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     const status =
