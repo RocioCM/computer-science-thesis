@@ -9,18 +9,18 @@ const LABEL_STYLE = {
   base: 'text-p mb-xs',
   floatingOnTop: 'top-0 left-0 text-n10 font-semibold',
   floatingInsideInput:
-    'top-[calc(2.5*var(--spacing-m)+var(--spacing-xs))] left-m text-n2 font-medium cursor-text',
+    'top-[calc(2.4*var(--spacing-m)+var(--spacing-xs))] left-m text-n2 font-medium cursor-text',
   disabled: '!cursor-default',
 };
 
 const ABSOLUTE_CHILDREN_STYLE = 'gap-xs';
 
 const INPUT_STYLE = {
-  base: 'p rounded-rs border-n1 px-m py-m placeholder:text-n2', // TIP: For only bottom border use: 'rounded-none border-0 border-b'
+  base: 'p rounded-rs border-n1 px-m py-m placeholder:text-n2 h-12', // TIP: For only bottom border use: 'rounded-none border-0 border-b'
   hover: 'hover:border-n2',
   focus: cn(styles.inputFocus, 'focus:border-p1'),
   disabled:
-    'disabled:text-n2 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent',
+    'disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent',
   error: '!border-fe1',
 };
 

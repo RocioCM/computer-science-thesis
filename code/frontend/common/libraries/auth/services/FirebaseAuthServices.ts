@@ -11,6 +11,7 @@ import {
 import '@/common/services/firebase';
 import { Response } from '@/common/services/request';
 import { HTTP_STATUS } from '@/common/constants';
+import { UserRole } from '../types';
 
 const googleProvider = new GoogleAuthProvider();
 const auth = getAuth();
@@ -18,6 +19,7 @@ const auth = getAuth();
 export interface AuthUserInfo {
   token: string;
   user: User;
+  role: UserRole;
 }
 
 const AuthServices = {
@@ -39,8 +41,9 @@ const AuthServices = {
     const tokenResult = await authUser.getIdTokenResult();
     const token = tokenResult.token;
     const user = authUser;
+    const role = tokenResult.claims.role as UserRole;
 
-    const formattedUser: AuthUserInfo = { token, user };
+    const formattedUser: AuthUserInfo = { token, user, role };
     return formattedUser;
   },
 

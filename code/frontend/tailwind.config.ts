@@ -13,7 +13,7 @@ module.exports = {
         fs1: '#115e59',
         fw1: '#854d0e',
         n0: '#ffffff',
-        n1: '#eaebec',
+        n1: '#eeeeee',
         n10: '#141219',
         n2: '#bfbfbf',
         n3: '#808080',

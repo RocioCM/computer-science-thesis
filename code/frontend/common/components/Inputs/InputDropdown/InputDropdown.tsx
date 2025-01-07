@@ -11,15 +11,15 @@ const LABEL_STYLE = {
   base: 'text-p mb-xs cursor-pointer',
   floatingOnTop: 'top-0 left-0 text-n10 font-semibold',
   floatingInsideInput:
-    'top-[calc(2*var(--spacing-m)+var(--spacing-xs))] left-m text-n2 font-medium cursor-text',
+    'top-[calc(2.3*var(--spacing-m)+var(--spacing-xs))] left-m text-n2 font-medium cursor-text',
   disabled: '!cursor-default',
 };
 
 const INPUT_STYLE = {
-  base: 'gap-xs p text-left rounded-rs border-n1 px-m py-m placeholder:text-n2', // TIP: For only bottom border use: 'rounded-none border-0 border-b'
+  base: 'gap-xs p text-left rounded-rs border-n1 px-m py-m placeholder:text-n2 h-12', // TIP: For only bottom border use: 'rounded-none border-0 border-b'
   hover: 'hover:border-n2',
   focus: cn(styles.dropdonwFocus, 'focus:border-p1'),
-  disabled: 'disabled:text-n2 disabled:bg-n1 disabled:border-n2',
+  disabled: 'disabled:text-n3 disabled:bg-n1 disabled:border-n2',
   error: '!border-fe1',
 };
 
@@ -84,6 +84,10 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
   useEffect(() => {
     setFloatLabel(!!value);
   }, [value]);
+
+  useEffect(() => {
+    if (isDisabled) setFloatLabel(true);
+  }, [isDisabled]);
 
   const handleSelect = (e: React.MouseEvent, newValue: Option['value']) => {
     e.preventDefault();

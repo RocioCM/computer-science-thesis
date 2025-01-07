@@ -4,6 +4,7 @@ import { REGISTER_INPUTS } from './constants';
 import Button from '@/common/components/Button';
 import Img from '@/common/components/Img';
 import loginImage from '@/public/assets/login-image.png';
+import Link from 'next/link';
 
 const RegisterView: RegisterViewType = ({
   handleRegister,
@@ -28,6 +29,12 @@ const RegisterView: RegisterViewType = ({
         <div className="flex flex-col gap-s">
           {formBuilder(REGISTER_INPUTS)}
         </div>
+        <p className="text-center">
+          ¿Ya tenés cuenta?{' '}
+          <Link href="/auth/login" className="font-semibold text-p1">
+            Ingresá acá
+          </Link>
+        </p>
         <Button
           handleClick={handleRegister}
           label="Crear usuario"

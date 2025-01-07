@@ -3,7 +3,14 @@ import { useRouter } from 'next/router';
 import { reducer, initialState } from './reducer';
 import AuthServices, { AuthUserInfo } from './services/FirebaseAuthServices';
 import UserServices from './services/UserServices';
-import { User, LoginPayload, ActionTypes, UserRole } from './types';
+import {
+  User,
+  LoginPayload,
+  ActionTypes,
+  UserRole,
+  RegisterUser,
+  APIUser,
+} from './types';
 import { updateSession } from './session';
 
 /**
@@ -54,12 +61,17 @@ const useAuthState = () => {
     return { ok: false, data: null };
   };
 
+  const registerUser = async (newUser: RegisterUser) => {
+    const { ok } = await UserServices.registerUser(newUser);
+    return { ok };
+  };
+
   /**
    * Updates user data in the API and refreshes the user in the context.
    * @param user - User object with the new data.
    * @returns ok is true if the user was updated successfully.
    */
-  const updateUserData = async (newUser: User) => {
+  const updateUserData = async (newUser: APIUser) => {
     const { ok } = await UserServices.updateUser(newUser);
     if (ok) refreshUser();
     return { ok };
@@ -128,6 +140,7 @@ const useAuthState = () => {
   const actions = {
     userHasRole,
     refreshUser,
+    registerUser,
     loginWithGoogle,
     loginWithPassword,
     updateUserData,
@@ -143,6 +156,7 @@ useAuthState.defaultReturn = (): ReturnType<typeof useAuthState> => ({
   loading: true,
   isLoggedIn: false,
   user: null,
+  registerUser: async () => ({ ok: false }),
   refreshUser: async () => ({ ok: false, data: null }),
   loginWithGoogle: async () => ({ ok: false, data: null }),
   loginWithPassword: async () => ({ ok: false, data: null }),

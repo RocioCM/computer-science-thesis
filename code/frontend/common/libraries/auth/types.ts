@@ -1,10 +1,23 @@
 //  ------------ API ------------ //
 
-import { APIUser } from './services/UserServices';
+export interface APIUser {
+  id: number;
+  email: string;
+  blockchainId: string;
+  userName?: string;
+  managerName?: string;
+  phone?: string;
+}
 
 export interface LoginPayload {
   email: string;
   password: string;
+}
+
+export interface RegisterUser {
+  email: string;
+  password: string;
+  roleId: number;
 }
 
 // ---------- CONTEXT ---------- //

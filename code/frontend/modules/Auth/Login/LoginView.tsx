@@ -4,6 +4,7 @@ import Img from '@/common/components/Img';
 import Button from '@/common/components/Button';
 import loginImage from '@/public/assets/login-image.png';
 import { LOGIN_INPUTS } from './constants';
+import Link from 'next/link';
 
 const LoginView: LoginViewType = ({
   handleLogin,
@@ -26,6 +27,12 @@ const LoginView: LoginViewType = ({
       >
         <h2>Bienvenido</h2>
         <div className="flex flex-col gap-s">{formBuilder(LOGIN_INPUTS)}</div>
+        <p className="text-center">
+          ¿No tenés cuenta?{' '}
+          <Link href="/auth/register" className="font-semibold text-p1">
+            Registrate acá
+          </Link>
+        </p>
         <Button
           handleClick={handleLogin}
           label="Iniciar sesión"

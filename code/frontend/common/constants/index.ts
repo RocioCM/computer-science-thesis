@@ -16,15 +16,16 @@ export const isServerSide = typeof window === 'undefined';
 export const basePath = process.env.basePath ?? '';
 
 const TEST_URL = 'https://test.lila.com.ar';
+const LOCAL_URL = 'http://localhost:8080';
 
 // This is the Backend base url, it is used to make requests to the API.
 // WARNING: This BASE_PATH variable is only available on the server side.
 // All these url values on the client side are not reliable and may differ from the server side.
 export const BASE_URL = isProduction
   ? process.env.BASE_PATH ?? 'https://lila.com.ar' // DON'T CHANGE THIS LINE.
-  : TEST_URL; // You can change this line during development.
+  : LOCAL_URL; // You can change this line during development.
 
-export const API_BASE_URL = BASE_URL + '/api/template-middlend';
+export const API_BASE_URL = BASE_URL + '/api';
 
 export const HTTP_STATUS = {
   ok: 200,

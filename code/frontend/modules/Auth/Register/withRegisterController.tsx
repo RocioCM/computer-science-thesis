@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { RegisterViewType, RegisterViewProps, RegisterUser } from './types';
+import { RegisterViewType, RegisterViewProps } from './types';
 import { REGISTER_FORM_STRUCT } from './constants';
-import RegisterServices from './services';
 import useForm from '@/common/hooks/useForm';
+import useLoginContext from '@/common/libraries/auth';
 
 const withRegisterController = (View: RegisterViewType) =>
   function Controller(): JSX.Element {
     const { form, formBuilder, submitEnabled } = useForm(REGISTER_FORM_STRUCT);
     const [isLoading, setIsLoading] = useState(false);
+    const { registerUser } = useLoginContext();
 
     const handleRegister = async (e: React.FormEvent) => {
       e.preventDefault();
@@ -16,12 +17,12 @@ const withRegisterController = (View: RegisterViewType) =>
       setIsLoading(true);
 
       console.log(form); ///
-      const payload: RegisterUser = {
+      const payload = {
         email: form.email,
         password: form.password,
         roleId: form.roleId,
       };
-      const { ok } = await RegisterServices.register(payload);
+      const { ok } = await registerUser(payload);
       if (ok) {
         toast.success('Usuario registrado exitosamente.');
       } else {

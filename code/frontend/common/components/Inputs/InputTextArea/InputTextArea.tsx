@@ -13,11 +13,11 @@ const LABEL_STYLE = {
 };
 
 const INPUT_STYLE = {
-  base: 'p rounded-rs border-n1 px-m py-m placeholder:text-n2 min-h-5rem', // TIP: For only bottom border use: 'rounded-none border-0 border-b'
+  base: 'p rounded-rs border-n1 px-m py-m placeholder:text-n2 min-h-[5rem]', // TIP: For only bottom border use: 'rounded-none border-0 border-b'
   hover: 'hover:border-n2',
   focus: cn(styles.inputFocus, 'focus:border-p1'),
   disabled:
-    'disabled:text-n2 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent',
+    'disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent',
   error: '!border-fe1',
 };
 
