@@ -2,8 +2,6 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-**CHECK THE INSTALLATION GUIDE FOR PROJECT FIRST-SETUP INSTRUCTIONS: [INSTALATION_GUIDE.md](./INSTALATION_GUIDE.md)**
-
 First time you open this repo, install dependencies:
 
 ```bash
@@ -20,15 +18,9 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000/template](http://localhost:3000/template) with your browser to see the result.
+Open [http://localhost:3000/](http://localhost:3000/) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-### App base path
-
-The base path of the app is set to `/template` by default. You can change it in the `next.config.js` file. As all our projects are deployed behind a reverse proxy on a subpath, this is necessary to make the app work properly.
-
-If you are deploying the app on the root of a domain, you can empty the basePath constant the next.config.js file; but's not usually our case, because it can cause the API routes to overlap with the backend API routes if deployed on the same domain.
 
 ## Scaffolding
 
@@ -74,24 +66,9 @@ Modules implement MVC architecture using React Higher-Order Components (HOC). Ea
 Use the `/services` folder for service-related files and global constants. Services should fetch from API routes, and API routes should interact with backend endpoints. All API routes are in the `/pages/api` folder, with each file mapped to an API route endpoint.
 
 ### Tooling and Configurations
-
-- **Husky**: Used to run validation and formatting before each commit. Ensure it is correctly configured on your computer. You will receive a warning when committing if it is not working. On UNIX-based systems, run the following command after cloning the repo:
-
-```bash
-chmod +x .husky/pre-commit
-```
-
-- **Unit Testing**: Not used in this project.
-- **GitHub Actions**: Used to check that the project passes the build before merging to develop.
 - **ESLint and Prettier**: Used to maintain clean and consistently formatted code. Run `npm run lint` to see errors and warnings in your code.
 - **Type Checking**: Run `npm run check` to execute ESLint and validate TypeScript errors throughout the project, or `npm run type-check` to only run TypeScript validation.
-- **Tailwind CSS**: Used for styling aligned with our design system in Figma. For configuration instructions, check the [INSTALATION_GUIDE.md](./INSTALATION_GUIDE.md) file.
-
-## Design System
-
-This project follows a design system defined in Figma, which includes colors, typography, spacing, and UI Kit components. The components are styled using Tailwind CSS classes, ensuring consistency with the design system.
-
-For instructions on configuring Tailwind CSS variables and updating reusable component styles to align with your UI Kit, refer to the [INSTALATION_GUIDE.md](./INSTALATION_GUIDE.md) file docs.
+- **Tailwind CSS**: Used for styling aligned with our design system in Figma.
 
 ## Custom Scripts to Generate Code (npm run cast)
 
@@ -201,7 +178,3 @@ export default EmailServices;
 ### Docs
 
 You can find docs on each library and hook on it's own README.md file if needed. If you create a new library or hook, remember to add a README.md or JavaDoc comments to document it.
-
-Starting a new product/project repo? Check [INSTALATION_GUIDE.md](./INSTALATION_GUIDE.md) for more information on how to set up the project for the first time.
-
-All docs links and guides outside the repo are available on [Notion Tech Wiki](https://www.notion.so/1d5ac5d06f9d4ae99134b9bbb6d8f457?v=f933d530b2d645758378af42cc7b91e7&pvs=4#5275ca6adf404b80b904fc44589b2432).

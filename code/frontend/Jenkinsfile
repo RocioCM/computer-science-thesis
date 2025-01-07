@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_TAG = 'template-web'
+        DOCKER_TAG = 'blockchain-thesis-frontend'
         PORT = "3020"
     }
     stages {

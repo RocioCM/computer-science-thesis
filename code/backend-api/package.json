@@ -1,5 +1,5 @@
 {
-  "name": "backend-api",
+  "name": "thesis-backend-api",
   "version": "1.0.0",
   "main": "src/cmd/main.ts",
   "scripts": {

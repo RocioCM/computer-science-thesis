@@ -1,4 +1,3 @@
-import useTracking from '@/common/libraries/tracking';
 
 interface Props {
   children: React.ReactNode;
@@ -9,8 +8,6 @@ interface Props {
  * You can access AppContext here.
  */
 const AppWrapper: React.FC<Props> = ({ children }) => {
-  useTracking(true); // Enable UX tracking globally.
-
   return children;
 };
 
