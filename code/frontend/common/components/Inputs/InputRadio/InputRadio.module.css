@@ -1,3 +1,0 @@
-input:active:not(:disabled) + .radio {
-  box-shadow: var(--elevation-colored);
-}

@@ -1,3 +1,0 @@
-input:active:not(:disabled) + .check {
-  box-shadow: var(--elevation-colored);
-}
