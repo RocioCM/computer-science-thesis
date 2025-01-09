@@ -7,7 +7,8 @@ import useLoginContext from '@/common/libraries/auth';
 
 const withRegisterController = (View: RegisterViewType) =>
   function Controller(): JSX.Element {
-    const { form, formBuilder, submitEnabled } = useForm(REGISTER_FORM_STRUCT);
+    const { form, formBuilder, submitEnabled, resetForm } =
+      useForm(REGISTER_FORM_STRUCT);
     const [isLoading, setIsLoading] = useState(false);
     const { registerUser } = useLoginContext();
 
@@ -24,9 +25,12 @@ const withRegisterController = (View: RegisterViewType) =>
       };
       const { ok } = await registerUser(payload);
       if (ok) {
-        toast.success('Usuario registrado exitosamente.');
+        toast.success(
+          '¡Usuario registrado exitosamente! Ya podés iniciar sesión con estas credenciales'
+        );
+        resetForm();
       } else {
-        toast.error('Ocurrió un error al registrar. Intentá nuevamente.');
+        toast.error('Ocurrió un error al registrar. Intentá nuevamente');
       }
 
       setIsLoading(false);

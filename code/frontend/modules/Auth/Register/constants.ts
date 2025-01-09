@@ -13,6 +13,7 @@ export const REGISTER_FORM_STRUCT = [
     name: 'password',
     required: true,
     default: '',
+    validators: validators.isPassword,
   },
   {
     name: 'roleId',
