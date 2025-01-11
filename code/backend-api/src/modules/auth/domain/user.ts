@@ -64,3 +64,20 @@ export class CreateUserDTO {
   @IsInt()
   roleId: number;
 }
+
+export class UpdateUserDTO {
+  @Expose()
+  @IsOptional()
+  @IsString()
+  userName?: string;
+
+  @Expose()
+  @IsOptional()
+  @IsString()
+  managerName?: string;
+
+  @Expose()
+  @IsOptional()
+  @IsNumberString()
+  phone?: string;
+}

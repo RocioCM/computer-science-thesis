@@ -1,8 +1,9 @@
 import { StatusCodes } from 'http-status-codes';
 import { IResult } from 'src/pkg/interfaces/result';
-import { CreateUserDTO, User } from './domain/user';
+import { CreateUserDTO, UpdateUserDTO, User } from './domain/user';
 import FirebaseAuthRepository from './repositories/firebaseAuthRepository';
 import UserRepository from './repositories/userRepository';
+import { AuthUser } from 'src/pkg/helpers/authHelper';
 
 /// TODO: start with blockchain CRUD and API integration.
 
@@ -35,16 +36,8 @@ export default class AuthHandler {
     return UserRepository.CreateUser(userEntity);
   }
 
-  static async GetUserWithAuth(authToken: string): IResult<User> {
-    const firebaseUserRes =
-      await FirebaseAuthRepository.GetUserWithToken(authToken);
-    if (!firebaseUserRes.ok) {
-      return { ok: false, status: firebaseUserRes.status, data: null };
-    }
-
-    const userRes = await UserRepository.GetUserByFirebaseUid(
-      firebaseUserRes.data.uid,
-    );
+  static async GetUserWithAuth(firebaseUser: AuthUser): IResult<User> {
+    const userRes = await UserRepository.GetUserByFirebaseUid(firebaseUser.uid);
     if (!userRes.ok) {
       return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
     }
@@ -53,28 +46,16 @@ export default class AuthHandler {
   }
 
   static async UpdateUserWithAuth(
-    authToken: string,
-    user: User,
+    firebaseUid: string,
+    user: UpdateUserDTO,
   ): IResult<null> {
-    const firebaseUser =
-      await FirebaseAuthRepository.GetUserWithToken(authToken);
-    if (!firebaseUser.ok) {
-      return { ok: false, status: firebaseUser.status, data: null };
-    }
-
-    const userRes = await UserRepository.GetUserByFirebaseUid(
-      firebaseUser.data.uid,
-    );
+    const userRes = await UserRepository.GetUserByFirebaseUid(firebaseUid);
     if (!userRes.ok) {
       return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
     }
 
-    const prevUser = userRes.data;
-    user.id = prevUser.id;
-    user.firebaseUid = prevUser.firebaseUid;
-    user.email = prevUser.email;
-    user.blockchainId = prevUser.blockchainId;
+    const updatedUser = { ...userRes.data, ...user };
 
-    return UserRepository.UpdateUser(user);
+    return UserRepository.UpdateUser(updatedUser);
   }
 }

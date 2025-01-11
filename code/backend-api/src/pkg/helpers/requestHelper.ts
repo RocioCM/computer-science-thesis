@@ -14,7 +14,7 @@ import { StatusCodes } from 'http-status-codes';
 function getAuthToken(req: Request): string {
   const authHeader = req.headers.authorization;
   if (authHeader && authHeader.split(' ')[0] === 'Bearer') {
-    return authHeader.split(' ')[1];
+    return authHeader.split(' ')[1] ?? '';
   }
   return authHeader ?? '';
 }

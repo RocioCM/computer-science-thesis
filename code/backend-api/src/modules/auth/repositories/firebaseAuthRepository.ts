@@ -1,12 +1,9 @@
 import { StatusCodes } from 'http-status-codes';
-import firebaseAuthHelper from 'src/pkg/helpers/authHelper';
+import firebaseAuthHelper, { AuthUser } from 'src/pkg/helpers/authHelper';
 import { IResult } from 'src/pkg/interfaces/result';
 
 export default class FirebaseAuthRepository {
-  static async CreateUser(
-    email: string,
-    password: string,
-  ): IResult<firebaseAuthHelper.auth.UserRecord> {
+  static async CreateUser(email: string, password: string): IResult<AuthUser> {
     const createdUser = await firebaseAuthHelper.auth().createUser({
       email,
       password,
@@ -19,9 +16,7 @@ export default class FirebaseAuthRepository {
     return { ok: true, status: StatusCodes.OK, data: null };
   }
 
-  static async GetUserWithToken(
-    token: string,
-  ): IResult<firebaseAuthHelper.auth.UserRecord> {
+  static async GetUserWithToken(token: string): IResult<AuthUser> {
     try {
       const decodedToken = await firebaseAuthHelper.auth().verifyIdToken(token);
       const user = await firebaseAuthHelper.auth().getUser(decodedToken.uid);
