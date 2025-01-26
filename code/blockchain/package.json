@@ -1,0 +1,25 @@
+{
+  "name": "blockchain",
+  "version": "1.0.0",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "coverage": "hardhat coverage",
+    "node": "hardhat node",
+    "deployLocal": "hardhat run scripts/deploy.ts --network localhost",
+    "deployTest": "hardhat run scripts/deploy.ts --network optimismSepolia",
+    "deployProd": "hardhat run scripts/deploy.ts --network optimisticEthereum"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.2.0",
+    "@typechain/hardhat": "^9.1.0",
+    "dotenv": "^16.4.7",
+    "hardhat": "^2.22.17",
+    "solidity-coverage": "^0.8.14",
+    "typechain": "^8.3.2"
+  }
+}
