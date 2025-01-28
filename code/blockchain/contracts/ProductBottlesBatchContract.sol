@@ -92,8 +92,8 @@ contract ProductBottlesBatchContract {
     });
 
     productBottles[nextProductBatchId] = newProductBatch;
-    nextProductBatchId++;
     emit ProductBatchCreated(nextProductBatchId, owner);
+    nextProductBatchId++;
   }
 
   function updateTrackingCode(
@@ -153,7 +153,20 @@ contract ProductBottlesBatchContract {
     return batches;
   }
 
-  function rejectBaseBottles(uint256 batchId) external onlyContractOwner {}
+  function rejectBaseBottles(uint256 batchId) external onlyContractOwner {
+    ProductBottlesBatch memory productBatch = productBottles[batchId];
+    require(
+      bytes(productBatch.deletedAt).length == 0,
+      'Product batch already deleted'
+    );
+    productBatch.deletedAt = productBatch.createdAt;
+
+    baseBottlesBatchContract.rejectSoldBaseBottles(
+      productBatch.originBaseBatchId,
+      productBatch.quantity
+    );
+    emit ProductBatchDeleted(batchId);
+  }
 
   function recycleProductBottle(
     uint256 batchId,
@@ -194,7 +207,7 @@ contract ProductBottlesBatchContract {
       'Product batch already deleted'
     );
 
-    productBatch.availableQuantity -= quantity;
+    productBottles[batchId].availableQuantity -= quantity;
     soldBottles[nextSoldBatchId] = SoldProductBatch({
       id: nextSoldBatchId,
       quantity: quantity,

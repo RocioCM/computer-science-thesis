@@ -235,6 +235,13 @@ contract RecycledMaterialContract {
     return bottles;
   }
 
+  function getWasteBottleIdsForBatch(
+    uint256 batchId
+  ) external view returns (uint256[] memory) {
+    RecycledMaterialBatch storage batch = recycledMaterials[batchId];
+    return batch.wasteBottleIds;
+  }
+
   function getRecycledMaterialBatchesList(
     uint256[] memory indexes
   ) external view returns (RecycledMaterialBatch[] memory) {
@@ -272,6 +279,7 @@ contract RecycledMaterialContract {
     address buyerOwner
   ) external {
     RecycledMaterialBatch storage batch = recycledMaterials[batchId];
+    require(batch.id != 0, 'Batch does not exist');
     require(bytes(batch.deletedAt).length == 0, 'Batch already deleted');
     require(batch.buyerOwner == address(0), 'Batch already sold');
     batch.buyerOwner = buyerOwner;
