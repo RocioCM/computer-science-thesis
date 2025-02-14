@@ -55,6 +55,36 @@ describe('BaseBottlesBatchContract', function () {
     expect(batch.deletedAt).to.equal('');
   });
 
+  it('Should get a created BaseBottlesBatch', async function () {
+    const bottleType: BottleStruct = {
+      weight: 500,
+      color: 'verde',
+      thickness: 12,
+      shapeType: 'cuello alto',
+      originLocation: 'Mendoza',
+      extraInfo: '{}',
+      composition:
+        '[{"name": "vidrio", "amount": 100, "measureUnit": "percentage"}]',
+    };
+    const tx = await baseBatchContract.createBaseBottlesBatch(
+      100,
+      bottleType,
+      await addr1.getAddress(),
+      '2025-01-01T00:00:00',
+    );
+
+    const batch = await baseBatchContract.getBaseBottlesBatch(1);
+    expect(batch.quantity).to.equal(100);
+    expect(batch.owner).to.equal(await addr1.getAddress());
+    expect(batch.deletedAt).to.equal('');
+  });
+
+  it('Should not get non-existent BaseBottlesBatch', async function () {
+    await expect(baseBatchContract.getBaseBottlesBatch(2)).to.be.revertedWith(
+      'Batch does not exist',
+    );
+  });
+
   it('Should update an existing BaseBottlesBatch', async function () {
     // First create batch
     const bottleType: BottleStruct = {
@@ -215,7 +245,7 @@ describe('BaseBottlesBatchContract', function () {
     expect(batches[1].id).to.equal(3);
   });
 
-  xit('Should recycle base bottles correctly', async function () {
+  it('Should recycle base bottles correctly', async function () {
     const bottleType = {
       weight: 300,
       color: 'brown',
@@ -289,7 +319,7 @@ describe('BaseBottlesBatchContract', function () {
     ).to.be.revertedWith('Batch already deleted');
   });
 
-  xit('Should sell base bottles correctly', async function () {
+  it('Should sell base bottles correctly', async function () {
     const bottleType = {
       weight: 250,
       color: 'transparent',
@@ -376,5 +406,179 @@ describe('BaseBottlesBatchContract', function () {
         '2025-12-12T00:00:00',
       ),
     ).to.be.revertedWith('Batch already deleted');
+  });
+
+  it('Should not reject sold bottles from unauthorized address', async function () {
+    const bottleType: BottleStruct = {
+      weight: 500,
+      color: 'verde',
+      thickness: 12,
+      shapeType: 'cuello alto',
+      originLocation: 'Mendoza',
+      extraInfo: '{}',
+      composition:
+        '[{"name": "vidrio", "amount": 100, "measureUnit": "percentage"}]',
+    };
+    await baseBatchContract.createBaseBottlesBatch(
+      50,
+      bottleType,
+      await addr1.getAddress(),
+      '2025-11-11T00:00:00',
+    );
+
+    await baseBatchContract.sellBaseBottles(
+      1,
+      10,
+      await addr2.getAddress(),
+      '2025-12-12T00:00:00',
+    );
+
+    // Reject base bottles batch
+    await expect(
+      baseBatchContract.rejectSoldBaseBottles(1, 10),
+    ).to.be.revertedWith('Unauthorized');
+  });
+
+  it('Should revert createBaseBottlesBatch if not called by owner', async function () {
+    const bottleType: BottleStruct = {
+      weight: 500,
+      color: 'verde',
+      thickness: 12,
+      shapeType: 'cuello alto',
+      originLocation: 'Mendoza',
+      extraInfo: '{}',
+      composition:
+        '[{"name": "vidrio", "amount": 100, "measureUnit": "percentage"}]',
+    };
+    await expect(
+      baseBatchContract
+        .connect(addr1)
+        .createBaseBottlesBatch(
+          100,
+          bottleType,
+          await addr1.getAddress(),
+          '2025-01-01T00:00:00',
+        ),
+    ).to.be.revertedWith('Unauthorized');
+  });
+
+  it('Should revert updateBaseBottlesBatch if not called by owner', async function () {
+    const bottleType: BottleStruct = {
+      weight: 500,
+      color: 'verde',
+      thickness: 12,
+      shapeType: 'cuello alto',
+      originLocation: 'Mendoza',
+      extraInfo: '{}',
+      composition:
+        '[{"name": "vidrio", "amount": 100, "measureUnit": "percentage"}]',
+    };
+    await baseBatchContract.createBaseBottlesBatch(
+      50,
+      bottleType,
+      await addr1.getAddress(),
+      '2025-02-02T00:00:00',
+    );
+
+    const updatedBatch: BaseBottlesBatchStruct = {
+      id: 1,
+      quantity: 75,
+      bottleType: {
+        weight: 600,
+        color: 'azul',
+        thickness: 12,
+        shapeType: 'cuello alto',
+        originLocation: 'Mendoza',
+        extraInfo: '{"status": "updated"}',
+        composition:
+          '[{"name": "vidrio", "amount": 100, "measureUnit": "percentage"}]',
+      },
+      owner: await addr1.getAddress(),
+      soldQuantity: 0,
+      createdAt: '2025-02-02T00:00:00',
+      deletedAt: '',
+    };
+
+    await expect(
+      baseBatchContract.connect(addr1).updateBaseBottlesBatch(1, updatedBatch),
+    ).to.be.revertedWith('Unauthorized');
+  });
+
+  it('Should revert deleteBaseBottlesBatch if not called by owner', async function () {
+    const bottleType: BottleStruct = {
+      weight: 500,
+      color: 'verde',
+      thickness: 12,
+      shapeType: 'cuello alto',
+      originLocation: 'Mendoza',
+      extraInfo: '{}',
+      composition:
+        '[{"name": "vidrio", "amount": 100, "measureUnit": "percentage"}]',
+    };
+    await baseBatchContract.createBaseBottlesBatch(
+      50,
+      bottleType,
+      await addr1.getAddress(),
+      '2025-02-02T00:00:00',
+    );
+
+    await expect(
+      baseBatchContract
+        .connect(addr1)
+        .deleteBaseBottlesBatch(1, '2025-03-03T00:00:00'),
+    ).to.be.revertedWith('Unauthorized');
+  });
+
+  it('Should revert recycleBaseBottles if not called by owner', async function () {
+    const bottleType: BottleStruct = {
+      weight: 500,
+      color: 'verde',
+      thickness: 12,
+      shapeType: 'cuello alto',
+      originLocation: 'Mendoza',
+      extraInfo: '{}',
+      composition:
+        '[{"name": "vidrio", "amount": 100, "measureUnit": "percentage"}]',
+    };
+    await baseBatchContract.createBaseBottlesBatch(
+      50,
+      bottleType,
+      await addr1.getAddress(),
+      '2025-02-02T00:00:00',
+    );
+
+    await expect(
+      baseBatchContract.connect(addr1).recycleBaseBottles(1, 10),
+    ).to.be.revertedWith('Unauthorized');
+  });
+
+  it('Should revert sellBaseBottles if not called by owner', async function () {
+    const bottleType: BottleStruct = {
+      weight: 500,
+      color: 'verde',
+      thickness: 12,
+      shapeType: 'cuello alto',
+      originLocation: 'Mendoza',
+      extraInfo: '{}',
+      composition:
+        '[{"name": "vidrio", "amount": 100, "measureUnit": "percentage"}]',
+    };
+    await baseBatchContract.createBaseBottlesBatch(
+      50,
+      bottleType,
+      await addr1.getAddress(),
+      '2025-02-02T00:00:00',
+    );
+
+    await expect(
+      baseBatchContract
+        .connect(addr1)
+        .sellBaseBottles(
+          1,
+          10,
+          await addr2.getAddress(),
+          '2025-03-03T00:00:00',
+        ),
+    ).to.be.revertedWith('Unauthorized');
   });
 });

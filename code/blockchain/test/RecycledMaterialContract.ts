@@ -26,6 +26,24 @@ describe('RecycledMaterialContract', function () {
         await owner.getAddress(),
       );
     });
+
+    it('Should revert when setting base batch contract address from non-owner', async function () {
+      const contractAddress = await baseBatchContract.getAddress();
+      await expect(
+        recycleContract
+          .connect(addr1)
+          .setBaseBottlesBatchContract(contractAddress),
+      ).to.be.revertedWith('Unauthorized');
+    });
+
+    it('Should revert when setting product batch contract address from non-owner', async function () {
+      const contractAddress = await baseBatchContract.getAddress();
+      await expect(
+        recycleContract
+          .connect(addr1)
+          .setProductBottlesBatchContract(contractAddress),
+      ).to.be.revertedWith('Unauthorized');
+    });
   });
 
   describe('createWasteBottle', function () {
@@ -142,6 +160,15 @@ describe('RecycledMaterialContract', function () {
       await expect(
         recycleContract.deleteWasteBottle(bottleId, deletedAt),
       ).to.be.revertedWith('Bottle already recycled');
+    });
+
+    it('Should revert when deleting a WasteBottle from an unauthorized account', async function () {
+      const bottleId = 1;
+      const deletedAt = '2025-02-02T00:00:00';
+
+      await expect(
+        recycleContract.connect(addr1).deleteWasteBottle(bottleId, deletedAt),
+      ).to.be.revertedWith('Unauthorized');
     });
   });
 
@@ -286,6 +313,15 @@ describe('RecycledMaterialContract', function () {
         recycleContract.addWasteBottleToBatch(batchId, bottleId),
       ).to.be.revertedWith('Bottle already recycled');
     });
+
+    it('Should revert when adding WasteBottle to a batch from an unauthorized account', async function () {
+      const batchId = 1;
+      const bottleId = 1;
+
+      await expect(
+        recycleContract.connect(addr1).addWasteBottleToBatch(batchId, bottleId),
+      ).to.be.revertedWith('Unauthorized');
+    });
   });
 
   describe('removeWasteBottleFromBatch', function () {
@@ -320,6 +356,20 @@ describe('RecycledMaterialContract', function () {
       const batchId = 1;
       const bottleId = 1;
 
+      // Create a second WasteBottle and then add the bottle to the batch.
+      const trackingCode = 12345;
+      const bottleOwner = await addr1.getAddress();
+      const creator = await addr2.getAddress();
+      const createdAt = '2025-01-01T00:00:00';
+
+      await recycleContract.createWasteBottle(
+        trackingCode,
+        bottleOwner,
+        creator,
+        createdAt,
+      );
+      await recycleContract.addWasteBottleToBatch(1, 2);
+
       const tx = await recycleContract.removeWasteBottleFromBatch(
         batchId,
         bottleId,
@@ -332,7 +382,12 @@ describe('RecycledMaterialContract', function () {
       const wasteBottleIds = await recycleContract.getWasteBottleIdsForBatch(
         batchId,
       );
-      expect(wasteBottleIds.length).to.equal(0);
+      expect(wasteBottleIds.length).to.equal(1);
+
+      const recyclingBatchBottles =
+        await recycleContract.getWasteBottleIdsForBatch(1);
+      expect(recyclingBatchBottles.length).to.be.equal(1);
+      expect(recyclingBatchBottles[0]).to.be.equal(2);
     });
 
     it('Should revert when removing a WasteBottle from a non-existent batch', async function () {
@@ -370,6 +425,17 @@ describe('RecycledMaterialContract', function () {
       await expect(
         recycleContract.removeWasteBottleFromBatch(batchId, bottleId),
       ).to.be.revertedWith('Bottle not in batch');
+    });
+
+    it('Should revert when removing a WasteBottle from an unauthorized account', async function () {
+      const batchId = 1;
+      const bottleId = 1;
+
+      await expect(
+        recycleContract
+          .connect(addr1)
+          .removeWasteBottleFromBatch(batchId, bottleId),
+      ).to.be.revertedWith('Unauthorized');
     });
   });
 
@@ -490,6 +556,28 @@ describe('RecycledMaterialContract', function () {
         ),
       ).to.be.revertedWith('Batch already sold');
     });
+
+    it('Should revert when deleting from an unauthorized account', async function () {
+      const batchId = 1;
+      const newWeight = 600;
+      const newSize = 'Extra Large';
+      const newMaterialType = 'Plastic';
+      const newComposition = 'Polyethylene';
+      const newExtraInfo = 'Updated Extra Info';
+
+      await expect(
+        recycleContract
+          .connect(addr1)
+          .updateRecycledMaterialBatch(
+            batchId,
+            newWeight,
+            newSize,
+            newMaterialType,
+            newComposition,
+            newExtraInfo,
+          ),
+      ).to.be.revertedWith('Unauthorized');
+    });
   });
 
   describe('deleteRecycledMaterialBatch', function () {
@@ -569,6 +657,17 @@ describe('RecycledMaterialContract', function () {
       await expect(
         recycleContract.deleteRecycledMaterialBatch(batchId, deletedAt),
       ).to.be.revertedWith('Batch already sold');
+    });
+
+    it('Should revert when deleting from an unauthorized account', async function () {
+      const batchId = 1;
+      const deletedAt = '2025-02-02T00:00:00';
+
+      await expect(
+        recycleContract
+          .connect(addr1)
+          .deleteRecycledMaterialBatch(batchId, deletedAt),
+      ).to.be.revertedWith('Unauthorized');
     });
   });
 
@@ -713,40 +812,13 @@ describe('RecycledMaterialContract', function () {
       );
     });
 
-    xit('Should recycle base bottles and create a RecycledMaterialBatch', async function () {
+    it('Should revert when recycling base bottles from non-owner', async function () {
       const baseBatchId = 1;
-      const quantity = 10; // Number of bottles to recycle
-
-      const tx = await recycleContract.recycleBaseBottles(
-        baseBatchId,
-        quantity,
-      );
-      // await expect(tx).to.be.revertedWith('Not implemented yet');
-      await expect(tx)
-        .to.emit(recycleContract, 'RecycledMaterialBatchCreated')
-        .withArgs(1, await owner.getAddress());
-
-      const batch = await recycleContract.recycledMaterials(1);
-      expect(batch.weight).to.equal(10 * 10); // weight * quantity
-      expect(batch.size).to.equal('10 bottles');
-      expect(batch.materialType).to.equal('Green glass');
-      expect(batch.composition).to.equal('Glass');
-      expect(batch.extraInfo).to.equal('None');
-      expect(batch.buyerOwner).to.equal(ethers.ZeroAddress);
-      expect(batch.creator).to.equal(await owner.getAddress());
-      expect(batch.createdAt).to.equal('2025-01-01T00:00:00');
-      expect(batch.deletedAt).to.equal('');
-      const wasteBottleIds = await recycleContract.getWasteBottleIdsForBatch(1);
-      expect(wasteBottleIds.length).to.equal(0);
-    });
-
-    it('Should revert when recycling base bottles from a non-existent base batch', async function () {
-      const nonExistentBaseBatchId = 999;
       const quantity = 10;
 
       await expect(
-        recycleContract.recycleBaseBottles(nonExistentBaseBatchId, quantity),
-      ).to.be.revertedWith('Base batch does not exist');
+        recycleContract.recycleBaseBottles(baseBatchId, quantity),
+      ).to.be.revertedWith('Unauthorized');
     });
   });
 
@@ -784,6 +856,17 @@ describe('RecycledMaterialContract', function () {
 
       const batch = await recycleContract.recycledMaterials(batchId);
       expect(batch.buyerOwner).to.equal(buyerOwner);
+    });
+
+    it('Should revert when selling from an unauthorized address', async function () {
+      const batchId = 1;
+      const buyerOwner = await addr2.getAddress();
+
+      await expect(
+        recycleContract
+          .connect(addr1)
+          .sellRecycledMaterialBatch(batchId, buyerOwner),
+      ).to.be.revertedWith('Unauthorized');
     });
 
     it('Should revert when selling a non-existent RecycledMaterialBatch', async function () {

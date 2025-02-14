@@ -49,10 +49,12 @@ interface BaseBottlesBatchContract {
     string deletedAt;
   }
 
-  function baseBottlesBatches(
+  function getBaseBottlesBatch(
     uint256 id
   ) external view returns (BaseBottlesBatch memory);
 }
+
+interface ProductBottlesBatchContract {}
 
 contract RecycledMaterialContract {
   address public contractOwner;
@@ -62,9 +64,27 @@ contract RecycledMaterialContract {
   uint256 public nextRecycledMaterialBatchId = 1;
 
   BaseBottlesBatchContract private baseBottlesBatchContract;
+  ProductBottlesBatchContract private productBottlesBatchContract;
 
   modifier onlyContractOwner() {
     require(msg.sender == contractOwner, 'Unauthorized');
+    _;
+  }
+
+  modifier onlyBaseOrProductContract() {
+    require(
+      msg.sender == address(baseBottlesBatchContract) ||
+        msg.sender == address(productBottlesBatchContract),
+      'Unauthorized'
+    );
+    _;
+  }
+
+  modifier onlyContractOwnerOrSelf() {
+    require(
+      msg.sender == contractOwner || msg.sender == address(this),
+      'Unauthorized'
+    );
     _;
   }
 
@@ -88,9 +108,17 @@ contract RecycledMaterialContract {
 
   function setBaseBottlesBatchContract(
     address _baseBottlesBatchContract
-  ) external {
+  ) external onlyContractOwner {
     baseBottlesBatchContract = BaseBottlesBatchContract(
       _baseBottlesBatchContract
+    );
+  }
+
+  function setProductBottlesBatchContract(
+    address _productBottlesBatchContract
+  ) external onlyContractOwner {
+    productBottlesBatchContract = ProductBottlesBatchContract(
+      _productBottlesBatchContract
     );
   }
 
@@ -117,13 +145,13 @@ contract RecycledMaterialContract {
   function deleteWasteBottle(
     uint256 bottleId,
     string memory deletedAt
-  ) external {
+  ) external onlyContractOwner {
     WasteBottle storage bottle = wasteBottles[bottleId];
     require(bottle.id != 0, 'Bottle does not exist');
     require(bytes(bottle.deletedAt).length == 0, 'Bottle already deleted');
     require(bottle.recycledBatchId == 0, 'Bottle already recycled');
 
-    bottle.deletedAt = deletedAt;
+    wasteBottles[bottleId].deletedAt = deletedAt;
     emit WasteBottleDeleted(bottleId);
   }
 
@@ -135,7 +163,7 @@ contract RecycledMaterialContract {
     string memory extraInfo,
     address creator,
     string memory createdAt
-  ) public onlyContractOwner {
+  ) public onlyContractOwnerOrSelf {
     RecycledMaterialBatch
       memory newRecycledMaterialBatch = RecycledMaterialBatch(
         nextRecycledMaterialBatchId,
@@ -254,12 +282,14 @@ contract RecycledMaterialContract {
     return batches;
   }
 
-  function recycleBaseBottles(uint256 baseBatchId, uint256 quantity) external {
+  function recycleBaseBottles(
+    uint256 baseBatchId,
+    uint256 quantity
+  ) external onlyBaseOrProductContract {
     BaseBottlesBatchContract.BaseBottlesBatch
-      memory baseBatch = baseBottlesBatchContract.baseBottlesBatches(
+      memory baseBatch = baseBottlesBatchContract.getBaseBottlesBatch(
         baseBatchId
       );
-    require(baseBatch.id != 0, 'Base batch does not exist');
 
     uint256 newRecycledBatchId = nextRecycledMaterialBatchId;
     this.createRecycledMaterialBatch(
@@ -277,11 +307,11 @@ contract RecycledMaterialContract {
   function sellRecycledMaterialBatch(
     uint256 batchId,
     address buyerOwner
-  ) external {
+  ) external onlyContractOwnerOrSelf {
     RecycledMaterialBatch storage batch = recycledMaterials[batchId];
     require(batch.id != 0, 'Batch does not exist');
     require(bytes(batch.deletedAt).length == 0, 'Batch already deleted');
     require(batch.buyerOwner == address(0), 'Batch already sold');
-    batch.buyerOwner = buyerOwner;
+    recycledMaterials[batchId].buyerOwner = buyerOwner;
   }
 }

@@ -24,10 +24,6 @@ struct BaseBottlesBatch {
 
 interface RecycledMaterialContract {
   function recycleBaseBottles(uint256 baseBatchId, uint256 quantity) external;
-
-  function setBaseBottlesBatchContract(
-    address baseBottlesBatchContract
-  ) external;
 }
 
 interface ProductBottlesBatchContract {
@@ -36,10 +32,6 @@ interface ProductBottlesBatchContract {
     uint256 originBatchId,
     address buyer,
     string memory createdAt
-  ) external;
-
-  function setBaseBottlesBatchContract(
-    address baseBottlesBatchContract
   ) external;
 }
 
@@ -67,6 +59,11 @@ contract BaseBottlesBatchContract {
     _;
   }
 
+  modifier onlyProductContract() {
+    require(msg.sender == address(productBottlesBatchContract), 'Unauthorized');
+    _;
+  }
+
   constructor(
     address _productBottlesBatchContract,
     address _recycledMaterialContract
@@ -77,8 +74,6 @@ contract BaseBottlesBatchContract {
     productBottlesBatchContract = ProductBottlesBatchContract(
       _productBottlesBatchContract
     );
-    recycledMaterialContract.setBaseBottlesBatchContract(address(this));
-    productBottlesBatchContract.setBaseBottlesBatchContract(address(this));
     contractOwner = msg.sender;
   }
 
@@ -122,8 +117,17 @@ contract BaseBottlesBatchContract {
     BaseBottlesBatch storage batch = baseBottlesBatches[batchId];
     require(bytes(batch.deletedAt).length == 0, 'Batch already deleted');
 
-    batch.deletedAt = deletedAt;
+    baseBottlesBatches[batchId].deletedAt = deletedAt;
     emit BaseBatchDeleted(batchId);
+  }
+
+  function getBaseBottlesBatch(
+    uint256 batchId
+  ) external view returns (BaseBottlesBatch memory) {
+    BaseBottlesBatch memory batch = baseBottlesBatches[batchId];
+    require(batch.id != 0, 'Batch does not exist');
+
+    return batch;
   }
 
   function getBaseBottlesList(
@@ -175,7 +179,10 @@ contract BaseBottlesBatchContract {
     emit BaseBottlesSold(batchId, quantity, buyer);
   }
 
-  function rejectSoldBaseBottles(uint256 batchId, uint256 quantity) external {
+  function rejectSoldBaseBottles(
+    uint256 batchId,
+    uint256 quantity
+  ) external onlyProductContract {
     BaseBottlesBatch storage batch = baseBottlesBatches[batchId];
     require(batch.soldQuantity >= quantity, 'Insufficient sold quantity');
 

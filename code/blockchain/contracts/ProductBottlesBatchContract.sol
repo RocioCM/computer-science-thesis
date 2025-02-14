@@ -59,6 +59,15 @@ contract ProductBottlesBatchContract {
     _;
   }
 
+  modifier onlyAuthorizedCreator() {
+    require(
+      msg.sender == contractOwner ||
+        msg.sender == address(baseBottlesBatchContract),
+      'Unauthorized'
+    );
+    _;
+  }
+
   constructor(address _recycledMaterialContract) {
     recycledMaterialContract = RecycledMaterialContract(
       _recycledMaterialContract
@@ -68,7 +77,7 @@ contract ProductBottlesBatchContract {
 
   function setBaseBottlesBatchContract(
     address _baseBottlesBatchContract
-  ) external {
+  ) external onlyContractOwner {
     baseBottlesBatchContract = BaseBottlesBatchContract(
       _baseBottlesBatchContract
     );
@@ -79,7 +88,7 @@ contract ProductBottlesBatchContract {
     uint256 originBaseBatchId,
     address owner,
     string memory createdAt
-  ) external onlyContractOwner {
+  ) external onlyAuthorizedCreator {
     ProductBottlesBatch memory newProductBatch = ProductBottlesBatch({
       id: nextProductBatchId,
       quantity: quantity,
@@ -118,7 +127,7 @@ contract ProductBottlesBatchContract {
     }
 
     // Update the tracking code and add it to the mapping.
-    productBatch.trackingCode = code;
+    productBottles[batchId].trackingCode = code;
     trackingCodeToBatchId[code] = batchId;
     emit ProductBatchUpdated(batchId, code);
   }
@@ -137,7 +146,7 @@ contract ProductBottlesBatchContract {
 
     // Remove the tracking code from the mapping.
     trackingCodeToBatchId[productBatch.trackingCode] = 0;
-    productBatch.trackingCode = '';
+    productBottles[batchId].trackingCode = '';
     emit ProductBatchUpdated(batchId, '');
   }
 
@@ -154,12 +163,12 @@ contract ProductBottlesBatchContract {
   }
 
   function rejectBaseBottles(uint256 batchId) external onlyContractOwner {
-    ProductBottlesBatch memory productBatch = productBottles[batchId];
+    ProductBottlesBatch storage productBatch = productBottles[batchId];
     require(
       bytes(productBatch.deletedAt).length == 0,
       'Product batch already deleted'
     );
-    productBatch.deletedAt = productBatch.createdAt;
+    productBottles[batchId].deletedAt = productBatch.createdAt;
 
     baseBottlesBatchContract.rejectSoldBaseBottles(
       productBatch.originBaseBatchId,
@@ -172,7 +181,7 @@ contract ProductBottlesBatchContract {
     uint256 batchId,
     uint256 quantity
   ) external onlyContractOwner {
-    ProductBottlesBatch memory productBatch = productBottles[batchId];
+    ProductBottlesBatch storage productBatch = productBottles[batchId];
     require(
       productBatch.availableQuantity >= quantity,
       'Insufficient quantity in batch'
@@ -186,8 +195,8 @@ contract ProductBottlesBatchContract {
       productBatch.originBaseBatchId,
       quantity
     );
-    productBatch.quantity -= quantity;
-    productBatch.availableQuantity -= quantity;
+    productBottles[batchId].quantity -= quantity;
+    productBottles[batchId].availableQuantity -= quantity;
     emit ProductBottlesRecycled(batchId, quantity);
   }
 
@@ -197,7 +206,7 @@ contract ProductBottlesBatchContract {
     address buyer,
     string memory createdAt
   ) external onlyContractOwner {
-    ProductBottlesBatch memory productBatch = productBottles[batchId];
+    ProductBottlesBatch storage productBatch = productBottles[batchId];
     require(
       productBatch.availableQuantity >= quantity,
       'Insufficient quantity in batch'

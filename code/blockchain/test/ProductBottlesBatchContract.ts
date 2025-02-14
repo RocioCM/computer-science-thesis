@@ -177,18 +177,6 @@ describe('ProductBottlesBatchContract', function () {
       expect(mappedBatchId).to.equal(0);
     });
 
-    xit('Should revert when updating tracking code of a deleted batch', async function () {
-      const batchId = 1;
-      const trackingCode = 'TRACK_DELETED';
-
-      // Delete the tracking code
-      await productContract.rejectBaseBottles(batchId);
-
-      await expect(
-        productContract.updateTrackingCode(batchId, trackingCode),
-      ).to.be.revertedWith('Product batch already deleted');
-    });
-
     it('Should revert when availableQuantity != quantity', async function () {
       const batchId = 1;
       const trackingCode = 'TRACK_SOLD';
@@ -271,18 +259,6 @@ describe('ProductBottlesBatchContract', function () {
         productContract.deleteTrackingCode(batchId),
       ).to.be.revertedWith('Product batch already sold');
     });
-
-    xit('Should revert when deleting tracking code of an already rejected/deleted batch', async function () {
-      const batchId = 1;
-
-      // Delete bottles batch by rejecting base bottles
-      await productContract.rejectBaseBottles(batchId);
-
-      // Attempt to delete tracking code again
-      await expect(
-        productContract.deleteTrackingCode(batchId),
-      ).to.be.revertedWith('Product batch already deleted');
-    });
   });
 
   describe('getProductBottlesList', function () {
@@ -350,21 +326,36 @@ describe('ProductBottlesBatchContract', function () {
 
   describe('recycleProductBottle', function () {
     beforeEach(async function () {
-      // Create a batch
-      const quantity = 100;
-      const originBaseBatchId = 1;
-      const batchOwner = await addr1.getAddress();
-      const createdAt = '2025-01-01T00:00:00';
+      // Create and sell a base batch to create a product batch.
+      const bottleType = {
+        weight: 500,
+        color: 'verde',
+        thickness: 12,
+        shapeType: 'cuello alto',
+        originLocation: 'Mendoza',
+        extraInfo: '{}',
+        composition:
+          '[{"name": "vidrio", "amount": 100, "measureUnit": "percentage"}]',
+      };
 
-      await productContract.createProductBottlesBatch(
-        quantity,
-        originBaseBatchId,
-        batchOwner,
-        createdAt,
+      const batchId = 1;
+      await baseBatchContract.createBaseBottlesBatch(
+        100,
+        bottleType,
+        await addr1.getAddress(),
+        '2025-01-01T00:00:00',
+      );
+
+      const buyerAddress = await addr2.getAddress();
+      await baseBatchContract.sellBaseBottles(
+        batchId,
+        30,
+        buyerAddress,
+        '2025-12-12T00:00:00',
       );
     });
 
-    xit('Should recycle product bottles correctly', async function () {
+    it('Should recycle product bottles correctly', async function () {
       const batchId = 1;
       const recycleQuantity = 20;
 
@@ -377,13 +368,13 @@ describe('ProductBottlesBatchContract', function () {
         .withArgs(batchId, recycleQuantity);
 
       const batch = await productContract.productBottles(batchId);
-      expect(batch.quantity).to.equal(80);
-      expect(batch.availableQuantity).to.equal(80);
+      expect(batch.quantity).to.equal(10);
+      expect(batch.availableQuantity).to.equal(10);
 
       // Verify that recycleBaseBottles was called in the RecycledMaterialContract
       await expect(tx)
-        .to.emit(recycleContract, 'RecycleBaseBottlesCalled')
-        .withArgs(1, recycleQuantity);
+        .to.emit(recycleContract, 'RecycledMaterialBatchCreated')
+        .withArgs(1, await addr1.getAddress());
     });
 
     it('Should revert when recycling more bottles than available', async function () {
@@ -393,24 +384,6 @@ describe('ProductBottlesBatchContract', function () {
       await expect(
         productContract.recycleProductBottle(batchId, recycleQuantity),
       ).to.be.revertedWith('Insufficient quantity in batch');
-    });
-
-    xit('Should revert when recycling a rejected batch', async function () {
-      const batchId = 1;
-      const recycleQuantity = 10;
-
-      // Reject the batch
-      const tx = await productContract.rejectBaseBottles(batchId);
-      await expect(tx)
-        .to.emit(productContract, 'ProductBatchDeleted')
-        .withArgs(batchId);
-
-      const batch = await productContract.productBottles(batchId);
-      expect(batch.deletedAt).to.not.equal('');
-
-      await expect(
-        productContract.recycleProductBottle(batchId, recycleQuantity),
-      ).to.be.revertedWith('Product batch already deleted');
     });
   });
 
@@ -472,25 +445,6 @@ describe('ProductBottlesBatchContract', function () {
         ),
       ).to.be.revertedWith('Insufficient quantity in batch');
     });
-
-    xit('Should revert when selling from a rejected batch', async function () {
-      const batchId = 1;
-      const sellQuantity = 10;
-      const buyer = await addr2.getAddress();
-      const createdAt = '2025-03-03T00:00:00';
-
-      // Delete the batch
-      await productContract.rejectBaseBottles(batchId);
-
-      await expect(
-        productContract.sellProductBottle(
-          batchId,
-          sellQuantity,
-          buyer,
-          createdAt,
-        ),
-      ).to.be.revertedWith('Product batch already deleted');
-    });
   });
 
   describe('getProductBottleByCode', function () {
@@ -525,6 +479,185 @@ describe('ProductBottlesBatchContract', function () {
       await expect(
         productContract.getProductBottleByCode(nonExistentTrackingCode),
       ).to.be.revertedWith('Product batch does not exist');
+    });
+  });
+
+  describe('rejectBottle', function () {
+    beforeEach(async function () {
+      // Create and sell a base batch to create a product batch.
+      const bottleType = {
+        weight: 500,
+        color: 'verde',
+        thickness: 12,
+        shapeType: 'cuello alto',
+        originLocation: 'Mendoza',
+        extraInfo: '{}',
+        composition:
+          '[{"name": "vidrio", "amount": 100, "measureUnit": "percentage"}]',
+      };
+
+      const batchId = 1;
+      await baseBatchContract.createBaseBottlesBatch(
+        100,
+        bottleType,
+        await addr1.getAddress(),
+        '2025-01-01T00:00:00',
+      );
+
+      const buyerAddress = await addr2.getAddress();
+      await baseBatchContract.sellBaseBottles(
+        batchId,
+        30,
+        buyerAddress,
+        '2025-12-12T00:00:00',
+      );
+    });
+
+    it('Should reject base bottles batch', async function () {
+      const batchId = 1;
+
+      // Reject base bottles batch
+      const tx = await productContract.rejectBaseBottles(batchId);
+      await expect(tx)
+        .to.emit(productContract, 'ProductBatchDeleted')
+        .withArgs(batchId);
+
+      const productBatch = await productContract.productBottles(batchId);
+      expect(productBatch.deletedAt).to.not.equal('');
+      expect(productBatch.deletedAt).to.be.equal(productBatch.createdAt);
+    });
+
+    it('Should revert when rejecting an already rejected/deleted batch', async function () {
+      const batchId = 1;
+      const trackingCode = 'SOME_CODE';
+
+      // Reject base bottles batch
+      const tx = await productContract.rejectBaseBottles(batchId);
+      await expect(tx)
+        .to.emit(productContract, 'ProductBatchDeleted')
+        .withArgs(batchId);
+
+      await expect(
+        productContract.rejectBaseBottles(batchId),
+      ).to.be.revertedWith('Product batch already deleted');
+    });
+
+    it('Should revert when updating tracking code of an already rejected/deleted batch', async function () {
+      const batchId = 1;
+      const trackingCode = 'SOME_CODE';
+
+      // Reject base bottles batch
+      const tx = await productContract.rejectBaseBottles(batchId);
+      await expect(tx)
+        .to.emit(productContract, 'ProductBatchDeleted')
+        .withArgs(batchId);
+
+      await expect(
+        productContract.updateTrackingCode(batchId, trackingCode),
+      ).to.be.revertedWith('Product batch already deleted');
+    });
+
+    it('Should revert when deleting tracking code of an already rejected/deleted batch', async function () {
+      const batchId = 1;
+
+      // Delete bottles batch by rejecting base bottles
+      await productContract.rejectBaseBottles(batchId);
+
+      // Attempt to delete tracking code
+      await expect(
+        productContract.deleteTrackingCode(batchId),
+      ).to.be.revertedWith('Product batch already deleted');
+    });
+
+    it('Should revert when recycling an already rejected/deleted batch', async function () {
+      const batchId = 1;
+      const recycleQuantity = 10;
+
+      // Reject the batch
+      await productContract.rejectBaseBottles(batchId);
+
+      await expect(
+        productContract.recycleProductBottle(batchId, recycleQuantity),
+      ).to.be.revertedWith('Product batch already deleted');
+    });
+
+    it('Should revert when selling from an already rejected/deleted batch', async function () {
+      const batchId = 1;
+      const sellQuantity = 10;
+      const buyer = await addr2.getAddress();
+      const createdAt = '2025-03-03T00:00:00';
+
+      // Delete the batch
+      await productContract.rejectBaseBottles(batchId);
+
+      await expect(
+        productContract.sellProductBottle(
+          batchId,
+          sellQuantity,
+          buyer,
+          createdAt,
+        ),
+      ).to.be.revertedWith('Product batch already deleted');
+    });
+  });
+
+  describe('ProductBottlesBatchContract - onlyContractOwner', function () {
+    it('Should revert when non-owner calls setBaseBottlesBatchContract', async function () {
+      await expect(
+        productContract
+          .connect(addr1)
+          .setBaseBottlesBatchContract(addr2.getAddress()),
+      ).to.be.revertedWith('Unauthorized');
+    });
+
+    it('Should revert when non-owner calls createProductBottlesBatch', async function () {
+      await expect(
+        productContract
+          .connect(addr1)
+          .createProductBottlesBatch(
+            100,
+            1,
+            await addr1.getAddress(),
+            '2025-01-01T00:00:00',
+          ),
+      ).to.be.revertedWith('Unauthorized');
+    });
+
+    it('Should revert when non-owner calls updateTrackingCode', async function () {
+      await expect(
+        productContract.connect(addr1).updateTrackingCode(1, 'TRACK123'),
+      ).to.be.revertedWith('Unauthorized');
+    });
+
+    it('Should revert when non-owner calls deleteTrackingCode', async function () {
+      await expect(
+        productContract.connect(addr1).deleteTrackingCode(1),
+      ).to.be.revertedWith('Unauthorized');
+    });
+
+    it('Should revert when non-owner calls rejectBaseBottles', async function () {
+      await expect(
+        productContract.connect(addr1).rejectBaseBottles(1),
+      ).to.be.revertedWith('Unauthorized');
+    });
+
+    it('Should revert when non-owner calls recycleProductBottle', async function () {
+      await expect(
+        productContract.connect(addr1).recycleProductBottle(1, 10),
+      ).to.be.revertedWith('Unauthorized');
+    });
+
+    it('Should revert when non-owner calls sellProductBottle', async function () {
+      await expect(
+        productContract
+          .connect(addr1)
+          .sellProductBottle(
+            1,
+            10,
+            await addr2.getAddress(),
+            '2025-03-03T00:00:00',
+          ),
+      ).to.be.revertedWith('Unauthorized');
     });
   });
 });

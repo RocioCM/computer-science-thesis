@@ -77,6 +77,17 @@ async function main() {
     productAddress,
     recycledAddress,
   ]);
+  const baseBatchAddress = await baseBottlesContract.getAddress();
+
+  try {
+    await productBottlesContract.setBaseBottlesBatchContract(baseBatchAddress);
+    await recycledBottlesContract.setBaseBottlesBatchContract(baseBatchAddress);
+    await recycledBottlesContract.setProductBottlesBatchContract(
+      productAddress,
+    );
+  } catch (err) {
+    logger.error('Failed to set up contracts addresses:', err); // Non-critical error
+  }
 
   // Verify contracts
   if (isRealNetwork) {

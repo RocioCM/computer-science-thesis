@@ -31,6 +31,11 @@ export async function deployAllContracts() {
   )) as BaseBottlesBatchContract__factory;
   const baseBatchContract: BaseBottlesBatchContract =
     await BaseBatchFactory.deploy(productAddress, recycleAddress);
+  const baseBatchAddress = await baseBatchContract.getAddress();
+
+  await productContract.setBaseBottlesBatchContract(baseBatchAddress);
+  await recycleContract.setBaseBottlesBatchContract(baseBatchAddress);
+  await recycleContract.setProductBottlesBatchContract(productAddress);
 
   return {
     recycleContract,
