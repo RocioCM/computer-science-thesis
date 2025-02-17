@@ -1,0 +1,355 @@
+import { ABI } from 'src/pkg/helpers/blockchainHelper';
+
+export const CONTRACT_ABI: ABI = [
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '_productBottlesBatchContract',
+        type: 'address',
+      },
+      {
+        internalType: 'address',
+        name: '_recycledMaterialContract',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'nonpayable',
+    type: 'constructor',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'batchId',
+        type: 'uint256',
+      },
+      {
+        indexed: true,
+        internalType: 'address',
+        name: 'owner',
+        type: 'address',
+      },
+    ],
+    name: 'BaseBatchCreated',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'batchId',
+        type: 'uint256',
+      },
+    ],
+    name: 'BaseBatchDeleted',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'batchId',
+        type: 'uint256',
+      },
+    ],
+    name: 'BaseBatchUpdated',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'batchId',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'quantity',
+        type: 'uint256',
+      },
+    ],
+    name: 'BaseBottlesRecycled',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'batchId',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'quantity',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'address',
+        name: 'buyer',
+        type: 'address',
+      },
+    ],
+    name: 'BaseBottlesSold',
+    type: 'event',
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'batchId',
+        type: 'uint256',
+      },
+      {
+        indexed: false,
+        internalType: 'uint256',
+        name: 'quantity',
+        type: 'uint256',
+      },
+    ],
+    name: 'BaseBottlesSoldRejected',
+    type: 'event',
+  },
+  {
+    inputs: [{ internalType: 'uint256', name: 'id', type: 'uint256' }],
+    name: 'baseBottlesBatches',
+    outputs: [
+      { internalType: 'uint256', name: 'id', type: 'uint256' },
+      { internalType: 'uint256', name: 'quantity', type: 'uint256' },
+      {
+        components: [
+          { internalType: 'uint256', name: 'weight', type: 'uint256' },
+          { internalType: 'string', name: 'color', type: 'string' },
+          { internalType: 'uint256', name: 'thickness', type: 'uint256' },
+          { internalType: 'string', name: 'shapeType', type: 'string' },
+          { internalType: 'string', name: 'originLocation', type: 'string' },
+          { internalType: 'string', name: 'extraInfo', type: 'string' },
+          { internalType: 'string', name: 'composition', type: 'string' },
+        ],
+        internalType: 'struct Bottle',
+        name: 'bottleType',
+        type: 'tuple',
+      },
+      { internalType: 'address', name: 'owner', type: 'address' },
+      { internalType: 'uint256', name: 'soldQuantity', type: 'uint256' },
+      { internalType: 'string', name: 'createdAt', type: 'string' },
+      { internalType: 'string', name: 'deletedAt', type: 'string' },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'contractOwner',
+    outputs: [{ internalType: 'address', name: '', type: 'address' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'quantity', type: 'uint256' },
+      {
+        components: [
+          { internalType: 'uint256', name: 'weight', type: 'uint256' },
+          { internalType: 'string', name: 'color', type: 'string' },
+          { internalType: 'uint256', name: 'thickness', type: 'uint256' },
+          { internalType: 'string', name: 'shapeType', type: 'string' },
+          { internalType: 'string', name: 'originLocation', type: 'string' },
+          { internalType: 'string', name: 'extraInfo', type: 'string' },
+          { internalType: 'string', name: 'composition', type: 'string' },
+        ],
+        internalType: 'struct Bottle',
+        name: 'bottleType',
+        type: 'tuple',
+      },
+      { internalType: 'address', name: 'owner', type: 'address' },
+      { internalType: 'string', name: 'createdAt', type: 'string' },
+    ],
+    name: 'createBaseBottlesBatch',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'batchId', type: 'uint256' },
+      { internalType: 'string', name: 'deletedAt', type: 'string' },
+    ],
+    name: 'deleteBaseBottlesBatch',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'uint256', name: 'batchId', type: 'uint256' }],
+    name: 'getBaseBottlesBatch',
+    outputs: [
+      {
+        components: [
+          { internalType: 'uint256', name: 'id', type: 'uint256' },
+          { internalType: 'uint256', name: 'quantity', type: 'uint256' },
+          {
+            components: [
+              { internalType: 'uint256', name: 'weight', type: 'uint256' },
+              { internalType: 'string', name: 'color', type: 'string' },
+              { internalType: 'uint256', name: 'thickness', type: 'uint256' },
+              { internalType: 'string', name: 'shapeType', type: 'string' },
+              {
+                internalType: 'string',
+                name: 'originLocation',
+                type: 'string',
+              },
+              { internalType: 'string', name: 'extraInfo', type: 'string' },
+              { internalType: 'string', name: 'composition', type: 'string' },
+            ],
+            internalType: 'struct Bottle',
+            name: 'bottleType',
+            type: 'tuple',
+          },
+          { internalType: 'address', name: 'owner', type: 'address' },
+          { internalType: 'uint256', name: 'soldQuantity', type: 'uint256' },
+          { internalType: 'string', name: 'createdAt', type: 'string' },
+          { internalType: 'string', name: 'deletedAt', type: 'string' },
+        ],
+        internalType: 'struct BaseBottlesBatch',
+        name: '',
+        type: 'tuple',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'uint256[]', name: 'indexes', type: 'uint256[]' }],
+    name: 'getBaseBottlesList',
+    outputs: [
+      {
+        components: [
+          { internalType: 'uint256', name: 'id', type: 'uint256' },
+          { internalType: 'uint256', name: 'quantity', type: 'uint256' },
+          {
+            components: [
+              { internalType: 'uint256', name: 'weight', type: 'uint256' },
+              { internalType: 'string', name: 'color', type: 'string' },
+              { internalType: 'uint256', name: 'thickness', type: 'uint256' },
+              { internalType: 'string', name: 'shapeType', type: 'string' },
+              {
+                internalType: 'string',
+                name: 'originLocation',
+                type: 'string',
+              },
+              { internalType: 'string', name: 'extraInfo', type: 'string' },
+              { internalType: 'string', name: 'composition', type: 'string' },
+            ],
+            internalType: 'struct Bottle',
+            name: 'bottleType',
+            type: 'tuple',
+          },
+          { internalType: 'address', name: 'owner', type: 'address' },
+          { internalType: 'uint256', name: 'soldQuantity', type: 'uint256' },
+          { internalType: 'string', name: 'createdAt', type: 'string' },
+          { internalType: 'string', name: 'deletedAt', type: 'string' },
+        ],
+        internalType: 'struct BaseBottlesBatch[]',
+        name: '',
+        type: 'tuple[]',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'nextBatchId',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'batchId', type: 'uint256' },
+      { internalType: 'uint256', name: 'quantity', type: 'uint256' },
+    ],
+    name: 'recycleBaseBottles',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'batchId', type: 'uint256' },
+      { internalType: 'uint256', name: 'quantity', type: 'uint256' },
+    ],
+    name: 'rejectSoldBaseBottles',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'batchId', type: 'uint256' },
+      { internalType: 'uint256', name: 'quantity', type: 'uint256' },
+      { internalType: 'address', name: 'buyer', type: 'address' },
+      { internalType: 'string', name: 'createdAt', type: 'string' },
+    ],
+    name: 'sellBaseBottles',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      { internalType: 'uint256', name: 'batchId', type: 'uint256' },
+      {
+        components: [
+          { internalType: 'uint256', name: 'id', type: 'uint256' },
+          { internalType: 'uint256', name: 'quantity', type: 'uint256' },
+          {
+            components: [
+              { internalType: 'uint256', name: 'weight', type: 'uint256' },
+              { internalType: 'string', name: 'color', type: 'string' },
+              { internalType: 'uint256', name: 'thickness', type: 'uint256' },
+              { internalType: 'string', name: 'shapeType', type: 'string' },
+              {
+                internalType: 'string',
+                name: 'originLocation',
+                type: 'string',
+              },
+              { internalType: 'string', name: 'extraInfo', type: 'string' },
+              { internalType: 'string', name: 'composition', type: 'string' },
+            ],
+            internalType: 'struct Bottle',
+            name: 'bottleType',
+            type: 'tuple',
+          },
+          { internalType: 'address', name: 'owner', type: 'address' },
+          { internalType: 'uint256', name: 'soldQuantity', type: 'uint256' },
+          { internalType: 'string', name: 'createdAt', type: 'string' },
+          { internalType: 'string', name: 'deletedAt', type: 'string' },
+        ],
+        internalType: 'struct BaseBottlesBatch',
+        name: 'updatedBatch',
+        type: 'tuple',
+      },
+    ],
+    name: 'updateBaseBottlesBatch',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+];
