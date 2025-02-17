@@ -19,6 +19,12 @@ function getAuthToken(req: Request): string {
   return authHeader ?? '';
 }
 
+function parseUint(param: any): number | null {
+  const id = parseInt(param, 10);
+  if (isNaN(id) || id < 0) return null;
+  return id;
+}
+
 async function parseBody<T extends object>(
   obj: any,
   classType: { new (...args: any[]): T },
@@ -52,6 +58,7 @@ async function parseBody<T extends object>(
 const requestHelper = {
   getAuthToken,
   parseBody,
+  parseUint,
 };
 
 export default requestHelper;

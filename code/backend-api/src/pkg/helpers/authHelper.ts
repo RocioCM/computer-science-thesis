@@ -31,7 +31,7 @@ export function initializeAdmin(): Promise<void> {
  */
 export async function Authenticate(
   req: Request,
-  roles: RoleType[] = [],
+  roles: RoleType | RoleType[] = [],
 ): IResult<AuthUser> {
   const authToken = requestHelper.getAuthToken(req);
 
@@ -41,9 +41,10 @@ export async function Authenticate(
 
     // Check if user has the required role
     const claims = user.customClaims;
+    const allowedRolesList = Array.isArray(roles) ? roles : [roles];
     if (
-      roles.length &&
-      (!claims || !claims.role || !roles.includes(claims.role))
+      allowedRolesList.length &&
+      (!claims || !claims.role || !allowedRolesList.includes(claims.role))
     ) {
       return { ok: false, status: StatusCodes.FORBIDDEN, data: null };
     }

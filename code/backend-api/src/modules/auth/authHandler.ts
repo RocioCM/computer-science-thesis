@@ -5,8 +5,6 @@ import FirebaseAuthRepository from './repositories/firebaseAuthRepository';
 import UserRepository from './repositories/userRepository';
 import { AuthUser } from 'src/pkg/helpers/authHelper';
 
-/// TODO: start with blockchain CRUD and API integration.
-
 export default class AuthHandler {
   static async RegisterUser(user: CreateUserDTO): IResult<User> {
     const {
@@ -43,6 +41,10 @@ export default class AuthHandler {
     }
 
     return { ok: true, status: StatusCodes.OK, data: userRes.data };
+  }
+
+  static async GetUserByFirebaseUid(firebaseUid: string): IResult<User> {
+    return UserRepository.GetUserByFirebaseUid(firebaseUid);
   }
 
   static async UpdateUserWithAuth(

@@ -2,7 +2,7 @@ import { Router, Request, Response } from 'express';
 import requestHelper from 'src/pkg/helpers/requestHelper';
 import responseHelper from 'src/pkg/helpers/responseHelper';
 import AuthHandler from './authHandler';
-import * as middlewareHelper from 'src/pkg/helpers/middlewareHelper';
+import middlewareHelper from 'src/pkg/helpers/middlewareHelper';
 import { CreateUserDTO, UpdateUserDTO } from './domain/user';
 import { Authenticate } from 'src/pkg/helpers/authHelper';
 

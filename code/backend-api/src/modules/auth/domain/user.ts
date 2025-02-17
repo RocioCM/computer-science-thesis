@@ -5,7 +5,6 @@ import {
   IsEmail,
   IsOptional,
   IsNumberString,
-  IsNotIn,
 } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
