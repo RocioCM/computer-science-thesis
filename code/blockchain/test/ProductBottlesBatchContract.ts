@@ -324,7 +324,7 @@ describe('ProductBottlesBatchContract', function () {
     });
   });
 
-  describe('recycleProductBottle', function () {
+  describe('recycleProductBottles', function () {
     beforeEach(async function () {
       // Create and sell a base batch to create a product batch.
       const bottleType = {
@@ -359,7 +359,7 @@ describe('ProductBottlesBatchContract', function () {
       const batchId = 1;
       const recycleQuantity = 20;
 
-      const tx = await productContract.recycleProductBottle(
+      const tx = await productContract.recycleProductBottles(
         batchId,
         recycleQuantity,
       );
@@ -382,7 +382,7 @@ describe('ProductBottlesBatchContract', function () {
       const recycleQuantity = 200;
 
       await expect(
-        productContract.recycleProductBottle(batchId, recycleQuantity),
+        productContract.recycleProductBottles(batchId, recycleQuantity),
       ).to.be.revertedWith('Insufficient quantity in batch');
     });
   });
@@ -577,7 +577,7 @@ describe('ProductBottlesBatchContract', function () {
       await productContract.rejectBaseBottles(batchId);
 
       await expect(
-        productContract.recycleProductBottle(batchId, recycleQuantity),
+        productContract.recycleProductBottles(batchId, recycleQuantity),
       ).to.be.revertedWith('Product batch already deleted');
     });
 
@@ -641,9 +641,9 @@ describe('ProductBottlesBatchContract', function () {
       ).to.be.revertedWith('Unauthorized');
     });
 
-    it('Should revert when non-owner calls recycleProductBottle', async function () {
+    it('Should revert when non-owner calls recycleProductBottles', async function () {
       await expect(
-        productContract.connect(addr1).recycleProductBottle(1, 10),
+        productContract.connect(addr1).recycleProductBottles(1, 10),
       ).to.be.revertedWith('Unauthorized');
     });
 

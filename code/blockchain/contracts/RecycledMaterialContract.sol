@@ -6,7 +6,7 @@ import '@openzeppelin/contracts/utils/Strings.sol';
 
 struct WasteBottle {
   uint256 id;
-  uint256 trackingCode;
+  string trackingCode;
   address owner;
   address creator;
   uint256 recycledBatchId;
@@ -123,7 +123,7 @@ contract RecycledMaterialContract {
   }
 
   function createWasteBottle(
-    uint256 trackingCode,
+    string memory trackingCode,
     address owner,
     address creator,
     string memory createdAt

@@ -48,7 +48,7 @@ describe('RecycledMaterialContract', function () {
 
   describe('createWasteBottle', function () {
     it('Should create a new WasteBottle', async function () {
-      const trackingCode = 12345;
+      const trackingCode = '12345';
       const bottleOwner = await addr1.getAddress();
       const creator = await addr2.getAddress();
       const createdAt = '2025-01-01T00:00:00';
@@ -76,7 +76,7 @@ describe('RecycledMaterialContract', function () {
     });
 
     it('Should revert when creating WasteBottle by non-owner', async function () {
-      const trackingCode = 12345;
+      const trackingCode = '12345';
       const bottleOwner = await addr1.getAddress();
       const creator = await addr2.getAddress();
       const createdAt = '2025-01-01T00:00:00';
@@ -92,7 +92,7 @@ describe('RecycledMaterialContract', function () {
   describe('deleteWasteBottle', function () {
     beforeEach(async function () {
       // Create a WasteBottle for deletion
-      const trackingCode = 12345;
+      const trackingCode = '12345';
       const bottleOwner = await addr1.getAddress();
       const creator = await addr2.getAddress();
       const createdAt = '2025-01-01T00:00:00';
@@ -242,7 +242,7 @@ describe('RecycledMaterialContract', function () {
   describe('addWasteBottleToBatch', function () {
     beforeEach(async function () {
       // Create a WasteBottle and a RecycledMaterialBatch
-      const trackingCode = 12345;
+      const trackingCode = '12345;';
       const bottleOwner = await addr1.getAddress();
       const creator = await addr2.getAddress();
       const createdAt = '2025-01-01T00:00:00';
@@ -327,7 +327,7 @@ describe('RecycledMaterialContract', function () {
   describe('removeWasteBottleFromBatch', function () {
     beforeEach(async function () {
       // Create a WasteBottle and a RecycledMaterialBatch, then add the bottle to the batch
-      const trackingCode = 12345;
+      const trackingCode = '12345';
       const bottleOwner = await addr1.getAddress();
       const creator = await addr2.getAddress();
       const createdAt = '2025-01-01T00:00:00';
@@ -357,7 +357,7 @@ describe('RecycledMaterialContract', function () {
       const bottleId = 1;
 
       // Create a second WasteBottle and then add the bottle to the batch.
-      const trackingCode = 12345;
+      const trackingCode = '12345';
       const bottleOwner = await addr1.getAddress();
       const creator = await addr2.getAddress();
       const createdAt = '2025-01-01T00:00:00';
@@ -675,19 +675,19 @@ describe('RecycledMaterialContract', function () {
     it('Should retrieve a list of WasteBottles', async function () {
       // Create multiple WasteBottles
       await recycleContract.createWasteBottle(
-        12345,
+        '12345',
         await addr1.getAddress(),
         await addr2.getAddress(),
         '2025-01-01T00:00:00',
       );
       await recycleContract.createWasteBottle(
-        67890,
+        '67890',
         await addr1.getAddress(),
         await addr2.getAddress(),
         '2025-01-02T00:00:00',
       );
       await recycleContract.createWasteBottle(
-        54321,
+        '54321',
         await addr1.getAddress(),
         await addr2.getAddress(),
         '2025-01-03T00:00:00',
@@ -696,9 +696,9 @@ describe('RecycledMaterialContract', function () {
       const bottles = await recycleContract.getWasteBottlesList([1, 3]);
       expect(bottles.length).to.equal(2);
       expect(bottles[0].id).to.equal(1);
-      expect(bottles[0].trackingCode).to.equal(12345);
+      expect(bottles[0].trackingCode).to.equal('12345');
       expect(bottles[1].id).to.equal(3);
-      expect(bottles[1].trackingCode).to.equal(54321);
+      expect(bottles[1].trackingCode).to.equal('54321');
     });
 
     it('Should return an empty array if no indexes provided', async function () {
@@ -709,7 +709,7 @@ describe('RecycledMaterialContract', function () {
     it('Should handle non-existent WasteBottle IDs gracefully', async function () {
       // Create a WasteBottle
       await recycleContract.createWasteBottle(
-        12345,
+        '12345',
         await addr1.getAddress(),
         await addr2.getAddress(),
         '2025-01-01T00:00:00',

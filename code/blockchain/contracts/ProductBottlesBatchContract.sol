@@ -177,7 +177,7 @@ contract ProductBottlesBatchContract {
     emit ProductBatchDeleted(batchId);
   }
 
-  function recycleProductBottle(
+  function recycleProductBottles(
     uint256 batchId,
     uint256 quantity
   ) external onlyContractOwner {
