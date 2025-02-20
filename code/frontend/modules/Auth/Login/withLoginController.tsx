@@ -25,7 +25,6 @@ const withLoginController = (View: LoginViewType) =>
       const { ok } = await loginWithPassword(payload);
       if (ok) {
         router.push('/');
-        toast.success('Inicio de sesión exitoso');
       } else {
         toast.error('Usuario o contraseña incorrectos. Intentá nuevamente.');
       }

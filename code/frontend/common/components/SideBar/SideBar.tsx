@@ -76,7 +76,7 @@ const SideBar: React.FC<SideBarProps> = () => {
       </ul>
       <div
         onClick={() => showLogoutModal()}
-        className="w-full p-4 border-t border-p1 flex flex-row justify-center items-center gap-2 cursor-pointer"
+        className="w-full p-4 border-t border-n10 flex flex-row justify-center items-center gap-2 cursor-pointer"
       >
         <Img
           src={iconLogOut}

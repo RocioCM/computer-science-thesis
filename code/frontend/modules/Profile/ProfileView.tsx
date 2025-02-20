@@ -12,18 +12,20 @@ const ProfileView: ProfileViewType = ({
   return (
     <main className="w-full h-screen overflow-auto p-xl">
       <form
-        className="relative w-full max-w-[600px] mx-auto h-max flex flex-col gap-xl"
+        className="relative w-full max-w-[1000px] mx-auto h-max flex flex-col gap-xl"
         onSubmit={handleUpdateProfile}
       >
         <h2>Perfil</h2>
-        <div className="flex flex-col gap-s">{formBuilder(PROFILE_INPUTS)}</div>
+        <div className="grid grid-cols-2 gap-m">
+          {formBuilder(PROFILE_INPUTS)}
+        </div>
         <Button
           handleClick={handleUpdateProfile}
           label="Actualizar perfil"
           disabled={!submitEnabled}
           isLoading={isLoading}
           width="full"
-          className="sticky bottom-4 mt-4"
+          className="sticky bottom-4 mt-4 z-10"
         />
       </form>
     </main>

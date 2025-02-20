@@ -11,12 +11,12 @@ const LABEL_STYLE = {
   base: 'text-p mb-xs cursor-pointer',
   floatingOnTop: 'top-0 left-0 text-n10 font-semibold',
   floatingInsideInput:
-    'top-[calc(2.3*var(--spacing-m)+var(--spacing-xs))] left-m text-n2 font-medium cursor-text',
+    'top-[calc(2*var(--spacing-m)+var(--spacing-xs))] left-m text-n2 font-medium cursor-text',
   disabled: '!cursor-default',
 };
 
 const INPUT_STYLE = {
-  base: 'gap-xs p text-left rounded-rs border-n1 px-m py-m placeholder:text-n2 h-12', // TIP: For only bottom border use: 'rounded-none border-0 border-b'
+  base: 'gap-xs p text-left rounded-rs border-n1 px-m py-m placeholder:text-n2 h-10', // TIP: For only bottom border use: 'rounded-none border-0 border-b'
   hover: 'hover:border-n2',
   focus: cn(styles.dropdonwFocus, 'focus:border-p1'),
   disabled: 'disabled:text-n3 disabled:bg-n1 disabled:border-n2',
@@ -166,7 +166,7 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
       {showOptions && (
         <FloatingPortal>
           <div
-            className="z-50 w-max rounded-md bg-white shadow-lg max-h-60 overflow-auto"
+            className="z-dropdown w-max rounded-md bg-white shadow-lg max-h-60 overflow-auto"
             ref={refs.setFloating}
             style={{
               ...floatingStyles,

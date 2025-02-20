@@ -13,16 +13,16 @@ const LoginView: LoginViewType = ({
   formBuilder,
 }) => {
   return (
-    <main className="w-full h-screen flex flex-row items-center justify-center gap-xl p-xl">
+    <main className="w-full h-screen flex flex-row items-center justify-around gap-xl p-3xl">
       <Img
         src={loginImage}
         width={800}
         height={800}
         alt="Iniciar sesión"
-        className="h-full w-full object-contain"
+        className="h-full w-full max-w-[400px] object-contain"
       />
       <form
-        className="w-full min-w-[300px] h-max max-h-full overflow-auto rounded-rl border border-n2 p-xl flex flex-col gap-xl"
+        className="w-full min-w-[300px] max-w-[500px] h-max max-h-full overflow-auto rounded-rl border border-n2 p-2xl flex flex-col gap-xl"
         onSubmit={handleLogin}
       >
         <h2>Bienvenido</h2>

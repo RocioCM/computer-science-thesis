@@ -40,7 +40,7 @@ const withAuth = (
     useEffect(() => {
       if (!loading) {
         if (!isAuthenticated) {
-          router.replace('/login'); // User not allowed.
+          router.replace('/auth/login'); // User not allowed.
         }
       }
     }, [loading]);

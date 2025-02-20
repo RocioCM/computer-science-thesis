@@ -60,14 +60,14 @@ const Modal = ({
         )}
       >
         {!hideCloseButton && (
-          <div className="flex justify-end w-full h-0 sticky top-0">
+          <div className="flex justify-end w-full h-0 sticky top-0 z-10">
             <Img
               src={iconClose}
               width={30}
               height={30}
               alt="Cerrar"
               onClick={handleCancel}
-              className="h-5 w-auto cursor-pointer object-contain"
+              className="h-6 w-auto cursor-pointer object-contain"
             />
           </div>
         )}

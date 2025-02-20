@@ -62,8 +62,8 @@ const useAuthState = () => {
   };
 
   const registerUser = async (newUser: RegisterUser) => {
-    const { ok } = await UserServices.registerUser(newUser);
-    return { ok };
+    const res = await UserServices.registerUser(newUser);
+    return res;
   };
 
   /**

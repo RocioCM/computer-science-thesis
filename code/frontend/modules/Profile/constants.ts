@@ -14,7 +14,7 @@ export const PROFILE_FORM_STRUCT: FieldData[] = [
   },
 
   {
-    name: 'roleId',
+    name: 'role',
     disabled: true,
     default: null,
   },
@@ -46,7 +46,7 @@ export const PROFILE_INPUTS: FormBuilderField[] = [
   },
   {
     type: INPUT_TYPES.dropdown,
-    name: 'roleId',
+    name: 'role',
     label: 'Rol',
     dropdownOptions: ROLES_OPTIONS,
   },

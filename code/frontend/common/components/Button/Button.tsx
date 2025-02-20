@@ -36,7 +36,7 @@ const WIDTH_STYLE: Record<string, string> = {
 };
 
 const STATUS_STYLE = {
-  base: 'gap-s rounded-rs font-semibold h-12',
+  base: 'gap-s rounded-rs font-semibold h-10',
   hover: '',
   focus: styles.focusButton,
   disabled: 'disabled:cursor-default disabled:bg-n2 disabled:text-n3',
