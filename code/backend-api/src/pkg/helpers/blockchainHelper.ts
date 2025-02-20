@@ -1,5 +1,10 @@
 import { StatusCodes } from 'http-status-codes';
-import { ethers, Result } from 'ethers';
+import {
+  ContractTransactionResponse,
+  ethers,
+  LogDescription,
+  Result,
+} from 'ethers';
 import { IResult } from 'src/pkg/interfaces/result';
 import { getEnv } from 'src/pkg/helpers/env';
 import logger from 'src/pkg/helpers/logger';
@@ -30,6 +35,11 @@ export type ABIEntry = {
 
 export type ABI = ABIEntry[];
 
+export type EventEntry = {
+  name: string;
+  args: any[];
+};
+
 function getMethodAbi(abi: ABI, methodName: string): ABIEntry | null {
   const methodAbi = abi.find(
     (abiEntry) => abiEntry.type === 'function' && abiEntry.name === methodName,
@@ -37,7 +47,14 @@ function getMethodAbi(abi: ABI, methodName: string): ABIEntry | null {
   return methodAbi || null;
 }
 
-function formatField(field: ABIOutput, value: any) {
+function getEventAbi(abi: ABI, eventName: string): ABIEntry | null {
+  const eventAbi = abi.find(
+    (abiEntry) => abiEntry.type === 'event' && abiEntry.name === eventName,
+  );
+  return eventAbi || null;
+}
+
+function formatField(field: ABIInput | ABIOutput, value: any) {
   if (field.type === 'uint256' || typeof value === 'bigint') {
     return Number(value);
   }
@@ -81,9 +98,9 @@ async function formatResponse<T = Object>(
   // No outputs defined in ABI, return response as is:
   if (!outputsAbi?.length)
     return {
-      ok: false,
-      status: StatusCodes.INTERNAL_SERVER_ERROR,
-      data: null,
+      ok: true,
+      status: StatusCodes.OK,
+      data: null as T,
     };
 
   // Returned value is a single value:
@@ -105,7 +122,86 @@ async function formatResponse<T = Object>(
   return { ok: true, status: StatusCodes.OK, data: formattedResponse as T };
 }
 
-async function callContractMethod<T = any>(
+async function parseReceiptEvents(
+  abi: ABI,
+  contract: ethers.Contract,
+  receipt: ethers.ContractTransactionReceipt,
+): IResult<EventEntry[]> {
+  // In ethers v6, receipt.events is not available. Instead, parse the logs manually.
+  const events: LogDescription[] = receipt.logs
+    .map((log) => {
+      try {
+        return contract.interface.parseLog(log); // Attempt to parse each log with the contract interface
+      } catch (error) {
+        return null; // If the log does not belong to this contract, skip it
+      }
+    })
+    .filter((event) => event !== null);
+
+  if (!events.length) {
+    return { ok: true, status: StatusCodes.OK, data: [] };
+  }
+
+  const formattedEvents = [];
+
+  for (const event of events) {
+    // Only add event to formattedEvents if it has a corresponding ABI entry in the contract ABI.
+    // Elsecase, it's an event from another contract.
+    const eventAbi = getEventAbi(abi, event.name);
+    if (eventAbi && eventAbi.inputs?.length) {
+      const args: Result = event.args;
+      const formattedArgs = args.map((arg: any, index: number) => {
+        const abiInput = eventAbi.inputs?.[index];
+        return abiInput ? formatField(abiInput, arg) : arg;
+      });
+
+      const formattedEvent: EventEntry = {
+        name: event.name,
+        args: formattedArgs,
+      };
+
+      formattedEvents.push(formattedEvent);
+    }
+  }
+
+  return { ok: true, status: StatusCodes.OK, data: formattedEvents };
+}
+
+async function callContractMethod(
+  contractAddress: string,
+  abi: ABI,
+  methodName: string,
+  ...args: any[]
+): IResult<EventEntry[]> {
+  try {
+    const provider = new ethers.JsonRpcProvider(getEnv('PROVIDER_URL'));
+    const wallet = new ethers.Wallet(getEnv('PRIVATE_KEY'), provider);
+    const contract = new ethers.Contract(contractAddress, abi, wallet);
+
+    const method = contract.getFunction(methodName);
+    const tx: ContractTransactionResponse = await method(...args);
+    const receipt = await tx.wait();
+    if (receipt === null)
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+
+    return parseReceiptEvents(abi, contract, receipt);
+  } catch (err: any) {
+    logger.error('BLOCKCHAIN TRANSACTION ERROR: ', err);
+    const errorMessage =
+      err?.shortMessage || err?.message || 'Internal server error';
+    return {
+      ok: false,
+      status: StatusCodes.INTERNAL_SERVER_ERROR,
+      data: errorMessage,
+    };
+  }
+}
+
+async function callPureContractMethod<T = any>(
   contractAddress: string,
   abi: ABI,
   methodName: string,
@@ -133,6 +229,7 @@ async function callContractMethod<T = any>(
 
 const blockchainHelper = {
   callContractMethod,
+  callPureContractMethod,
 };
 
 export default blockchainHelper;

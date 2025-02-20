@@ -1,12 +1,12 @@
 import { StatusCodes } from 'http-status-codes';
 import databaseHelper from 'src/pkg/helpers/databaseHelper';
 import { IResult } from 'src/pkg/interfaces/result';
-import { OWNERSHIP_TYPES } from 'src/pkg/constants/ownership';
 import { Ownership } from '../domain/ownership';
+import { OWNERSHIP_TYPES } from 'src/pkg/constants/ownership';
 
 export default class OwnershipRepository {
   static async CreateOwnership(ownership: Ownership): IResult<Ownership> {
-    if (!ownership.type) ownership.type = OWNERSHIP_TYPES.BASE;
+    if (!ownership.type) ownership.type = OWNERSHIP_TYPES.PRODUCT;
 
     const createdOwner = await databaseHelper
       .db()
@@ -24,13 +24,13 @@ export default class OwnershipRepository {
   static async GetAllOwnerships(): IResult<Ownership[]> {
     const ownerships = await databaseHelper
       .db()
-      .manager.find(Ownership, { where: { type: OWNERSHIP_TYPES.BASE } });
+      .manager.find(Ownership, { where: { type: OWNERSHIP_TYPES.PRODUCT } });
     return { ok: true, status: StatusCodes.OK, data: ownerships };
   }
 
   static async GetOwnershipByBottleId(bottleId: number): IResult<Ownership> {
     const ownership = await databaseHelper.db().manager.findOne(Ownership, {
-      where: { bottleId, type: OWNERSHIP_TYPES.BASE },
+      where: { bottleId, type: OWNERSHIP_TYPES.PRODUCT },
     });
     if (!ownership?.id) {
       return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
@@ -47,7 +47,7 @@ export default class OwnershipRepository {
     const skip = (page - 1) * take;
 
     const ownerships = await databaseHelper.db().manager.find(Ownership, {
-      where: { ownerAccountId, type: OWNERSHIP_TYPES.BASE },
+      where: { ownerAccountId, type: OWNERSHIP_TYPES.PRODUCT },
       skip,
       take,
     });

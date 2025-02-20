@@ -90,6 +90,10 @@ export class CreateBaseBottlesBatchDTO {
   bottleType: Bottle;
 }
 
+export type CreationResponse = {
+  batchId: number;
+};
+
 export class UpdateBaseBottlesBatchDTO extends CreateBaseBottlesBatchDTO {
   @Expose()
   @IsInt()
@@ -109,6 +113,10 @@ export class SellBaseBottlesDTO {
   @IsInt()
   buyerUid: string;
 }
+
+export type SellResponse = {
+  productBatchId: number;
+};
 
 export class RecycleBaseBottlesDTO {
   @Expose()

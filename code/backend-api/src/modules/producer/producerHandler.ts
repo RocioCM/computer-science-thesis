@@ -3,13 +3,16 @@ import { IResult } from 'src/pkg/interfaces/result';
 import {
   BaseBottlesBatch,
   CreateBaseBottlesBatchDTO,
+  CreationResponse,
   SellBaseBottlesDTO,
+  SellResponse,
   UpdateBaseBottlesBatchDTO,
 } from './domain/baseBatch';
 import AuthHandler from '../auth/authHandler';
 import BaseBottlesBatchRepository from './repositories/baseBottlesBatchRepository';
 import OwnershipRepository from './repositories/ownershipRepository';
 import { Ownership } from './domain/ownership';
+import { OWNERSHIP_TYPES } from 'src/pkg/constants/ownership';
 
 export default class ProducerHandler {
   static async GetBatchById(batchId: number): IResult<BaseBottlesBatch> {
@@ -46,7 +49,7 @@ export default class ProducerHandler {
   static async CreateBaseBottlesBatch(
     firebaseUid: string,
     batch: CreateBaseBottlesBatchDTO,
-  ): IResult<BaseBottlesBatch> {
+  ): IResult<CreationResponse> {
     const userRes = await AuthHandler.GetUserByFirebaseUid(firebaseUid);
     if (!userRes.ok) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
@@ -62,7 +65,7 @@ export default class ProducerHandler {
 
     const creationRes =
       await BaseBottlesBatchRepository.CreateBaseBottlesBatch(batchEntity);
-    if (!creationRes.ok) {
+    if (!creationRes.ok || !creationRes.data) {
       return {
         ok: false,
         status: StatusCodes.INTERNAL_SERVER_ERROR,
@@ -70,16 +73,15 @@ export default class ProducerHandler {
       };
     }
 
+    const batchId = creationRes.data;
     const ownership = new Ownership();
-    ownership.bottleId = creationRes.data.id;
+    ownership.bottleId = batchId;
     ownership.ownerAccountId = userRes.data.blockchainId;
 
     const ownershipRes = await OwnershipRepository.CreateOwnership(ownership);
     if (!ownershipRes.ok) {
       // Revert full transaction if incomplete:
-      await BaseBottlesBatchRepository.DeleteBaseBottlesBatch(
-        creationRes.data.id,
-      );
+      await BaseBottlesBatchRepository.DeleteBaseBottlesBatch(batchId);
       return {
         ok: false,
         status: StatusCodes.INTERNAL_SERVER_ERROR,
@@ -87,13 +89,17 @@ export default class ProducerHandler {
       };
     }
 
-    return creationRes;
+    return {
+      ok: true,
+      status: StatusCodes.CREATED,
+      data: { batchId },
+    };
   }
 
   static async UpdateBaseBottlesBatch(
     firebaseUid: string,
     batch: UpdateBaseBottlesBatchDTO,
-  ): IResult<BaseBottlesBatch> {
+  ): IResult<null> {
     const userRes = await AuthHandler.GetUserByFirebaseUid(firebaseUid);
     if (!userRes.ok) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
@@ -119,7 +125,7 @@ export default class ProducerHandler {
   static async DeleteBaseBottlesBatch(
     firebaseUid: string,
     batchId: number,
-  ): IResult<BaseBottlesBatch> {
+  ): IResult<null> {
     const userRes = await AuthHandler.GetUserByFirebaseUid(firebaseUid);
     if (!userRes.ok) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
@@ -141,7 +147,7 @@ export default class ProducerHandler {
   static async SellBaseBottles(
     firebaseUid: string,
     sellData: SellBaseBottlesDTO,
-  ): IResult<BaseBottlesBatch> {
+  ): IResult<SellResponse> {
     const userRes = await AuthHandler.GetUserByFirebaseUid(firebaseUid);
     if (!userRes.ok) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
@@ -167,18 +173,36 @@ export default class ProducerHandler {
       return { ok: false, status: StatusCodes.BAD_REQUEST, data: null };
     }
 
-    return BaseBottlesBatchRepository.SellBaseBottles(
+    const sellRes = await BaseBottlesBatchRepository.SellBaseBottles(
       sellData.batchId,
       sellData.quantity,
       buyerUserRes.data.blockchainId,
     );
+    if (!sellRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    // After successful selling, register new product bottles ownership.
+    const productBatchId = sellRes.data;
+    const ownership = new Ownership();
+    ownership.bottleId = productBatchId;
+    ownership.ownerAccountId = buyerUserRes.data.blockchainId;
+    ownership.type = OWNERSHIP_TYPES.PRODUCT;
+
+    await OwnershipRepository.CreateOwnership(ownership);
+
+    return { ok: true, status: StatusCodes.OK, data: { productBatchId } };
   }
 
   static async RecycleBaseBottlesBatch(
     firebaseUid: string,
     batchId: number,
     quantity: number,
-  ): IResult<BaseBottlesBatch> {
+  ): IResult<null> {
     const userRes = await AuthHandler.GetUserByFirebaseUid(firebaseUid);
     if (!userRes.ok) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };

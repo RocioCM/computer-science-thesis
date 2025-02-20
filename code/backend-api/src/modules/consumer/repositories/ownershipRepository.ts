@@ -6,7 +6,7 @@ import { Ownership } from '../domain/ownership';
 
 export default class OwnershipRepository {
   static async CreateOwnership(ownership: Ownership): IResult<Ownership> {
-    if (!ownership.type) ownership.type = OWNERSHIP_TYPES.BASE;
+    if (!ownership.type) ownership.type = OWNERSHIP_TYPES.WASTE;
 
     const createdOwner = await databaseHelper
       .db()
@@ -24,13 +24,13 @@ export default class OwnershipRepository {
   static async GetAllOwnerships(): IResult<Ownership[]> {
     const ownerships = await databaseHelper
       .db()
-      .manager.find(Ownership, { where: { type: OWNERSHIP_TYPES.BASE } });
+      .manager.find(Ownership, { where: { type: OWNERSHIP_TYPES.WASTE } });
     return { ok: true, status: StatusCodes.OK, data: ownerships };
   }
 
   static async GetOwnershipByBottleId(bottleId: number): IResult<Ownership> {
     const ownership = await databaseHelper.db().manager.findOne(Ownership, {
-      where: { bottleId, type: OWNERSHIP_TYPES.BASE },
+      where: { bottleId, type: OWNERSHIP_TYPES.WASTE },
     });
     if (!ownership?.id) {
       return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
@@ -47,11 +47,24 @@ export default class OwnershipRepository {
     const skip = (page - 1) * take;
 
     const ownerships = await databaseHelper.db().manager.find(Ownership, {
-      where: { ownerAccountId, type: OWNERSHIP_TYPES.BASE },
+      where: { ownerAccountId, type: OWNERSHIP_TYPES.WASTE },
       skip,
       take,
     });
 
     return { ok: true, status: StatusCodes.OK, data: ownerships };
+  }
+
+  static async DeleteOwnershipByUserAndBottleId(
+    ownerAccountId: string,
+    bottleId: number,
+  ): IResult<null> {
+    const deleteStatus = await databaseHelper
+      .db()
+      .manager.delete(Ownership, { ownerAccountId, bottleId });
+    if (deleteStatus.affected === 0) {
+      return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
+    }
+    return { ok: true, status: StatusCodes.OK, data: null };
   }
 }
