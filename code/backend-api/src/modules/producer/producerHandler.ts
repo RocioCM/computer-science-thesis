@@ -59,7 +59,7 @@ export default class ProducerHandler {
     batchEntity.quantity = batch.quantity;
     batchEntity.owner = userRes.data.blockchainId;
     batchEntity.bottleType = batch.bottleType;
-    batchEntity.createdAt = new Date().toISOString();
+    batchEntity.createdAt = batch.createdAt;
     batchEntity.soldQuantity = 0;
     batchEntity.deletedAt = '';
 

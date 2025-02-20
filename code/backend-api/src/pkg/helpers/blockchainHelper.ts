@@ -54,14 +54,22 @@ function getEventAbi(abi: ABI, eventName: string): ABIEntry | null {
   return eventAbi || null;
 }
 
-function formatField(field: ABIInput | ABIOutput, value: any) {
+function formatField(
+  field: ABIInput | ABIOutput,
+  value: any,
+): number | string | Object | any[] {
   if (field.type === 'uint256' || typeof value === 'bigint') {
     return Number(value);
   }
   if (field.type.endsWith('[]')) {
     return value.map((v: any) =>
       formatField(
-        { name: '', internalType: '', type: field.type.slice(0, -2) },
+        {
+          name: '',
+          internalType: '',
+          type: field.type.slice(0, -2),
+          components: field.components,
+        },
         v,
       ),
     );
@@ -105,7 +113,11 @@ async function formatResponse<T = Object>(
 
   // Returned value is a single value:
   if (outputsAbi[0].name === '') {
-    return formatField(outputsAbi[0], response);
+    return {
+      ok: true,
+      status: StatusCodes.OK,
+      data: formatField(outputsAbi[0], response) as T,
+    };
   }
 
   // Returned value is a tuple or struct:

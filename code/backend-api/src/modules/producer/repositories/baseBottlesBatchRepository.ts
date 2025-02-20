@@ -28,19 +28,39 @@ export default class BaseBottlesBatchRepository {
   }
 
   static async GetBatchById(batchId: number): IResult<BaseBottlesBatch> {
-    return this.callPureContractMethod<BaseBottlesBatch>(
+    const batchRes = await this.callPureContractMethod<BaseBottlesBatch>(
       'getBaseBottlesBatch',
       batchId,
     );
+    if (!batchRes.ok) {
+      return batchRes;
+    }
+
+    const batch: BaseBottlesBatch = batchRes.data;
+    batch.bottleType.composition = JSON.parse(
+      (batch.bottleType.composition || '[]') as any,
+    );
+    return { ok: true, status: StatusCodes.OK, data: batch };
   }
 
   static async GetBatchesList(
     batchesIds: number[],
   ): IResult<BaseBottlesBatch[]> {
-    return this.callPureContractMethod<BaseBottlesBatch[]>(
+    const batchesRes = await this.callPureContractMethod<BaseBottlesBatch[]>(
       'getBaseBottlesList',
       batchesIds,
     );
+    if (!batchesRes.ok) {
+      return batchesRes;
+    }
+    const batches = batchesRes.data.map((batch) => {
+      batch.bottleType.composition = JSON.parse(
+        (batch.bottleType.composition || '[]') as any,
+      );
+      return batch;
+    });
+
+    return { ok: true, status: StatusCodes.OK, data: batches };
   }
 
   static async CreateBaseBottlesBatch(
@@ -50,7 +70,7 @@ export default class BaseBottlesBatchRepository {
       ...batch.bottleType,
       composition: JSON.stringify(batch.bottleType.composition),
     };
-    const createdAt = new Date().toISOString();
+    const createdAt = batch.createdAt || new Date().toISOString();
     const result = await this.callContractMethod(
       'createBaseBottlesBatch',
       batch.quantity,

@@ -88,6 +88,10 @@ export class CreateBaseBottlesBatchDTO {
 
   @Expose()
   bottleType: Bottle;
+
+  @Expose()
+  @IsString()
+  createdAt: string;
 }
 
 export type CreationResponse = {
