@@ -9,6 +9,7 @@ import 'animate.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '@/common/styles/variables.css';
 import '@/common/styles/globals.css';
+import SideBar from '@/common/components/SideBar';
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const isDynamicRoute = /\[.*\].*/.test(router.pathname);
@@ -17,7 +18,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <>
       <Head>
-        <title>Template Webview</title>
+        <title>Tesis Blockchain</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
@@ -29,6 +30,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         <Toast />
 
         <AppWrapper>
+          <SideBar />
           <Component {...pageProps} key={pagePath} />
         </AppWrapper>
 

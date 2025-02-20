@@ -28,3 +28,9 @@ export function applyAsyncHandlerMiddleware(router: Router) {
     }) as typeof originalMethod;
   });
 }
+
+const middlewareHelper = {
+  applyAsyncHandlerMiddleware,
+};
+
+export default middlewareHelper;

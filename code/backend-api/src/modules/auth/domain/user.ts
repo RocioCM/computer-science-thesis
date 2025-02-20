@@ -5,7 +5,6 @@ import {
   IsEmail,
   IsOptional,
   IsNumberString,
-  IsNotIn,
 } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -63,4 +62,21 @@ export class CreateUserDTO {
   @Expose()
   @IsInt()
   roleId: number;
+}
+
+export class UpdateUserDTO {
+  @Expose()
+  @IsOptional()
+  @IsString()
+  userName?: string;
+
+  @Expose()
+  @IsOptional()
+  @IsString()
+  managerName?: string;
+
+  @Expose()
+  @IsOptional()
+  @IsNumberString()
+  phone?: string;
 }

@@ -30,13 +30,15 @@ body {
 
 #__next,
 body {
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
 }
 
 #__next {
-  min-height: 100vh;
-  overflow-y: auto;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-flow: row nowrap;
 
   --animate-duration: 500ms; /* animate.css override */
 }
@@ -50,6 +52,9 @@ body {
   --font-color: var(--colors-neutrals-n10);
   --secondary-font-color: var(--colors-neutrals-n4);
 
+  /* SIZES */
+  --sidebar-width: 12rem;
+
   /* FONTS */
   --regular: 400;
   --medium: 500;
@@ -60,7 +65,7 @@ body {
   --font-family: var(--main-font), -apple-system, BlinkMacSystemFont, Segoe UI,
     Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
     sans-serif;
-  font-size: 16px;
+  font-size: 15px;
 
   --font-h1: var(--regular) var(--text-h1-r) / normal var(--font-family);
   --font-h2: var(--regular) var(--text-h2-r) / normal var(--font-family);
@@ -148,13 +153,13 @@ p,
 
 @media screen and (min-width: 1200px) {
   :root {
-    font-size: 18px;
+    font-size: 17px;
   }
 }
 
 @media screen and (min-width: 1400px) {
   :root {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 

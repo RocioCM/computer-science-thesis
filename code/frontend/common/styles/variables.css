@@ -37,15 +37,15 @@
 :root {
   /* Text-size styles */
   /* base size: text-p-r (16px) */
-  --text-h1-r: 2.43rem;
-  --text-h2-r: 2.02rem;
-  --text-h2-b: 2.02rem;
-  --text-h3-r: 1.68rem;
-  --text-h3-b: 1.68rem;
-  --text-h4-m: 1.4rem;
-  --text-h4-r: 1.4rem;
-  --text-h5-r: 1.17rem;
-  --text-h5-sb: 1.17rem;
+  --text-h1-r: 2rem;
+  --text-h2-r: 1.75rem;
+  --text-h2-b: 1.75rem;
+  --text-h3-r: 1.25rem;
+  --text-h3-b: 1.25rem;
+  --text-h4-m: 1.15rem;
+  --text-h4-r: 1.15rem;
+  --text-h5-r: 1rem;
+  --text-h5-sb: 1rem;
   --text-h6-r: 1rem;
   --text-h6-sb: 1rem;
   --text-p-r: 1rem;

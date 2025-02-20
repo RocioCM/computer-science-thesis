@@ -154,6 +154,15 @@ export const isEmail: ValidatorFunction = (value) => {
   return '';
 };
 
+/** Check if the value is a valid password with at least 8 characters, a letter and a number. */
+export const isPassword: ValidatorFunction = (value) => {
+  // At least 8 characters and includes a number and a letter
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  if (!passwordRegex.test(value))
+    return 'La contraseña debe tener al menos 8 caracteres, una letra y un número';
+  return '';
+};
+
 export const isNumber: ValidatorFunction = (value) => {
   //Regular expression to validate that it only contains numbers and special characters.
   const numberRegex = /^[0-9\s()\-+]+$/;

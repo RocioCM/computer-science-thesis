@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import ErrorMessage from '../ErrorMessage';
+import { useErrorMessage } from '@/common/hooks/useForm';
 import { FormHandleChange } from '@/common/hooks/useForm/types';
 import cn from '@/common/utils/classNames';
 import styles from './InputTextArea.module.css';
@@ -55,6 +56,8 @@ const InputTextArea: React.FC<Props> = ({
   ...props
 }) => {
   const [floatLabel, setFloatLabel] = useState(false); // True when label is floating on top of input. False when label is inside input.
+  const { allowRenderError, errorMessage: renderErrorMessage } =
+    useErrorMessage(errorMessage);
 
   useEffect(() => {
     setFloatLabel(!!value);
@@ -82,6 +85,16 @@ const InputTextArea: React.FC<Props> = ({
         value={value}
         disabled={isDisabled}
         placeholder={showFloatingLabel ? '' : placeholder}
+        onFocus={(e) => {
+          onFocus(e);
+          setFloatLabel(true);
+        }}
+        onBlur={(e) => {
+          onBlur(e);
+          allowRenderError();
+          setFloatLabel(!!e.target.value);
+        }}
+        {...props}
         className={cn(
           styles.input, // Base
           'block  w-full h-max relative resize-none border bg-transparent outline-none transition-shadow', // Base
@@ -89,22 +102,16 @@ const InputTextArea: React.FC<Props> = ({
           INPUT_STYLE.hover, // Hover
           INPUT_STYLE.focus, // Focus
           INPUT_STYLE.disabled, // Disabled
-          errorMessage ? INPUT_STYLE.error : '',
+          renderErrorMessage ? INPUT_STYLE.error : '',
           inputClassName // Custom
         )}
-        onFocus={(e) => {
-          onFocus(e);
-          setFloatLabel(true);
+        onChange={(e) => {
+          handleChange(name, e.target.value);
+          allowRenderError();
         }}
-        onBlur={(e) => {
-          onBlur(e);
-          setFloatLabel(!!e.target.value);
-        }}
-        {...props}
-        onChange={(e) => handleChange(name, e.target.value)}
       />
 
-      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
+      {renderErrorMessage && <ErrorMessage errorMessage={errorMessage} />}
     </label>
   );
 };

@@ -1,48 +1,52 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { LegacyRef, useEffect, useRef } from 'react';
 
 /**
  * Hook to implement infinite scrolling. This hook will trigger the provided
  * fetch function when the user scrolls to the bottom of the container.
  * @param handleFetch - The fetch function to be called when the user scrolls to the bottom
- * @param threshold? - The threshold in pixels to trigger the fetch function
- * @returns A ref to be attached to the container that needs to be scrolled.
+ * @param dependencyEffect - The dependencies to be watched for changes
+ * @returns A ref to be attached to the element at the bottom of the list to trigger the fetch function
  */
 const useInfiniteScroll = (
   handleFetch: () => Promise<void>,
-  threshold: number = 50
-): React.RefObject<HTMLElement> => {
-  const containerRef = useRef<HTMLElement>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const handleScroll = async () => {
-    const container = containerRef.current;
-    // If container is not available or loading, return early. Avoid multiple fetches.
-    if (!container || loading) return;
-
-    // Extract relevant scroll dimensions
-    const { scrollTop, scrollHeight, clientHeight } = container;
-    // Check if the user has scrolled to the bottom within the threshold
-    const isAtBottom = scrollTop + clientHeight >= scrollHeight - threshold;
-
-    // If at the bottom, trigger the fetch function.
-    if (isAtBottom) {
-      setLoading(true);
-      await handleFetch();
-      setLoading(false);
-    }
-  };
+  dependencyEffect: any[]
+): LegacyRef<HTMLDivElement> | undefined => {
+  const observerRef = useRef(null); // Create a reference to the observer to persist across renders
+  const loading = useRef<boolean>(false);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (container) container.addEventListener('scroll', handleScroll);
-    return () => {
-      if (container) container.removeEventListener('scroll', handleScroll);
-    };
-  }, [containerRef]);
+    if (!observerRef?.current) return;
+    // Create a new IntersectionObserver to watch for intersection changes
+    // Iterate through intersection entries
+    const observer = new IntersectionObserver((entries) => {
+      // Check if the observed element is intersecting and the condition is true
+      entries.forEach(async (entry) => {
+        if (entry.isIntersecting) {
+          // Call the provided callback function
+          loading.current = true;
+          await handleFetch();
+          loading.current = false;
+        }
+      });
+    });
+    // Attach the observer to the current element referenced by observerRef
 
-  // Return the container reference to be used in the component.
-  // This reference should be attached to the container that needs to be scrolled.
-  return containerRef;
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+
+    // Cleanup function to disconnect the observer when the component unmounts
+    return () => {
+      if (observerRef.current) {
+        observer.unobserve(observerRef.current);
+      }
+    };
+  }, [...dependencyEffect]);
+
+  // Return the observer reference to be used in the component.
+  // This reference should be attached to the element at the bottom of the list.
+  // When that element scrolls into view, the callback function will be called.
+  return observerRef;
 };
 
 export default useInfiniteScroll;

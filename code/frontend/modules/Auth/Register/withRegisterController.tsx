@@ -4,10 +4,12 @@ import { RegisterViewType, RegisterViewProps } from './types';
 import { REGISTER_FORM_STRUCT } from './constants';
 import useForm from '@/common/hooks/useForm';
 import useLoginContext from '@/common/libraries/auth';
+import { HTTP_STATUS } from '@/common/constants';
 
 const withRegisterController = (View: RegisterViewType) =>
   function Controller(): JSX.Element {
-    const { form, formBuilder, submitEnabled } = useForm(REGISTER_FORM_STRUCT);
+    const { form, formBuilder, submitEnabled, resetForm } =
+      useForm(REGISTER_FORM_STRUCT);
     const [isLoading, setIsLoading] = useState(false);
     const { registerUser } = useLoginContext();
 
@@ -22,11 +24,16 @@ const withRegisterController = (View: RegisterViewType) =>
         password: form.password,
         roleId: form.roleId,
       };
-      const { ok } = await registerUser(payload);
+      const { ok, status } = await registerUser(payload);
       if (ok) {
-        toast.success('Usuario registrado exitosamente.');
+        toast.success(
+          '¡Usuario registrado exitosamente! Ya podés iniciar sesión con estas credenciales'
+        );
+        resetForm();
+      } else if (status === HTTP_STATUS.conflict) {
+        toast.error('El email ingresado ya está registrado, intentá con otro');
       } else {
-        toast.error('Ocurrió un error al registrar. Intentá nuevamente.');
+        toast.error('Ocurrió un error al registrar. Intentá nuevamente');
       }
 
       setIsLoading(false);

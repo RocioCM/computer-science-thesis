@@ -62,8 +62,8 @@ const useAuthState = () => {
   };
 
   const registerUser = async (newUser: RegisterUser) => {
-    const { ok } = await UserServices.registerUser(newUser);
-    return { ok };
+    const res = await UserServices.registerUser(newUser);
+    return res;
   };
 
   /**
@@ -156,7 +156,7 @@ useAuthState.defaultReturn = (): ReturnType<typeof useAuthState> => ({
   loading: true,
   isLoggedIn: false,
   user: null,
-  registerUser: async () => ({ ok: false }),
+  registerUser: async () => ({ ok: false, data: null, status: 0 }),
   refreshUser: async () => ({ ok: false, data: null }),
   loginWithGoogle: async () => ({ ok: false, data: null }),
   loginWithPassword: async () => ({ ok: false, data: null }),

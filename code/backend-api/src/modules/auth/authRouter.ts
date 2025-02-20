@@ -1,10 +1,10 @@
 import { Router, Request, Response } from 'express';
-import { StatusCodes } from 'http-status-codes';
 import requestHelper from 'src/pkg/helpers/requestHelper';
 import responseHelper from 'src/pkg/helpers/responseHelper';
 import AuthHandler from './authHandler';
-import * as middlewareHelper from 'src/pkg/helpers/middlewareHelper';
-import { User, CreateUserDTO } from './domain/user';
+import middlewareHelper from 'src/pkg/helpers/middlewareHelper';
+import { CreateUserDTO, UpdateUserDTO } from './domain/user';
+import { Authenticate } from 'src/pkg/helpers/authHelper';
 
 //---- Routers ----//
 
@@ -21,32 +21,32 @@ async function RegisterUser(req: Request, res: Response) {
 }
 
 async function GetUserWithAuth(req: Request, res: Response) {
-  const authToken = requestHelper.getAuthToken(req);
-  if (!authToken) {
-    responseHelper.build(res, StatusCodes.UNAUTHORIZED, null);
+  const userRes = await Authenticate(req);
+  if (!userRes.ok) {
+    responseHelper.build(res, userRes.status, userRes.data);
     return;
   }
 
-  const { status, data } = await AuthHandler.GetUserWithAuth(authToken);
+  const { status, data } = await AuthHandler.GetUserWithAuth(userRes.data);
 
   responseHelper.build(res, status, data);
 }
 
 async function UpdateUserWithAuth(req: Request, res: Response) {
-  const authToken = requestHelper.getAuthToken(req);
-  if (!authToken) {
-    responseHelper.build(res, StatusCodes.UNAUTHORIZED, null);
+  const userRes = await Authenticate(req);
+  if (!userRes.ok) {
+    responseHelper.build(res, userRes.status, userRes.data);
     return;
   }
 
-  const parsedUserRes = await requestHelper.parseBody(req.body, User);
+  const parsedUserRes = await requestHelper.parseBody(req.body, UpdateUserDTO);
   if (!parsedUserRes.ok) {
     responseHelper.build(res, parsedUserRes.status, parsedUserRes.data);
     return;
   }
 
   const { status, data } = await AuthHandler.UpdateUserWithAuth(
-    authToken,
+    userRes.data.uid,
     parsedUserRes.data,
   );
 

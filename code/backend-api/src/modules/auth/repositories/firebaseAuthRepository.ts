@@ -1,17 +1,29 @@
 import { StatusCodes } from 'http-status-codes';
-import firebaseAuthHelper from 'src/pkg/helpers/authHelper';
+import firebaseAuthHelper, { AuthUser } from 'src/pkg/helpers/authHelper';
 import { IResult } from 'src/pkg/interfaces/result';
 
 export default class FirebaseAuthRepository {
-  static async CreateUser(
-    email: string,
-    password: string,
-  ): IResult<firebaseAuthHelper.auth.UserRecord> {
-    const createdUser = await firebaseAuthHelper.auth().createUser({
-      email,
-      password,
-    });
-    return { ok: true, status: StatusCodes.CREATED, data: createdUser };
+  static async CreateUser(email: string, password: string): IResult<AuthUser> {
+    try {
+      const createdUser = await firebaseAuthHelper.auth().createUser({
+        email,
+        password,
+      });
+      return { ok: true, status: StatusCodes.CREATED, data: createdUser };
+    } catch (error: any) {
+      if (error.code === 'auth/email-already-exists') {
+        return {
+          ok: false,
+          status: StatusCodes.CONFLICT,
+          data: error.message,
+        };
+      }
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
   }
 
   static async SetUserRole(uid: string, roleId: number): IResult<null> {
@@ -19,9 +31,7 @@ export default class FirebaseAuthRepository {
     return { ok: true, status: StatusCodes.OK, data: null };
   }
 
-  static async GetUserWithToken(
-    token: string,
-  ): IResult<firebaseAuthHelper.auth.UserRecord> {
+  static async GetUserWithToken(token: string): IResult<AuthUser> {
     try {
       const decodedToken = await firebaseAuthHelper.auth().verifyIdToken(token);
       const user = await firebaseAuthHelper.auth().getUser(decodedToken.uid);

@@ -1,8 +1,8 @@
 import * as crypto from 'crypto';
-import databaseHelper from 'src/pkg/helpers/databaseHelper';
-import { User } from '../domain/user';
-import { IResult } from 'src/pkg/interfaces/result';
 import { StatusCodes } from 'http-status-codes';
+import databaseHelper from 'src/pkg/helpers/databaseHelper';
+import { IResult } from 'src/pkg/interfaces/result';
+import { User } from '../domain/user';
 
 export default class UserRepository {
   static async CreateUser(user: User): IResult<User> {
@@ -67,7 +67,8 @@ export default class UserRepository {
     let randomAddress = '';
 
     while (addressInUse) {
-      randomAddress = '0x' + crypto.randomBytes(16).toString('hex'); // Create a random 32-hex-character string. 16 bytes = 32 hex characters
+      // Create a random 40-hex-character string. Ethereum addresses are 40-hex-character strings (20 bytes = 40 hex characters).
+      randomAddress = '0x' + crypto.randomBytes(20).toString('hex');
       const userWithAddress = await databaseHelper.db().manager.findOne(User, {
         where: { blockchainId: randomAddress },
       });

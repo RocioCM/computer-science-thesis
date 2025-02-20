@@ -14,9 +14,15 @@ import { StatusCodes } from 'http-status-codes';
 function getAuthToken(req: Request): string {
   const authHeader = req.headers.authorization;
   if (authHeader && authHeader.split(' ')[0] === 'Bearer') {
-    return authHeader.split(' ')[1];
+    return authHeader.split(' ')[1] ?? '';
   }
   return authHeader ?? '';
+}
+
+function parseUint(param: any): number | null {
+  const id = parseInt(param, 10);
+  if (isNaN(id) || id < 0) return null;
+  return id;
 }
 
 async function parseBody<T extends object>(
@@ -52,6 +58,7 @@ async function parseBody<T extends object>(
 const requestHelper = {
   getAuthToken,
   parseBody,
+  parseUint,
 };
 
 export default requestHelper;
