@@ -16,7 +16,7 @@ const LABEL_STYLE = {
 const ABSOLUTE_CHILDREN_STYLE = 'gap-xs';
 
 const INPUT_STYLE = {
-  base: 'p rounded-rs border-n1 px-m py-m placeholder:text-n2 h-10', // TIP: For only bottom border use: 'rounded-none border-0 border-b'
+  base: 'p rounded-rs border-n1 px-m py-xs placeholder:text-n2 h-10', // TIP: For only bottom border use: 'rounded-none border-0 border-b'
   hover: 'hover:border-n2',
   focus: cn(styles.inputFocus, 'focus:border-p1'),
   disabled:
@@ -115,7 +115,7 @@ const Input: React.FC<Props> = ({
           placeholder={showFloatingLabel ? '' : placeholder}
           className={cn(
             styles.input, // Base
-            'block w-full h-max relative border bg-transparent outline-none transition-shadow', // Base
+            'block w-full relative border bg-transparent outline-none transition-shadow', // Base
             INPUT_STYLE.base, // Base custom
             INPUT_STYLE.hover, // Hover
             INPUT_STYLE.focus, // Focus

@@ -19,7 +19,7 @@ const InputNumber: React.FC<Props> = ({
       {...props}
       type="number"
       value={`${value ?? ''}`}
-      handleChange={handleChange}
+      handleChange={(name, value) => handleChange(name, Number(value) || '')}
       onWheelCapture={(e) => e.currentTarget.blur()}
       onKeyDown={(e) => {
         // Only accept digits and backspace

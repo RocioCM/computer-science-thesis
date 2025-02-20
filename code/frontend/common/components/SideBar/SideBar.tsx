@@ -87,7 +87,7 @@ const SideBar: React.FC<SideBarProps> = () => {
       </div>
       <LogoutModal
         title="¿Confirmas que deseas cerrar sesión?"
-        handleContinue={() => logout(true)}
+        handleConfirm={() => logout(true)}
       />
     </nav>
   );
