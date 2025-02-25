@@ -1,10 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
-import {
-  ContractTransactionResponse,
-  ethers,
-  LogDescription,
-  Result,
-} from 'ethers';
+import { ethers } from 'ethers';
 import { IResult } from 'src/pkg/interfaces/result';
 import { getEnv } from 'src/pkg/helpers/env';
 import logger from 'src/pkg/helpers/logger';
@@ -91,7 +86,7 @@ function formatField(
 async function formatResponse<T = Object>(
   abi: ABI,
   methodName: string,
-  response: Result,
+  response: ethers.Result,
 ): IResult<T> {
   const methodAbi = getMethodAbi(abi, methodName);
   if (!methodAbi)
@@ -140,7 +135,7 @@ async function parseReceiptEvents(
   receipt: ethers.ContractTransactionReceipt,
 ): IResult<EventEntry[]> {
   // In ethers v6, receipt.events is not available. Instead, parse the logs manually.
-  const events: LogDescription[] = receipt.logs
+  const events: ethers.LogDescription[] = receipt.logs
     .map((log) => {
       try {
         return contract.interface.parseLog(log); // Attempt to parse each log with the contract interface
@@ -161,7 +156,7 @@ async function parseReceiptEvents(
     // Elsecase, it's an event from another contract.
     const eventAbi = getEventAbi(abi, event.name);
     if (eventAbi && eventAbi.inputs?.length) {
-      const args: Result = event.args;
+      const args: ethers.Result = event.args;
       const formattedArgs = args.map((arg: any, index: number) => {
         const abiInput = eventAbi.inputs?.[index];
         return abiInput ? formatField(abiInput, arg) : arg;
@@ -191,7 +186,7 @@ async function callContractMethod(
     const contract = new ethers.Contract(contractAddress, abi, wallet);
 
     const method = contract.getFunction(methodName);
-    const tx: ContractTransactionResponse = await method(...args);
+    const tx: ethers.ContractTransactionResponse = await method(...args);
     const receipt = await tx.wait();
     if (receipt === null)
       return {
@@ -225,7 +220,7 @@ async function callPureContractMethod<T = any>(
     const contract = new ethers.Contract(contractAddress, abi, wallet);
 
     const method = contract.getFunction(methodName);
-    const res: Result = await method(...args);
+    const res: ethers.Result = await method(...args);
     return formatResponse<T>(abi, methodName, res);
   } catch (err: any) {
     logger.error('BLOCKCHAIN TRANSACTION ERROR: ', err);

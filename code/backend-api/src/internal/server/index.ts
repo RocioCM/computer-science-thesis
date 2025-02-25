@@ -31,7 +31,7 @@ server.use(
 );
 
 // Mount the API router under the BASE_PATH.
-server.use(`/api/${BASE_PATH}`, apiMiddleware);
+server.use(BASE_PATH, apiMiddleware);
 
 // 404 fallback response.
 server.use('*', (_req: Request, res: Response) => {

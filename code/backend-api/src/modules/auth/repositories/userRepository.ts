@@ -17,41 +17,6 @@ export default class UserRepository {
     return { ok: true, status: StatusCodes.CREATED, data: createdUser };
   }
 
-  static async GetAllUsers(): IResult<User[]> {
-    const users = await databaseHelper.db().manager.find(User);
-    return { ok: true, status: StatusCodes.OK, data: users };
-  }
-
-  static async GetUserById(id: number): IResult<User> {
-    const user = await databaseHelper
-      .db()
-      .manager.findOne(User, { where: { id } });
-    if (!user?.id) {
-      return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
-    }
-    return { ok: true, status: StatusCodes.OK, data: user };
-  }
-
-  static async GetUserByEmail(email: string): IResult<User> {
-    const user = await databaseHelper
-      .db()
-      .manager.findOne(User, { where: { email } });
-    if (!user?.id) {
-      return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
-    }
-    return { ok: true, status: StatusCodes.OK, data: user };
-  }
-
-  static async GetUserByBlockchainId(blockchainId: string): IResult<User> {
-    const user = await databaseHelper.db().manager.findOne(User, {
-      where: { blockchainId },
-    });
-    if (!user?.id) {
-      return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
-    }
-    return { ok: true, status: StatusCodes.OK, data: user };
-  }
-
   static async GetUserByFirebaseUid(firebaseUid: string): IResult<User> {
     const user = await databaseHelper
       .db()

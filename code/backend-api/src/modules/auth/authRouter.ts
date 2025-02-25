@@ -27,7 +27,7 @@ async function GetUserWithAuth(req: Request, res: Response) {
     return;
   }
 
-  const { status, data } = await AuthHandler.GetUserWithAuth(userRes.data);
+  const { status, data } = await AuthHandler.GetUserWithAuth(userRes.data.uid);
 
   responseHelper.build(res, status, data);
 }

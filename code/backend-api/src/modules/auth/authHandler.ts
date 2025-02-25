@@ -3,7 +3,6 @@ import { IResult } from 'src/pkg/interfaces/result';
 import { CreateUserDTO, UpdateUserDTO, User } from './domain/user';
 import FirebaseAuthRepository from './repositories/firebaseAuthRepository';
 import UserRepository from './repositories/userRepository';
-import { AuthUser } from 'src/pkg/helpers/authHelper';
 
 export default class AuthHandler {
   static async RegisterUser(user: CreateUserDTO): IResult<User> {
@@ -34,8 +33,8 @@ export default class AuthHandler {
     return UserRepository.CreateUser(userEntity);
   }
 
-  static async GetUserWithAuth(firebaseUser: AuthUser): IResult<User> {
-    const userRes = await UserRepository.GetUserByFirebaseUid(firebaseUser.uid);
+  static async GetUserWithAuth(firebaseUid: string): IResult<User> {
+    const userRes = await UserRepository.GetUserByFirebaseUid(firebaseUid);
     if (!userRes.ok) {
       return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
     }
