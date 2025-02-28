@@ -13,7 +13,7 @@ async function main() {
   // Start the server
   server.listen(PORT, () => {
     logger.info(
-      `Application is running on: http://localhost:${PORT}/api${BASE_PATH}`,
+      `Application is running on: http://localhost:${PORT}${BASE_PATH}`,
     );
   });
 

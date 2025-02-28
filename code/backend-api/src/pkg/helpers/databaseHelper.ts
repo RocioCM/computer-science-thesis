@@ -15,7 +15,7 @@ export function initializeDBSource() {
     username: getEnv('DB_USER'),
     password: getEnv('DB_PASS'),
     database: DB_NAME,
-    synchronize: true,
+    synchronize: false,
     logging: false,
     entities: ['src/modules/**/domain/*.ts'],
     poolSize: 10,
