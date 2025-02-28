@@ -111,13 +111,17 @@ export default class ProducerHandler {
     }
 
     // Check user is owner of the batch to update
-    if (batchRes.data.owner !== userRes.data.blockchainId) {
+    if (
+      batchRes.data.owner.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
     const updatedBatch = batchRes.data;
     updatedBatch.bottleType = batch.bottleType;
     updatedBatch.quantity = batch.quantity;
+    updatedBatch.createdAt = batch.createdAt;
 
     return BaseBottlesBatchRepository.UpdateBaseBottlesBatch(updatedBatch);
   }
@@ -137,7 +141,10 @@ export default class ProducerHandler {
     }
 
     // Check user is owner of the batch to update
-    if (batchRes.data.owner !== userRes.data.blockchainId) {
+    if (
+      batchRes.data.owner.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
@@ -161,7 +168,10 @@ export default class ProducerHandler {
     }
 
     // Check user is owner of the batch to update
-    if (batchRes.data.owner !== userRes.data.blockchainId) {
+    if (
+      batchRes.data.owner.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
@@ -214,7 +224,10 @@ export default class ProducerHandler {
     }
 
     // Check user is owner of the batch to update
-    if (batchRes.data.owner !== userRes.data.blockchainId) {
+    if (
+      batchRes.data.owner.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 

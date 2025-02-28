@@ -189,7 +189,10 @@ export default class ConsumerHandler {
     }
 
     // Check user is owner of the bottle to delete
-    if (wasteBottleRes.data.owner !== userRes.data.blockchainId) {
+    if (
+      wasteBottleRes.data.owner.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
       return { ok: false, status: StatusCodes.FORBIDDEN, data: null };
     }
 

@@ -91,10 +91,18 @@ export default class BaseBottlesBatchRepository {
   }
 
   static async UpdateBaseBottlesBatch(batch: BaseBottlesBatch): IResult<null> {
+    const bottleType = {
+      ...batch.bottleType,
+      composition: JSON.stringify(batch.bottleType.composition),
+    };
+    const formattedBatch = {
+      ...batch,
+      bottleType,
+    };
     const res = await this.callContractMethod(
       'updateBaseBottlesBatch',
       batch.id,
-      batch,
+      formattedBatch,
     );
     return { ...res, data: null };
   }
