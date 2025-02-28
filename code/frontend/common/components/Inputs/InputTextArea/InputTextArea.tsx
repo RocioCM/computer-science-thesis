@@ -14,9 +14,9 @@ const LABEL_STYLE = {
 };
 
 const INPUT_STYLE = {
-  base: 'p rounded-rs border-n1 px-m py-m placeholder:text-n2 min-h-[5rem]', // TIP: For only bottom border use: 'rounded-none border-0 border-b'
+  base: 'p rounded-rs border-n3 px-m py-m placeholder:text-n2 min-h-[5rem]', // TIP: For only bottom border use: 'rounded-none border-0 border-b'
   hover: 'hover:border-n2',
-  focus: cn(styles.inputFocus, 'focus:border-p1'),
+  focus: cn(styles.inputFocus, 'focus:border-p1 focus:border-2'),
   disabled:
     'disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent',
   error: '!border-fe1',
@@ -52,7 +52,7 @@ const InputTextArea: React.FC<Props> = ({
   label = '',
   placeholder = '',
   errorMessage = '',
-  showFloatingLabel = true, // Change to true to show floating label as default behavior
+  showFloatingLabel = false, // Change to true to show floating label as default behavior
   ...props
 }) => {
   const [floatLabel, setFloatLabel] = useState(false); // True when label is floating on top of input. False when label is inside input.

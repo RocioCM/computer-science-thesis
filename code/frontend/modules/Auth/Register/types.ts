@@ -3,6 +3,7 @@
 import { FormBuilderType } from '@/common/hooks/useForm/types';
 
 export interface RegisterViewProps {
+  formKey: string;
   handleRegister: (e: React.FormEvent) => void;
   submitEnabled: boolean;
   isLoading: boolean;

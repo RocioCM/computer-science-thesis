@@ -102,6 +102,7 @@ export const BATCH_FORM_STRUCT: FieldData[] = [
   {
     name: 'createdAt',
     required: true,
+    disabled: (form) => !!form.id,
     default: new Date().toISOString().split('T')[0],
   },
 ];
@@ -184,5 +185,6 @@ export const BATCH_FORM_INPUTS_2: FormBuilderField[] = [
     name: 'bottleType.extraInfo',
     placeholder: 'Ingresá observaciones adicionales',
     label: 'Observaciones adicionales (opcional)',
+    containerClassName: 'col-span-2',
   },
 ];

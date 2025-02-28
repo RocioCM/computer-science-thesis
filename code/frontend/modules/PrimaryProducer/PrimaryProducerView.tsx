@@ -1,22 +1,33 @@
 import withPrimaryProducerController from './withPrimaryProducerController';
 import { BottleBatch, PrimaryProducerViewType } from './types';
-import ButtonAdd from '@/common/components/ButtonAdd';
 import Table from '@/common/components/Table';
 import Button from '@/common/components/Button';
+import FaIcon from '@/common/components/FaIcon';
+import ActionMenu from '@/common/components/ActionMenu';
 
 const PrimaryProducerView: PrimaryProducerViewType = ({
   handleFetchData,
   handleCreateButton,
   editingId,
+  DetailModal,
   FormModal,
+  DeleteModal,
+  SaleModal,
+  RecycleModal,
   handleRefresh,
   shouldRefresh,
   handleRefreshComplete,
-  handleShowDetail,
+  menuActions,
 }) => {
   return (
-    <main className="w-full h-screen px-3xl py-l bg-n1">
-      <h1 className="mb-l">Lotes producidos</h1>
+    <main className="w-full h-screen p-2xl">
+      <header className="pb-2xl flex items-center justify-between">
+        <h1>Lotes producidos</h1>
+        <Button onClick={handleCreateButton}>
+          <FaIcon type="fa-solid fa-plus" />
+          Crear lote
+        </Button>
+      </header>
       <Table
         title="lotes"
         handleFetch={handleFetchData}
@@ -29,20 +40,23 @@ const PrimaryProducerView: PrimaryProducerViewType = ({
             name: 'actions',
             title: 'Acciones',
             formatter: (rowData: BottleBatch) => (
-              <Button
-                variant="secondary"
-                handleClick={() => handleShowDetail(rowData.id)}
-              >
-                Ver
-              </Button>
+              <ActionMenu
+                itemId={rowData.id}
+                emergeFrom="topRight"
+                actions={menuActions}
+                className="mx-auto w-max"
+              />
             ),
           },
         ]}
         shouldRefresh={shouldRefresh}
         handleRefreshComplete={handleRefreshComplete}
       />
-      <ButtonAdd onClick={handleCreateButton} title="Crear" />
+      <DetailModal editingId={editingId} />
       <FormModal editingId={editingId} handleSuccess={handleRefresh} />
+      <DeleteModal editingId={editingId} handleSuccess={handleRefresh} />
+      <SaleModal editingId={editingId} handleSuccess={handleRefresh} />
+      <RecycleModal editingId={editingId} handleSuccess={handleRefresh} />
     </main>
   );
 };

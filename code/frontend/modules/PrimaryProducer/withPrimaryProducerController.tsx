@@ -4,16 +4,35 @@ import PrimaryProducerServices from './services';
 import { toast } from 'react-toastify';
 import useModal from '@/common/hooks/useModal';
 import BatchFormModal from './components/BatchFormModal';
+import ConfirmationModal from '@/common/components/ModalChildrens/ConfirmationModal';
+import BatchDetailModal from './components/BatchDetailModal';
+import BatchSaleModal from './components/BatchSaleModal';
+import BatchRecycleModal from './components/BatchRecycleModal';
 
 const withPrimaryProducerController = (View: PrimaryProducerViewType) =>
   function Controller(): JSX.Element {
     const [shouldRefresh, setShouldRefresh] = useState(false);
     const editingId = useRef<number | null>(null);
-    const {
-      Modal: FormModal,
-      showModal: showFormModal,
-      hideModal: hideFormModal,
-    } = useModal(false, BatchFormModal);
+    const { Modal: DetailModal, showModal: showDetailModal } = useModal(
+      false,
+      BatchDetailModal
+    );
+    const { Modal: FormModal, showModal: showFormModal } = useModal(
+      false,
+      BatchFormModal
+    );
+    const { Modal: DeleteModal, showModal: showDeleteModal } = useModal(
+      false,
+      ConfirmationModal
+    );
+    const { Modal: SaleModal, showModal: showSaleModal } = useModal(
+      false,
+      BatchSaleModal
+    );
+    const { Modal: RecycleModal, showModal: showRecycleModal } = useModal(
+      false,
+      BatchRecycleModal
+    );
 
     const fetchBottlesBatches = async (page: number, limit: number) => {
       const { ok, data } = await PrimaryProducerServices.getAllBatches(
@@ -34,16 +53,6 @@ const withPrimaryProducerController = (View: PrimaryProducerViewType) =>
       setShouldRefresh(false);
     };
 
-    const deleteBottleBatch = async (id: number) => {
-      const { ok } = await PrimaryProducerServices.deleteBatch(id);
-      if (ok) {
-        toast.success('Lote de botellas eliminado correctamente');
-        handleRefresh();
-      } else {
-        toast.error('Ocurrió un error al eliminar el lote de botellas');
-      }
-    };
-
     const handleCreateButton = async () => {
       editingId.current = null;
       showFormModal();
@@ -54,16 +63,67 @@ const withPrimaryProducerController = (View: PrimaryProducerViewType) =>
       showFormModal();
     };
 
+    const handleShowDetail = (id: number) => {
+      editingId.current = id;
+      showDetailModal();
+    };
+
+    const handleShowDelete = (id: number) => {
+      editingId.current = id;
+      showDeleteModal();
+    };
+
+    const handleShowSale = (id: number) => {
+      editingId.current = id;
+      showSaleModal();
+    };
+
+    const handleShowRecycle = (id: number) => {
+      editingId.current = id;
+      showRecycleModal();
+    };
+
+    const menuActions = [
+      {
+        label: 'Ver detalle',
+        icon: 'fa-solid fa-eye',
+        callback: handleShowDetail,
+      },
+      {
+        label: 'Editar',
+        icon: 'fa-solid fa-edit',
+        callback: handleEditButton,
+      },
+      {
+        label: 'Vender',
+        icon: 'fa-solid fa-shopping-cart',
+        callback: handleShowSale,
+      },
+      {
+        label: 'Reciclar',
+        icon: 'fa-solid fa-recycle',
+        callback: handleShowRecycle,
+      },
+      {
+        label: 'Eliminar',
+        icon: 'fa-solid fa-trash-can',
+        callback: handleShowDelete,
+      },
+    ];
+
     const viewProps: PrimaryProducerViewProps = {
       handleCreateButton,
       editingId: editingId.current,
+      DetailModal,
       FormModal,
-      hideFormModal,
+      DeleteModal,
+      SaleModal,
+      RecycleModal,
       handleRefresh,
       shouldRefresh,
       handleRefreshComplete,
       handleFetchData: fetchBottlesBatches,
-      handleShowDetail: handleEditButton,
+      menuActions,
     };
 
     return <View {...viewProps} />;

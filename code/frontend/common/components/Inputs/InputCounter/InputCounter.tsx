@@ -16,7 +16,7 @@ const COUNTER_CONTAINER_STYLE = 'gap-xs';
 const INPUT_STYLE =
   '!w-3xl h-xl text-center p outline-none border-p1 focus:border rounded-[var(--spacing-xs)] transition-shadow overflow-hidden text-ellipsis whitespace-pre-wrap';
 const BUTTON_STYLE =
-  '!w-xl !h-xl !rounded-[var(--spacing-xs)] !border-n1 !bg-n0 !p-0 disabled:opacity-50';
+  '!w-xl !h-xl !rounded-[var(--spacing-xs)] !border-n3 !bg-n0 !p-0 disabled:opacity-50';
 
 export interface Props {
   name: string;

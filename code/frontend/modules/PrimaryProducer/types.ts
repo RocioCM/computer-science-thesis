@@ -1,15 +1,20 @@
 // -------- VIEW / CONTROLLER -------- //
 
+import { ActionMenuProps } from '@/common/components/ActionMenu';
+
 export interface PrimaryProducerViewProps {
   handleCreateButton: () => void;
   editingId: number | null;
+  DetailModal: React.FC<any>;
   FormModal: React.FC<any>;
-  hideFormModal: () => void;
+  DeleteModal: React.FC<any>;
+  SaleModal: React.FC<any>;
+  RecycleModal: React.FC<any>;
   handleRefresh: () => void;
   shouldRefresh: boolean;
   handleRefreshComplete: () => void;
   handleFetchData: (offset: number, limit: number) => Promise<BottleBatch[]>;
-  handleShowDetail: (id: number) => void;
+  menuActions: ActionMenuProps['actions'];
 }
 
 export type PrimaryProducerViewType = React.FC<PrimaryProducerViewProps>;

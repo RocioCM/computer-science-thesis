@@ -51,6 +51,7 @@ export interface FormBuilderField {
   required?: boolean | ((_e: Form) => boolean);
   multiple?: boolean;
   moduleClassName?: string;
+  containerClassName?: string;
   focus?: boolean;
   max?: number;
   min?: number;

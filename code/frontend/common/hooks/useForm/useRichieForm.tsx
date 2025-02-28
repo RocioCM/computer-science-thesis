@@ -681,6 +681,7 @@ const useRichieForm = (initialFormStructure: FieldData[]) => {
           errorMessage={getFieldErrorMessage(inputFullName)}
           placeholder={input.placeholder}
           className={input.className}
+          containerClassName={input.containerClassName}
           required={dynamic(inputData?.required)}
           type={input.type}
           size={input.size}
@@ -704,7 +705,6 @@ const useRichieForm = (initialFormStructure: FieldData[]) => {
           options={
             input.dropdownOptions ?? dropdownOptions[inputFullName] ?? []
           }
-          {...extraInputProps}
           {...extraInputProps}
         />
       );

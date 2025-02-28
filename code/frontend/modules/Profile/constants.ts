@@ -34,6 +34,7 @@ export const PROFILE_FORM_STRUCT: FieldData[] = [
   {
     name: 'phone',
     default: '',
+    required: true,
     validators: [validators.isPhone],
   },
 ];
@@ -58,12 +59,12 @@ export const PROFILE_INPUTS: FormBuilderField[] = [
   {
     type: INPUT_TYPES.text,
     name: 'userName',
-    label: 'Nombre de usuario',
+    label: 'Nombre de usuario (opcional)',
   },
   {
     type: INPUT_TYPES.text,
     name: 'managerName',
-    label: 'Nombre del Responsable',
+    label: 'Nombre del Responsable (opcional)',
   },
   {
     type: INPUT_TYPES.text,

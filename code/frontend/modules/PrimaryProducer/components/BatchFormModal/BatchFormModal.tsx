@@ -11,6 +11,7 @@ import {
 } from '../../constants';
 import Button from '@/common/components/Button';
 import { useEffect } from 'react';
+import FaIcon from '@/common/components/FaIcon';
 
 export interface Props extends ModalProps {
   handleCancel: () => any;
@@ -64,11 +65,11 @@ const BatchFormModal = ({
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (editingId) {
-      updateBottleBatch(form);
+      await updateBottleBatch(form);
     } else {
-      createBottleBatch(form);
+      await createBottleBatch(form);
     }
   };
 
@@ -94,33 +95,51 @@ const BatchFormModal = ({
 
   return (
     <Modal handleCancel={handleCancel} big skippable={false} {...props}>
-      <form className="h-full w-full overflow-auto relative">
-        <h2 className="bg-n0 sticky top-0 pb-2">
-          {isEditing ? 'Editar' : 'Crear'} lote de botellas
-        </h2>
+      <h2 className="w-full bg-n0">
+        {isEditing ? 'Editar' : 'Crear'} lote de botellas{' '}
+        {editingId ? `#${editingId}` : ''}
+      </h2>
+      <form className="h-full w-full overflow-auto hide-scroll relative pt-2">
         <div className="flex flex-col gap-2">
-          {formBuilder(BATCH_FORM_INPUTS_1)}
+          <div className="grid grid-cols-2 gap-2">
+            {formBuilder(BATCH_FORM_INPUTS_1)}
+          </div>
+          <hr className="my-4" />
           <div className="flex flex-col gap-2">
             <h3>Composición</h3>
             {form.bottleType?.composition?.map((_: any, i: number) => (
               <div key={i} className="flex gap-2">
-                {formBuilder(BATCH_COMPOSITION_FORM_INPUTS, {
-                  prefix: `bottleType.composition.${i}`,
-                })}
-                {i > 0 && (
+                {formBuilder(
+                  i === 0
+                    ? BATCH_COMPOSITION_FORM_INPUTS
+                    : BATCH_COMPOSITION_FORM_INPUTS.map((input) => ({
+                        ...input,
+                        label: '',
+                      })),
+                  {
+                    prefix: `bottleType.composition.${i}`,
+                  }
+                )}
+                {form.bottleType.composition.length > 1 && (
                   <Button
-                    label="Eliminar"
+                    title="Eliminar"
+                    variant="secondary"
                     handleClick={() => handleDeleteCompositionItem(i)}
-                  />
+                    className={i === 0 ? 'mt-[1.8rem]' : ''}
+                  >
+                    <FaIcon type="fa-solid fa-trash-can" />
+                  </Button>
                 )}
               </div>
             ))}
-            <Button
-              label="Agregar material"
-              handleClick={handleAddCompositionItem}
-            />
+            <Button variant="secondary" handleClick={handleAddCompositionItem}>
+              <FaIcon type="fa-solid fa-plus" /> Agregar material
+            </Button>
           </div>
-          {formBuilder(BATCH_FORM_INPUTS_2)}
+          <hr className="my-4" />
+          <div className="grid grid-cols-2 gap-2">
+            {formBuilder(BATCH_FORM_INPUTS_2)}
+          </div>
         </div>
         <Button
           label={isEditing ? 'Actualizar' : 'Crear'}

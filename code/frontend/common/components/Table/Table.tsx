@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import useInfiniteScroll from '@/common/hooks/useInfiniteScroll';
 import cn from '@/common/utils/classNames';
-import LoadingSpinner from '../LoadingSpinner';
+import FaIcon from '@/common/components/FaIcon';
+import LoadingSpinner from '@/common/components/LoadingSpinner';
 import useFirstRender from '@/common/hooks/useFirstRender';
 
 const DEFAULT_LIMIT = 10;
@@ -105,9 +106,14 @@ function Table({
             <td colSpan={columns.length} className="px-4 py-2 text-center">
               {loading && <LoadingSpinner size="1.7rem" className="mx-auto" />}
               {data.length === 0 && !loading && (
-                <div className="w-inherit fixed left-1/2 top-1/2">
+                <div className="w-full mt-[5rem]">
+                  <FaIcon
+                    type="fa-solid fa-boxes-stacked"
+                    className="text-6xl mb-2 text-p3"
+                  />
                   <h5 className="text-center text-lowercase first-letter:uppercase">
-                    No se encontraron {title}
+                    No se encontraron {title} <br />
+                    ¡Crea el primero!
                   </h5>
                 </div>
               )}
