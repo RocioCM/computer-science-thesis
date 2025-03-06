@@ -81,10 +81,10 @@ function Table({
   return (
     <div className={cn('w-full h-full overflow-auto', className)}>
       <table className="w-full relative">
-        <thead className="sticky top-0 bg-n0 rounded-lg">
+        <thead className="sticky top-0 bg-n0 rounded-lg text-left">
           <tr>
             {columns.map((column, index) => (
-              <th key={index} className="h6 p-s text-left">
+              <th key={index} className={cn('h6 p-s last:text-center')}>
                 {column.title}
               </th>
             ))}
@@ -104,7 +104,9 @@ function Table({
         <tfoot ref={bottomRef as React.RefObject<HTMLTableSectionElement>}>
           <tr>
             <td colSpan={columns.length} className="px-4 py-2 text-center">
-              {loading && <LoadingSpinner size="1.7rem" className="mx-auto" />}
+              {loading && (
+                <LoadingSpinner size="1.7rem" className="mx-auto mt-8" />
+              )}
               {data.length === 0 && !loading && (
                 <div className="w-full mt-[5rem]">
                   <FaIcon

@@ -38,6 +38,11 @@ export default class OwnershipRepository {
     return { ok: true, status: StatusCodes.OK, data: ownership };
   }
 
+  static async DeleteOwnershipById(id: number): IResult<null> {
+    await databaseHelper.db().manager.delete(Ownership, id);
+    return { ok: true, status: StatusCodes.OK, data: null };
+  }
+
   static async GetOwnershipsByAccountId(
     ownerAccountId: string,
     page: number,
@@ -48,6 +53,7 @@ export default class OwnershipRepository {
 
     const ownerships = await databaseHelper.db().manager.find(Ownership, {
       where: { ownerAccountId, type: OWNERSHIP_TYPES.BASE },
+      order: { createdAt: 'DESC' },
       skip,
       take,
     });

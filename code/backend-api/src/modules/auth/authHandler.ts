@@ -59,4 +59,38 @@ export default class AuthHandler {
 
     return UserRepository.UpdateUser(updatedUser);
   }
+
+  static async GetFilteredUsers(
+    searchQuery: string,
+    role?: number,
+  ): IResult<User[]> {
+    const matchedUsersRes = await UserRepository.GetFilteredUsers(searchQuery);
+    if (!matchedUsersRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    let filteredUsers: User[] = [];
+
+    if (role) {
+      // If role is provided, filter users by role as well.
+      // Loop over the matched users and get the user from Firebase to check the role.
+      // We can loop fearlessly here because the number of users in the list will be at most 10.
+      for (const user of matchedUsersRes.data) {
+        const userRes = await FirebaseAuthRepository.GetUserById(
+          user.firebaseUid,
+        );
+        if (userRes.ok && userRes.data.customClaims?.role === role) {
+          filteredUsers.push(user);
+        }
+      }
+    } else {
+      filteredUsers = matchedUsersRes.data;
+    }
+
+    return { ok: true, status: StatusCodes.OK, data: filteredUsers };
+  }
 }

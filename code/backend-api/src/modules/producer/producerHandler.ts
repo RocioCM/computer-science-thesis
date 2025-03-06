@@ -13,6 +13,7 @@ import BaseBottlesBatchRepository from './repositories/baseBottlesBatchRepositor
 import OwnershipRepository from './repositories/ownershipRepository';
 import { Ownership } from './domain/ownership';
 import { OWNERSHIP_TYPES } from 'src/pkg/constants/ownership';
+import { ROLES } from 'src/pkg/constants';
 
 export default class ProducerHandler {
   static async GetBatchById(batchId: number): IResult<BaseBottlesBatch> {
@@ -148,6 +149,13 @@ export default class ProducerHandler {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
+    const ownershipRes =
+      await OwnershipRepository.GetOwnershipByBottleId(batchId);
+    if (ownershipRes.ok) {
+      // Error is not handled as it is not critical to delete ownership.
+      await OwnershipRepository.DeleteOwnershipById(ownershipRes.data.id);
+    }
+
     return BaseBottlesBatchRepository.DeleteBaseBottlesBatch(batchId);
   }
 
@@ -235,5 +243,27 @@ export default class ProducerHandler {
       batchId,
       quantity,
     );
+  }
+
+  static async GetFilteredBuyers(searchQuery: string) {
+    const usersRes = await AuthHandler.GetFilteredUsers(
+      searchQuery,
+      ROLES.SECONDARY_PRODUCER,
+    );
+    if (!usersRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    const formattedBuyers = usersRes.data.map((user) => ({
+      firebaseUid: user.firebaseUid,
+      email: user.email,
+      userName: user.userName,
+    }));
+
+    return { ok: true, status: StatusCodes.OK, data: formattedBuyers };
   }
 }

@@ -173,6 +173,7 @@ export const BATCH_FORM_INPUTS_2: FormBuilderField[] = [
     name: 'createdAt',
     placeholder: 'Seleccioná la fecha de producción',
     label: 'Fecha de producción',
+    max: new Date().toISOString().split('T')[0],
   },
   {
     type: INPUT_TYPES.text,
@@ -186,5 +187,36 @@ export const BATCH_FORM_INPUTS_2: FormBuilderField[] = [
     placeholder: 'Ingresá observaciones adicionales',
     label: 'Observaciones adicionales (opcional)',
     containerClassName: 'col-span-2',
+  },
+];
+
+// ------- Sell form ------- //
+
+export const SELL_FORM_STRUCT: FieldData[] = [
+  {
+    name: 'quantity',
+    required: true,
+    default: '',
+    validators: validators.isNaturalNumber,
+  },
+  {
+    name: 'buyerUid',
+    required: true,
+    default: '',
+  },
+];
+
+export const SELL_FORM_INPUTS: FormBuilderField[] = [
+  {
+    type: INPUT_TYPES.number,
+    name: 'quantity',
+    placeholder: 'Ingresá la cantidad de envases a vender',
+    label: 'Cantidad de envases a vender',
+  },
+  {
+    type: INPUT_TYPES.autocomplete,
+    name: 'buyerUid',
+    placeholder: 'Ingresá el nombre o correo del comprador',
+    label: 'Comprador',
   },
 ];

@@ -21,10 +21,11 @@ const withPrimaryProducerController = (View: PrimaryProducerViewType) =>
       false,
       BatchFormModal
     );
-    const { Modal: DeleteModal, showModal: showDeleteModal } = useModal(
-      false,
-      ConfirmationModal
-    );
+    const {
+      Modal: DeleteModal,
+      showModal: showDeleteModal,
+      hideModal: hideDeleteModal,
+    } = useModal(false, ConfirmationModal);
     const { Modal: SaleModal, showModal: showSaleModal } = useModal(
       false,
       BatchSaleModal
@@ -51,6 +52,20 @@ const withPrimaryProducerController = (View: PrimaryProducerViewType) =>
 
     const handleRefreshComplete = () => {
       setShouldRefresh(false);
+    };
+
+    const handleDelete = async () => {
+      const { ok } = await PrimaryProducerServices.deleteBatch(
+        editingId.current as number
+      );
+
+      if (ok) {
+        toast.success('Lote eliminado correctamente');
+        handleRefresh();
+        hideDeleteModal();
+      } else {
+        toast.error('Ocurrió un error al eliminar el lote');
+      }
     };
 
     const handleCreateButton = async () => {
@@ -113,6 +128,7 @@ const withPrimaryProducerController = (View: PrimaryProducerViewType) =>
 
     const viewProps: PrimaryProducerViewProps = {
       handleCreateButton,
+      handleDelete,
       editingId: editingId.current,
       DetailModal,
       FormModal,

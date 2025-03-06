@@ -55,7 +55,7 @@ const BatchFormModal = ({
     if (!editingId) return;
     const id = editingId;
     const payload = { ...data, id };
-    const { ok } = await PrimaryProducerServices.updateBatch(id, payload);
+    const { ok } = await PrimaryProducerServices.updateBatch(payload);
     if (ok) {
       toast.success('Lote de botellas actualizado correctamente');
       handleCancel();

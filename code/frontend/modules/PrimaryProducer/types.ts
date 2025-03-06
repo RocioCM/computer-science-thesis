@@ -4,6 +4,7 @@ import { ActionMenuProps } from '@/common/components/ActionMenu';
 
 export interface PrimaryProducerViewProps {
   handleCreateButton: () => void;
+  handleDelete: () => void;
   editingId: number | null;
   DetailModal: React.FC<any>;
   FormModal: React.FC<any>;
@@ -46,4 +47,21 @@ export type BottleBatch = {
   soldQuantity: number; // uint256
   owner: string; // Ethereum address
   createdAt: string; // Timestamp as a string
+};
+
+export type SellPayload = {
+  batchId: number;
+  quantity: number;
+  buyerUid: string;
+};
+
+export type RecyclePayload = {
+  batchId: number;
+  quantity: number;
+};
+
+export type Buyer = {
+  firebaseUid: string;
+  userName: string;
+  email: string;
 };

@@ -3,6 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import databaseHelper from 'src/pkg/helpers/databaseHelper';
 import { IResult } from 'src/pkg/interfaces/result';
 import { User } from '../domain/user';
+import { Like } from 'typeorm';
 
 export default class UserRepository {
   static async CreateUser(user: User): IResult<User> {
@@ -52,5 +53,17 @@ export default class UserRepository {
       return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
     }
     return { ok: true, status: StatusCodes.OK, data: null };
+  }
+
+  static async GetFilteredUsers(searchQuery: string): IResult<User[]> {
+    // Get users whose email or userName contains the search query.
+    const users = await databaseHelper.db().manager.find(User, {
+      where: [
+        { email: Like(`%${searchQuery}%`) },
+        { userName: Like(`%${searchQuery}%`) },
+      ],
+      take: 10,
+    });
+    return { ok: true, status: StatusCodes.OK, data: users };
   }
 }

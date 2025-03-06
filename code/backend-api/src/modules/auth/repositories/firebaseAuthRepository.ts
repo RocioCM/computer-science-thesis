@@ -31,4 +31,17 @@ export default class FirebaseAuthRepository {
     await firebaseAuthHelper.auth().setCustomUserClaims(uid, { role: roleId });
     return { ok: true, status: StatusCodes.OK, data: null };
   }
+
+  static async GetUserById(uid: string): IResult<AuthUser> {
+    try {
+      const user = await firebaseAuthHelper.auth().getUser(uid);
+      return { ok: true, status: StatusCodes.OK, data: user };
+    } catch (error: any) {
+      return {
+        ok: false,
+        status: StatusCodes.NOT_FOUND,
+        data: error.message,
+      };
+    }
+  }
 }

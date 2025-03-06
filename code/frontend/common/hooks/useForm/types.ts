@@ -53,8 +53,8 @@ export interface FormBuilderField {
   moduleClassName?: string;
   containerClassName?: string;
   focus?: boolean;
-  max?: number;
-  min?: number;
+  max?: number | string;
+  min?: number | string;
   step?: number;
   colorToggle?: 'black' | 'white';
   value?: FieldValue;
@@ -95,6 +95,7 @@ export interface FormBuilderConfig {
   radioOptions?: Record<string, any[]>;
   checkboxOptions?: Record<string, any[]>;
   toggleOptions?: Record<string, any[]>;
+  handleSearch?: Record<string, (query: string) => Promise<any[]>>;
 }
 
 export enum INPUT_TYPES {
@@ -106,6 +107,7 @@ export enum INPUT_TYPES {
   counter = 'counter',
   password = 'password',
   date = 'date',
+  autocomplete = 'autocomplete',
   checkbox = 'checkbox', // Just one checkbox input
   checkboxGroup = 'checkboxGroup', // A list of checkbox inputs
   textarea = 'textarea',

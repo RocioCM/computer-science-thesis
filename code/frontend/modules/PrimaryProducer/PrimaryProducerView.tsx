@@ -8,6 +8,7 @@ import ActionMenu from '@/common/components/ActionMenu';
 const PrimaryProducerView: PrimaryProducerViewType = ({
   handleFetchData,
   handleCreateButton,
+  handleDelete,
   editingId,
   DetailModal,
   FormModal,
@@ -35,7 +36,28 @@ const PrimaryProducerView: PrimaryProducerViewType = ({
           { name: 'id', title: 'ID' },
           { name: 'quantity', title: 'Cantidad' },
           { name: 'soldQuantity', title: 'Cantidad vendida' },
-          { name: 'createdAt', title: 'Fecha de creación' },
+          {
+            name: 'createdAt',
+            title: 'Fecha de creación',
+            formatter: (rowData: BottleBatch) =>
+              new Date(rowData.createdAt).toLocaleDateString(),
+          },
+          {
+            name: 'color',
+            title: 'Color',
+            formatter: (rowData: BottleBatch) => {
+              return (
+                <span className="capitalize">{rowData.bottleType.color}</span>
+              );
+            },
+          },
+          {
+            name: 'weight',
+            title: 'Peso por envase',
+            formatter: (rowData: BottleBatch) => (
+              <span>{rowData.bottleType.weight} gr</span>
+            ),
+          },
           {
             name: 'actions',
             title: 'Acciones',
@@ -54,7 +76,11 @@ const PrimaryProducerView: PrimaryProducerViewType = ({
       />
       <DetailModal editingId={editingId} />
       <FormModal editingId={editingId} handleSuccess={handleRefresh} />
-      <DeleteModal editingId={editingId} handleSuccess={handleRefresh} />
+      <DeleteModal
+        title="¿Confirmas que deseas eliminar este lote?"
+        subtitle="Si eliminas este lote, no podrás recuperar su información. Esta acción no se puede deshacer."
+        handleConfirm={handleDelete}
+      />
       <SaleModal editingId={editingId} handleSuccess={handleRefresh} />
       <RecycleModal editingId={editingId} handleSuccess={handleRefresh} />
     </main>

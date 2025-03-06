@@ -43,6 +43,7 @@ export interface Props
   childrenStart?: React.ReactNode;
   childrenEnd?: React.ReactNode;
   showFloatingLabel?: boolean;
+  inputRef?: React.RefObject<HTMLInputElement>;
 }
 
 const Input: React.FC<Props> = ({
@@ -62,6 +63,7 @@ const Input: React.FC<Props> = ({
   childrenStart,
   childrenEnd,
   showFloatingLabel = false, // Change to true to show floating label as default behavior
+  inputRef: externalInputRef,
   ...props
 }) => {
   const [floatLabel, setFloatLabel] = useState(false); // True when label is floating on top of input. False when label is inside input.
@@ -107,7 +109,7 @@ const Input: React.FC<Props> = ({
           {childrenStart}
         </div>
         <input
-          ref={inputRef}
+          ref={externalInputRef || inputRef}
           name={name}
           value={value}
           type={type}
