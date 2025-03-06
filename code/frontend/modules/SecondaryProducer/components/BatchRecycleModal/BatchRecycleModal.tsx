@@ -1,8 +1,8 @@
 import Button from '@/common/components/Button';
 import Modal, { ModalProps } from '@/common/components/Modal';
 import { toast } from 'react-toastify';
-import PrimaryProducerServices from '../../services';
-import { RecyclePayload } from '../../types';
+import SecondaryProducerServices from '../../services';
+import { RecycleBaseBottlesPayload } from '../../types';
 import useForm from '@/common/hooks/useForm';
 import { RECYCLE_FORM_INPUTS, RECYCLE_FORM_STRUCT } from '../../constants';
 
@@ -21,11 +21,11 @@ const BatchRecycleModal: React.FC<Props> = ({
   const { form, submitEnabled, formBuilder } = useForm(RECYCLE_FORM_STRUCT);
 
   const handleRecycle = async () => {
-    const payload: RecyclePayload = {
-      batchId: editingId as number,
+    const payload: RecycleBaseBottlesPayload = {
+      productBatchId: editingId as number,
       quantity: form.quantity,
     };
-    const { ok } = await PrimaryProducerServices.recycleBatch(payload);
+    const { ok } = await SecondaryProducerServices.recycleBatch(payload);
     if (ok) {
       toast.success('Envases enviados para reciclaje correctamente');
       handleCancel();

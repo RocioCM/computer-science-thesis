@@ -15,7 +15,9 @@ export interface PrimaryProducerViewProps {
   shouldRefresh: boolean;
   handleRefreshComplete: () => void;
   handleFetchData: (offset: number, limit: number) => Promise<BottleBatch[]>;
-  menuActions: ActionMenuProps['actions'];
+  menuActions: (ActionMenuProps['actions'][0] & {
+    hide?: (batch: BottleBatch) => boolean;
+  })[];
 }
 
 export type PrimaryProducerViewType = React.FC<PrimaryProducerViewProps>;

@@ -65,7 +65,9 @@ const PrimaryProducerView: PrimaryProducerViewType = ({
               <ActionMenu
                 itemId={rowData.id}
                 emergeFrom="topRight"
-                actions={menuActions}
+                actions={menuActions.filter(
+                  (action) => !action.hide || !action.hide(rowData)
+                )}
                 className="mx-auto w-max"
               />
             ),

@@ -11,4 +11,5 @@ export enum ROLES {
   SECONDARY_PRODUCER = 3,
   CONSUMER = 4,
   RECYCLER = 5,
+  BUYER = 6,
 }

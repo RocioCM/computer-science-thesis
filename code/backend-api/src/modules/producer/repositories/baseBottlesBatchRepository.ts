@@ -123,15 +123,23 @@ export default class BaseBottlesBatchRepository {
     buyer: string,
   ): IResult<number> {
     const selledAt = new Date().toISOString();
-    const res = await this.callContractMethod(
+    const result = await this.callContractMethod(
       'sellBaseBottles',
       batchId,
       quantity,
       buyer,
       selledAt,
     );
-    ///
-    return { ok: true, status: StatusCodes.OK, data: 0 };
+    if (!result.ok) {
+      return result;
+    }
+
+    // Get created batch id from events emmited or default to 0.
+    const productBatchId =
+      result.data.find((event) => event.name === 'BaseBottlesSold')
+        ?.args?.[2] ?? 0;
+
+    return { ok: true, status: StatusCodes.OK, data: productBatchId };
   }
 
   static async RecycleBaseBottlesBatch(

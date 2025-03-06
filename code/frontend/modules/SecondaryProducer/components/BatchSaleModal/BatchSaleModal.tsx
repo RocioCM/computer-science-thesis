@@ -1,6 +1,6 @@
 import Modal, { ModalProps } from '@/common/components/Modal';
-import PrimaryProducerServices from '../../services';
-import { SellPayload, Buyer } from '../../types';
+import SecondaryProducerServices from '../../services';
+import { SellProductBottlesPayload, Buyer } from '../../types';
 import { toast } from 'react-toastify';
 import Button from '@/common/components/Button';
 import { SELL_FORM_INPUTS, SELL_FORM_STRUCT } from '../../constants';
@@ -21,7 +21,7 @@ const BatchSaleModal: React.FC<Props> = ({
   const { form, submitEnabled, formBuilder } = useForm(SELL_FORM_STRUCT);
 
   const getBuyers = async (query: string) => {
-    const { data } = await PrimaryProducerServices.searchBuyers(query);
+    const { data } = await SecondaryProducerServices.searchBuyers(query);
     return (
       data?.map((buyer: Buyer) => ({
         label: `${buyer.userName}${buyer.userName ? ' - ' : ''}${buyer.email}`,
@@ -31,15 +31,15 @@ const BatchSaleModal: React.FC<Props> = ({
   };
 
   const handleSale = async () => {
-    const payload: SellPayload = {
+    const payload: SellProductBottlesPayload = {
       batchId: editingId as number,
       quantity: form.quantity,
       buyerUid: form.buyerUid,
     };
-    const { ok } = await PrimaryProducerServices.sellBatch(payload);
+    const { ok } = await SecondaryProducerServices.sellBatch(payload);
     if (ok) {
       toast.success(
-        'Venta completada exitosamente. Los envases seleccionados ya están en propiedad del comprador'
+        'Venta completada exitosamente. Los productos seleccionados ya están en propiedad del comprador'
       );
       handleCancel();
       handleSuccess();

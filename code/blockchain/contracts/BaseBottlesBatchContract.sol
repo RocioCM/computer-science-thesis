@@ -32,7 +32,7 @@ interface ProductBottlesBatchContract {
     uint256 originBatchId,
     address buyer,
     string memory createdAt
-  ) external;
+  ) external returns (uint256);
 }
 
 contract BaseBottlesBatchContract {
@@ -50,6 +50,7 @@ contract BaseBottlesBatchContract {
   event BaseBottlesSold(
     uint256 indexed batchId,
     uint256 quantity,
+    uint256 indexed productBatchId,
     address buyer
   );
   event BaseBottlesSoldRejected(uint256 indexed batchId, uint256 quantity);
@@ -170,13 +171,9 @@ contract BaseBottlesBatchContract {
     require(bytes(batch.deletedAt).length == 0, 'Batch already deleted');
 
     batch.soldQuantity += quantity;
-    productBottlesBatchContract.createProductBottlesBatch(
-      quantity,
-      batchId,
-      buyer,
-      createdAt
-    );
-    emit BaseBottlesSold(batchId, quantity, buyer);
+    uint256 newProductBatchId = productBottlesBatchContract
+      .createProductBottlesBatch(quantity, batchId, buyer, createdAt);
+    emit BaseBottlesSold(batchId, quantity, newProductBatchId, buyer);
   }
 
   function rejectSoldBaseBottles(

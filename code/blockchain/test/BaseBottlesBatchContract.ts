@@ -345,7 +345,7 @@ describe('BaseBottlesBatchContract', function () {
     );
     await expect(tx)
       .to.emit(baseBatchContract, 'BaseBottlesSold')
-      .withArgs(1, 30, buyerAddress);
+      .withArgs(1, 30,1, buyerAddress);
 
     const batch = await baseBatchContract.baseBottlesBatches(1);
     expect(batch.soldQuantity).to.equal(30);

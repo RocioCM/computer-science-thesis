@@ -3,6 +3,7 @@ import { getEnv } from 'src/pkg/helpers/env';
 import blockchainHelper from 'src/pkg/helpers/blockchainHelper';
 import { ProductBottlesBatch } from '../domain/productBatch';
 import { CONTRACT_ABI } from '../constants/abi';
+import { StatusCodes } from 'http-status-codes';
 
 export default class ProductBottlesBatchRepository {
   private static async callContractMethod(methodName: string, ...args: any[]) {
@@ -60,6 +61,9 @@ export default class ProductBottlesBatchRepository {
       batchId,
       trackingCode,
     );
+    if (!res.ok && res.data?.toLowerCase().includes('already in use')) {
+      return { ok: false, status: StatusCodes.CONFLICT, data: null };
+    }
     return { ...res, data: null };
   }
 
@@ -91,15 +95,22 @@ export default class ProductBottlesBatchRepository {
     buyer: string,
   ): IResult<number> {
     const selledAt = new Date().toISOString();
-    const res = await this.callContractMethod(
+    const result = await this.callContractMethod(
       'sellProductBottle',
       batchId,
       quantity,
       buyer,
       selledAt,
     );
+    if (!result.ok) {
+      return result;
+    }
 
-    ///
-    return { ok: true, status: 200, data: 0 };
+    // Get created sold batch id from events emmited or default to 0.
+    const soldBatchId =
+      result.data.find((event) => event.name === 'ProductBottlesSold')
+        ?.args?.[1] ?? 0;
+
+    return { ok: true, status: StatusCodes.OK, data: soldBatchId };
   }
 }

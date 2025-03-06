@@ -1,5 +1,9 @@
 import { useRef, useState } from 'react';
-import { PrimaryProducerViewType, PrimaryProducerViewProps } from './types';
+import {
+  PrimaryProducerViewType,
+  PrimaryProducerViewProps,
+  BottleBatch,
+} from './types';
 import PrimaryProducerServices from './services';
 import { toast } from 'react-toastify';
 import useModal from '@/common/hooks/useModal';
@@ -108,21 +112,25 @@ const withPrimaryProducerController = (View: PrimaryProducerViewType) =>
         label: 'Editar',
         icon: 'fa-solid fa-edit',
         callback: handleEditButton,
+        hide: (batch: BottleBatch) => batch.soldQuantity > 0,
       },
       {
         label: 'Vender',
         icon: 'fa-solid fa-shopping-cart',
         callback: handleShowSale,
+        hide: (batch: BottleBatch) => batch.soldQuantity >= batch.quantity,
       },
       {
         label: 'Reciclar',
         icon: 'fa-solid fa-recycle',
         callback: handleShowRecycle,
+        hide: (batch: BottleBatch) => batch.soldQuantity >= batch.quantity,
       },
       {
         label: 'Eliminar',
         icon: 'fa-solid fa-trash-can',
         callback: handleShowDelete,
+        hide: (batch: BottleBatch) => batch.soldQuantity > 0,
       },
     ];
 

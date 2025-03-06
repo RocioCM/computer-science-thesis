@@ -77,6 +77,7 @@ export default class ProducerHandler {
     const batchId = creationRes.data;
     const ownership = new Ownership();
     ownership.bottleId = batchId;
+    ownership.originBatchId = 0;
     ownership.ownerAccountId = userRes.data.blockchainId;
 
     const ownershipRes = await OwnershipRepository.CreateOwnership(ownership);
@@ -149,6 +150,16 @@ export default class ProducerHandler {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
+    const deleteRes =
+      await BaseBottlesBatchRepository.DeleteBaseBottlesBatch(batchId);
+    if (!deleteRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
     const ownershipRes =
       await OwnershipRepository.GetOwnershipByBottleId(batchId);
     if (ownershipRes.ok) {
@@ -156,7 +167,7 @@ export default class ProducerHandler {
       await OwnershipRepository.DeleteOwnershipById(ownershipRes.data.id);
     }
 
-    return BaseBottlesBatchRepository.DeleteBaseBottlesBatch(batchId);
+    return { ok: true, status: StatusCodes.OK, data: null };
   }
 
   static async SellBaseBottles(
@@ -196,7 +207,7 @@ export default class ProducerHandler {
       sellData.quantity,
       buyerUserRes.data.blockchainId,
     );
-    if (!sellRes.ok) {
+    if (!sellRes.ok || !sellRes.data) {
       return {
         ok: false,
         status: StatusCodes.INTERNAL_SERVER_ERROR,
@@ -208,6 +219,7 @@ export default class ProducerHandler {
     const productBatchId = sellRes.data;
     const ownership = new Ownership();
     ownership.bottleId = productBatchId;
+    ownership.originBatchId = sellData.batchId;
     ownership.ownerAccountId = buyerUserRes.data.blockchainId;
     ownership.type = OWNERSHIP_TYPES.PRODUCT;
 

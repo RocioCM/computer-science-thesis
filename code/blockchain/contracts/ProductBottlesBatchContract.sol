@@ -49,7 +49,8 @@ contract ProductBottlesBatchContract {
   event ProductBatchDeleted(uint256 indexed batchId);
   event ProductBottlesRecycled(uint256 indexed batchId, uint256 quantity);
   event ProductBottlesSold(
-    uint256 indexed batchId,
+    uint256 indexed productBatchId,
+    uint256 indexed soldBatchId,
     uint256 quantity,
     address buyer
   );
@@ -88,7 +89,7 @@ contract ProductBottlesBatchContract {
     uint256 originBaseBatchId,
     address owner,
     string memory createdAt
-  ) external onlyAuthorizedCreator {
+  ) external onlyAuthorizedCreator returns (uint256) {
     ProductBottlesBatch memory newProductBatch = ProductBottlesBatch({
       id: nextProductBatchId,
       quantity: quantity,
@@ -103,6 +104,7 @@ contract ProductBottlesBatchContract {
     productBottles[nextProductBatchId] = newProductBatch;
     emit ProductBatchCreated(nextProductBatchId, owner);
     nextProductBatchId++;
+    return newProductBatch.id;
   }
 
   function updateTrackingCode(
@@ -217,15 +219,16 @@ contract ProductBottlesBatchContract {
     );
 
     productBottles[batchId].availableQuantity -= quantity;
-    soldBottles[nextSoldBatchId] = SoldProductBatch({
+    SoldProductBatch memory newSoldBottles = SoldProductBatch({
       id: nextSoldBatchId,
       quantity: quantity,
       originProductBatchId: batchId,
       owner: buyer,
       createdAt: createdAt
     });
+    soldBottles[nextSoldBatchId] = newSoldBottles;
     nextSoldBatchId++;
-    emit ProductBottlesSold(batchId, quantity, buyer);
+    emit ProductBottlesSold(batchId, newSoldBottles.id, quantity, buyer);
   }
 
   function getProductBottleByCode(

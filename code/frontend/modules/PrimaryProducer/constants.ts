@@ -220,3 +220,23 @@ export const SELL_FORM_INPUTS: FormBuilderField[] = [
     label: 'Comprador',
   },
 ];
+
+// ------- Recycle form ------- //
+
+export const RECYCLE_FORM_STRUCT: FieldData[] = [
+  {
+    name: 'quantity',
+    required: true,
+    default: '',
+    validators: validators.isNaturalNumber,
+  },
+];
+
+export const RECYCLE_FORM_INPUTS: FormBuilderField[] = [
+  {
+    type: INPUT_TYPES.number,
+    name: 'quantity',
+    placeholder: 'Ingresá la cantidad de envases a reciclar',
+    label: 'Cantidad de envases a reciclar',
+  },
+];

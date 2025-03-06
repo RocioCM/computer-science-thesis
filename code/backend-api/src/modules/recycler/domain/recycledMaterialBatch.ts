@@ -119,6 +119,6 @@ export class SellRecyclingBatchDTO {
   batchId: number;
 
   @Expose()
-  @IsInt()
+  @IsString()
   buyerUid: string;
 }

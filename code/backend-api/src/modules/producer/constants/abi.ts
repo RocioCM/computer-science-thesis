@@ -97,6 +97,12 @@ export const CONTRACT_ABI: ABI = [
         type: 'uint256',
       },
       {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'productBatchId',
+        type: 'uint256',
+      },
+      {
         indexed: false,
         internalType: 'address',
         name: 'buyer',

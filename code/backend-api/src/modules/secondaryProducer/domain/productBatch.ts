@@ -95,7 +95,7 @@ export class SellProductBottlesDTO {
   quantity: number;
 
   @Expose()
-  @IsInt()
+  @IsString()
   buyerUid: string;
 }
 

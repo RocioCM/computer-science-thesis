@@ -1,7 +1,7 @@
 import Modal, { ModalProps } from '@/common/components/Modal';
 import { useEffect, useState } from 'react';
-import { BottleBatch } from '../../types';
-import PrimaryProducerServices from '../../services';
+import { BaseBottleBatch, ProductBottlesBatch } from '../../types';
+import SecondaryProducerServices from '../../services';
 import { toast } from 'react-toastify';
 import LoadingSpinner from '@/common/components/LoadingSpinner';
 
@@ -16,15 +16,29 @@ const BatchDetailModal: React.FC<Props> = ({
   handleCancel,
   ...props
 }) => {
-  const [batch, setBatch] = useState<BottleBatch | null>(null);
+  const [batch, setBatch] = useState<ProductBottlesBatch | null>(null);
+  const [baseBatch, setBaseBatch] = useState<BaseBottleBatch | null>(null);
 
   const fetchBatchData = async () => {
     if (!editingId) return;
-    const { ok, data } = await PrimaryProducerServices.getBatch(editingId);
+    const { ok, data } = await SecondaryProducerServices.getBatch(editingId);
     if (ok) {
       setBatch(data);
+      fetchBaseBatchData(data.originBaseBatchId);
     } else {
-      toast.error('Ocurrió un error al cargar los datos del lote de botellas');
+      toast.error('Ocurrió un error al cargar los datos del lote de envases');
+    }
+  };
+
+  const fetchBaseBatchData = async (baseBatchId: number) => {
+    if (!editingId) return;
+    const { ok, data } = await SecondaryProducerServices.getBaseBatch(
+      baseBatchId
+    );
+    if (ok) {
+      setBaseBatch(data);
+    } else {
+      toast.error('Ocurrió un error al cargar los datos del lote base');
     }
   };
 
@@ -34,7 +48,7 @@ const BatchDetailModal: React.FC<Props> = ({
 
   return (
     <Modal handleCancel={handleCancel} big skippable={false} {...props}>
-      <h2 className="w-full bg-n0">Lote de botellas #{editingId}</h2>
+      <h2 className="w-full bg-n0">Lote de envases #{editingId}</h2>
 
       {batch ? (
         <div className="h-full w-full overflow-auto hide-scroll relative pt-2">
@@ -49,48 +63,46 @@ const BatchDetailModal: React.FC<Props> = ({
                 {batch.quantity}
               </p>
               <p>
-                <span className="font-semibold">Vendidos:</span>{' '}
-                {batch.soldQuantity}
+                <span className="font-semibold">Disponibles:</span>{' '}
+                {batch.availableQuantity}
               </p>
               <p>
-                <span className="font-semibold">Fecha de creación:</span>{' '}
+                <span className="font-semibold">Fecha de recepción:</span>{' '}
                 {new Date(batch.createdAt).toLocaleDateString()}
-              </p>
-              <p>
-                <span className="font-semibold">Ubicación de origen:</span>{' '}
-                {batch.bottleType.originLocation}
               </p>
             </div>
             {/* Detalles de la Botella */}
-            <div>
-              <h3 className="text-lg font-semibold border-b pb-2">
-                Detalles de la Botella
-              </h3>
-              <div className="mt-2 space-y-2">
-                <p>
-                  <span className="font-semibold">Peso:</span>{' '}
-                  {batch.bottleType.weight}g
-                </p>
-                <p>
-                  <span className="font-semibold">Color:</span>{' '}
-                  {batch.bottleType.color}
-                </p>
-                <p>
-                  <span className="font-semibold">Espesor:</span>{' '}
-                  {batch.bottleType.thickness} mm
-                </p>
-                <p>
-                  <span className="font-semibold">Forma:</span>{' '}
-                  {batch.bottleType.shapeType}
-                </p>
+            {baseBatch && (
+              <div>
+                <h3 className="text-lg font-semibold border-b pb-2">
+                  Detalles de la Botella
+                </h3>
+                <div className="mt-2 space-y-2">
+                  <p>
+                    <span className="font-semibold">Peso:</span>{' '}
+                    {baseBatch.bottleType.weight}g
+                  </p>
+                  <p>
+                    <span className="font-semibold">Color:</span>{' '}
+                    {baseBatch.bottleType.color}
+                  </p>
+                  <p>
+                    <span className="font-semibold">Espesor:</span>{' '}
+                    {baseBatch.bottleType.thickness} mm
+                  </p>
+                  <p>
+                    <span className="font-semibold">Forma:</span>{' '}
+                    {baseBatch.bottleType.shapeType}
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Composición */}
           <div className="mt-6">
             <h3 className="text-lg font-semibold border-b pb-2">Composición</h3>
-            {batch.bottleType.composition.length > 0 ? (
+            {baseBatch?.bottleType.composition.length ? (
               <table className="w-full mt-2 border border-gray-300 rounded-md">
                 <thead>
                   <tr className="bg-gray-100 text-gray-700">
@@ -100,7 +112,7 @@ const BatchDetailModal: React.FC<Props> = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {batch.bottleType.composition.map((material, index) => (
+                  {baseBatch.bottleType.composition.map((material, index) => (
                     <tr key={index} className="border-t">
                       <td className="px-4 py-2">{material.name}</td>
                       <td className="px-4 py-2">{material.amount}</td>
@@ -115,15 +127,6 @@ const BatchDetailModal: React.FC<Props> = ({
               </p>
             )}
           </div>
-          {/* Información Adicional */}
-          {batch.bottleType.extraInfo && (
-            <div className="mt-6">
-              <h3 className="text-lg font-semibold border-b pb-2">
-                Información Adicional
-              </h3>
-              <p className="text-gray-700 mt-2">{batch.bottleType.extraInfo}</p>
-            </div>
-          )}
         </div>
       ) : (
         <LoadingSpinner className="mt-8" />

@@ -1,7 +1,5 @@
 import useToggle from '@/common/hooks/useToggle';
-import Img from '@/common/components/Img';
 import cn from '@/common/utils/classNames';
-import styles from './ActionMenu.module.css';
 import FaIcon from '../FaIcon';
 
 const POSITION_STYLES = {
@@ -57,7 +55,7 @@ const ActionMenu: React.FC<Props> = ({
       <div
         className={cn(
           'absolute bg-n0 shadow-e1 rounded-md overflow-y-auto transition-[max-height,width]',
-          showMenu ? 'max-h-[10rem] w-[11rem] h-max' : 'max-h-0 w-0',
+          showMenu ? 'max-h-[10rem] w-[11.5rem] h-max' : 'max-h-0 w-0',
           EMERGE_FROM_STYLES[emergeFrom],
           'z-10'
         )}

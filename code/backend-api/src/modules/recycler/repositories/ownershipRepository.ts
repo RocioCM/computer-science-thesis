@@ -48,6 +48,7 @@ export default class OwnershipRepository {
 
     const ownerships = await databaseHelper.db().manager.find(Ownership, {
       where: { ownerAccountId, type: OWNERSHIP_TYPES.RECYCLED },
+      order: { createdAt: 'DESC' },
       skip,
       take,
     });
