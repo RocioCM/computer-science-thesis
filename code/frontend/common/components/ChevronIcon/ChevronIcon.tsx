@@ -30,6 +30,7 @@ const ChevronIcon: React.FC<ChevronIconProps> = ({
 
   return (
     <i
+      data-testid="chevron-icon"
       className={`inline-block ${sizeClass[size]} ${rotationClass[type]} ${className}`}
       onClick={onClick}
     >

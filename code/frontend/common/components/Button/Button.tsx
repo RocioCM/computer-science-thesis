@@ -99,6 +99,7 @@ const Button = ({
 
   return (
     <button
+      data-testid="button"
       className={cn(
         'relative flex items-center justify-center', // Base
         STATUS_STYLE.base, // Base

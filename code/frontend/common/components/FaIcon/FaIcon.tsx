@@ -24,6 +24,7 @@ const FaIcon: React.FC<Props> = ({
   return (
     <i
       {...props}
+      data-testid="fa-icon"
       className={cn(type, value?.type, className)}
       style={{ color: value?.color }}
     ></i>

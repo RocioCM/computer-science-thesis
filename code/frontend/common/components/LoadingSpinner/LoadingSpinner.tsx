@@ -17,6 +17,7 @@ const LoadingSpinner: React.FC<Props> = ({
 }) => {
   return (
     <span
+      data-testid="loading-spinner"
       className={cn(
         'block shrink-0 animate-spin', // Base
         BASE_STYLE, // Fallback

@@ -1,6 +1,5 @@
 import withSecondaryProducerController from './withSecondaryProducerController';
 import { ProductBottlesBatch, SecondaryProducerViewType } from './types';
-import ComingSoon from '@/common/components/ComingSoon';
 import Table from '@/common/components/Table';
 import ActionMenu from '@/common/components/ActionMenu';
 

@@ -39,6 +39,7 @@ const ActionMenu: React.FC<Props> = ({
 
   return (
     <div
+      data-testid="action-menu"
       className={cn(POSITION_STYLES[position], 'p-1', className)}
       tabIndex={0}
       onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && hideMenu()}
@@ -53,6 +54,7 @@ const ActionMenu: React.FC<Props> = ({
       />
 
       <div
+        data-testid="action-menu-popup"
         className={cn(
           'absolute bg-n0 shadow-e1 rounded-md overflow-y-auto transition-[max-height,width]',
           showMenu ? 'max-h-[10rem] w-[11.5rem] h-max' : 'max-h-0 w-0',
