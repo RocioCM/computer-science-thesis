@@ -57,6 +57,21 @@ async function GetWasteBottleTracking(req: Request, res: Response) {
   responseHelper.build(res, status, data);
 }
 
+async function GetFilteredRecyclers(req: Request, res: Response) {
+  const userRes = await Authenticate(req, ROLES.CONSUMER);
+  if (!userRes.ok) {
+    responseHelper.build(res, userRes.status, userRes.data);
+    return;
+  }
+
+  const searchQuery = req.query.query as string;
+
+  const { status, data } =
+    await ConsumerHandler.GetFilteredRecyclers(searchQuery);
+
+  responseHelper.build(res, status, data);
+}
+
 async function CreateWasteBottle(req: Request, res: Response) {
   const userRes = await Authenticate(req, ROLES.CONSUMER);
   if (!userRes.ok) {
@@ -111,6 +126,7 @@ middlewareHelper.applyAsyncHandlerMiddleware(ConsumerRouter);
 ConsumerRouter.get('/origin/:trackingCode', GetProductOriginByTrackingCode);
 ConsumerRouter.get('/waste', GetAllUserWasteBottles);
 ConsumerRouter.get('/waste/:id', GetWasteBottleTracking);
+ConsumerRouter.get('/recyclers', GetFilteredRecyclers);
 
 ConsumerRouter.post('/waste', CreateWasteBottle);
 

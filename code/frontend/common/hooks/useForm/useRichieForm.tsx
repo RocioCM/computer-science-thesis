@@ -565,7 +565,7 @@ const useRichieForm = (initialFormStructure: FieldData[]) => {
    * });
    */
   const handleMultipleChange = (
-    fieldsObject: FieldsObject,
+    fieldsObject: Form,
     isManualChange: boolean
   ) => {
     Object.entries(fieldsObject).forEach(([name, value]) => {

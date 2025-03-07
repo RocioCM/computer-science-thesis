@@ -46,6 +46,10 @@ export default class AuthHandler {
     return UserRepository.GetUserByFirebaseUid(firebaseUid);
   }
 
+  static async GetUserByBlockchainId(address: string): IResult<User> {
+    return UserRepository.GetUserByBlockchainId(address);
+  }
+
   static async UpdateUserWithAuth(
     firebaseUid: string,
     user: UpdateUserDTO,

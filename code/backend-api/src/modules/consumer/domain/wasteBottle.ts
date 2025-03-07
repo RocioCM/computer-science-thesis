@@ -44,7 +44,7 @@ export class CreateWasteBottleDTO {
   trackingCode: string;
 
   @Expose()
-  @IsEthereumAddress()
+  @IsString()
   owner: string;
 }
 

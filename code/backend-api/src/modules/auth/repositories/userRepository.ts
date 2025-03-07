@@ -28,6 +28,16 @@ export default class UserRepository {
     return { ok: true, status: StatusCodes.OK, data: user };
   }
 
+  static async GetUserByBlockchainId(blockchainId: string): IResult<User> {
+    const user = await databaseHelper
+      .db()
+      .manager.findOne(User, { where: { blockchainId } });
+    if (!user?.id) {
+      return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
+    }
+    return { ok: true, status: StatusCodes.OK, data: user };
+  }
+
   static async GetAvailableBlockchainId(): IResult<string> {
     let addressInUse = true;
     let randomAddress = '';

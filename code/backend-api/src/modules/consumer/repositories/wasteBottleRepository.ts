@@ -46,16 +46,23 @@ export default class WasteBottleRepository {
     creator: string,
   ): IResult<number> {
     const createdAt = new Date().toISOString();
-    const res = await this.callContractMethod(
+    const result = await this.callContractMethod(
       'createWasteBottle',
       trackingCode,
       owner,
       creator,
       createdAt,
     );
+    if (!result.ok) {
+      return result;
+    }
 
-    ///
-    return { ok: true, status: StatusCodes.OK, data: 0 };
+    // Get created batch id from events emmited or default to 0.
+    const productBatchId =
+      result.data.find((event) => event.name === 'WasteBottleCreated')
+        ?.args?.[0] ?? 0;
+
+    return { ok: true, status: StatusCodes.OK, data: productBatchId };
   }
 
   static async DeleteWasteBottle(bottleId: number): IResult<null> {

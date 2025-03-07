@@ -15,6 +15,7 @@ import WatcherRepository from './repositories/watcherRepository';
 import OwnershipRepository from './repositories/ownershipRepository';
 import SecondaryProducerHandler from '../secondaryProducer/secondaryProducerHandler';
 import RecyclerHandler from '../recycler/recyclerHandler';
+import { ROLES } from 'src/pkg/constants';
 
 export default class ConsumerHandler {
   static async GetProductOriginByTrackingCode(
@@ -37,9 +38,34 @@ export default class ConsumerHandler {
       };
     }
 
+    const primaryProducerRes = await AuthHandler.GetUserByBlockchainId(
+      baseBatchRes.data.owner,
+    );
+    const baseOwnerName = primaryProducerRes.ok
+      ? primaryProducerRes.data.userName
+      : '';
+    const secondaryProducerRes = await AuthHandler.GetUserByBlockchainId(
+      productBottleRes.data.owner,
+    );
+    const productOwnerName = secondaryProducerRes.ok
+      ? secondaryProducerRes.data.userName
+      : '';
+
     const stages: TrackingOriginResponse = [
-      { stage: 'base', data: baseBatchRes.data },
-      { stage: 'product', data: productBottleRes.data },
+      {
+        stage: 'base',
+        data: {
+          ...baseBatchRes.data,
+          ownerName: baseOwnerName ?? '',
+        },
+      },
+      {
+        stage: 'product',
+        data: {
+          ...productBottleRes.data,
+          ownerName: productOwnerName ?? '',
+        },
+      },
     ];
 
     return { ok: true, status: StatusCodes.OK, data: stages };
@@ -103,6 +129,28 @@ export default class ConsumerHandler {
     return WasteBottleRepository.GetWasteBottlesList(wasteBottlesIds);
   }
 
+  static async GetFilteredRecyclers(searchQuery: string) {
+    const usersRes = await AuthHandler.GetFilteredUsers(
+      searchQuery,
+      ROLES.RECYCLER,
+    );
+    if (!usersRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    const formattedRecyclers = usersRes.data.map((user) => ({
+      firebaseUid: user.firebaseUid,
+      email: user.email,
+      userName: user.userName,
+    }));
+
+    return { ok: true, status: StatusCodes.OK, data: formattedRecyclers };
+  }
+
   static async CreateWasteBottle(
     firebaseUid: string,
     wasteBottle: CreateWasteBottleDTO,
@@ -117,12 +165,19 @@ export default class ConsumerHandler {
       return { ok: false, status: StatusCodes.BAD_REQUEST, data: null };
     }
 
+    const batchRes = await SecondaryProducerHandler.GetBatchByTrackingCode(
+      wasteBottle.trackingCode,
+    );
+    if (!batchRes.ok) {
+      return { ok: false, status: StatusCodes.BAD_REQUEST, data: null };
+    }
+
     const createdBottleRes = await WasteBottleRepository.CreateWasteBottle(
       wasteBottle.trackingCode,
       ownerRes.data.blockchainId,
       userRes.data.blockchainId,
     );
-    if (!createdBottleRes.ok) {
+    if (!createdBottleRes.ok || !createdBottleRes.data) {
       return {
         ok: false,
         status: StatusCodes.INTERNAL_SERVER_ERROR,
@@ -149,6 +204,7 @@ export default class ConsumerHandler {
 
     // Create ownership for the created bottle.
     const ownership = new Ownership();
+    ownership.originBatchId = batchRes.data.id;
     ownership.ownerAccountId = userRes.data.blockchainId;
     ownership.bottleId = wasteBottleId;
 
