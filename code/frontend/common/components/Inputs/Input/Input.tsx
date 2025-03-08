@@ -3,7 +3,7 @@ import ErrorMessage from '../ErrorMessage';
 import { FormHandleChange } from '@/common/hooks/useForm/types';
 import cn from '@/common/utils/classNames';
 import styles from './Input.module.css';
-import { useErrorMessage } from '@/common/hooks/useForm';
+import useErrorMessage from '@/common/hooks/useForm/useErrorMessage';
 
 const LABEL_STYLE = {
   base: 'text-p mb-xs',
@@ -109,6 +109,7 @@ const Input: React.FC<Props> = ({
           {childrenStart}
         </div>
         <input
+          data-testid="input"
           ref={externalInputRef || inputRef}
           name={name}
           value={value}

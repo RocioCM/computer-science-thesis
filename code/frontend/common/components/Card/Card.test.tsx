@@ -35,4 +35,13 @@ describe('Card Component', () => {
     );
     expect(screen.getByText('Card Content')).toHaveClass('px-l py-s');
   });
+
+  it('renders children correctly', () => {
+    render(
+      <Card>
+        <div>Child Content</div>
+      </Card>
+    );
+    expect(screen.getByText('Child Content')).toBeInTheDocument();
+  });
 });

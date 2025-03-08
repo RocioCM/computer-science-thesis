@@ -50,7 +50,10 @@ const ConfirmationModal = ({
       <div className={ICON_STYLES}>
         <FaIcon type="fa-regular fa-flag" />
       </div>
-      <div className={cn('flex flex-col w-full', TITLES_CTN_STYLES)}>
+      <div
+        data-testid="confirmation-modal"
+        className={cn('flex flex-col w-full', TITLES_CTN_STYLES)}
+      >
         <h3 className={TITLE_STYLES}>{title}</h3>
         {subtitle && <h6 className={SUBTITLE_STYLES}>{subtitle}</h6>}
       </div>

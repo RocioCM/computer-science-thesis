@@ -67,6 +67,7 @@ const SideBar: React.FC<SideBarProps> = () => {
 
   return (
     <nav
+      data-testid="sidebar"
       className={cn(
         'flex flex-col h-screen p-4 gap-4 bg-n0 flex-shrink-0 border-r border-n1'
       )}

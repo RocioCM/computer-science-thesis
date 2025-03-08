@@ -74,12 +74,15 @@ function Table({
     if (shouldRefresh) {
       handleFullRefresh();
     }
-  }, [shouldRefresh, firstRender]);
+  }, [shouldRefresh]);
 
   if (firstRender) return null;
 
   return (
-    <div className={cn('w-full h-full overflow-auto', className)}>
+    <div
+      data-testid="table"
+      className={cn('w-full h-full overflow-auto', className)}
+    >
       <table className="w-full relative">
         <thead className="sticky top-0 bg-n0 rounded-lg text-left">
           <tr>

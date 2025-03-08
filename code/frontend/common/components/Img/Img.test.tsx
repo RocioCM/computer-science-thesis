@@ -12,7 +12,7 @@ describe('Img Component', () => {
   it('applies custom className', () => {
     render(
       <Img
-        src="/test-image.png"
+        src="/assets/test-image.png"
         alt="Test Image"
         className="custom-class"
         width={100}

@@ -41,6 +41,7 @@ const Modal = ({
 
   const ModalContent = (
     <div
+      data-testid="modal"
       className={cn(
         BG_STYLE, // Background
         'w-full h-screen fixed top-0 left-0 z-modal flex justify-center items-center', // Base
