@@ -5,6 +5,7 @@ import FaIcon from '../../FaIcon';
 import { autoUpdate, useFloating } from '@floating-ui/react-dom';
 import { FloatingPortal } from '@floating-ui/react';
 import useClickOutside from '@/common/hooks/useClickOutside';
+import useDebouncedState from '@/common/hooks/useDebouncedState';
 
 export interface Option {
   label: string;
@@ -21,7 +22,7 @@ const InputAutocomplete: React.FC<Props> = ({
   value,
   ...props
 }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useDebouncedState('');
   const [options, setOptions] = useState<Option[]>([]);
   const [showOptions, setShowOptions] = useState(false);
   const [loading, setLoading] = useState(false);

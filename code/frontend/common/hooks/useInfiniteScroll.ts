@@ -1,4 +1,4 @@
-import { LegacyRef, useEffect, useRef } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 
 /**
  * Hook to implement infinite scrolling. This hook will trigger the provided
@@ -10,7 +10,7 @@ import { LegacyRef, useEffect, useRef } from 'react';
 const useInfiniteScroll = (
   handleFetch: () => Promise<void>,
   dependencyEffect: any[]
-): LegacyRef<HTMLDivElement> | undefined => {
+): RefObject<HTMLDivElement> => {
   const observerRef = useRef(null); // Create a reference to the observer to persist across renders
   const loading = useRef<boolean>(false);
 

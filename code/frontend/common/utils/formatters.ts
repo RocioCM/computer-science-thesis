@@ -38,7 +38,7 @@ export const formatNumberToLocal = (
   number: number | string | null | undefined,
   decimals = 2
 ): string => {
-  const truncateNumber = parseFixed(number ?? '');
+  const truncateNumber = parseFixed(number ?? '', decimals);
   if (!truncateNumber && truncateNumber !== 0) return '';
   return truncateNumber.toLocaleString('es-AR', {
     minimumFractionDigits: 0,
