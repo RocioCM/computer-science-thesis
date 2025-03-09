@@ -1,5 +1,6 @@
+import { isServerSide } from '@/common/constants';
+
 const SESSION_KEY = 'sessionToken';
-const isServerSide = typeof window === 'undefined'; // localStorage and user session are only available on the client side.
 
 // Functions to manage the session throughout the entire application.
 

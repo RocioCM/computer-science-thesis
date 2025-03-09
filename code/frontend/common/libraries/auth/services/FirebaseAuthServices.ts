@@ -14,7 +14,6 @@ import { HTTP_STATUS } from '@/common/constants';
 import { UserRole } from '../types';
 
 const googleProvider = new GoogleAuthProvider();
-const auth = getAuth();
 
 export interface AuthUserInfo {
   token: string;
@@ -27,6 +26,7 @@ const AuthServices = {
     handleUserLogin: (user: AuthUserInfo) => any,
     handleUserLogout: () => any
   ) => {
+    const auth = getAuth();
     const unsubscribeListener = auth.onAuthStateChanged(async (authUser) => {
       if (authUser) {
         const user = await AuthServices.getFormattedUser(authUser);
@@ -49,6 +49,7 @@ const AuthServices = {
 
   refreshUser: async (): Promise<Response<AuthUserInfo>> => {
     try {
+      const auth = getAuth();
       const user = auth.currentUser;
       if (!user)
         return { ok: false, data: null, status: HTTP_STATUS.unauthorized };
@@ -61,6 +62,7 @@ const AuthServices = {
 
   loginWithGoogle: async (): Promise<Response<AuthUserInfo>> => {
     try {
+      const auth = getAuth();
       const result = await signInWithPopup(auth, googleProvider);
       const formattedUser = await AuthServices.getFormattedUser(result.user);
       return { ok: true, data: formattedUser, status: HTTP_STATUS.ok };
@@ -74,6 +76,7 @@ const AuthServices = {
     password: string
   ): Promise<Response<AuthUserInfo>> => {
     try {
+      const auth = getAuth();
       const result = await signInWithEmailAndPassword(auth, email, password);
       const formattedUser = await AuthServices.getFormattedUser(result.user);
       return { ok: true, data: formattedUser, status: HTTP_STATUS.ok };
@@ -84,6 +87,7 @@ const AuthServices = {
 
   sendRecoverPasswordMail: async (email: string): Promise<Response> => {
     try {
+      const auth = getAuth();
       await sendPasswordResetEmail(auth, email);
       return { ok: true, data: null, status: HTTP_STATUS.ok };
     } catch (error) {
@@ -96,6 +100,7 @@ const AuthServices = {
     newPassword: string
   ): Promise<Response> => {
     try {
+      const auth = getAuth();
       await confirmPasswordReset(auth, code, newPassword);
       return { ok: true, data: null, status: HTTP_STATUS.ok };
     } catch (error) {
@@ -105,6 +110,7 @@ const AuthServices = {
 
   logout: async (): Promise<Response> => {
     try {
+      const auth = getAuth();
       await signOut(auth);
       return { ok: true, data: null, status: HTTP_STATUS.ok };
     } catch (error) {
