@@ -39,3 +39,5 @@ export const HTTP_STATUS = {
   conflict: 409,
   internalServerError: 500,
 };
+
+export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';

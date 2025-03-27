@@ -15,7 +15,7 @@ export const SEARCH_FORM_STRUCT: FieldData[] = [
 export const SEARCH_FORM_INPUTS: FormBuilderField[] = [
   {
     name: 'search',
-    type: INPUT_TYPES.text,
+    type: INPUT_TYPES.search,
     label: 'Código de seguimiento',
     placeholder: 'ABC1234XYZ',
   },

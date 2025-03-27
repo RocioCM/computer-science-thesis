@@ -14,12 +14,91 @@ import { Ownership } from './domain/ownership';
 import { OWNERSHIP_TYPES } from 'src/pkg/constants/ownership';
 import OwnershipRepository from './repositories/ownershipRepository';
 import { TrackingOriginResponse } from '../consumer/domain/wasteBottle';
+import { ROLES } from 'src/pkg/constants';
 
 export default class RecyclerHandler {
   static async GetBottleInfoByTrackingCode(
     trackingCode: string,
   ): IResult<TrackingOriginResponse> {
     return ConsumerHandler.GetProductOriginByTrackingCode(trackingCode);
+  }
+
+  static async GetAllUserWasteBottles(
+    firebaseUid: string,
+    page: number,
+    limit: number,
+  ) {
+    const userRes = await AuthHandler.GetUserByFirebaseUid(firebaseUid);
+    if (!userRes.ok) {
+      return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
+    }
+
+    const ownershipsListRes =
+      await OwnershipRepository.GetOwnershipsByAccountId(
+        userRes.data.blockchainId,
+        page,
+        limit,
+        OWNERSHIP_TYPES.WASTE,
+      );
+    if (!ownershipsListRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    const wasteBottlesIds = ownershipsListRes.data.map(
+      (ownership) => ownership.bottleId,
+    );
+
+    return ConsumerHandler.GetWasteBottlesList(wasteBottlesIds);
+  }
+
+  static async GetUserAvailableWasteBottles(
+    firebaseUid: string,
+    page: number,
+    limit: number,
+  ) {
+    const userRes = await AuthHandler.GetUserByFirebaseUid(firebaseUid);
+    if (!userRes.ok) {
+      return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
+    }
+
+    const ownershipsListRes =
+      await OwnershipRepository.GetOwnershipsByAccountId(
+        userRes.data.blockchainId,
+        page,
+        limit,
+        OWNERSHIP_TYPES.WASTE,
+      );
+    if (!ownershipsListRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    const wasteBottlesIds = ownershipsListRes.data.map(
+      (ownership) => ownership.bottleId,
+    );
+
+    const wasteBottlesRes =
+      await ConsumerHandler.GetWasteBottlesList(wasteBottlesIds);
+    if (!wasteBottlesRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    const availableBottles = wasteBottlesRes.data.filter(
+      (bottle) => bottle.recycledBatchId === 0,
+    );
+
+    return { ok: true, status: StatusCodes.OK, data: availableBottles };
   }
 
   static async GetAllUserRecyclingBatches(
@@ -58,7 +137,25 @@ export default class RecyclerHandler {
   static async GetRecyclingBatchById(
     id: number,
   ): IResult<RecycledMaterialBatch> {
-    return RecycledMaterialBatchRepository.GetRecyclingBatchById(id);
+    const batchRes =
+      await RecycledMaterialBatchRepository.GetRecyclingBatchById(id);
+    if (!batchRes.ok) {
+      return batchRes;
+    }
+
+    const wasteBottlesRes =
+      await RecycledMaterialBatchRepository.GetBottlesIdsListForBatch(id);
+    if (!wasteBottlesRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    batchRes.data.wasteBottleIds = wasteBottlesRes.data;
+
+    return batchRes;
   }
 
   static async CreateRecyclingBatch(
@@ -75,7 +172,7 @@ export default class RecyclerHandler {
         userRes.data.blockchainId,
         batch,
       );
-    if (!creationRes.ok) {
+    if (!creationRes.ok || !creationRes.data) {
       return {
         ok: false,
         status: StatusCodes.INTERNAL_SERVER_ERROR,
@@ -83,10 +180,44 @@ export default class RecyclerHandler {
       };
     }
 
-    // Create ownership for the creator of the recycled material
     const batchId = creationRes.data;
+
+    // Manually add each bottle to the batch on the blockchain
+    // This is a workaround because the blockchain contract does not support
+    // adding multiple bottles to a batch at once.
+    for (const bottleId of batch.wasteBottleIds) {
+      const addBottleRes =
+        await RecycledMaterialBatchRepository.AddWasteBottleToBatch(
+          batchId,
+          bottleId,
+        );
+      if (!addBottleRes.ok) {
+        // Rollback creation of the batch if adding bottles fails
+        await RecycledMaterialBatchRepository.DeleteRecyclingBatch(batchId);
+
+        // Remove added bottles from the batch.
+        for (const addedBottleId of batch.wasteBottleIds) {
+          await RecycledMaterialBatchRepository.RemoveWasteBottleFromBatch(
+            batchId,
+            addedBottleId,
+          );
+          if (bottleId === addedBottleId) {
+            break;
+          }
+        }
+
+        return {
+          ok: false,
+          status: StatusCodes.INTERNAL_SERVER_ERROR,
+          data: null,
+        };
+      }
+    }
+
+    // Create ownership for the creator of the recycled material
     const ownership = new Ownership();
     ownership.bottleId = batchId;
+    ownership.originBatchId = 0;
     ownership.ownerAccountId = userRes.data.blockchainId;
 
     const ownershipRes = await OwnershipRepository.CreateOwnership(ownership);
@@ -119,11 +250,82 @@ export default class RecyclerHandler {
     }
 
     // Check user is owner of the batch to update
-    if (batchRes.data.creator !== userRes.data.blockchainId) {
+    if (
+      batchRes.data.creator.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
-    return RecycledMaterialBatchRepository.UpdateRecyclingBatch(batch);
+    const updateRes =
+      await RecycledMaterialBatchRepository.UpdateRecyclingBatch(batch);
+    if (!updateRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    const prevBatchWasteBottlesRes =
+      await RecycledMaterialBatchRepository.GetBottlesIdsListForBatch(batch.id);
+    if (!prevBatchWasteBottlesRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    // Split the bottles to remove and add
+    let bottlesToRemove: number[] = prevBatchWasteBottlesRes.data;
+    let bottlesToAdd: number[] = [];
+
+    for (const bottleId of batch.wasteBottleIds) {
+      if (!prevBatchWasteBottlesRes.data.includes(bottleId)) {
+        bottlesToAdd.push(bottleId);
+      } else {
+        bottlesToRemove = bottlesToRemove.filter((id) => id !== bottleId);
+      }
+    }
+
+    // Manually remove each previous bottle from the batch on the blockchain
+    // This is a workaround because the blockchain contract does not support
+    // removing multiple bottles from a batch at once.
+    for (const bottleId of bottlesToRemove) {
+      const removeBottleRes =
+        await RecycledMaterialBatchRepository.RemoveWasteBottleFromBatch(
+          batch.id,
+          bottleId,
+        );
+      if (!removeBottleRes.ok) {
+        return {
+          ok: false,
+          status: StatusCodes.INTERNAL_SERVER_ERROR,
+          data: null,
+        };
+      }
+    }
+
+    // Manually add each bottle to the batch on the blockchain
+    // This is a workaround because the blockchain contract does not support
+    // adding multiple bottles to a batch at once.
+    for (const bottleId of bottlesToAdd) {
+      const addBottleRes =
+        await RecycledMaterialBatchRepository.AddWasteBottleToBatch(
+          batch.id,
+          bottleId,
+        );
+      if (!addBottleRes.ok) {
+        return {
+          ok: false,
+          status: StatusCodes.INTERNAL_SERVER_ERROR,
+          data: null,
+        };
+      }
+    }
+
+    return { ok: true, status: StatusCodes.OK, data: null };
   }
 
   static async DeleteRecyclingBatch(
@@ -142,11 +344,29 @@ export default class RecyclerHandler {
     }
 
     // Check user is owner of the batch to update and not sold
-    if (batchRes.data.creator !== userRes.data.blockchainId) {
+    if (
+      batchRes.data.creator.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
-    return RecycledMaterialBatchRepository.DeleteRecyclingBatch(batchId);
+    const deleteRes =
+      await RecycledMaterialBatchRepository.DeleteRecyclingBatch(batchId);
+    if (!deleteRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    await OwnershipRepository.DeleteOwnershipByUserAndBatchId(
+      userRes.data.blockchainId,
+      batchId,
+    );
+
+    return { ok: true, status: StatusCodes.OK, data: null };
   }
 
   static async SellRecyclingBatch(
@@ -167,7 +387,10 @@ export default class RecyclerHandler {
     }
 
     // Check user is owner of the batch to update and not sold
-    if (batchRes.data.creator !== userRes.data.blockchainId) {
+    if (
+      batchRes.data.creator.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
@@ -191,11 +414,34 @@ export default class RecyclerHandler {
     // Create ownership for the buyer of the recycled material
     const ownership = new Ownership();
     ownership.bottleId = batch.batchId;
+    ownership.originBatchId = batch.batchId;
     ownership.ownerAccountId = buyer.data.blockchainId;
     ownership.type = OWNERSHIP_TYPES.RECYCLED_SOLD;
 
     await OwnershipRepository.CreateOwnership(ownership);
 
     return { ok: true, status: StatusCodes.OK, data: null };
+  }
+
+  static async GetFilteredBuyers(searchQuery: string) {
+    const usersRes = await AuthHandler.GetFilteredUsers(
+      searchQuery,
+      ROLES.PRODUCER,
+    );
+    if (!usersRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    const formattedBuyers = usersRes.data.map((user) => ({
+      firebaseUid: user.firebaseUid,
+      email: user.email,
+      userName: user.userName,
+    }));
+
+    return { ok: true, status: StatusCodes.OK, data: formattedBuyers };
   }
 }

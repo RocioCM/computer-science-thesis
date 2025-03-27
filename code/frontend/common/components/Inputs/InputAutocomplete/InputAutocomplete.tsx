@@ -34,9 +34,12 @@ const InputAutocomplete: React.FC<Props> = ({
   });
 
   const handleSearchInput = async (_name: string, query: string) => {
-    setLoading(true);
     setSearchQuery(query);
     if (value) props.handleChange(props.name, '');
+  };
+
+  const handleRefreshSearch = async (query: string) => {
+    setLoading(true);
 
     if (query) {
       const options = await handleSearch(query);
@@ -53,7 +56,7 @@ const InputAutocomplete: React.FC<Props> = ({
 
   useEffect(() => {
     if (searchQuery) {
-      handleSearch(searchQuery);
+      handleRefreshSearch(searchQuery);
     } else {
       setShowOptions(false);
     }
@@ -86,7 +89,7 @@ const InputAutocomplete: React.FC<Props> = ({
         {...props}
         type="text"
         inputRef={refs.setReference as any}
-        value={searchQuery || selectedOption.label}
+        value={selectedOption.label || undefined}
         handleChange={handleSearchInput}
         inputClassName={cn('pr-8', inputClassName)}
         childrenEnd={

@@ -5,7 +5,22 @@ import {
   IsOptional,
   IsString,
   IsArray,
+  IsNumber,
 } from 'class-validator';
+
+export class Material {
+  @Expose()
+  @IsString()
+  name: string;
+
+  @Expose()
+  @IsNumber()
+  amount: number;
+
+  @Expose()
+  @IsString()
+  measureUnit: string;
+}
 
 export class RecycledMaterialBatch {
   @Expose()
@@ -25,8 +40,7 @@ export class RecycledMaterialBatch {
   materialType: string;
 
   @Expose()
-  @IsString()
-  composition: string;
+  composition: Material[];
 
   @Expose()
   @IsString()
@@ -70,8 +84,7 @@ export class CreateRecyclingBatchDTO {
   materialType: string;
 
   @Expose()
-  @IsString()
-  composition: string;
+  composition: Material[];
 
   @Expose()
   @IsString()
@@ -105,12 +118,16 @@ export class UpdateRecyclingBatchDTO {
   materialType: string;
 
   @Expose()
-  @IsString()
-  composition: string;
+  composition: Material[];
 
   @Expose()
   @IsString()
   extraInfo: string;
+
+  @Expose()
+  @IsArray()
+  @IsInt({ each: true })
+  wasteBottleIds: number[];
 }
 
 export class SellRecyclingBatchDTO {

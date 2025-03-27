@@ -62,7 +62,11 @@ export default class OwnershipRepository {
   ): IResult<null> {
     const deleteStatus = await databaseHelper
       .db()
-      .manager.delete(Ownership, { ownerAccountId, bottleId });
+      .manager.delete(Ownership, {
+        ownerAccountId,
+        bottleId,
+        type: OWNERSHIP_TYPES.WASTE,
+      });
     if (deleteStatus.affected === 0) {
       return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
     }

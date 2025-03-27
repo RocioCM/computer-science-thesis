@@ -174,6 +174,15 @@ async function parseReceiptEvents(
   return { ok: true, status: StatusCodes.OK, data: formattedEvents };
 }
 
+let wallet: ethers.Wallet | null = null; // Instantiate wallet only once globally
+
+function getWallet(): ethers.Wallet {
+  if (wallet) return wallet;
+  const provider = new ethers.JsonRpcProvider(getEnv('PROVIDER_URL'));
+  wallet = new ethers.Wallet(getEnv('PRIVATE_KEY'), provider);
+  return wallet;
+}
+
 async function callContractMethod(
   contractAddress: string,
   abi: ABI,
@@ -181,12 +190,19 @@ async function callContractMethod(
   ...args: any[]
 ): IResult<EventEntry[]> {
   try {
-    const provider = new ethers.JsonRpcProvider(getEnv('PROVIDER_URL'));
-    const wallet = new ethers.Wallet(getEnv('PRIVATE_KEY'), provider);
+    const wallet = getWallet();
     const contract = new ethers.Contract(contractAddress, abi, wallet);
 
+    const provider = wallet.provider!;
+    const nonce = await provider.getTransactionCount(wallet.address);
+
+    const txOptions: Partial<ethers.ContractTransaction> = { nonce };
+
     const method = contract.getFunction(methodName);
-    const tx: ethers.ContractTransactionResponse = await method(...args);
+    const tx: ethers.ContractTransactionResponse = await method(
+      ...args,
+      txOptions,
+    );
     const receipt = await tx.wait();
     if (receipt === null)
       return {
@@ -215,8 +231,7 @@ async function callPureContractMethod<T = any>(
   ...args: any[]
 ): IResult<T> {
   try {
-    const provider = new ethers.JsonRpcProvider(getEnv('PROVIDER_URL'));
-    const wallet = new ethers.Wallet(getEnv('PRIVATE_KEY'), provider);
+    const wallet = getWallet();
     const contract = new ethers.Contract(contractAddress, abi, wallet);
 
     const method = contract.getFunction(methodName);

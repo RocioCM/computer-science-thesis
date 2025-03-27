@@ -129,6 +129,10 @@ export default class ConsumerHandler {
     return WasteBottleRepository.GetWasteBottlesList(wasteBottlesIds);
   }
 
+  static async GetWasteBottlesList(wasteBottlesIds: number[]) {
+    return WasteBottleRepository.GetWasteBottlesList(wasteBottlesIds);
+  }
+
   static async GetFilteredRecyclers(searchQuery: string) {
     const usersRes = await AuthHandler.GetFilteredUsers(
       searchQuery,
@@ -205,7 +209,7 @@ export default class ConsumerHandler {
     // Create ownership for the created bottle.
     const ownership = new Ownership();
     ownership.originBatchId = batchRes.data.id;
-    ownership.ownerAccountId = userRes.data.blockchainId;
+    ownership.ownerAccountId = ownerRes.data.blockchainId;
     ownership.bottleId = wasteBottleId;
 
     const ownershipRes = await OwnershipRepository.CreateOwnership(ownership);

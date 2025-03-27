@@ -22,6 +22,48 @@ async function GetBottleInfoByTrackingCode(req: Request, res: Response) {
   responseHelper.build(res, status, data);
 }
 
+async function GetAllUserWasteBottles(req: Request, res: Response) {
+  const userRes = await Authenticate(req, ROLES.RECYCLER);
+  if (!userRes.ok) {
+    responseHelper.build(res, userRes.status, userRes.data);
+    return;
+  }
+
+  let page = requestHelper.parseUint(req.query.page);
+  let limit = requestHelper.parseUint(req.query.limit);
+  if (page === null) page = 1;
+  if (limit === null) limit = 10;
+
+  const { status, data } = await RecyclerHandler.GetAllUserWasteBottles(
+    userRes.data.uid,
+    page,
+    limit,
+  );
+
+  responseHelper.build(res, status, data);
+}
+
+async function GetUserAvailableWasteBottles(req: Request, res: Response) {
+  const userRes = await Authenticate(req, ROLES.RECYCLER);
+  if (!userRes.ok) {
+    responseHelper.build(res, userRes.status, userRes.data);
+    return;
+  }
+
+  let page = requestHelper.parseUint(req.query.page);
+  let limit = requestHelper.parseUint(req.query.limit);
+  if (page === null) page = 1;
+  if (limit === null) limit = 10;
+
+  const { status, data } = await RecyclerHandler.GetUserAvailableWasteBottles(
+    userRes.data.uid,
+    page,
+    limit,
+  );
+
+  responseHelper.build(res, status, data);
+}
+
 async function GetAllUserRecyclingBatches(req: Request, res: Response) {
   const userRes = await Authenticate(req, ROLES.RECYCLER);
   if (!userRes.ok) {
@@ -57,6 +99,20 @@ async function GetRecyclingBatchById(req: Request, res: Response) {
   }
 
   const { status, data } = await RecyclerHandler.GetRecyclingBatchById(id);
+
+  responseHelper.build(res, status, data);
+}
+
+async function GetFilteredBuyers(req: Request, res: Response) {
+  const userRes = await Authenticate(req, ROLES.RECYCLER);
+  if (!userRes.ok) {
+    responseHelper.build(res, userRes.status, userRes.data);
+    return;
+  }
+
+  const searchQuery = req.query.query as string;
+
+  const { status, data } = await RecyclerHandler.GetFilteredBuyers(searchQuery);
 
   responseHelper.build(res, status, data);
 }
@@ -161,8 +217,11 @@ const RecyclerRouter = Router();
 middlewareHelper.applyAsyncHandlerMiddleware(RecyclerRouter);
 
 RecyclerRouter.get('/bottle/:trackingCode', GetBottleInfoByTrackingCode);
+RecyclerRouter.get('/bottles', GetAllUserWasteBottles);
+RecyclerRouter.get('/bottles/available', GetUserAvailableWasteBottles);
 RecyclerRouter.get('/batch/:id', GetRecyclingBatchById);
 RecyclerRouter.get('/batches', GetAllUserRecyclingBatches);
+RecyclerRouter.get('/buyers', GetFilteredBuyers);
 
 RecyclerRouter.post('/batch', CreateRecyclingBatch);
 

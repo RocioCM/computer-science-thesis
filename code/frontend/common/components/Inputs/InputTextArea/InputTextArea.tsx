@@ -97,7 +97,7 @@ const InputTextArea: React.FC<Props> = ({
         {...props}
         className={cn(
           styles.input, // Base
-          'block  w-full h-max relative resize-none border bg-transparent outline-none transition-shadow', // Base
+          'block w-full h-max relative resize-none border bg-transparent outline-none transition-shadow', // Base
           INPUT_STYLE.base, // Base custom
           INPUT_STYLE.hover, // Hover
           INPUT_STYLE.focus, // Focus

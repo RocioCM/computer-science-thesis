@@ -34,20 +34,38 @@ export default class RecycledMaterialBatchRepository {
   static async GetRecyclingBatchById(
     batchId: number,
   ): IResult<RecycledMaterialBatch> {
-    return this.callPureContractMethod('recycledMaterialBatches', batchId);
+    const batchRes = await this.callPureContractMethod<RecycledMaterialBatch>(
+      'recycledMaterials',
+      batchId,
+    );
+    if (!batchRes.ok) {
+      return batchRes;
+    }
+
+    const batch: RecycledMaterialBatch = batchRes.data;
+    batch.composition = JSON.parse((batch.composition || '[]') as any);
+    return { ok: true, status: StatusCodes.OK, data: batch };
   }
 
   static async GetBottlesIdsListForBatch(batchId: number): IResult<number[]> {
-    return this.callPureContractMethod('getBottlesListForBatch', batchId);
+    return this.callPureContractMethod('getWasteBottleIdsForBatch', batchId);
   }
 
   static async GetRecyclingBatchesList(
     batchesIds: number[],
   ): IResult<RecycledMaterialBatch[]> {
-    return this.callPureContractMethod<RecycledMaterialBatch[]>(
-      'getRecycledMaterialBatchesList',
-      batchesIds,
-    );
+    const batchesRes = await this.callPureContractMethod<
+      RecycledMaterialBatch[]
+    >('getRecycledMaterialBatchesList', batchesIds);
+    if (!batchesRes.ok) {
+      return batchesRes;
+    }
+    const batches = batchesRes.data.map((batch) => {
+      batch.composition = JSON.parse((batch.composition || '[]') as any);
+      return batch;
+    });
+
+    return { ok: true, status: StatusCodes.OK, data: batches };
   }
 
   static async CreateRecyclingBatch(
@@ -55,19 +73,27 @@ export default class RecycledMaterialBatchRepository {
     batch: CreateRecyclingBatchDTO,
   ): IResult<number> {
     const createdAt = new Date().toISOString();
-    const res = await this.callContractMethod(
+    const composition = JSON.stringify(batch.composition);
+    const result = await this.callContractMethod(
       'createRecycledMaterialBatch',
       batch.weight,
       batch.size,
       batch.materialType,
-      batch.composition,
+      composition,
       batch.extraInfo,
       creator,
       createdAt,
     );
+    if (!result.ok) {
+      return result;
+    }
 
-    ///
-    return { ok: true, status: StatusCodes.OK, data: 0 };
+    // Get created batch id from events emmited or default to 0.
+    const batchId =
+      result.data.find((event) => event.name === 'RecycledMaterialBatchCreated')
+        ?.args?.[0] ?? 0;
+
+    return { ok: true, status: StatusCodes.OK, data: batchId };
   }
 
   static async AddWasteBottleToBatch(
@@ -97,13 +123,14 @@ export default class RecycledMaterialBatchRepository {
   static async UpdateRecyclingBatch(
     batch: UpdateRecyclingBatchDTO,
   ): IResult<null> {
+    const composition = JSON.stringify(batch.composition);
     const res = await this.callContractMethod(
       'updateRecycledMaterialBatch',
       batch.id,
       batch.weight,
       batch.size,
       batch.materialType,
-      batch.composition,
+      composition,
       batch.extraInfo,
     );
     return { ...res, data: null };
