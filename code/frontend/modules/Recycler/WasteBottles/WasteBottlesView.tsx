@@ -1,74 +1,74 @@
-import withRecyclerController from './withRecyclerController';
-import { RecyclerViewType, RecyclingBatch } from './types';
+import withWasteBottlesController from './withWasteBottlesController';
+import { WasteBottle, WasteBottlesViewType } from './types';
 import Button from '@/common/components/Button';
 import FaIcon from '@/common/components/FaIcon';
 import Table from '@/common/components/Table';
 import ActionMenu from '@/common/components/ActionMenu';
-import { ZERO_ADDRESS } from '@/common/constants';
+import { TABS } from './constants';
 
-const RecyclerView: RecyclerViewType = ({
+const WasteBottlesView: WasteBottlesViewType = ({
+  currentTab,
+  handleCurrentTab,
   handleFetchData,
   editingId,
   DetailModal,
-  FormModal,
-  DeleteModal,
-  SaleModal,
+  AssignModal,
   SearchModal,
-  handleCreateButton,
-  handleSearchButton,
-  handleDelete,
-  handleRefresh,
   shouldRefresh,
   handleRefreshComplete,
   menuActions,
+  handleRefresh,
+  handleSearchButton,
 }) => {
   return (
     <main className="w-full h-screen p-2xl">
       <header className="pb-2xl flex items-center justify-between gap-s">
         <h1>Inventario de envases</h1>
-        <Button
-          onClick={handleSearchButton}
-          className="!ml-auto"
-          variant="secondary"
-        >
+        <Button onClick={handleSearchButton} className="!ml-auto">
           <FaIcon type="fa-solid fa-search" />
           Buscar
         </Button>
-        <Button onClick={handleCreateButton}>
-          <FaIcon type="fa-solid fa-plus" />
-          Crear lote
-        </Button>
       </header>
+      <div className="flex gap-s mb-4">
+        {Object.entries(TABS).map(([tab, title]) => (
+          <Button
+            key={tab}
+            onClick={() => handleCurrentTab(tab)}
+            className="!w-[12rem]"
+            variant={currentTab === tab ? 'primary' : 'secondary'}
+          >
+            {title}
+          </Button>
+        ))}
+      </div>
+
       <Table
         title="lotes"
         handleFetch={handleFetchData}
         columns={[
           { name: 'id', title: 'ID' },
-          { name: 'quantity', title: 'Cantidad' },
-          { name: 'availableQuantity', title: 'Cantidad disponible' },
           {
             name: 'createdAt',
             title: 'Fecha de creación',
-            formatter: (rowData: RecyclingBatch) =>
+            formatter: (rowData: WasteBottle) =>
               new Date(rowData.createdAt).toLocaleDateString(),
           },
           { name: 'trackingCode', title: 'Código de seguimiento' },
           {
             name: 'status',
-            title: 'Estado',
-            formatter: (rowData: RecyclingBatch) => (
+            title: 'Lote asignado',
+            formatter: (rowData: WasteBottle) => (
               <span>
-                {!rowData.buyerOwner || rowData.buyerOwner === ZERO_ADDRESS
-                  ? 'Activo'
-                  : 'Vendido'}
+                {rowData.recycledBatchId
+                  ? `#${rowData.recycledBatchId}`
+                  : 'No asignado'}
               </span>
             ),
           },
-
           {
             name: 'actions',
             title: 'Acciones',
-            formatter: (rowData: RecyclingBatch) => (
+            formatter: (rowData: WasteBottle) => (
               <ActionMenu
                 itemId={rowData.id}
                 emergeFrom="topRight"
@@ -86,15 +86,9 @@ const RecyclerView: RecyclerViewType = ({
 
       <SearchModal />
       <DetailModal editingId={editingId} />
-      <FormModal editingId={editingId} handleSuccess={handleRefresh} />
-      <DeleteModal
-        title="¿Confirmas que deseas eliminar este lote?"
-        subtitle="Si eliminas este lote, no podrás recuperar su información. Esta acción no se puede deshacer."
-        handleConfirm={handleDelete}
-      />
-      <SaleModal editingId={editingId} handleSuccess={handleRefresh} />
+      <AssignModal editingId={editingId} handleSuccess={handleRefresh} />
     </main>
   );
 };
 
-export default withRecyclerController(RecyclerView);
+export default withWasteBottlesController(WasteBottlesView);

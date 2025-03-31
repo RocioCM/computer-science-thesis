@@ -71,6 +71,10 @@ export default class ConsumerHandler {
     return { ok: true, status: StatusCodes.OK, data: stages };
   }
 
+  static async GetWasteBottleById(bottleId: number): IResult<WasteBottle> {
+    return WasteBottleRepository.GetWasteBottleById(bottleId);
+  }
+
   static async GetWasteBottleTracking(
     bottleId: number,
   ): IResult<TrackingRecyclingResponse> {

@@ -6,6 +6,7 @@ import requestHelper from 'src/pkg/helpers/requestHelper';
 import responseHelper from 'src/pkg/helpers/responseHelper';
 import RecyclerHandler from './recyclerHandler';
 import {
+  AssignWasteBottleToBatchDTO,
   CreateRecyclingBatchDTO,
   SellRecyclingBatchDTO,
   UpdateRecyclingBatchDTO,
@@ -210,6 +211,30 @@ async function SellRecyclingBatch(req: Request, res: Response) {
   responseHelper.build(res, status, data);
 }
 
+async function AssignBottleToBatch(req: Request, res: Response) {
+  const userRes = await Authenticate(req, ROLES.RECYCLER);
+  if (!userRes.ok) {
+    responseHelper.build(res, userRes.status, userRes.data);
+    return;
+  }
+
+  const parsedBodyRes = await requestHelper.parseBody(
+    req.body,
+    AssignWasteBottleToBatchDTO,
+  );
+  if (!parsedBodyRes.ok) {
+    responseHelper.build(res, parsedBodyRes.status, parsedBodyRes.data);
+    return;
+  }
+
+  const { status, data } = await RecyclerHandler.AssignBottleToBatch(
+    userRes.data.uid,
+    parsedBodyRes.data,
+  );
+
+  responseHelper.build(res, status, data);
+}
+
 //---- Routes configuration ----//
 
 const RecyclerRouter = Router();
@@ -227,6 +252,7 @@ RecyclerRouter.post('/batch', CreateRecyclingBatch);
 
 RecyclerRouter.put('/batch', UpdateRecyclingBatch);
 RecyclerRouter.put('/batch/sell', SellRecyclingBatch);
+RecyclerRouter.put('/bottle/assign', AssignBottleToBatch);
 
 RecyclerRouter.delete('/batch/:id', DeleteRecyclingBatch);
 

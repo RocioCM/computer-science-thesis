@@ -18,6 +18,8 @@ function Home() {
       router.push('/consumer');
     } else if (userHasRole(ROLES.recycler)) {
       router.push('/recycler');
+    } else {
+      router.push('/not-found');
     }
   }, [user]);
 

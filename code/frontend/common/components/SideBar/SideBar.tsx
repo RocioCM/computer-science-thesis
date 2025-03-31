@@ -6,6 +6,7 @@ import ConfirmationModal from '@/common/components/ModalChildrens/ConfirmationMo
 import useLoginContext from '@/common/libraries/auth';
 import useModal from '@/common/hooks/useModal';
 import cn from '@/common/utils/classNames';
+import { ROLES } from '@/common/constants/auth';
 
 interface NavItem {
   name: string;
@@ -13,13 +14,60 @@ interface NavItem {
   icon?: string;
 }
 
-const navItems: NavItem[] = [
-  {
-    name: 'Inicio',
-    path: '/',
-    icon: 'fa-solid fa-list',
-  },
-];
+const NAV_ITEMS_BY_ROLE: Record<string, NavItem[]> = {
+  [ROLES.admin]: [
+    {
+      name: 'Inicio',
+      path: '/',
+      icon: 'fa-solid fa-list',
+    },
+  ],
+  [ROLES.producer]: [
+    {
+      name: 'Inicio',
+      path: '/',
+      icon: 'fa-solid fa-list',
+    },
+    {
+      name: 'Material Reciclado',
+      path: '/producer/recycled-batches',
+      icon: 'fa-solid fa-recycle',
+    },
+  ],
+  [ROLES.secondary_producer]: [
+    {
+      name: 'Inicio',
+      path: '/',
+      icon: 'fa-solid fa-list',
+    },
+  ],
+  [ROLES.consumer]: [
+    {
+      name: 'Inicio',
+      path: '/',
+      icon: 'fa-solid fa-list',
+    },
+  ],
+  [ROLES.recycler]: [
+    {
+      name: 'Inventario',
+      path: '/',
+      icon: 'fa-solid fa-list',
+    },
+    {
+      name: 'Envases',
+      path: '/recycler/waste-bottles',
+      icon: 'fa-solid fa-bottle-water',
+    },
+  ],
+  default: [
+    {
+      name: 'Inicio',
+      path: '/',
+      icon: 'fa-solid fa-list',
+    },
+  ],
+};
 
 interface SideBarProps {}
 
@@ -51,7 +99,7 @@ const Item = ({
 
 const SideBar: React.FC<SideBarProps> = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const { isLoggedIn, logout } = useLoginContext();
+  const { isLoggedIn, user, logout } = useLoginContext();
   const router = useRouter();
 
   const { Modal: LogoutModal, showModal: showLogoutModal } = useModal(
@@ -62,6 +110,10 @@ const SideBar: React.FC<SideBarProps> = () => {
   const handleHomeRedirect = () => {
     router.push('/');
   };
+
+  const navItems = user?.role
+    ? NAV_ITEMS_BY_ROLE[user.role] ?? NAV_ITEMS_BY_ROLE.default
+    : NAV_ITEMS_BY_ROLE.default;
 
   if (!isLoggedIn || router.asPath.startsWith('/auth')) return null;
 

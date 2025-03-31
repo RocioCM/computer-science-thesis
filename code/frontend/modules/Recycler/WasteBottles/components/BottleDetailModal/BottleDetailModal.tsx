@@ -4,7 +4,7 @@ import useForm from '@/common/hooks/useForm';
 import { SEARCH_FORM_INPUTS, SEARCH_FORM_STRUCT } from '../../constants';
 import Button from '@/common/components/Button';
 import { Material } from '../../types';
-import RecyclerServices from '../../services';
+import WasteBottlesServices from '../../services';
 
 export interface Props extends ModalProps {
   handleCancel: () => any;
@@ -15,7 +15,7 @@ const BottleDetailModal = ({ handleCancel, ...props }: Props) => {
     useForm(SEARCH_FORM_STRUCT);
 
   const handleSearch = async () => {
-    const { ok, data } = await RecyclerServices.searchBottle(form.search);
+    const { ok, data } = await WasteBottlesServices.searchBottle(form.search);
     if (ok) {
       const stagesObject = data.reduce<Record<string, any>>((acc, curr) => {
         acc[curr.stage] = curr.data;

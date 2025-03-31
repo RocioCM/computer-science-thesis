@@ -1,6 +1,7 @@
 import { IResult } from 'src/pkg/interfaces/result';
 import ConsumerHandler from '../consumer/consumerHandler';
 import {
+  AssignWasteBottleToBatchDTO,
   CreateRecyclingBatchDTO,
   RecycledMaterialBatch,
   SellRecyclingBatchDTO,
@@ -15,6 +16,7 @@ import { OWNERSHIP_TYPES } from 'src/pkg/constants/ownership';
 import OwnershipRepository from './repositories/ownershipRepository';
 import { TrackingOriginResponse } from '../consumer/domain/wasteBottle';
 import { ROLES } from 'src/pkg/constants';
+import { ZeroAddress } from 'ethers';
 
 export default class RecyclerHandler {
   static async GetBottleInfoByTrackingCode(
@@ -105,6 +107,7 @@ export default class RecyclerHandler {
     firebaseUid: string,
     page: number,
     limit: number,
+    sold: boolean = false,
   ): IResult<RecycledMaterialBatch[]> {
     const userRes = await AuthHandler.GetUserByFirebaseUid(firebaseUid);
     if (!userRes.ok) {
@@ -116,6 +119,7 @@ export default class RecyclerHandler {
         userRes.data.blockchainId,
         page,
         limit,
+        sold ? OWNERSHIP_TYPES.RECYCLED_SOLD : OWNERSHIP_TYPES.RECYCLED,
       );
     if (!ownershipsListRes.ok) {
       return {
@@ -419,6 +423,70 @@ export default class RecyclerHandler {
     ownership.type = OWNERSHIP_TYPES.RECYCLED_SOLD;
 
     await OwnershipRepository.CreateOwnership(ownership);
+
+    return { ok: true, status: StatusCodes.OK, data: null };
+  }
+
+  static async AssignBottleToBatch(
+    firebaseUid: string,
+    assign: AssignWasteBottleToBatchDTO,
+  ): IResult<null> {
+    const userRes = await AuthHandler.GetUserByFirebaseUid(firebaseUid);
+    if (!userRes.ok) {
+      return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
+    }
+
+    const batchRes =
+      await RecycledMaterialBatchRepository.GetRecyclingBatchById(
+        assign.batchId,
+      );
+    if (!batchRes.ok) {
+      return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
+    }
+
+    // Check user is owner of the batch to update and not sold
+    if (
+      batchRes.data.creator.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
+      return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
+    }
+
+    // Check batch is not sold
+    if (batchRes.data.buyerOwner && batchRes.data.buyerOwner !== ZeroAddress) {
+      return { ok: false, status: StatusCodes.CONFLICT, data: null };
+    }
+
+    const bottleRes = await ConsumerHandler.GetWasteBottleById(assign.bottleId);
+    if (!bottleRes.ok) {
+      return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
+    }
+
+    // Check user is owner of the bottle to assign to the batch.
+    if (
+      bottleRes.data.owner.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
+      return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
+    }
+
+    // Check bottle is not already assigned to a batch
+    if (bottleRes.data.recycledBatchId !== 0) {
+      return { ok: false, status: StatusCodes.BAD_REQUEST, data: null };
+    }
+
+    const assignRes =
+      await RecycledMaterialBatchRepository.AddWasteBottleToBatch(
+        assign.batchId,
+        assign.bottleId,
+      );
+    if (!assignRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
 
     return { ok: true, status: StatusCodes.OK, data: null };
   }

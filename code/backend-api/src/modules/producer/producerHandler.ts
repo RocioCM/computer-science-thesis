@@ -14,6 +14,7 @@ import OwnershipRepository from './repositories/ownershipRepository';
 import { Ownership } from './domain/ownership';
 import { OWNERSHIP_TYPES } from 'src/pkg/constants/ownership';
 import { ROLES } from 'src/pkg/constants';
+import RecyclerHandler from '../recycler/recyclerHandler';
 
 export default class ProducerHandler {
   static async GetBatchById(batchId: number): IResult<BaseBottlesBatch> {
@@ -277,5 +278,22 @@ export default class ProducerHandler {
     }));
 
     return { ok: true, status: StatusCodes.OK, data: formattedBuyers };
+  }
+
+  static async GetRecyclingBatchById(id: number) {
+    return RecyclerHandler.GetRecyclingBatchById(id);
+  }
+
+  static async GetAllUserRecyclingBatches(
+    firebaseUid: string,
+    page: number,
+    limit: number,
+  ) {
+    return RecyclerHandler.GetAllUserRecyclingBatches(
+      firebaseUid,
+      page,
+      limit,
+      true,
+    );
   }
 }

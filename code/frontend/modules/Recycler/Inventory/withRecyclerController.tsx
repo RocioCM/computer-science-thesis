@@ -4,7 +4,6 @@ import useModal from '@/common/hooks/useModal';
 import ConfirmationModal from '@/common/components/ModalChildrens/ConfirmationModal';
 import RecyclerServices from './services';
 import { toast } from 'react-toastify';
-import BottleDetailModal from './components/BottleDetailModal';
 import BatchDetailModal from './components/BatchDetailModal';
 import BatchFormModal from './components/BatchFormModal';
 import BatchSaleModal from './components/BatchSaleModal';
@@ -15,10 +14,6 @@ const withRecyclerController = (View: RecyclerViewType) =>
     const [shouldRefresh, setShouldRefresh] = useState(false);
     const editingId = useRef<number | null>(null);
 
-    const { Modal: SearchModal, showModal: showSearchModal } = useModal(
-      false,
-      BottleDetailModal
-    );
     const { Modal: DetailModal, showModal: showDetailModal } = useModal(
       false,
       BatchDetailModal
@@ -129,13 +124,11 @@ const withRecyclerController = (View: RecyclerViewType) =>
     const viewProps: RecyclerViewProps = {
       handleDelete,
       editingId: editingId.current,
-      SearchModal,
       DetailModal,
       FormModal,
       DeleteModal,
       SaleModal,
       handleCreateButton,
-      handleSearchButton: showSearchModal,
       handleRefresh,
       shouldRefresh,
       handleRefreshComplete,

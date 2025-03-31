@@ -7,7 +7,6 @@ export interface RecyclerViewProps {
   editingId: number | null;
   handleCreateButton: () => void;
   handleSearchButton: () => void;
-  SearchModal: React.FC<any>;
   DetailModal: React.FC<any>;
   FormModal: React.FC<any>;
   DeleteModal: React.FC<any>;

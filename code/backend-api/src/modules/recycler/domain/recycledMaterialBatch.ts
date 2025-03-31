@@ -139,3 +139,13 @@ export class SellRecyclingBatchDTO {
   @IsString()
   buyerUid: string;
 }
+
+export class AssignWasteBottleToBatchDTO {
+  @Expose()
+  @IsInt()
+  batchId: number;
+
+  @Expose()
+  @IsInt()
+  bottleId: number;
+}
