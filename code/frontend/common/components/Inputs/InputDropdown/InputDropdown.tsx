@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { autoUpdate, useFloating, FloatingPortal } from '@floating-ui/react';
 import ChevronIcon from '@/common/components/ChevronIcon';
 import { FormHandleChange } from '@/common/hooks/useForm/types';
@@ -26,6 +26,7 @@ const INPUT_STYLE = {
 export interface Option {
   label: string;
   value: string | number | boolean;
+  icon?: string;
 }
 
 interface BaseDropdownProps {

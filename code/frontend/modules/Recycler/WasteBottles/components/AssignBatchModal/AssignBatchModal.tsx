@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import useForm from '@/common/hooks/useForm';
 import { ASSIGN_FORM_INPUTS, ASSIGN_FORM_STRUCT } from '../../constants';
 import WasteBottlesServices from '../../services';
-import { AssignBottleToBatchPayload, RecyclingBatch } from '../../types';
+import { AssignBottleToBatchPayload } from '../../types';
 import { useEffect, useState } from 'react';
 import { ZERO_ADDRESS } from '@/common/constants';
 import { Option } from '@/common/components/Inputs/InputDropdown/InputDropdown';

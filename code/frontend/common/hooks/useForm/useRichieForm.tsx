@@ -4,7 +4,6 @@ import * as validators from './validators';
 import {
   Errors,
   FieldData,
-  FieldsObject,
   Form,
   FormBuilderConfig,
   FormBuilderField,

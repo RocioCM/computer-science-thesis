@@ -21,6 +21,11 @@ const NAV_ITEMS_BY_ROLE: Record<string, NavItem[]> = {
       path: '/',
       icon: 'fa-solid fa-list',
     },
+    {
+      name: 'Seguimiento',
+      path: '/tracking',
+      icon: 'fa-solid fa-arrows-spin',
+    },
   ],
   [ROLES.producer]: [
     {
@@ -33,6 +38,11 @@ const NAV_ITEMS_BY_ROLE: Record<string, NavItem[]> = {
       path: '/producer/recycled-batches',
       icon: 'fa-solid fa-recycle',
     },
+    {
+      name: 'Seguimiento',
+      path: '/tracking',
+      icon: 'fa-solid fa-arrows-spin',
+    },
   ],
   [ROLES.secondary_producer]: [
     {
@@ -40,12 +50,22 @@ const NAV_ITEMS_BY_ROLE: Record<string, NavItem[]> = {
       path: '/',
       icon: 'fa-solid fa-list',
     },
+    {
+      name: 'Seguimiento',
+      path: '/tracking',
+      icon: 'fa-solid fa-arrows-spin',
+    },
   ],
   [ROLES.consumer]: [
     {
       name: 'Inicio',
       path: '/',
       icon: 'fa-solid fa-list',
+    },
+    {
+      name: 'Seguimiento',
+      path: '/tracking',
+      icon: 'fa-solid fa-arrows-spin',
     },
   ],
   [ROLES.recycler]: [
@@ -59,12 +79,22 @@ const NAV_ITEMS_BY_ROLE: Record<string, NavItem[]> = {
       path: '/recycler/waste-bottles',
       icon: 'fa-solid fa-bottle-water',
     },
+    {
+      name: 'Seguimiento',
+      path: '/tracking',
+      icon: 'fa-solid fa-arrows-spin',
+    },
   ],
   default: [
     {
       name: 'Inicio',
       path: '/',
       icon: 'fa-solid fa-list',
+    },
+    {
+      name: 'Seguimiento',
+      path: '/tracking',
+      icon: 'fa-solid fa-arrows-spin',
     },
   ],
 };
@@ -121,7 +151,7 @@ const SideBar: React.FC<SideBarProps> = () => {
     <nav
       data-testid="sidebar"
       className={cn(
-        'flex flex-col h-screen p-4 gap-4 bg-n0 flex-shrink-0 border-r border-n1'
+        'flex flex-col h-screen p-4 gap-4 bg-n0 flex-shrink-0 border-r border-n1 shadow-lg'
       )}
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}

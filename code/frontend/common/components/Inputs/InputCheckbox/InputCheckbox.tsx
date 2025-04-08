@@ -1,9 +1,7 @@
 import { useMemo } from 'react';
 import { FormHandleChange } from '@/common/hooks/useForm/types';
 import Labels from '../Labels';
-import Img from '@/common/components/Img';
 import cn from '@/common/utils/classNames';
-import iconCheck from '@/public/assets/icon-checkbox-input.svg';
 import styles from './InputCheckbox.module.css';
 import FaIcon from '@/common/components/FaIcon';
 

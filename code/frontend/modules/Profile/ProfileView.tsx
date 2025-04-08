@@ -12,7 +12,7 @@ const ProfileView: ProfileViewType = ({
   return (
     <main className="w-full h-screen overflow-auto p-xl">
       <form
-        className="relative w-full max-w-[1000px] mx-auto h-max flex flex-col gap-xl overflow-auto rounded-rs border border-n bg-n0 p-2xl"
+        className="relative w-full max-w-[1000px] mx-auto h-max flex flex-col gap-xl overflow-auto rounded-rs border border-n bg-n0 p-2xl shadow-e2"
         onSubmit={handleUpdateProfile}
       >
         <h2>Perfil</h2>

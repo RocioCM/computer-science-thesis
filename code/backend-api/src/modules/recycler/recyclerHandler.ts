@@ -162,6 +162,10 @@ export default class RecyclerHandler {
     return batchRes;
   }
 
+  static async GetBottlesIdsListForBatch(batchId: number): IResult<number[]> {
+    return RecycledMaterialBatchRepository.GetBottlesIdsListForBatch(batchId);
+  }
+
   static async CreateRecyclingBatch(
     firebaseUid: string,
     batch: CreateRecyclingBatchDTO,

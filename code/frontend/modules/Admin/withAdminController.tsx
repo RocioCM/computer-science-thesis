@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { AdminViewType, AdminControllerProps, AdminViewProps } from './types';
+import { AdminViewType, AdminViewProps } from './types';
 
 const withAdminController = (View: AdminViewType) =>
-  function Controller(props: AdminControllerProps): JSX.Element {
+  function Controller(): JSX.Element {
     const [name, _setName] = useState<string>('Admin');
 
     const viewProps: AdminViewProps = {
