@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import ErrorMessage from '../ErrorMessage';
-import { useErrorMessage } from '@/common/hooks/useForm';
+import useErrorMessage from '@/common/hooks/useForm/useErrorMessage';
 import { FormHandleChange } from '@/common/hooks/useForm/types';
 import cn from '@/common/utils/classNames';
 import styles from './InputTextArea.module.css';

@@ -1,0 +1,227 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tracking Page Matches snapshot 1`] = `
+<div>
+  <main
+    class="w-full h-screen p-2xl flex flex-col pb-m"
+  >
+    <header
+      class="pb-2xl flex items-center justify-between gap-s"
+    >
+      <h1>
+        Seguimiento
+      </h1>
+    </header>
+    <div
+      class="flex justify-start items-end gap-m w-full h-max pb-2xl"
+    >
+      <div
+        class="w-full !w-[12rem] shrink-0"
+      >
+        <span
+          class="block relative z-10 w-max transition-all text-p mb-xs cursor-pointer top-0 left-0 text-n10 font-semibold"
+        >
+          Tipo
+        </span>
+        <button
+          class="relative flex flex-row flex-nowrap justify-between items-center w-full border bg-transparent outline-none transition-shadow gap-xs p text-left rounded-rs border-n3 px-m py-m placeholder:text-n2 h-10 hover:border-n2 dropdonwFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 !bg-n0"
+          name="type"
+        >
+          <span
+            class="flex-1 min-h-4"
+          />
+          <i
+            class="inline-block w-2.5 h-2.5 rotate-0 "
+            data-testid="chevron-icon"
+          >
+            <svg
+              class="w-full h-full block transition-transform duration-300 ease-out"
+              fill="none"
+              viewBox="0 0 15 9"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.7 1.89992L13.5 0.919922L7.50001 6.09992L1.50001 0.919921L0.300013 1.89992L7.50001 8.19992L14.7 1.89992Z"
+                fill="var(--colors-neutrals-n10)"
+              />
+            </svg>
+          </i>
+        </button>
+      </div>
+      <div
+        class="w-full !max-w-[20rem] shrink-0"
+      >
+        <span
+          class="block relative z-10 w-max transition-all text-p mb-xs !cursor-default top-0 left-0 text-n10 font-semibold"
+        >
+          ID
+        </span>
+        <div
+          class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+        >
+          <div
+            class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+          />
+          <input
+            class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent !bg-n0"
+            data-testid="input"
+            disabled=""
+            name="id"
+            placeholder="Ej: 123"
+            type="text"
+            value=""
+          />
+          <div
+            class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+          />
+        </div>
+      </div>
+      <button
+        class="relative flex items-center justify-center gap-s rounded-rs font-semibold h-10 disabled:cursor-default disabled:bg-opacity-40  focusButton bg-p1 text-n0 py-s px-m w-max"
+        data-testid="button"
+        disabled=""
+      >
+        <i
+          class="fa-solid fa-search"
+          data-testid="fa-icon"
+        />
+        <span>
+          Buscar
+        </span>
+      </button>
+    </div>
+    <div
+      class="w-full flex-1 flex gap-m"
+    >
+      <div
+        class="relative bg-n0 shadow-e2 border rounded-lg flex justify-center items-center gap-l w-max min-w-[400px] h-max shrink-0 px-m py-3xl"
+      >
+        <div
+          class="absolute mr-s bottom-[3.4rem] w-[calc(100%-7.8rem)] border-b-n3 border-2"
+        />
+        <div
+          class="relative flex flex-col items-center gap-xs w-full p-s rounded-lg text-n3 !cursor-default"
+          role="button"
+        >
+          <div
+            class="w-12 h-12 shrink-0 border border-n3 rounded-md flex justify-center items-center text-center"
+          >
+            <i
+              class="fa-solid fa-boxes-stacked text-2xl"
+              data-testid="fa-icon"
+            />
+          </div>
+          <h4
+            class="uppercase font-semibold"
+          >
+            Envase
+          </h4>
+          <span
+            class="text-center leading-tight text-n3"
+          >
+            ---
+          </span>
+          <span
+            class="rounded-full w-5 h-5 border shrink-0 mt-4 bg-bg border-n3"
+          />
+        </div>
+        <div
+          class="relative flex flex-col items-center gap-xs w-full p-s rounded-lg text-n3 !cursor-default"
+          role="button"
+        >
+          <div
+            class="w-12 h-12 shrink-0 border border-n3 rounded-md flex justify-center items-center text-center"
+          >
+            <i
+              class="fa-solid fa-box-open text-2xl"
+              data-testid="fa-icon"
+            />
+          </div>
+          <h4
+            class="uppercase font-semibold"
+          >
+            Producto
+          </h4>
+          <span
+            class="text-center leading-tight text-n3"
+          >
+            ---
+          </span>
+          <span
+            class="rounded-full w-5 h-5 border shrink-0 mt-4 bg-bg border-n3"
+          />
+        </div>
+        <div
+          class="relative flex flex-col items-center gap-xs w-full p-s rounded-lg text-n3 !cursor-default"
+          role="button"
+        >
+          <div
+            class="w-12 h-12 shrink-0 border border-n3 rounded-md flex justify-center items-center text-center"
+          >
+            <i
+              class="fa-solid fa-bottle-water text-2xl"
+              data-testid="fa-icon"
+            />
+          </div>
+          <h4
+            class="uppercase font-semibold"
+          >
+            Residuo
+          </h4>
+          <span
+            class="text-center leading-tight text-n3"
+          >
+            ---
+          </span>
+          <span
+            class="rounded-full w-5 h-5 border shrink-0 mt-4 bg-bg border-n3"
+          />
+        </div>
+        <div
+          class="relative flex flex-col items-center gap-xs w-full p-s rounded-lg text-n3 !cursor-default"
+          role="button"
+        >
+          <div
+            class="w-12 h-12 shrink-0 border border-n3 rounded-md flex justify-center items-center text-center"
+          >
+            <i
+              class="fa-solid fa-recycle text-2xl"
+              data-testid="fa-icon"
+            />
+          </div>
+          <h4
+            class="uppercase font-semibold"
+          >
+            Reciclaje
+          </h4>
+          <span
+            class="text-center leading-tight text-n3"
+          >
+            ---
+          </span>
+          <span
+            class="rounded-full w-5 h-5 border shrink-0 mt-4 bg-bg border-n3"
+          />
+        </div>
+      </div>
+      <div
+        class="bg-n0 shadow-e2 rounded-lg flex w-full p-m overflow-auto"
+      >
+        <div
+          class="w-full h-full flex flex-col items-center justify-center"
+        >
+          <i
+            class="fa-solid fa-search text-[3rem] text-n4"
+            data-testid="fa-icon"
+          />
+          <p
+            class="text-2xl text-n4 mt-4 text-center max-w-[60%]"
+          >
+            Haz una búsqueda y descubre el ciclo de vida de las botellas
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+`;

@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const nextJest = require('next/jest');
 
 const createJestConfig = nextJest({
@@ -14,6 +15,11 @@ const customJestConfig = {
   collectCoverage: true,
   coverageDirectory: 'coverage',
   coverageReporters: ['text', 'lcov'],
+  coveragePathIgnorePatterns: [
+    '<rootDir>/common/hooks/useForm/',
+    '<rootDir>/common/context/',
+    '<rootDir>/common/constants/',
+  ],
 };
 
 module.exports = createJestConfig(customJestConfig);

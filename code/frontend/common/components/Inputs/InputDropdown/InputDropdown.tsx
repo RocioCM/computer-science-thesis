@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { autoUpdate, useFloating, FloatingPortal } from '@floating-ui/react';
 import ChevronIcon from '@/common/components/ChevronIcon';
 import { FormHandleChange } from '@/common/hooks/useForm/types';
-import { useErrorMessage } from '@/common/hooks/useForm';
+import useErrorMessage from '@/common/hooks/useForm/useErrorMessage';
 import ErrorMessage from '../ErrorMessage';
 import cn from '@/common/utils/classNames';
 import styles from './InputDropdown.module.css';
@@ -115,8 +115,8 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
   };
 
   const displayValue = useMemo(() => {
-    if (value === null || value === undefined) return;
-    showFloatingLabel ? '' : placeholder;
+    if (value === null || value === undefined)
+      return showFloatingLabel ? '' : placeholder;
     if (multiple && Array.isArray(value)) {
       return `${value?.length || 0} ${
         value?.length === 1 ? 'seleccionado' : 'seleccionados'

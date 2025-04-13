@@ -99,17 +99,12 @@ export interface FormBuilderConfig {
 }
 
 export enum INPUT_TYPES {
-  toggle = 'toggle',
-  radio = 'radio', // Just one radio input
-  radioGroup = 'radioGroup', // A list of radio inputs
   text = 'text',
   number = 'number',
-  counter = 'counter',
   password = 'password',
   date = 'date',
   autocomplete = 'autocomplete',
   checkbox = 'checkbox', // Just one checkbox input
-  checkboxGroup = 'checkboxGroup', // A list of checkbox inputs
   textarea = 'textarea',
   dropdown = 'dropdown',
   search = 'search',

@@ -81,6 +81,7 @@ const InputCheckbox: React.FC<Props> = ({
           CHECKBOX_BASE_STYLE,
           isChecked ? CHECKED_STYLE : UNCHECKED_STYLE
         )}
+        data-testid="checkbox"
       >
         {isChecked && (
           <FaIcon type="fa-solid fa-check" className="text-n0 text-[0.8rem]" />

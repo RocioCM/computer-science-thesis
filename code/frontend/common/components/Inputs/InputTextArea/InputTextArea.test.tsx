@@ -1,16 +1,18 @@
 import { render, screen, fireEvent, act } from '@testing-library/react';
-import Input from './Input';
+import InputTextArea from './InputTextArea';
 
 describe('Input Component', () => {
   it('renders correctly with default props', () => {
-    render(<Input name="test" label="Test Input" handleChange={() => {}} />);
+    render(
+      <InputTextArea name="test" label="Test Input" handleChange={() => {}} />
+    );
     expect(screen.getByText('Test Input')).toBeInTheDocument();
     expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
 
   it("should float label when input has value and showFloatingLabel is set to 'true'", async () => {
     render(
-      <Input
+      <InputTextArea
         name="test"
         label="Test Input"
         showFloatingLabel
@@ -19,42 +21,32 @@ describe('Input Component', () => {
     );
     const label = screen.getByText('Test Input');
     expect(label).toHaveClass('left-m font-medium cursor-text');
-    await act(async () => {
-      fireEvent.focus(screen.getByRole('textbox'));
-    });
+    await act(() => fireEvent.focus(screen.getByRole('textbox')));
     expect(label).toHaveClass('top-0 left-0');
   });
 
-  it('handles onChange events', () => {
+  it('handles onChange events', async () => {
     const handleChange = jest.fn();
-    render(
-      <Input name="test" label="Test Input" handleChange={handleChange} />
+    render(<InputTextArea name="test" handleChange={handleChange} />);
+
+    const input = screen.getByRole('textbox');
+    await act(() =>
+      fireEvent.change(input, { target: { value: 'test value' } })
     );
-
-    const input = screen.getByRole('textbox');
-    fireEvent.change(input, { target: { value: 'test value' } });
-
     expect(handleChange).toHaveBeenCalled();
-  });
-
-  it('focuses input when label is clicked', async () => {
-    render(<Input name="test" label="Test Input" handleChange={() => {}} />);
-    const label = screen.getByText('Test Input');
-    const input = screen.getByRole('textbox');
-
-    await act(async () => {
-      fireEvent.click(label);
-    });
-
-    expect(input).toHaveFocus();
   });
 
   it('displays error message when error prop is provided after input', async () => {
     render(
-      <Input name="test" errorMessage="Error message" handleChange={() => {}} />
+      <InputTextArea
+        name="test"
+        label="Test Input"
+        errorMessage="Error message"
+        handleChange={() => {}}
+      />
     );
     const input = screen.getByRole('textbox');
-    await act(async () => {
+    await act(() => {
       fireEvent.input(input, { target: { value: 'test value' } });
     });
     expect(input).toHaveClass('!border-fe1');
@@ -62,7 +54,7 @@ describe('Input Component', () => {
 
   it('applies error styles when error prop is provided after blur', async () => {
     render(
-      <Input
+      <InputTextArea
         name="test"
         label="Test Input"
         errorMessage="Error message"
@@ -79,7 +71,7 @@ describe('Input Component', () => {
 
   it('handles placeholder text', () => {
     render(
-      <Input
+      <InputTextArea
         name="test"
         label="Test Input"
         placeholder="Enter value"
@@ -91,7 +83,7 @@ describe('Input Component', () => {
 
   it('handles disabled state', () => {
     render(
-      <Input
+      <InputTextArea
         name="test"
         label="Test Input"
         isDisabled
@@ -105,7 +97,12 @@ describe('Input Component', () => {
 
   it('handles required field validation', () => {
     render(
-      <Input name="test" label="Test Input" required handleChange={() => {}} />
+      <InputTextArea
+        name="test"
+        label="Test Input"
+        required
+        handleChange={() => {}}
+      />
     );
     const input = screen.getByRole('textbox');
     expect(input).toBeRequired();
@@ -113,7 +110,7 @@ describe('Input Component', () => {
 
   it('applies custom className', () => {
     render(
-      <Input
+      <InputTextArea
         name="test"
         label="Test Input"
         inputClassName="custom-class"

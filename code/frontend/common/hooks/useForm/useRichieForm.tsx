@@ -11,13 +11,8 @@ import {
 } from './types';
 import Input from '@/common/components/Inputs/Input';
 import InputDropdown from '@/common/components/Inputs/InputDropdown';
-import InputToggle from '@/common/components/Inputs/InputToggle';
 import InputCheckbox from '@/common/components/Inputs/InputCheckbox';
-import InputCheckboxGroup from '@/common/components/Inputs/InputCheckboxGroup';
-import InputRadio from '@/common/components/Inputs/InputRadio';
-import InputRadioGroup from '@/common/components/Inputs/InputRadioGroup';
 import InputPassword from '@/common/components/Inputs/InputPassword';
-import InputCounter from '@/common/components/Inputs/InputCounter';
 import InputNumber from '@/common/components/Inputs/InputNumber';
 import InputTextArea from '@/common/components/Inputs/InputTextArea';
 import InputAutocomplete from '@/common/components/Inputs/InputAutocomplete';
@@ -653,13 +648,8 @@ const useRichieForm = (initialFormStructure: FieldData[]) => {
         [INPUT_TYPES.search]: Input,
         [INPUT_TYPES.autocomplete]: InputAutocomplete,
         [INPUT_TYPES.checkbox]: InputCheckbox,
-        [INPUT_TYPES.checkboxGroup]: InputCheckboxGroup,
         [INPUT_TYPES.dropdown]: InputDropdown,
-        [INPUT_TYPES.toggle]: InputToggle,
-        [INPUT_TYPES.radio]: InputRadio,
-        [INPUT_TYPES.radioGroup]: InputRadioGroup,
         [INPUT_TYPES.password]: InputPassword,
-        [INPUT_TYPES.counter]: InputCounter,
         [INPUT_TYPES.number]: InputNumber,
         [INPUT_TYPES.textarea]: InputTextArea,
       };
