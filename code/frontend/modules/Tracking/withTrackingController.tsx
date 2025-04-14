@@ -193,7 +193,7 @@ const withTrackingController = (View: TrackingViewType) =>
     };
 
     const getCurrentTabContent = (tab: string | null) => {
-      if (tab === TABS_KEYS.BASE_BATCH) {
+      if (tab === TABS_KEYS.BASE_BATCH && tabsData.baseBatch) {
         return <BaseBatchTab batch={tabsData.baseBatch!} />;
       } else if (tab === TABS_KEYS.PRODUCT_BATCH) {
         return (
@@ -211,7 +211,7 @@ const withTrackingController = (View: TrackingViewType) =>
             handleOption={(optionId) => fetchWasteBottle(optionId)}
           />
         );
-      } else if (tab === TABS_KEYS.RECYCLING_BATCH) {
+      } else if (tab === TABS_KEYS.RECYCLING_BATCH && tabsData.recyclingBatch) {
         return <RecyclingBatchTab batch={tabsData.recyclingBatch} />;
       }
     };
