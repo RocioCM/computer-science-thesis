@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Secondary Producer Page Matches snapshot 1`] = `
+<div>
+  <main
+    class="w-full h-screen p-2xl"
+  >
+    <header
+      class="pb-2xl flex items-center justify-between"
+    >
+      <h1>
+        Inventario de envases
+      </h1>
+    </header>
+    <div
+      class="w-full h-full overflow-auto"
+      data-testid="table"
+    >
+      <table
+        class="w-full relative"
+      >
+        <thead
+          class="sticky top-0 bg-n0 rounded-lg text-left"
+        >
+          <tr>
+            <th
+              class="h6 p-s last:text-center"
+            >
+              ID
+            </th>
+            <th
+              class="h6 p-s last:text-center"
+            >
+              Cantidad
+            </th>
+            <th
+              class="h6 p-s last:text-center"
+            >
+              Cantidad disponible
+            </th>
+            <th
+              class="h6 p-s last:text-center"
+            >
+              Fecha de creación
+            </th>
+            <th
+              class="h6 p-s last:text-center"
+            >
+              Código de seguimiento
+            </th>
+            <th
+              class="h6 p-s last:text-center"
+            >
+              Estado
+            </th>
+            <th
+              class="h6 p-s last:text-center"
+            >
+              Acciones
+            </th>
+          </tr>
+        </thead>
+        <tbody />
+        <tfoot>
+          <tr>
+            <td
+              class="px-4 py-2 text-center"
+              colspan="7"
+            >
+              <span
+                class="block shrink-0 animate-spin w-8 text-[2rem] mx-auto mt-8"
+                data-testid="loading-spinner"
+                style="width: 1.7rem; font-size: 1.7rem;"
+              >
+                <i
+                  class="fa-solid fa-recycle"
+                  data-testid="fa-icon"
+                />
+              </span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </main>
+</div>
+`;

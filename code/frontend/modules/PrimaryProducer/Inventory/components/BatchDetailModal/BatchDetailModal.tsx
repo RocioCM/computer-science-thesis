@@ -8,7 +8,6 @@ import LoadingSpinner from '@/common/components/LoadingSpinner';
 interface Props extends ModalProps {
   handleCancel: () => any;
   editingId: number | null;
-  handleSuccess: () => void;
 }
 
 const BatchDetailModal: React.FC<Props> = ({

@@ -219,6 +219,7 @@ const withTrackingController = (View: TrackingViewType) =>
     useEffect(() => {
       handleChange('id', '');
     }, [form.type]);
+
     const viewProps: TrackingViewProps = {
       form,
       handleChange,

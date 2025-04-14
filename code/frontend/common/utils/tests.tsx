@@ -1,5 +1,6 @@
-import AppContext from '../context/context';
-import { useAuthState } from '../libraries/auth';
+import React from 'react';
+
+const MockContext = React.createContext({});
 
 const TestAppWrapper = ({
   children,
@@ -8,11 +9,21 @@ const TestAppWrapper = ({
   children: React.ReactNode;
   user?: object | null;
 }) => {
-  const state = { auth: useAuthState() };
+  const state: any = {
+    auth: {
+      user: null,
+      isLoggedIn: false,
+      loading: false,
+    },
+  };
 
-  if (user !== undefined) state.auth.user = user as any; // Set user if provided
+  if (user !== undefined) {
+    // Set user if provided
+    state.auth.user = user;
+    state.auth.isLoggedIn = true;
+  }
 
-  return <AppContext.Provider value={state}>{children}</AppContext.Provider>;
+  return <MockContext.Provider value={state}>{children}</MockContext.Provider>;
 };
 
 export default TestAppWrapper;

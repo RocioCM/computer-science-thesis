@@ -11,7 +11,7 @@ const ProductBatchTab: React.FC<Props> = ({ batch, options, handleOption }) => {
   return batch ? (
     <div className="h-full w-full overflow-auto hide-scroll relative">
       {/* Información General */}
-      <div className="">
+      <div>
         <div className=" space-y-2">
           <h3 className="text-lg font-semibold border-b pb-2">
             Información General

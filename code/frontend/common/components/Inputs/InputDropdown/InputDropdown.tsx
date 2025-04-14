@@ -157,6 +157,7 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
         disabled={isDisabled}
         onClick={handleClick}
         ref={refs.setReference}
+        data-testid="dropdown"
       >
         <span className="flex-1 min-h-4">{displayValue}</span>
         <ChevronIcon size="small" type={showOptions ? 'up' : 'down'} />

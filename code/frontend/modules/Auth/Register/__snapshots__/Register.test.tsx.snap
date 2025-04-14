@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Register Page Matches snapshot 1`] = `
+<div>
+  <main
+    class="w-full h-screen bg-p1-25 flex flex-row items-center justify-around gap-xl p-3xl"
+  >
+    <img
+      alt="Iniciar sesión"
+      class="absolute h-full w-full object-cover opacity-90 z-0"
+      data-nimg="1"
+      decoding="async"
+      height="800"
+      loading="lazy"
+      src="/_next/image?url=%2Fimg.jpg&w=3840&q=75"
+      srcset="/_next/image?url=%2Fimg.jpg&w=1200&q=75 1x, /_next/image?url=%2Fimg.jpg&w=3840&q=75 2x"
+      style="color: transparent;"
+      width="1200"
+    />
+    <form
+      class="relative w-full min-w-[300px] max-w-[500px] h-max max-h-full overflow-auto rounded-rs border border-n2 bg-n0 shadow-e3 p-2xl flex flex-col gap-xl"
+    >
+      <h2>
+        Registro
+      </h2>
+      <div
+        class="flex flex-col gap-s"
+      >
+        <div
+          class="w-full"
+        >
+          <span
+            class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+          >
+            Correo electrónico
+          </span>
+          <div
+            class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+          >
+            <div
+              class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+            />
+            <input
+              class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+              data-testid="input"
+              form="[object Object]"
+              inputlabel="Correo electrónico"
+              name="email"
+              options=""
+              placeholder="Ingresá tu email"
+              required=""
+              type="text"
+              value=""
+            />
+            <div
+              class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+            />
+          </div>
+        </div>
+        <div
+          class="w-full"
+        >
+          <span
+            class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+          >
+            Contraseña
+          </span>
+          <div
+            class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+          >
+            <div
+              class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+            />
+            <input
+              class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent pr-10"
+              data-testid="input"
+              form="[object Object]"
+              inputlabel="Contraseña"
+              name="password"
+              options=""
+              placeholder="Ingresá tu contraseña"
+              required=""
+              type="password"
+              value=""
+            />
+            <div
+              class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+            >
+              <img
+                alt="Show password"
+                class="w-l h-l cursor-pointer mr-s"
+                data-nimg="1"
+                decoding="async"
+                height="40"
+                loading="lazy"
+                role="button"
+                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                style="color: transparent;"
+                width="40"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="w-full"
+        >
+          <span
+            class="block relative z-10 w-max transition-all text-p mb-xs cursor-pointer top-0 left-0 text-n10 font-semibold"
+          >
+            Rol
+          </span>
+          <button
+            class="relative flex flex-row flex-nowrap justify-between items-center w-full border bg-transparent outline-none transition-shadow gap-xs p text-left rounded-rs border-n3 px-m py-m placeholder:text-n2 h-10 hover:border-n2 dropdonwFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2"
+            data-testid="dropdown"
+            name="roleId"
+          >
+            <span
+              class="flex-1 min-h-4"
+            >
+              Seleccioná tu rol
+            </span>
+            <i
+              class="inline-block w-2.5 h-2.5 rotate-0 "
+              data-testid="chevron-icon"
+            >
+              <svg
+                class="w-full h-full block transition-transform duration-300 ease-out"
+                fill="none"
+                viewBox="0 0 15 9"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M14.7 1.89992L13.5 0.919922L7.50001 6.09992L1.50001 0.919921L0.300013 1.89992L7.50001 8.19992L14.7 1.89992Z"
+                  fill="var(--colors-neutrals-n10)"
+                />
+              </svg>
+            </i>
+          </button>
+        </div>
+      </div>
+      <p
+        class="text-center"
+      >
+        ¿Ya tenés cuenta?
+         
+        <a
+          class="font-semibold text-p1"
+          href="/auth/login"
+        >
+          Ingresá acá
+        </a>
+      </p>
+      <button
+        class="relative flex items-center justify-center gap-s rounded-rs font-semibold h-10 disabled:cursor-default disabled:bg-opacity-40  focusButton bg-p1 text-n0 py-s px-m w-full"
+        data-testid="button"
+        disabled=""
+      >
+        <span>
+          Crear usuario
+        </span>
+      </button>
+    </form>
+  </main>
+</div>
+`;

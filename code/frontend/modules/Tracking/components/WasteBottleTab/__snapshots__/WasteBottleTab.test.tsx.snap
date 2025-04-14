@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tracking - WasteBottleTab Matches snapshot with batch 1`] = `
+<div>
+  <div
+    class="h-full w-full overflow-auto hide-scroll relative"
+  >
+    <div
+      class=""
+    >
+      <div
+        class="space-y-2"
+      >
+        <h3
+          class="text-lg font-semibold border-b pb-2"
+        >
+          Información General
+        </h3>
+        <p>
+          <span
+            class="font-semibold"
+          >
+            Código de seguimiento:
+          </span>
+           
+          TRACK123
+        </p>
+        <p>
+          <span
+            class="font-semibold"
+          >
+            Usuario reciclador:
+          </span>
+           
+          <span
+            class=""
+          >
+            0xabcdef1234567890abcdef1234567890abcdef12
+          </span>
+        </p>
+        <p>
+          <span
+            class="font-semibold"
+          >
+            Fecha de reciclaje:
+          </span>
+           
+          13/4/2025
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Tracking - WasteBottleTab Matches snapshot with options 1`] = `
+<div>
+  <div
+    class="h-full w-full overflow-auto hide-scroll relative pt-2"
+  >
+    <h3
+      class="text-lg font-semibold border-b pb-2"
+    >
+      Envases reciclados:
+    </h3>
+    <ul
+      class="mt-2 space-y-2 list-disc list-inside"
+    >
+      <li
+        class="        cursor-pointer underline"
+      >
+        <span
+          class="font-semibold"
+        >
+          Option 1
+        </span>
+      </li>
+      <li
+        class="        cursor-pointer underline"
+      >
+        <span
+          class="font-semibold"
+        >
+          Option 2
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

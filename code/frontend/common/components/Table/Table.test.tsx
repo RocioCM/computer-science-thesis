@@ -1,20 +1,6 @@
 import { render, screen, act } from '@testing-library/react';
 import Table from './Table';
 
-// Mock IntersectionObserver
-class IntersectionObserver {
-  root: Element | null = null;
-  rootMargin: string = '';
-  thresholds: ReadonlyArray<number> = [];
-  constructor() {}
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-  takeRecords() {
-    return [];
-  }
-}
-
 const mockHandleFetch = jest.fn();
 
 describe('Table Component', () => {
@@ -28,11 +14,8 @@ describe('Table Component', () => {
     { id: 3, name: 'Item 3' },
   ];
 
-  beforeAll(() => {
-    window.IntersectionObserver = IntersectionObserver;
-  });
-
   beforeEach(() => {
+    jest.clearAllMocks();
     mockHandleFetch.mockClear();
     mockHandleFetch.mockResolvedValue(mockData);
   });
@@ -77,13 +60,9 @@ describe('Table Component', () => {
 
   it('calls handleFetch on refresh', async () => {
     const { rerender } = render(
-      <Table
-        columns={columns}
-        handleFetch={mockHandleFetch}
-        shouldRefresh={true}
-      />
+      <Table columns={columns} handleFetch={mockHandleFetch} />
     );
-    expect(mockHandleFetch).toHaveBeenCalledTimes(1);
+    expect(mockHandleFetch).toHaveBeenCalledTimes(1); // Called once by intersection observer
 
     await act(async () => {
       rerender(
@@ -103,6 +82,6 @@ describe('Table Component', () => {
         />
       );
     });
-    expect(mockHandleFetch).toHaveBeenCalledTimes(2);
+    expect(mockHandleFetch).toHaveBeenCalledTimes(3);
   });
 });

@@ -8,7 +8,6 @@ import RecycledBatchesServices from '../../services';
 interface Props extends ModalProps {
   handleCancel: () => any;
   editingId: number | null;
-  handleSuccess: () => void;
 }
 
 const BatchDetailModal: React.FC<Props> = ({

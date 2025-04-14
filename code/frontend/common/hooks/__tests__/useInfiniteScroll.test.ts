@@ -2,21 +2,6 @@ import { renderHook } from '@testing-library/react';
 import useInfiniteScroll from '../useInfiniteScroll';
 
 describe('useInfiniteScroll', () => {
-  beforeAll(() => {
-    (global as any).IntersectionObserver = class {
-      callback: any;
-      constructor(callback: any) {
-        this.callback = callback;
-      }
-      observe = jest
-        .fn()
-        .mockImplementation(() =>
-          this.callback([{ isIntersecting: true }, { isIntersecting: false }])
-        );
-      unobserve = jest.fn();
-    };
-  });
-
   it('does not fetch if element is not observed', () => {
     const mockFetch = jest.fn();
     renderHook(() => useInfiniteScroll(mockFetch, []));

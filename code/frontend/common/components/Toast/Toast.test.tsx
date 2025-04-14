@@ -2,6 +2,8 @@ import { render, screen } from '@testing-library/react';
 import Toast from './Toast';
 import { toast } from 'react-toastify';
 
+jest.unmock('react-toastify');
+
 describe('Toast Component', () => {
   it('displays toast with correct icon', async () => {
     render(<Toast />);
