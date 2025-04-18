@@ -1,6 +1,6 @@
 import request from 'supertest';
 import app from '../src/internal/server';
-import { BASE_PATH, ROLES } from '../src/pkg/constants';
+import { BASE_PATH } from '../src/pkg/constants';
 import AuthHandler from 'src/modules/auth/authHandler';
 
 describe('App setup', () => {

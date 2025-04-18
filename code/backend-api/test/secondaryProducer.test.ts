@@ -17,7 +17,7 @@ import OwnershipRepository from 'src/modules/secondaryProducer/repositories/owne
 jest.mock('../src/pkg/helpers/blockchainHelper', () => ({
   callContractMethod: jest
     .fn()
-    .mockImplementation(async (contractAddress, abi, methodName, ...args) => {
+    .mockImplementation(async (_contractAddress, _abi, methodName, ...args) => {
       if (methodName === 'updateTrackingCode') {
         // Special case for failing update
         if (args[0] === 999) {
