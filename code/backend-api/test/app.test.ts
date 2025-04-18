@@ -1,6 +1,7 @@
 import request from 'supertest';
 import app from '../src/internal/server';
 import { BASE_PATH, ROLES } from '../src/pkg/constants';
+import AuthHandler from 'src/modules/auth/authHandler';
 
 describe('App setup', () => {
   it('Should return 404', async () => {
@@ -12,18 +13,17 @@ describe('App setup', () => {
     expect(res.body.data).toBe("Endpoint doesn't exist or method not allowed.");
   });
 
-  xit('Should handle exception', async () => {
-    const loginUser = {
-      email: 'test@example.com',
-      password: 'password123',
-      roleId: ROLES.PRODUCER,
-    };
+  it('Should handle exception', async () => {
+    // Mock user authentication with invalid response to
+    // trigger a runtime error when trying to destructure
+    // the user response object with IResult<User> expected type.
+    jest
+      .spyOn(AuthHandler, 'GetUserByFirebaseUid')
+      .mockResolvedValueOnce(undefined as any);
 
-    // It should throw an exception because external dependencies like
-    // Firebase Authentication are not configured on this test run.
     const res = await request(app)
-      .post(BASE_PATH + '/auth/register')
-      .send(loginUser)
+      .get(BASE_PATH + '/auth/user')
+      .set('Authorization', 'Bearer userWithId-new-user-uid')
       .expect(500);
 
     expect(res.body.status).toBe(500);

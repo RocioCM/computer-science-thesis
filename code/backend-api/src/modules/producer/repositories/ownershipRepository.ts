@@ -21,13 +21,6 @@ export default class OwnershipRepository {
     return { ok: true, status: StatusCodes.CREATED, data: createdOwner };
   }
 
-  static async GetAllOwnerships(): IResult<Ownership[]> {
-    const ownerships = await databaseHelper
-      .db()
-      .manager.find(Ownership, { where: { type: OWNERSHIP_TYPES.BASE } });
-    return { ok: true, status: StatusCodes.OK, data: ownerships };
-  }
-
   static async GetOwnershipByBottleId(bottleId: number): IResult<Ownership> {
     const ownership = await databaseHelper.db().manager.findOne(Ownership, {
       where: { bottleId, type: OWNERSHIP_TYPES.BASE },
