@@ -95,7 +95,7 @@ async function GetRecyclingBatchById(req: Request, res: Response) {
 
   const id = requestHelper.parseUint(req.params.id);
   if (id === null) {
-    responseHelper.build(res, 400, 'Invalid bottle ID');
+    responseHelper.build(res, 400, 'Invalid batch ID');
     return;
   }
 
@@ -175,7 +175,7 @@ async function DeleteRecyclingBatch(req: Request, res: Response) {
 
   const id = requestHelper.parseUint(req.params.id);
   if (id === null) {
-    responseHelper.build(res, 400, 'Invalid bottle ID');
+    responseHelper.build(res, 400, 'Invalid batch ID');
     return;
   }
 
