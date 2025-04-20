@@ -17,15 +17,13 @@ COPY . .
 RUN npm run build
 
 # Create a path-register.js file to handle module resolution
-RUN echo 'const tsConfig = require("./tsconfig.json"); \n\
-const tsConfigPaths = require("tsconfig-paths"); \n\
-\n\
-const baseUrl = "./dist"; \n\
-const cleanup = tsConfigPaths.register({ \n\
-  baseUrl, \n\
-  paths: tsConfig.compilerOptions.paths \n\
-});\n\
-\n\
+RUN echo 'const tsConfig = require("./tsconfig.json"); \
+const tsConfigPaths = require("tsconfig-paths"); \
+const baseUrl = "./dist"; \
+const cleanup = tsConfigPaths.register({ \
+  baseUrl, \
+  paths: tsConfig.compilerOptions.paths \
+});\
 process.env.NODE_ENV = process.env.NODE_ENV || "production";' > path-register.js
 
 # Install only production dependencies to reduce image size
