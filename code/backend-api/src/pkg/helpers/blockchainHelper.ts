@@ -92,7 +92,7 @@ async function formatResponse<T = Object>(
   if (!methodAbi)
     return {
       ok: false,
-      status: StatusCodes.INTERNAL_SERVER_ERROR,
+      status: StatusCodes.NOT_FOUND,
       data: null,
     };
 
@@ -236,6 +236,7 @@ async function callPureContractMethod<T = any>(
 
     const method = contract.getFunction(methodName);
     const res: ethers.Result = await method(...args);
+    console.log('callPureContractMethod', methodName, res);
     return formatResponse<T>(abi, methodName, res);
   } catch (err: any) {
     logger.error('BLOCKCHAIN TRANSACTION ERROR: ', err);

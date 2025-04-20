@@ -298,6 +298,88 @@ describe('Consumer API', () => {
       expect(SecondaryProducerHandler.GetBaseBatchById).toHaveBeenCalled();
     });
 
+    it("should handle failure in getting owner's information successfully", async () => {
+      const trackingCode = 'track-123';
+
+      // First call returns the primary producer, second call returns secondary producer.
+      // Both fail to get user information and should fall back to empty string.
+      jest
+        .spyOn(AuthHandler, 'GetUserByBlockchainId')
+        .mockResolvedValueOnce({
+          ok: false,
+          status: StatusCodes.NOT_FOUND,
+          data: null,
+        })
+        .mockResolvedValueOnce({
+          ok: false,
+          status: StatusCodes.NOT_FOUND,
+          data: null,
+        });
+
+      const res = await request(app)
+        .get(`${BASE_PATH}/consumer/origin/${trackingCode}`)
+        .expect(200);
+
+      expect(res.body.status).toBe(200);
+      expect(res.body.data).toBeInstanceOf(Array);
+      expect(res.body.data.length).toBe(2);
+      expect(res.body.data[0].stage).toBe('base');
+      expect(res.body.data[0].data.ownerName).toBe('');
+      expect(res.body.data[1].stage).toBe('product');
+      expect(res.body.data[1].data.ownerName).toBe('');
+      expect(
+        SecondaryProducerHandler.GetBatchByTrackingCode,
+      ).toHaveBeenCalledWith(trackingCode);
+      expect(SecondaryProducerHandler.GetBaseBatchById).toHaveBeenCalled();
+    });
+
+    it("should handle empty data when getting owner's information successfully", async () => {
+      const trackingCode = 'track-123';
+
+      // First call returns the primary producer, second call returns secondary producer.
+      // Both don't include username and should fall back to empty string.
+      jest
+        .spyOn(AuthHandler, 'GetUserByBlockchainId')
+        .mockResolvedValueOnce({
+          ok: true,
+          status: StatusCodes.OK,
+          data: {
+            id: 1,
+            firebaseUid: 'test-user',
+            email: 'test@example.com',
+            blockchainId: '0x1234567890abcdef',
+            userName: undefined,
+          },
+        })
+        .mockResolvedValueOnce({
+          ok: true,
+          status: StatusCodes.OK,
+          data: {
+            id: 1,
+            firebaseUid: 'test-user',
+            email: 'test@example.com',
+            blockchainId: '0x1234567890abcdef',
+            userName: undefined,
+          },
+        });
+
+      const res = await request(app)
+        .get(`${BASE_PATH}/consumer/origin/${trackingCode}`)
+        .expect(200);
+
+      expect(res.body.status).toBe(200);
+      expect(res.body.data).toBeInstanceOf(Array);
+      expect(res.body.data.length).toBe(2);
+      expect(res.body.data[0].stage).toBe('base');
+      expect(res.body.data[0].data.ownerName).toBe('');
+      expect(res.body.data[1].stage).toBe('product');
+      expect(res.body.data[1].data.ownerName).toBe('');
+      expect(
+        SecondaryProducerHandler.GetBatchByTrackingCode,
+      ).toHaveBeenCalledWith(trackingCode);
+      expect(SecondaryProducerHandler.GetBaseBatchById).toHaveBeenCalled();
+    });
+
     it('should return 404 when tracking code is not found', async () => {
       const trackingCode = 'invalid-code';
 

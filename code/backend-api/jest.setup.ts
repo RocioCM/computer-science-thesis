@@ -1,8 +1,15 @@
 import { ROLES } from './src/pkg/constants';
 import { AppDataSource } from './test/utils';
+import dotenv from 'dotenv';
+
+// Load test environment variables
+dotenv.config({ path: '.env.test' });
 
 // Mock firebase authentication module
 jest.mock('firebase-admin', () => ({
+  credential: { cert: jest.fn() },
+  initializeApp: jest.fn(),
+
   auth: jest.fn().mockReturnValue({
     verifyIdToken: jest.fn((idToken) => {
       if (idToken === 'valid-token') {

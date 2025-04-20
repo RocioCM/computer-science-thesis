@@ -756,6 +756,42 @@ describe('Producer API', () => {
       expect(res.body.data).toBeNull();
     });
 
+    it('should handle selling error when buyer is not found', async () => {
+      // First call returns the seller, second call returns not found for the buyer
+      jest
+        .spyOn(AuthHandler, 'GetUserByFirebaseUid')
+        .mockResolvedValueOnce({
+          ok: true,
+          status: StatusCodes.OK,
+          data: {
+            id: 1,
+            firebaseUid: 'test-user',
+            email: 'test@example.com',
+            blockchainId: '0x1234567890abcdef',
+          },
+        })
+        .mockResolvedValueOnce({
+          ok: false,
+          status: StatusCodes.NOT_FOUND,
+          data: null,
+        });
+
+      const sellData = {
+        batchId: 1,
+        quantity: 50,
+        buyerUid: 'non-existent-buyer',
+      };
+
+      const res = await request(app)
+        .put(`${BASE_PATH}/producer/batch/sell`)
+        .set('Authorization', `Bearer userWithId-userRole-PRODUCER`)
+        .send(sellData)
+        .expect(400);
+
+      expect(res.body.status).toBe(400);
+      expect(res.body.data).toBeNull();
+    });
+
     it('should handle selling error when blockchain fails', async () => {
       // Mock blockchain helper function for selling bottles
       jest.spyOn(blockchainHelper, 'callContractMethod').mockResolvedValueOnce({
@@ -967,7 +1003,17 @@ describe('Producer API', () => {
         .mockResolvedValueOnce({
           ok: true,
           status: StatusCodes.OK,
-          data: [],
+          data: [
+            {
+              id: 1,
+              bottleId: 1,
+              originBatchId: 1,
+              type: 'base',
+              ownerAccountId: '0x1234567890abcdef',
+              createdAt: new Date().toISOString(),
+              deletedAt: '',
+            },
+          ],
         });
 
       const res = await request(app)

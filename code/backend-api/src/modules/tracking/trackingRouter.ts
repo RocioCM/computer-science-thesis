@@ -63,10 +63,6 @@ async function GetProductBatchById(req: Request, res: Response) {
 
 async function GetProductBatchByTrackingCode(req: Request, res: Response) {
   const trackingCode = req.params.code;
-  if (!trackingCode) {
-    responseHelper.build(res, 400, 'Invalid batch ID');
-    return;
-  }
 
   const { status, data } =
     await TrackingHandler.GetProductBatchByTrackingCode(trackingCode);

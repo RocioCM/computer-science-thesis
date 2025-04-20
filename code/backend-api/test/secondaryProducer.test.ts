@@ -1081,35 +1081,24 @@ describe('Secondary Producer API', () => {
       expect(res.body.data).toBeNull();
     });
 
-    xit('should return 400 when buyer is not found', async () => {
-      // Mock AuthHandler to return not found for the buyer
-      const originalImplementation = AuthHandler.GetUserByFirebaseUid;
-      let callCount = 0;
-
+    it('should return 400 when buyer is not found', async () => {
+      // First call returns the seller, second call returns not found for the buyer
       jest
         .spyOn(AuthHandler, 'GetUserByFirebaseUid')
-        .mockImplementation(async (uid) => {
-          callCount++;
-          if (callCount === 1) {
-            // First call, return the seller
-            return {
-              ok: true,
-              status: StatusCodes.OK,
-              data: {
-                id: 1,
-                firebaseUid: 'test-user',
-                email: 'test@example.com',
-                blockchainId: '0x1234567890abcdef',
-              },
-            };
-          } else {
-            // Second call, return not found for the buyer
-            return {
-              ok: false,
-              status: StatusCodes.NOT_FOUND,
-              data: null,
-            };
-          }
+        .mockResolvedValueOnce({
+          ok: true,
+          status: StatusCodes.OK,
+          data: {
+            id: 1,
+            firebaseUid: 'test-user',
+            email: 'test@example.com',
+            blockchainId: '0x1234567890abcdef',
+          },
+        })
+        .mockResolvedValueOnce({
+          ok: false,
+          status: StatusCodes.NOT_FOUND,
+          data: null,
         });
 
       const sellData = {
@@ -1126,11 +1115,6 @@ describe('Secondary Producer API', () => {
 
       expect(res.body.status).toBe(400);
       expect(res.body.data).toBeNull();
-
-      // Restore the original implementation
-      jest
-        .spyOn(AuthHandler, 'GetUserByFirebaseUid')
-        .mockImplementation(originalImplementation);
     });
 
     it('should return 500 when selling product fails', async () => {

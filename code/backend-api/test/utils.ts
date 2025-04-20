@@ -1,10 +1,4 @@
 import { DataSource } from 'typeorm';
-import dotenv from 'dotenv';
-import { StatusCodes } from 'http-status-codes';
-import blockchainHelper from '../src/pkg/helpers/blockchainHelper';
-
-// Load test environment variables
-dotenv.config({ path: '.env.test' });
 
 /** @description Database connection in memory for testing purposes. */
 export const AppDataSource = new DataSource({
@@ -12,18 +6,6 @@ export const AppDataSource = new DataSource({
   database: ':memory:',
   synchronize: true,
   entities: ['src/modules/**/domain/*.ts'],
-});
-
-// Mock blockchain helper functions
-jest.spyOn(blockchainHelper, 'callContractMethod').mockResolvedValue({
-  ok: true,
-  status: StatusCodes.OK,
-  data: [],
-});
-jest.spyOn(blockchainHelper, 'callPureContractMethod').mockResolvedValue({
-  ok: true,
-  status: StatusCodes.OK,
-  data: {},
 });
 
 /** Call this method before all tests to setup the test environment (DB and third parties services) for the first time. */

@@ -11,7 +11,7 @@ module.exports = {
   collectCoverage: true, // Enable coverage reports
   collectCoverageFrom: [
     'src/**/*.{ts,js}', // Include all source files in coverage
-    // '!src/main.ts', // Exclude specific files (like the entry point)
+    '!src/pkg/helpers/databaseHelper.ts', // Exclude database helper as it is mocked during tests
   ],
   coverageDirectory: 'coverage', // Directory where reports will be saved
   coverageReporters: ['lcov', 'text'], // Formats for the report
