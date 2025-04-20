@@ -1,4 +1,4 @@
-export const BASE_PATH = '/api';
+export const BASE_PATH = '/api/blockchain-test';
 
 export const DB_NAME = 'blockchain_test';
 
