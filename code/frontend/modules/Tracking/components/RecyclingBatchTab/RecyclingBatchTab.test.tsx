@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import RecyclingBatchTab from './RecyclingBatchTab';
 
 describe('Tracking - RecyclingBatchTab', () => {
@@ -29,7 +29,7 @@ describe('Tracking - RecyclingBatchTab', () => {
           size: '10x10x10',
           weight: 100,
           composition: [{ name: 'Glass', amount: 100, measureUnit: '%' }],
-          createdAt: new Date().toISOString(),
+          createdAt: new Date('2025-04-13T13:00:00').toISOString(),
         }}
       />
     );

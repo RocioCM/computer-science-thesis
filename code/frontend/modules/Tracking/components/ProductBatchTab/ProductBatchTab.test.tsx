@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import ProductBatchTab from './ProductBatchTab';
 
 describe('Tracking - ProductBatchTab', () => {
@@ -26,7 +26,7 @@ describe('Tracking - ProductBatchTab', () => {
           availableQuantity: 80,
           originBaseBatchId: 2,
           trackingCode: 'TRACK123',
-          createdAt: new Date().toISOString(),
+          createdAt: new Date('2025-04-13T13:00:00').toISOString(),
         }}
         options={[]}
         handleOption={() => {}}

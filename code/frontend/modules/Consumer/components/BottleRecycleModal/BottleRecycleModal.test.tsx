@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import BottleRecycleModal from './BottleRecycleModal';
 
 describe('Consumer - BottleRecycleModal', () => {

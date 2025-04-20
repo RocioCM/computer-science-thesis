@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import AssignBatchModal from './AssignBatchModal';
 
 describe('Recycler Waste Bottles - AssignBatchModal', () => {

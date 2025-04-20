@@ -1,9 +1,6 @@
 import TestAppWrapper from '@/common/utils/tests';
 import Page from '@/pages/recycler/waste-bottles';
-import { render, screen, fireEvent, act } from '@testing-library/react';
-import { toast } from 'react-toastify';
-import auth from '@/common/libraries/auth';
-import { ROLES } from '@/common/constants/auth';
+import { render } from '@testing-library/react';
 
 describe('Recycler - Waste Bottles Page', () => {
   beforeEach(() => {

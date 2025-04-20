@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import BaseBatchTab from './BaseBatchTab';
 
 describe('Tracking - BaseBatchTab', () => {
@@ -33,7 +33,7 @@ describe('Tracking - BaseBatchTab', () => {
           owner: '0x1234567890abcdef1234567890abcdef12345678',
           quantity: 100,
           soldQuantity: 50,
-          createdAt: new Date().toISOString(),
+          createdAt: new Date('2025-04-13T13:00:00').toISOString(),
         }}
       />
     );

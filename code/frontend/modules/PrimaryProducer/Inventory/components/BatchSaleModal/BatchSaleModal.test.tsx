@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import BatchSaleModal from './BatchSaleModal';
 
 describe('Primary Producer Inventory - BatchSaleModal', () => {

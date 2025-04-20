@@ -15,6 +15,7 @@ export const isServerSide = typeof window === 'undefined';
 /** This is the Frontend base path, it is used to build and deploy the application. */
 export const basePath = process.env.basePath ?? '';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const TEST_URL = 'https://test.lila.com.ar';
 const LOCAL_URL = 'http://localhost:8080';
 
