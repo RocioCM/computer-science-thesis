@@ -1,12 +1,17 @@
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import { DB_NAME } from 'src/pkg/constants';
-import { getEnv } from './env';
+import { getEnv, isProduction } from './env';
 
 let DBSource: DataSource;
 
 /** Initialize the database connection */
 export function initializeDBSource() {
+  // Determine the correct entities path based on environment
+  const entitiesPath = isProduction()
+    ? 'dist/src/modules/**/domain/*.js'
+    : 'src/modules/**/domain/*.ts';
+
   // Configure and initialize the database connection using TypeORM.
   DBSource = new DataSource({
     type: 'mariadb',
@@ -17,7 +22,7 @@ export function initializeDBSource() {
     database: DB_NAME,
     synchronize: false,
     logging: false,
-    entities: ['src/modules/**/domain/*.ts'],
+    entities: [entitiesPath],
     poolSize: 10,
   });
   return DBSource.initialize();
