@@ -14,12 +14,13 @@ pipeline {
         BASE_BATCH_CONTRACT_ADDRESS = "${env.BASE_BATCH_CONTRACT_ADDRESS}"
         PRODUCT_BATCH_CONTRACT_ADDRESS = "${env.PRODUCT_BATCH_CONTRACT_ADDRESS}"
         RECYCLING_CONTRACT_ADDRESS = "${env.RECYCLING_CONTRACT_ADDRESS}"
+        PROJECT_DIR = "code/backend-api"
     }
     stages {
         stage("Build") {
             steps {
                 echo "Building.."
-                sh "docker build -t $DOCKER_TAG ."
+                sh "cd ${PROJECT_DIR} && docker build -t $DOCKER_TAG ."
             }
         }
         stage("Deploy") {
@@ -28,7 +29,7 @@ pipeline {
                 sh "docker stop $DOCKER_TAG || echo Nothing to stop"
                 sh "docker rm $DOCKER_TAG || echo Nothing to delete"
                 echo "Deploying...."
-                sh "docker run -d -e PORT -e DB_HOST -e DB_PORT -e DB_USER -e DB_PASS -e FIREBASE_CONFIG -e PRIVATE_KEY -e PROVIDER_URL -e BASE_BATCH_CONTRACT_ADDRESS -e PRODUCT_BATCH_CONTRACT_ADDRESS -e RECYCLING_CONTRACT_ADDRESS -p $EXTERNAL_PORT:$PORT --name $DOCKER_TAG $DOCKER_TAG"
+                sh "cd ${PROJECT_DIR} && docker run -d -e PORT -e DB_HOST -e DB_PORT -e DB_USER -e DB_PASS -e FIREBASE_CONFIG -e PRIVATE_KEY -e PROVIDER_URL -e BASE_BATCH_CONTRACT_ADDRESS -e PRODUCT_BATCH_CONTRACT_ADDRESS -e RECYCLING_CONTRACT_ADDRESS -p $EXTERNAL_PORT:$PORT --name $DOCKER_TAG $DOCKER_TAG"
             }
         }
     }
