@@ -171,6 +171,59 @@ async function RecycleBaseBottlesBatch(req: Request, res: Response) {
   responseHelper.build(res, status, data);
 }
 
+async function GetFilteredBuyers(req: Request, res: Response) {
+  const userRes = await Authenticate(req, ROLES.PRODUCER);
+  if (!userRes.ok) {
+    responseHelper.build(res, userRes.status, userRes.data);
+    return;
+  }
+
+  const searchQuery = req.query.query as string;
+
+  const { status, data } = await ProducerHandler.GetFilteredBuyers(searchQuery);
+
+  responseHelper.build(res, status, data);
+}
+
+async function GetAllUserRecyclingBatches(req: Request, res: Response) {
+  const userRes = await Authenticate(req, ROLES.PRODUCER);
+  if (!userRes.ok) {
+    responseHelper.build(res, userRes.status, userRes.data);
+    return;
+  }
+
+  let page = requestHelper.parseUint(req.query.page);
+  let limit = requestHelper.parseUint(req.query.limit);
+  if (page === null) page = 1;
+  if (limit === null) limit = 10;
+
+  const { status, data } = await ProducerHandler.GetAllUserRecyclingBatches(
+    userRes.data.uid,
+    page,
+    limit,
+  );
+
+  responseHelper.build(res, status, data);
+}
+
+async function GetRecyclingBatchById(req: Request, res: Response) {
+  const userRes = await Authenticate(req, ROLES.PRODUCER);
+  if (!userRes.ok) {
+    responseHelper.build(res, userRes.status, userRes.data);
+    return;
+  }
+
+  const id = requestHelper.parseUint(req.params.id);
+  if (id === null) {
+    responseHelper.build(res, 400, 'Invalid batch ID');
+    return;
+  }
+
+  const { status, data } = await ProducerHandler.GetRecyclingBatchById(id);
+
+  responseHelper.build(res, status, data);
+}
+
 //---- Routes configuration ----//
 
 const ProducerRouter = Router();
@@ -179,6 +232,9 @@ middlewareHelper.applyAsyncHandlerMiddleware(ProducerRouter);
 
 ProducerRouter.get('/batch/:id', GetBatchById);
 ProducerRouter.get('/batches/user', GetAllBatchesByUser);
+ProducerRouter.get('/buyers', GetFilteredBuyers);
+ProducerRouter.get('/recycled-batch/:id', GetRecyclingBatchById);
+ProducerRouter.get('/recycled-batches', GetAllUserRecyclingBatches);
 
 ProducerRouter.post('/batch', CreateBaseBottlesBatch);
 

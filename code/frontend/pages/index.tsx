@@ -17,7 +17,9 @@ function Home() {
     } else if (userHasRole(ROLES.consumer)) {
       router.push('/consumer');
     } else if (userHasRole(ROLES.recycler)) {
-      router.push('/client');
+      router.push('/recycler');
+    } else {
+      router.push('/not-found');
     }
   }, [user]);
 

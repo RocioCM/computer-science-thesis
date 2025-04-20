@@ -3,6 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import databaseHelper from 'src/pkg/helpers/databaseHelper';
 import { IResult } from 'src/pkg/interfaces/result';
 import { User } from '../domain/user';
+import { Like } from 'typeorm';
 
 export default class UserRepository {
   static async CreateUser(user: User): IResult<User> {
@@ -17,25 +18,10 @@ export default class UserRepository {
     return { ok: true, status: StatusCodes.CREATED, data: createdUser };
   }
 
-  static async GetAllUsers(): IResult<User[]> {
-    const users = await databaseHelper.db().manager.find(User);
-    return { ok: true, status: StatusCodes.OK, data: users };
-  }
-
-  static async GetUserById(id: number): IResult<User> {
+  static async GetUserByFirebaseUid(firebaseUid: string): IResult<User> {
     const user = await databaseHelper
       .db()
-      .manager.findOne(User, { where: { id } });
-    if (!user?.id) {
-      return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
-    }
-    return { ok: true, status: StatusCodes.OK, data: user };
-  }
-
-  static async GetUserByEmail(email: string): IResult<User> {
-    const user = await databaseHelper
-      .db()
-      .manager.findOne(User, { where: { email } });
+      .manager.findOne(User, { where: { firebaseUid } });
     if (!user?.id) {
       return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
     }
@@ -43,19 +29,9 @@ export default class UserRepository {
   }
 
   static async GetUserByBlockchainId(blockchainId: string): IResult<User> {
-    const user = await databaseHelper.db().manager.findOne(User, {
-      where: { blockchainId },
-    });
-    if (!user?.id) {
-      return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
-    }
-    return { ok: true, status: StatusCodes.OK, data: user };
-  }
-
-  static async GetUserByFirebaseUid(firebaseUid: string): IResult<User> {
     const user = await databaseHelper
       .db()
-      .manager.findOne(User, { where: { firebaseUid } });
+      .manager.findOne(User, { where: { blockchainId } });
     if (!user?.id) {
       return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
     }
@@ -87,5 +63,17 @@ export default class UserRepository {
       return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
     }
     return { ok: true, status: StatusCodes.OK, data: null };
+  }
+
+  static async GetFilteredUsers(searchQuery: string): IResult<User[]> {
+    // Get users whose email or userName contains the search query.
+    const users = await databaseHelper.db().manager.find(User, {
+      where: [
+        { email: Like(`%${searchQuery}%`) },
+        { userName: Like(`%${searchQuery}%`) },
+      ],
+      take: 10,
+    });
+    return { ok: true, status: StatusCodes.OK, data: users };
   }
 }

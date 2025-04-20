@@ -18,21 +18,6 @@ export default class WatcherRepository {
     return { ok: true, status: StatusCodes.CREATED, data: createdWatcher };
   }
 
-  static async GetAllWatchers(): IResult<Watcher[]> {
-    const watchers = await databaseHelper.db().manager.find(Watcher);
-    return { ok: true, status: StatusCodes.OK, data: watchers };
-  }
-
-  static async GetWatcherById(id: number): IResult<Watcher> {
-    const watcher = await databaseHelper
-      .db()
-      .manager.findOne(Watcher, { where: { id } });
-    if (!watcher?.id) {
-      return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
-    }
-    return { ok: true, status: StatusCodes.OK, data: watcher };
-  }
-
   static async GetWatchersByUserId(
     userAccountId: string,
     page: number,
@@ -49,17 +34,6 @@ export default class WatcherRepository {
 
     return { ok: true, status: StatusCodes.OK, data: watchers };
   }
-
-  static async UpdateWatcher(watcher: Watcher): IResult<null> {
-    const updatedStatus = await databaseHelper
-      .db()
-      .manager.update(Watcher, watcher.id, watcher);
-    if (updatedStatus.affected === 0) {
-      return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
-    }
-    return { ok: true, status: StatusCodes.OK, data: null };
-  }
-
   static async DeleteWatcher(id: number): IResult<null> {
     const deleteStatus = await databaseHelper.db().manager.delete(Watcher, id);
     if (deleteStatus.affected === 0) {
@@ -71,7 +45,7 @@ export default class WatcherRepository {
   static async DeleteWatcherByBottleId(bottleId: number): IResult<null> {
     const deleteStatus = await databaseHelper
       .db()
-      .manager.delete(Watcher, { bottleId });
+      .manager.delete(Watcher, { wasteBottleId: bottleId });
     if (deleteStatus.affected === 0) {
       return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
     }

@@ -1,3 +1,4 @@
+import FaIcon from '@/common/components/FaIcon';
 import cn from '@/common/utils/classNames';
 
 interface Props {
@@ -7,28 +8,29 @@ interface Props {
   lineWidth?: string;
 }
 
-const BASE_STYLE = 'border-p1 border-4 w-8 h-8';
+const BASE_STYLE = 'w-8 text-[2rem]';
 
 const LoadingSpinner: React.FC<Props> = ({
   color = '',
-  lineWidth = '',
   size = '',
   className = '',
 }) => {
   return (
     <span
+      data-testid="loading-spinner"
       className={cn(
-        'block shrink-0 !border-t-transparent animate-spin rounded-full ', // Base
+        'block shrink-0 animate-spin', // Base
         BASE_STYLE, // Fallback
         className
       )}
       style={{
         width: size,
-        height: size,
-        borderColor: color,
-        borderWidth: lineWidth,
+        fontSize: size,
+        color: color,
       }}
-    ></span>
+    >
+      <FaIcon type="fa-solid fa-recycle" />
+    </span>
   );
 };
 

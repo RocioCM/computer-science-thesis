@@ -4,7 +4,6 @@ import * as validators from './validators';
 import {
   Errors,
   FieldData,
-  FieldsObject,
   Form,
   FormBuilderConfig,
   FormBuilderField,
@@ -12,15 +11,11 @@ import {
 } from './types';
 import Input from '@/common/components/Inputs/Input';
 import InputDropdown from '@/common/components/Inputs/InputDropdown';
-import InputToggle from '@/common/components/Inputs/InputToggle';
 import InputCheckbox from '@/common/components/Inputs/InputCheckbox';
-import InputCheckboxGroup from '@/common/components/Inputs/InputCheckboxGroup';
-import InputRadio from '@/common/components/Inputs/InputRadio';
-import InputRadioGroup from '@/common/components/Inputs/InputRadioGroup';
 import InputPassword from '@/common/components/Inputs/InputPassword';
-import InputCounter from '@/common/components/Inputs/InputCounter';
 import InputNumber from '@/common/components/Inputs/InputNumber';
 import InputTextArea from '@/common/components/Inputs/InputTextArea';
+import InputAutocomplete from '@/common/components/Inputs/InputAutocomplete';
 
 const validateFormStructure = (formStructure: FieldData[]) => {
   if (!Array.isArray(formStructure)) {
@@ -564,7 +559,7 @@ const useRichieForm = (initialFormStructure: FieldData[]) => {
    * });
    */
   const handleMultipleChange = (
-    fieldsObject: FieldsObject,
+    fieldsObject: Form,
     isManualChange: boolean
   ) => {
     Object.entries(fieldsObject).forEach(([name, value]) => {
@@ -639,6 +634,7 @@ const useRichieForm = (initialFormStructure: FieldData[]) => {
       radioOptions = {},
       checkboxOptions = {},
       toggleOptions = {},
+      handleSearch = {},
     } = config;
     return formFields.map((input) => {
       const inputFullName = getInputName(prefix, input.name);
@@ -650,14 +646,10 @@ const useRichieForm = (initialFormStructure: FieldData[]) => {
         [INPUT_TYPES.text]: Input,
         [INPUT_TYPES.date]: Input,
         [INPUT_TYPES.search]: Input,
+        [INPUT_TYPES.autocomplete]: InputAutocomplete,
         [INPUT_TYPES.checkbox]: InputCheckbox,
-        [INPUT_TYPES.checkboxGroup]: InputCheckboxGroup,
         [INPUT_TYPES.dropdown]: InputDropdown,
-        [INPUT_TYPES.toggle]: InputToggle,
-        [INPUT_TYPES.radio]: InputRadio,
-        [INPUT_TYPES.radioGroup]: InputRadioGroup,
         [INPUT_TYPES.password]: InputPassword,
-        [INPUT_TYPES.counter]: InputCounter,
         [INPUT_TYPES.number]: InputNumber,
         [INPUT_TYPES.textarea]: InputTextArea,
       };
@@ -681,10 +673,13 @@ const useRichieForm = (initialFormStructure: FieldData[]) => {
           errorMessage={getFieldErrorMessage(inputFullName)}
           placeholder={input.placeholder}
           className={input.className}
+          containerClassName={input.containerClassName}
           required={dynamic(inputData?.required)}
           type={input.type}
           size={input.size}
           disabled={dynamic(inputData?.disabled)}
+          max={input.max}
+          min={input.min}
           maxLength={input.maxLength}
           handleChange={(
             _name: string,
@@ -701,10 +696,10 @@ const useRichieForm = (initialFormStructure: FieldData[]) => {
           checkboxes={checkboxOptions[inputFullName]}
           radioOptionValue={input.radioOptionValue}
           form={form}
+          handleSearch={handleSearch[inputFullName]}
           options={
             input.dropdownOptions ?? dropdownOptions[inputFullName] ?? []
           }
-          {...extraInputProps}
           {...extraInputProps}
         />
       );

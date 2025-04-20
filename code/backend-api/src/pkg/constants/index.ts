@@ -1,4 +1,4 @@
-export const BASE_PATH = ''; // Unused at the moment as we have only one API module
+export const BASE_PATH = '/api';
 
 export const DB_NAME = 'blockchain_test';
 
@@ -11,4 +11,5 @@ export enum ROLES {
   SECONDARY_PRODUCER = 3,
   CONSUMER = 4,
   RECYCLER = 5,
+  BUYER = 6,
 }

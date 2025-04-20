@@ -6,6 +6,7 @@ import requestHelper from 'src/pkg/helpers/requestHelper';
 import responseHelper from 'src/pkg/helpers/responseHelper';
 import RecyclerHandler from './recyclerHandler';
 import {
+  AssignWasteBottleToBatchDTO,
   CreateRecyclingBatchDTO,
   SellRecyclingBatchDTO,
   UpdateRecyclingBatchDTO,
@@ -18,6 +19,48 @@ async function GetBottleInfoByTrackingCode(req: Request, res: Response) {
 
   const { status, data } =
     await RecyclerHandler.GetBottleInfoByTrackingCode(trackingCode);
+
+  responseHelper.build(res, status, data);
+}
+
+async function GetAllUserWasteBottles(req: Request, res: Response) {
+  const userRes = await Authenticate(req, ROLES.RECYCLER);
+  if (!userRes.ok) {
+    responseHelper.build(res, userRes.status, userRes.data);
+    return;
+  }
+
+  let page = requestHelper.parseUint(req.query.page);
+  let limit = requestHelper.parseUint(req.query.limit);
+  if (page === null) page = 1;
+  if (limit === null) limit = 10;
+
+  const { status, data } = await RecyclerHandler.GetAllUserWasteBottles(
+    userRes.data.uid,
+    page,
+    limit,
+  );
+
+  responseHelper.build(res, status, data);
+}
+
+async function GetUserAvailableWasteBottles(req: Request, res: Response) {
+  const userRes = await Authenticate(req, ROLES.RECYCLER);
+  if (!userRes.ok) {
+    responseHelper.build(res, userRes.status, userRes.data);
+    return;
+  }
+
+  let page = requestHelper.parseUint(req.query.page);
+  let limit = requestHelper.parseUint(req.query.limit);
+  if (page === null) page = 1;
+  if (limit === null) limit = 10;
+
+  const { status, data } = await RecyclerHandler.GetUserAvailableWasteBottles(
+    userRes.data.uid,
+    page,
+    limit,
+  );
 
   responseHelper.build(res, status, data);
 }
@@ -52,11 +95,25 @@ async function GetRecyclingBatchById(req: Request, res: Response) {
 
   const id = requestHelper.parseUint(req.params.id);
   if (id === null) {
-    responseHelper.build(res, 400, 'Invalid bottle ID');
+    responseHelper.build(res, 400, 'Invalid batch ID');
     return;
   }
 
   const { status, data } = await RecyclerHandler.GetRecyclingBatchById(id);
+
+  responseHelper.build(res, status, data);
+}
+
+async function GetFilteredBuyers(req: Request, res: Response) {
+  const userRes = await Authenticate(req, ROLES.RECYCLER);
+  if (!userRes.ok) {
+    responseHelper.build(res, userRes.status, userRes.data);
+    return;
+  }
+
+  const searchQuery = req.query.query as string;
+
+  const { status, data } = await RecyclerHandler.GetFilteredBuyers(searchQuery);
 
   responseHelper.build(res, status, data);
 }
@@ -118,7 +175,7 @@ async function DeleteRecyclingBatch(req: Request, res: Response) {
 
   const id = requestHelper.parseUint(req.params.id);
   if (id === null) {
-    responseHelper.build(res, 400, 'Invalid bottle ID');
+    responseHelper.build(res, 400, 'Invalid batch ID');
     return;
   }
 
@@ -154,6 +211,30 @@ async function SellRecyclingBatch(req: Request, res: Response) {
   responseHelper.build(res, status, data);
 }
 
+async function AssignBottleToBatch(req: Request, res: Response) {
+  const userRes = await Authenticate(req, ROLES.RECYCLER);
+  if (!userRes.ok) {
+    responseHelper.build(res, userRes.status, userRes.data);
+    return;
+  }
+
+  const parsedBodyRes = await requestHelper.parseBody(
+    req.body,
+    AssignWasteBottleToBatchDTO,
+  );
+  if (!parsedBodyRes.ok) {
+    responseHelper.build(res, parsedBodyRes.status, parsedBodyRes.data);
+    return;
+  }
+
+  const { status, data } = await RecyclerHandler.AssignBottleToBatch(
+    userRes.data.uid,
+    parsedBodyRes.data,
+  );
+
+  responseHelper.build(res, status, data);
+}
+
 //---- Routes configuration ----//
 
 const RecyclerRouter = Router();
@@ -161,13 +242,17 @@ const RecyclerRouter = Router();
 middlewareHelper.applyAsyncHandlerMiddleware(RecyclerRouter);
 
 RecyclerRouter.get('/bottle/:trackingCode', GetBottleInfoByTrackingCode);
+RecyclerRouter.get('/bottles', GetAllUserWasteBottles);
+RecyclerRouter.get('/bottles/available', GetUserAvailableWasteBottles);
 RecyclerRouter.get('/batch/:id', GetRecyclingBatchById);
 RecyclerRouter.get('/batches', GetAllUserRecyclingBatches);
+RecyclerRouter.get('/buyers', GetFilteredBuyers);
 
 RecyclerRouter.post('/batch', CreateRecyclingBatch);
 
 RecyclerRouter.put('/batch', UpdateRecyclingBatch);
 RecyclerRouter.put('/batch/sell', SellRecyclingBatch);
+RecyclerRouter.put('/bottle/assign', AssignBottleToBatch);
 
 RecyclerRouter.delete('/batch/:id', DeleteRecyclingBatch);
 

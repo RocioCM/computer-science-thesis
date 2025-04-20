@@ -1,9 +1,9 @@
+import { ROLES } from '@/common/constants/auth';
 import { withAuth } from '@/common/libraries/auth';
-import PrimaryProducerView from '@/modules/PrimaryProducer';
+import PrimaryProducerView from '@/modules/PrimaryProducer/Inventory';
 
 const PrimaryProducerPage = () => {
   return <PrimaryProducerView />;
 };
 
-export default PrimaryProducerPage;
-// export default withAuth(PrimaryProducerPage); /// TODO: uncomment
+export default withAuth(PrimaryProducerPage, ROLES.producer);

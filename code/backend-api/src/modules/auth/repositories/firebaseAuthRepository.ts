@@ -1,5 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
-import firebaseAuthHelper, { AuthUser } from 'src/pkg/helpers/authHelper';
+import { AuthUser } from 'src/pkg/helpers/authHelper';
+import firebaseAuthHelper from 'firebase-admin';
 import { IResult } from 'src/pkg/interfaces/result';
 
 export default class FirebaseAuthRepository {
@@ -31,13 +32,16 @@ export default class FirebaseAuthRepository {
     return { ok: true, status: StatusCodes.OK, data: null };
   }
 
-  static async GetUserWithToken(token: string): IResult<AuthUser> {
+  static async GetUserById(uid: string): IResult<AuthUser> {
     try {
-      const decodedToken = await firebaseAuthHelper.auth().verifyIdToken(token);
-      const user = await firebaseAuthHelper.auth().getUser(decodedToken.uid);
+      const user = await firebaseAuthHelper.auth().getUser(uid);
       return { ok: true, status: StatusCodes.OK, data: user };
-    } catch (error) {
-      return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
+    } catch (error: any) {
+      return {
+        ok: false,
+        status: StatusCodes.NOT_FOUND,
+        data: error.message,
+      };
     }
   }
 }

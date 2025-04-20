@@ -21,7 +21,7 @@ const InputPassword: React.FC<Props> = ({ inputClassName, ...props }) => {
           role="button"
           className="w-l h-l cursor-pointer mr-s"
           onClick={toggleShowPassword}
-          alt="Toggle show password"
+          alt={showPassword ? 'Hide password' : 'Show password'}
         />
       }
     />

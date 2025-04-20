@@ -13,6 +13,8 @@ import BaseBottlesBatchRepository from './repositories/baseBottlesBatchRepositor
 import OwnershipRepository from './repositories/ownershipRepository';
 import { Ownership } from './domain/ownership';
 import { OWNERSHIP_TYPES } from 'src/pkg/constants/ownership';
+import { ROLES } from 'src/pkg/constants';
+import RecyclerHandler from '../recycler/recyclerHandler';
 
 export default class ProducerHandler {
   static async GetBatchById(batchId: number): IResult<BaseBottlesBatch> {
@@ -76,6 +78,7 @@ export default class ProducerHandler {
     const batchId = creationRes.data;
     const ownership = new Ownership();
     ownership.bottleId = batchId;
+    ownership.originBatchId = 0;
     ownership.ownerAccountId = userRes.data.blockchainId;
 
     const ownershipRes = await OwnershipRepository.CreateOwnership(ownership);
@@ -111,13 +114,17 @@ export default class ProducerHandler {
     }
 
     // Check user is owner of the batch to update
-    if (batchRes.data.owner !== userRes.data.blockchainId) {
+    if (
+      batchRes.data.owner.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
     const updatedBatch = batchRes.data;
     updatedBatch.bottleType = batch.bottleType;
     updatedBatch.quantity = batch.quantity;
+    updatedBatch.createdAt = batch.createdAt;
 
     return BaseBottlesBatchRepository.UpdateBaseBottlesBatch(updatedBatch);
   }
@@ -137,11 +144,31 @@ export default class ProducerHandler {
     }
 
     // Check user is owner of the batch to update
-    if (batchRes.data.owner !== userRes.data.blockchainId) {
+    if (
+      batchRes.data.owner.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
-    return BaseBottlesBatchRepository.DeleteBaseBottlesBatch(batchId);
+    const deleteRes =
+      await BaseBottlesBatchRepository.DeleteBaseBottlesBatch(batchId);
+    if (!deleteRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    const ownershipRes =
+      await OwnershipRepository.GetOwnershipByBottleId(batchId);
+    if (ownershipRes.ok) {
+      // Error is not handled as it is not critical to delete ownership.
+      await OwnershipRepository.DeleteOwnershipById(ownershipRes.data.id);
+    }
+
+    return { ok: true, status: StatusCodes.OK, data: null };
   }
 
   static async SellBaseBottles(
@@ -161,7 +188,10 @@ export default class ProducerHandler {
     }
 
     // Check user is owner of the batch to update
-    if (batchRes.data.owner !== userRes.data.blockchainId) {
+    if (
+      batchRes.data.owner.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
@@ -178,7 +208,7 @@ export default class ProducerHandler {
       sellData.quantity,
       buyerUserRes.data.blockchainId,
     );
-    if (!sellRes.ok) {
+    if (!sellRes.ok || !sellRes.data) {
       return {
         ok: false,
         status: StatusCodes.INTERNAL_SERVER_ERROR,
@@ -190,6 +220,7 @@ export default class ProducerHandler {
     const productBatchId = sellRes.data;
     const ownership = new Ownership();
     ownership.bottleId = productBatchId;
+    ownership.originBatchId = sellData.batchId;
     ownership.ownerAccountId = buyerUserRes.data.blockchainId;
     ownership.type = OWNERSHIP_TYPES.PRODUCT;
 
@@ -214,13 +245,55 @@ export default class ProducerHandler {
     }
 
     // Check user is owner of the batch to update
-    if (batchRes.data.owner !== userRes.data.blockchainId) {
+    if (
+      batchRes.data.owner.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
     return BaseBottlesBatchRepository.RecycleBaseBottlesBatch(
       batchId,
       quantity,
+    );
+  }
+
+  static async GetFilteredBuyers(searchQuery: string) {
+    const usersRes = await AuthHandler.GetFilteredUsers(
+      searchQuery,
+      ROLES.SECONDARY_PRODUCER,
+    );
+    if (!usersRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    const formattedBuyers = usersRes.data.map((user) => ({
+      firebaseUid: user.firebaseUid,
+      email: user.email,
+      userName: user.userName,
+    }));
+
+    return { ok: true, status: StatusCodes.OK, data: formattedBuyers };
+  }
+
+  static async GetRecyclingBatchById(id: number) {
+    return RecyclerHandler.GetRecyclingBatchById(id);
+  }
+
+  static async GetAllUserRecyclingBatches(
+    firebaseUid: string,
+    page: number,
+    limit: number,
+  ) {
+    return RecyclerHandler.GetAllUserRecyclingBatches(
+      firebaseUid,
+      page,
+      limit,
+      true,
     );
   }
 }

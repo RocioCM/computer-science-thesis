@@ -88,7 +88,13 @@ export const CONTRACT_ABI: ABI = [
       {
         indexed: true,
         internalType: 'uint256',
-        name: 'batchId',
+        name: 'productBatchId',
+        type: 'uint256',
+      },
+      {
+        indexed: true,
+        internalType: 'uint256',
+        name: 'soldBatchId',
         type: 'uint256',
       },
       {
@@ -122,7 +128,7 @@ export const CONTRACT_ABI: ABI = [
       { internalType: 'string', name: 'createdAt', type: 'string' },
     ],
     name: 'createProductBottlesBatch',
-    outputs: [],
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'nonpayable',
     type: 'function',
   },

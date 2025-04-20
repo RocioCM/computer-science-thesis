@@ -3,7 +3,7 @@ import ErrorMessage from '../ErrorMessage';
 import { FormHandleChange } from '@/common/hooks/useForm/types';
 import cn from '@/common/utils/classNames';
 import styles from './Input.module.css';
-import { useErrorMessage } from '@/common/hooks/useForm';
+import useErrorMessage from '@/common/hooks/useForm/useErrorMessage';
 
 const LABEL_STYLE = {
   base: 'text-p mb-xs',
@@ -16,9 +16,9 @@ const LABEL_STYLE = {
 const ABSOLUTE_CHILDREN_STYLE = 'gap-xs';
 
 const INPUT_STYLE = {
-  base: 'p rounded-rs border-n1 px-m py-xs placeholder:text-n2 h-10', // TIP: For only bottom border use: 'rounded-none border-0 border-b'
+  base: 'p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10', // TIP: For only bottom border use: 'rounded-none border-0 border-b'
   hover: 'hover:border-n2',
-  focus: cn(styles.inputFocus, 'focus:border-p1'),
+  focus: cn(styles.inputFocus, 'focus:border-p1 focus:border-2'),
   disabled:
     'disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent',
   error: '!border-fe1',
@@ -43,6 +43,7 @@ export interface Props
   childrenStart?: React.ReactNode;
   childrenEnd?: React.ReactNode;
   showFloatingLabel?: boolean;
+  inputRef?: React.RefObject<HTMLInputElement>;
 }
 
 const Input: React.FC<Props> = ({
@@ -61,7 +62,8 @@ const Input: React.FC<Props> = ({
   errorMessage = '',
   childrenStart,
   childrenEnd,
-  showFloatingLabel = true, // Change to true to show floating label as default behavior
+  showFloatingLabel = false, // Change to true to show floating label as default behavior
+  inputRef: externalInputRef,
   ...props
 }) => {
   const [floatLabel, setFloatLabel] = useState(false); // True when label is floating on top of input. False when label is inside input.
@@ -107,7 +109,8 @@ const Input: React.FC<Props> = ({
           {childrenStart}
         </div>
         <input
-          ref={inputRef}
+          data-testid="input"
+          ref={externalInputRef || inputRef}
           name={name}
           value={value}
           type={type}

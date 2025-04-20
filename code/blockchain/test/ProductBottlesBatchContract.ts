@@ -190,7 +190,7 @@ describe('ProductBottlesBatchContract', function () {
       );
       await expect(tx)
         .to.emit(productContract, 'ProductBottlesSold')
-        .withArgs(batchId, 10, await addr2.getAddress());
+        .withArgs(batchId, 1, 10, await addr2.getAddress());
 
       const batch = await productContract.productBottles(batchId);
       expect(batch.availableQuantity).to.equal(90);
@@ -417,7 +417,7 @@ describe('ProductBottlesBatchContract', function () {
       );
       await expect(tx)
         .to.emit(productContract, 'ProductBottlesSold')
-        .withArgs(batchId, sellQuantity, buyer);
+        .withArgs(batchId, 1, sellQuantity, buyer);
 
       const batch = await productContract.productBottles(batchId);
       expect(batch.availableQuantity).to.equal(70);

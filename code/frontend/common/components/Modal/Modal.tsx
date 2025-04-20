@@ -10,7 +10,7 @@ const BG_STYLE = 'bg-n10 bg-opacity-70 py-2xl px-xl';
 const MODAL_STYLE = 'bg-n0 min-w-[300px] min-h-[200px]';
 
 const MODAL_SIZES_STYLE = {
-  big: 'w-[1220px] h-[700px] max-h-full max-w-full px-xl py-xl',
+  big: 'w-[700px] h-[700px] max-h-full max-w-full px-xl py-xl',
   normal: 'w-[380px] h-max max-h-full max-w-full px-3xl py-3xl',
 };
 
@@ -41,6 +41,7 @@ const Modal = ({
 
   const ModalContent = (
     <div
+      data-testid="modal"
       className={cn(
         BG_STYLE, // Background
         'w-full h-screen fixed top-0 left-0 z-modal flex justify-center items-center', // Base

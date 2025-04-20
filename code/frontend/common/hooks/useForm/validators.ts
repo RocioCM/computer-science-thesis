@@ -243,6 +243,7 @@ export const isPassport: ValidatorFunction = (value) => {
 
 export const isPhone: ValidatorFunction = (value) => {
   // Regular expression to validate that it only contains numbers
+  if (!value) return '';
   const phoneRegex = /^\+?[0-9]{10,14}$/;
   if (!phoneRegex.test(value))
     return 'Ingresá un número de teléfono válido, sin espacios ni guiones';

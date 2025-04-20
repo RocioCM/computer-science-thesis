@@ -14,7 +14,7 @@ import SecondaryProducerHandler from './secondaryProducerHandler';
 //---- Routers ----//
 
 async function GetBatchById(req: Request, res: Response) {
-  const userRes = await Authenticate(req, ROLES.PRODUCER);
+  const userRes = await Authenticate(req, ROLES.SECONDARY_PRODUCER);
   if (!userRes.ok) {
     responseHelper.build(res, userRes.status, userRes.data);
     return;
@@ -32,7 +32,7 @@ async function GetBatchById(req: Request, res: Response) {
 }
 
 async function GetBaseBatchById(req: Request, res: Response) {
-  const userRes = await Authenticate(req, ROLES.PRODUCER);
+  const userRes = await Authenticate(req, ROLES.SECONDARY_PRODUCER);
   if (!userRes.ok) {
     responseHelper.build(res, userRes.status, userRes.data);
     return;
@@ -50,7 +50,7 @@ async function GetBaseBatchById(req: Request, res: Response) {
 }
 
 async function GetAllBatchesByUser(req: Request, res: Response) {
-  const userRes = await Authenticate(req, ROLES.PRODUCER);
+  const userRes = await Authenticate(req, ROLES.SECONDARY_PRODUCER);
   if (!userRes.ok) {
     responseHelper.build(res, userRes.status, userRes.data);
     return;
@@ -70,8 +70,23 @@ async function GetAllBatchesByUser(req: Request, res: Response) {
   responseHelper.build(res, status, data);
 }
 
+async function GetFilteredBuyers(req: Request, res: Response) {
+  const userRes = await Authenticate(req, ROLES.SECONDARY_PRODUCER);
+  if (!userRes.ok) {
+    responseHelper.build(res, userRes.status, userRes.data);
+    return;
+  }
+
+  const searchQuery = req.query.query as string;
+
+  const { status, data } =
+    await SecondaryProducerHandler.GetFilteredBuyers(searchQuery);
+
+  responseHelper.build(res, status, data);
+}
+
 async function UpdateProductBatchTrackingCode(req: Request, res: Response) {
-  const userRes = await Authenticate(req, ROLES.PRODUCER);
+  const userRes = await Authenticate(req, ROLES.SECONDARY_PRODUCER);
   if (!userRes.ok) {
     responseHelper.build(res, userRes.status, userRes.data);
     return;
@@ -96,7 +111,7 @@ async function UpdateProductBatchTrackingCode(req: Request, res: Response) {
 }
 
 async function DeleteProductBatchTrackingCode(req: Request, res: Response) {
-  const userRes = await Authenticate(req, ROLES.PRODUCER);
+  const userRes = await Authenticate(req, ROLES.SECONDARY_PRODUCER);
   if (!userRes.ok) {
     responseHelper.build(res, userRes.status, userRes.data);
     return;
@@ -118,7 +133,7 @@ async function DeleteProductBatchTrackingCode(req: Request, res: Response) {
 }
 
 async function RejectBaseBottlesBatch(req: Request, res: Response) {
-  const userRes = await Authenticate(req, ROLES.PRODUCER);
+  const userRes = await Authenticate(req, ROLES.SECONDARY_PRODUCER);
   if (!userRes.ok) {
     responseHelper.build(res, userRes.status, userRes.data);
     return;
@@ -140,7 +155,7 @@ async function RejectBaseBottlesBatch(req: Request, res: Response) {
 }
 
 async function RecycleBaseBottles(req: Request, res: Response) {
-  const userRes = await Authenticate(req, ROLES.PRODUCER);
+  const userRes = await Authenticate(req, ROLES.SECONDARY_PRODUCER);
   if (!userRes.ok) {
     responseHelper.build(res, userRes.status, userRes.data);
     return;
@@ -164,7 +179,7 @@ async function RecycleBaseBottles(req: Request, res: Response) {
 }
 
 async function SellProductBottles(req: Request, res: Response) {
-  const userRes = await Authenticate(req, ROLES.PRODUCER);
+  const userRes = await Authenticate(req, ROLES.SECONDARY_PRODUCER);
   if (!userRes.ok) {
     responseHelper.build(res, userRes.status, userRes.data);
     return;
@@ -196,6 +211,7 @@ middlewareHelper.applyAsyncHandlerMiddleware(SecondaryProducerRouter);
 SecondaryProducerRouter.get('/batch/:id', GetBatchById);
 SecondaryProducerRouter.get('/batch/base/:id', GetBaseBatchById);
 SecondaryProducerRouter.get('/batches/user', GetAllBatchesByUser);
+SecondaryProducerRouter.get('/buyers', GetFilteredBuyers);
 
 SecondaryProducerRouter.put('/batch/code', UpdateProductBatchTrackingCode);
 SecondaryProducerRouter.put('/batch/reject/:id', RejectBaseBottlesBatch);

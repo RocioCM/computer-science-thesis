@@ -11,6 +11,10 @@ export class Ownership {
   @Column()
   bottleId: number;
 
+  @IsInt()
+  @Column()
+  originBatchId: number;
+
   @IsString()
   @Column()
   ownerAccountId: string;

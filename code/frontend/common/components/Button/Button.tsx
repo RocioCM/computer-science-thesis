@@ -39,7 +39,7 @@ const STATUS_STYLE = {
   base: 'gap-s rounded-rs font-semibold h-10',
   hover: '',
   focus: styles.focusButton,
-  disabled: 'disabled:cursor-default disabled:bg-n2 disabled:text-n3',
+  disabled: 'disabled:cursor-default disabled:bg-opacity-40 ',
 };
 
 const LOADING_STYLE = {
@@ -99,6 +99,7 @@ const Button = ({
 
   return (
     <button
+      data-testid="button"
       className={cn(
         'relative flex items-center justify-center', // Base
         STATUS_STYLE.base, // Base

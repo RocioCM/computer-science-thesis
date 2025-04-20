@@ -1,3 +1,0 @@
-input:active:not(:disabled) + .toggle {
-  box-shadow: var(--elevation-colored);
-}

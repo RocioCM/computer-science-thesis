@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tracking - AccountDetails Matches snapshot 1`] = `
+<div>
+  <span
+    class=""
+  >
+    0x123456789
+  </span>
+</div>
+`;

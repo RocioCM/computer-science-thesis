@@ -1,0 +1,177 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tracking - BaseBatchTab Matches snapshot 1`] = `
+<div>
+  <div
+    class="h-full w-full overflow-auto hide-scroll relative"
+  >
+    <div
+      class="grid grid-cols-2 gap-3xl"
+    >
+      <div
+        class="space-y-2"
+      >
+        <h3
+          class="text-lg font-semibold border-b pb-2"
+        >
+          Información General
+        </h3>
+        <p>
+          <span
+            class="font-semibold"
+          >
+            Cantidad de envases:
+          </span>
+           
+          100
+        </p>
+        <p>
+          <span
+            class="font-semibold"
+          >
+            Vendidos:
+          </span>
+           
+          50
+        </p>
+        <p>
+          <span
+            class="font-semibold"
+          >
+            Fecha de creación:
+          </span>
+           
+          13/4/2025
+        </p>
+        <p>
+          <span
+            class="font-semibold"
+          >
+            Ubicación de origen:
+          </span>
+           
+          Mza
+        </p>
+      </div>
+      <div>
+        <h3
+          class="text-lg font-semibold border-b pb-2"
+        >
+          Detalles de la Botella
+        </h3>
+        <div
+          class="mt-2 space-y-2"
+        >
+          <p>
+            <span
+              class="font-semibold"
+            >
+              Peso:
+            </span>
+             
+            300
+            g
+          </p>
+          <p>
+            <span
+              class="font-semibold"
+            >
+              Color:
+            </span>
+             
+            Red
+          </p>
+          <p>
+            <span
+              class="font-semibold"
+            >
+              Espesor:
+            </span>
+             
+            3
+             mm
+          </p>
+          <p>
+            <span
+              class="font-semibold"
+            >
+              Forma:
+            </span>
+             
+            Round
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-6"
+    >
+      <h3
+        class="text-lg font-semibold border-b pb-2"
+      >
+        Composición
+      </h3>
+      <table
+        class="w-full mt-2 border border-gray-300 rounded-md"
+      >
+        <thead>
+          <tr
+            class="bg-gray-100 text-gray-700"
+          >
+            <th
+              class="px-4 py-2 text-left"
+            >
+              Material
+            </th>
+            <th
+              class="px-4 py-2 text-left"
+            >
+              Cantidad
+            </th>
+            <th
+              class="px-4 py-2 text-left"
+            >
+              Unidad
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="border-t"
+          >
+            <td
+              class="px-4 py-2"
+            >
+              Glass
+            </td>
+            <td
+              class="px-4 py-2"
+            >
+              100
+            </td>
+            <td
+              class="px-4 py-2"
+            >
+              %
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="mt-6"
+    >
+      <h3
+        class="text-lg font-semibold border-b pb-2"
+      >
+        Información Adicional
+      </h3>
+      <p
+        class="text-gray-700 mt-2"
+      >
+        900ml
+      </p>
+    </div>
+  </div>
+</div>
+`;

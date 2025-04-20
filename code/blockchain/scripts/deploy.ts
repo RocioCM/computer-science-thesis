@@ -102,6 +102,11 @@ async function main() {
       recycledAddress,
     ]);
   }
+
+  logger.info("Contract's addresses:");
+  logger.info(`BASE_BATCH_CONTRACT_ADDRESS="${baseBatchAddress}"`);
+  logger.info(`PRODUCT_BATCH_CONTRACT_ADDRESS="${productAddress}"`);
+  logger.info(`RECYCLING_CONTRACT_ADDRESS="${recycledAddress}"`);
   logger.success('Successful deployment!');
 }
 

@@ -21,11 +21,9 @@ export default class OwnershipRepository {
     return { ok: true, status: StatusCodes.CREATED, data: createdOwner };
   }
 
-  static async GetAllOwnerships(): IResult<Ownership[]> {
-    const ownerships = await databaseHelper
-      .db()
-      .manager.find(Ownership, { where: { type: OWNERSHIP_TYPES.PRODUCT } });
-    return { ok: true, status: StatusCodes.OK, data: ownerships };
+  static async DeleteOwnershipById(id: number): IResult<null> {
+    await databaseHelper.db().manager.delete(Ownership, id);
+    return { ok: true, status: StatusCodes.OK, data: null };
   }
 
   static async GetOwnershipByBottleId(bottleId: number): IResult<Ownership> {
@@ -48,6 +46,7 @@ export default class OwnershipRepository {
 
     const ownerships = await databaseHelper.db().manager.find(Ownership, {
       where: { ownerAccountId, type: OWNERSHIP_TYPES.PRODUCT },
+      order: { createdAt: 'DESC' },
       skip,
       take,
     });

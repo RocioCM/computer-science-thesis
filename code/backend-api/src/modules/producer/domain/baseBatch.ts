@@ -114,7 +114,7 @@ export class SellBaseBottlesDTO {
   quantity: number;
 
   @Expose()
-  @IsInt()
+  @IsString()
   buyerUid: string;
 }
 

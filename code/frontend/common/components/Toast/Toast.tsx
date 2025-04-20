@@ -41,6 +41,7 @@ interface Props {}
 const Toast: React.FC<Props> = () => {
   return (
     <ToastContainer
+      data-testid="toast-container"
       position="top-right"
       autoClose={6000}
       hideProgressBar={false}

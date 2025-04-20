@@ -10,7 +10,6 @@ type ConditionalComponent<P> = [
 
 type ConditionalComponentProps<P> = Omit<P, 'handleCancel'> & {
   handleCancel?: (_e: React.MouseEvent | React.ChangeEvent) => void;
-  handleContinue?: (_e: React.MouseEvent | React.ChangeEvent) => void;
 };
 
 /**
@@ -21,7 +20,7 @@ type ConditionalComponentProps<P> = Omit<P, 'handleCancel'> & {
  * @returns Conditional Component and methods to show and hide it.
  */
 function useConditionalComponent<P>(
-  initialState: boolean = false,
+  initialState: boolean,
   Component: React.FC<P>
 ): ConditionalComponent<P> {
   const [show, toggleShow, showComponent, hideComponent] =
@@ -37,18 +36,8 @@ function useConditionalComponent<P>(
         hideComponent();
       };
 
-      const handleContinue = (e: React.MouseEvent | React.ChangeEvent) => {
-        if (untypedProps.handleContinue) untypedProps.handleContinue(e);
-        hideComponent();
-      };
-
       return untypedProps.shallow || show ? (
-        <Component
-          {...props}
-          show={show}
-          handleContinue={handleContinue}
-          handleCancel={handleCancel}
-        />
+        <Component {...props} show={show} handleCancel={handleCancel} />
       ) : null;
     },
     [show]

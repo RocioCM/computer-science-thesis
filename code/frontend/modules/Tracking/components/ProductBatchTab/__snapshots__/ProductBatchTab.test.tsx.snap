@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tracking - ProductBatchTab Matches snapshot with batch 1`] = `
+<div>
+  <div
+    class="h-full w-full overflow-auto hide-scroll relative"
+  >
+    <div>
+      <div
+        class=" space-y-2"
+      >
+        <h3
+          class="text-lg font-semibold border-b pb-2"
+        >
+          Información General
+        </h3>
+        <p>
+          <span
+            class="font-semibold"
+          >
+            Código de seguimiento:
+          </span>
+           
+          TRACK123
+        </p>
+        <p>
+          <span
+            class="font-semibold"
+          >
+            Cantidad de envases:
+          </span>
+           
+          100
+        </p>
+        <p>
+          <span
+            class="font-semibold"
+          >
+            Vendidas:
+          </span>
+           
+          20
+          /
+          100
+        </p>
+        <p>
+          <span
+            class="font-semibold"
+          >
+            Fecha de recepción:
+          </span>
+           
+          13/4/2025
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Tracking - ProductBatchTab Matches snapshot with options 1`] = `
+<div>
+  <div
+    class="h-full w-full overflow-auto hide-scroll relative pt-2"
+  >
+    <h3
+      class="text-lg font-semibold border-b pb-2"
+    >
+      Productos derivados:
+    </h3>
+    <ul
+      class="mt-2 space-y-2 list-disc list-inside"
+    >
+      <li
+        class="        cursor-pointer underline"
+      >
+        <span
+          class="font-semibold"
+        >
+          Option 1
+        </span>
+      </li>
+      <li
+        class="        cursor-pointer underline"
+      >
+        <span
+          class="font-semibold"
+        >
+          Option 2
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

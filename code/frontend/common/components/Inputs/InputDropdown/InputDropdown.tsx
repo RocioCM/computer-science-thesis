@@ -1,8 +1,8 @@
-import { useState, useMemo, useRef, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { autoUpdate, useFloating, FloatingPortal } from '@floating-ui/react';
 import ChevronIcon from '@/common/components/ChevronIcon';
 import { FormHandleChange } from '@/common/hooks/useForm/types';
-import { useErrorMessage } from '@/common/hooks/useForm';
+import useErrorMessage from '@/common/hooks/useForm/useErrorMessage';
 import ErrorMessage from '../ErrorMessage';
 import cn from '@/common/utils/classNames';
 import styles from './InputDropdown.module.css';
@@ -16,9 +16,9 @@ const LABEL_STYLE = {
 };
 
 const INPUT_STYLE = {
-  base: 'gap-xs p text-left rounded-rs border-n1 px-m py-m placeholder:text-n2 h-10', // TIP: For only bottom border use: 'rounded-none border-0 border-b'
+  base: 'gap-xs p text-left rounded-rs border-n3 px-m py-m placeholder:text-n2 h-10', // TIP: For only bottom border use: 'rounded-none border-0 border-b'
   hover: 'hover:border-n2',
-  focus: cn(styles.dropdonwFocus, 'focus:border-p1'),
+  focus: cn(styles.dropdonwFocus, 'focus:border-p1 focus:border-2'),
   disabled: 'disabled:text-n3 disabled:bg-n1 disabled:border-n2',
   error: '!border-fe1',
 };
@@ -26,6 +26,7 @@ const INPUT_STYLE = {
 export interface Option {
   label: string;
   value: string | number | boolean;
+  icon?: string;
 }
 
 interface BaseDropdownProps {
@@ -68,7 +69,7 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
   multiple = false,
   errorMessage = '',
   label = '',
-  showFloatingLabel = true, // Change to true to show floating label as default behavior
+  showFloatingLabel = false, // Change to true to show floating label as default behavior
 }) => {
   const [showOptions, setShowOptions] = useState(false);
   const [floatLabel, setFloatLabel] = useState(false); // True when label is floating on top of input. False when label is inside input.
@@ -114,8 +115,8 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
   };
 
   const displayValue = useMemo(() => {
-    if (value === null || value === undefined) return;
-    showFloatingLabel ? '' : placeholder;
+    if (value === null || value === undefined)
+      return showFloatingLabel ? '' : placeholder;
     if (multiple && Array.isArray(value)) {
       return `${value?.length || 0} ${
         value?.length === 1 ? 'seleccionado' : 'seleccionados'
@@ -144,7 +145,7 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
 
       <button
         className={cn(
-          'relative flex flex-row flex-nowrap justify-between items-center w-full h-max border bg-transparent outline-none transition-shadow', // Base
+          'relative flex flex-row flex-nowrap justify-between items-center w-full border bg-transparent outline-none transition-shadow', // Base
           INPUT_STYLE.base, // Base custom
           INPUT_STYLE.hover, // Hover
           INPUT_STYLE.focus, // Focus
@@ -156,6 +157,7 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
         disabled={isDisabled}
         onClick={handleClick}
         ref={refs.setReference}
+        data-testid="dropdown"
       >
         <span className="flex-1 min-h-4">{displayValue}</span>
         <ChevronIcon size="small" type={showOptions ? 'up' : 'down'} />

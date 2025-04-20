@@ -1,10 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
-import {
-  ContractTransactionResponse,
-  ethers,
-  LogDescription,
-  Result,
-} from 'ethers';
+import { ethers } from 'ethers';
 import { IResult } from 'src/pkg/interfaces/result';
 import { getEnv } from 'src/pkg/helpers/env';
 import logger from 'src/pkg/helpers/logger';
@@ -91,13 +86,13 @@ function formatField(
 async function formatResponse<T = Object>(
   abi: ABI,
   methodName: string,
-  response: Result,
+  response: ethers.Result,
 ): IResult<T> {
   const methodAbi = getMethodAbi(abi, methodName);
   if (!methodAbi)
     return {
       ok: false,
-      status: StatusCodes.INTERNAL_SERVER_ERROR,
+      status: StatusCodes.NOT_FOUND,
       data: null,
     };
 
@@ -140,7 +135,7 @@ async function parseReceiptEvents(
   receipt: ethers.ContractTransactionReceipt,
 ): IResult<EventEntry[]> {
   // In ethers v6, receipt.events is not available. Instead, parse the logs manually.
-  const events: LogDescription[] = receipt.logs
+  const events: ethers.LogDescription[] = receipt.logs
     .map((log) => {
       try {
         return contract.interface.parseLog(log); // Attempt to parse each log with the contract interface
@@ -161,7 +156,7 @@ async function parseReceiptEvents(
     // Elsecase, it's an event from another contract.
     const eventAbi = getEventAbi(abi, event.name);
     if (eventAbi && eventAbi.inputs?.length) {
-      const args: Result = event.args;
+      const args: ethers.Result = event.args;
       const formattedArgs = args.map((arg: any, index: number) => {
         const abiInput = eventAbi.inputs?.[index];
         return abiInput ? formatField(abiInput, arg) : arg;
@@ -179,6 +174,15 @@ async function parseReceiptEvents(
   return { ok: true, status: StatusCodes.OK, data: formattedEvents };
 }
 
+let wallet: ethers.Wallet | null = null; // Instantiate wallet only once globally
+
+function getWallet(): ethers.Wallet {
+  if (wallet) return wallet;
+  const provider = new ethers.JsonRpcProvider(getEnv('PROVIDER_URL'));
+  wallet = new ethers.Wallet(getEnv('PRIVATE_KEY'), provider);
+  return wallet;
+}
+
 async function callContractMethod(
   contractAddress: string,
   abi: ABI,
@@ -186,12 +190,19 @@ async function callContractMethod(
   ...args: any[]
 ): IResult<EventEntry[]> {
   try {
-    const provider = new ethers.JsonRpcProvider(getEnv('PROVIDER_URL'));
-    const wallet = new ethers.Wallet(getEnv('PRIVATE_KEY'), provider);
+    const wallet = getWallet();
     const contract = new ethers.Contract(contractAddress, abi, wallet);
 
+    const provider = wallet.provider!;
+    const nonce = await provider.getTransactionCount(wallet.address);
+
+    const txOptions: Partial<ethers.ContractTransaction> = { nonce };
+
     const method = contract.getFunction(methodName);
-    const tx: ContractTransactionResponse = await method(...args);
+    const tx: ethers.ContractTransactionResponse = await method(
+      ...args,
+      txOptions,
+    );
     const receipt = await tx.wait();
     if (receipt === null)
       return {
@@ -220,12 +231,12 @@ async function callPureContractMethod<T = any>(
   ...args: any[]
 ): IResult<T> {
   try {
-    const provider = new ethers.JsonRpcProvider(getEnv('PROVIDER_URL'));
-    const wallet = new ethers.Wallet(getEnv('PRIVATE_KEY'), provider);
+    const wallet = getWallet();
     const contract = new ethers.Contract(contractAddress, abi, wallet);
 
     const method = contract.getFunction(methodName);
-    const res: Result = await method(...args);
+    const res: ethers.Result = await method(...args);
+    console.log('callPureContractMethod', methodName, res);
     return formatResponse<T>(abi, methodName, res);
   } catch (err: any) {
     logger.error('BLOCKCHAIN TRANSACTION ERROR: ', err);

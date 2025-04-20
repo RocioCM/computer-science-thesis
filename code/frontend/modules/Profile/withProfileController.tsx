@@ -17,14 +17,11 @@ const withProfileController = (View: ProfileViewType) =>
       setInitialForm({ ...user });
     }, [user]);
 
-    console.log('HOLA');
-
     const handleUpdateProfile = async (e: React.FormEvent) => {
       e.preventDefault();
       if (!submitEnabled || !user) return;
       setIsLoading(true);
 
-      console.log(form); ///
       const payload: APIUser = {
         ...form,
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import { RegisterViewType, RegisterViewProps } from './types';
 import { REGISTER_FORM_STRUCT } from './constants';
@@ -12,13 +12,13 @@ const withRegisterController = (View: RegisterViewType) =>
       useForm(REGISTER_FORM_STRUCT);
     const [isLoading, setIsLoading] = useState(false);
     const { registerUser } = useLoginContext();
+    const formKeyRef = useRef(0);
 
     const handleRegister = async (e: React.FormEvent) => {
       e.preventDefault();
       if (!submitEnabled) return;
       setIsLoading(true);
 
-      console.log(form); ///
       const payload = {
         email: form.email,
         password: form.password,
@@ -30,6 +30,7 @@ const withRegisterController = (View: RegisterViewType) =>
           '¡Usuario registrado exitosamente! Ya podés iniciar sesión con estas credenciales'
         );
         resetForm();
+        formKeyRef.current += 1;
       } else if (status === HTTP_STATUS.conflict) {
         toast.error('El email ingresado ya está registrado, intentá con otro');
       } else {
@@ -40,6 +41,7 @@ const withRegisterController = (View: RegisterViewType) =>
     };
 
     const viewProps: RegisterViewProps = {
+      formKey: formKeyRef.current.toString(),
       handleRegister,
       submitEnabled,
       isLoading,

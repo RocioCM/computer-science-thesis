@@ -47,13 +47,12 @@ body {
   /* COLORS */
   --main-color: var(--colors-palette-p1);
   --secondary-color: var(--colors-palette-p2);
-  --background-color: var(--colors-neutrals-n0);
+  --background-color: var(--colors-bg);
   --dark-background-color: var(--colors-neutrals-n10);
   --font-color: var(--colors-neutrals-n10);
   --secondary-font-color: var(--colors-neutrals-n4);
 
   /* SIZES */
-  --sidebar-width: 12rem;
 
   /* FONTS */
   --regular: 400;
@@ -101,6 +100,15 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   appearance: textfield;
   -moz-appearance: textfield;
+}
+
+.hide-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 /* -- Default fonts -- */

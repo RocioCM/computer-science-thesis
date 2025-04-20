@@ -16,11 +16,14 @@
   --colors-neutrals-n2: #bfbfbf;
   --colors-neutrals-n3: #808080;
   --colors-neutrals-n4: #595959;
-  --colors-palette-p1: #840aff;
-  --colors-palette-p1-25: #840aff40;
-  --colors-palette-p1-50: #c082ff;
-  --colors-palette-p2: #ffff1e;
-  --colors-palette-p3: #ff8400;
+  --colors-bg: #e5eaf5;
+  --colors-palette-p1: #01b369;
+  --colors-palette-p1-25: #39915040;
+  --colors-palette-p1-50: #39915080;
+  --colors-palette-p2: #3e43d3;
+  --colors-palette-p3: #02443c;
+  --colors-palette-p4: #ee840c;
+
   /* number */
   --radius-rs: 0.625rem;
   --radius-rm: 0.9375rem;
@@ -58,5 +61,5 @@
   --elevation-e2: 0px 2px 5px rgba(0, 0, 0, 0.2);
   --elevation-e3: 0px 2px 8px rgba(0, 0, 0, 0.25);
   --elevation-e4: 0px 0px 15px rgba(0, 0, 0, 0.3);
-  --elevation-colored: 0px 0px 0px 4px rgba(132, 10, 255, 0.25);
+  --elevation-colored: 0px 0px 0px 4px rgba(1, 179, 105, 0.251);
 }

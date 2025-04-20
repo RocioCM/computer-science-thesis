@@ -15,6 +15,7 @@ import ProducerHandler from '../producer/producerHandler';
 import { BaseBottlesBatch } from '../producer/domain/baseBatch';
 import { Ownership } from './domain/ownership';
 import { OWNERSHIP_TYPES } from 'src/pkg/constants/ownership';
+import { ROLES } from 'src/pkg/constants';
 
 export default class SecondaryProducerHandler {
   static async GetBatchById(batchId: number): IResult<ProductBottlesBatch> {
@@ -73,7 +74,10 @@ export default class SecondaryProducerHandler {
     }
 
     // Check user is owner of the batch to update
-    if (batchRes.data.owner !== userRes.data.blockchainId) {
+    if (
+      batchRes.data.owner.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
@@ -98,7 +102,10 @@ export default class SecondaryProducerHandler {
     }
 
     // Check user is owner of the batch to update
-    if (batchRes.data.owner !== userRes.data.blockchainId) {
+    if (
+      batchRes.data.owner.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
@@ -122,11 +129,31 @@ export default class SecondaryProducerHandler {
     }
 
     // Check user is owner of the batch to update
-    if (batchRes.data.owner !== userRes.data.blockchainId) {
+    if (
+      batchRes.data.owner.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
-    return ProductBottlesBatchRepository.RejectBaseBottlesBatch(batchId);
+    const deleteRes =
+      await ProductBottlesBatchRepository.RejectBaseBottlesBatch(batchId);
+    if (!deleteRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    const ownershipRes =
+      await OwnershipRepository.GetOwnershipByBottleId(batchId);
+    if (ownershipRes.ok) {
+      // Error is not handled as it is not critical to delete ownership.
+      await OwnershipRepository.DeleteOwnershipById(ownershipRes.data.id);
+    }
+
+    return { ok: true, status: StatusCodes.OK, data: null };
   }
 
   static async RecycleBaseBottles(
@@ -146,7 +173,10 @@ export default class SecondaryProducerHandler {
     }
 
     // Check user is owner of the batch to update
-    if (batchRes.data.owner !== userRes.data.blockchainId) {
+    if (
+      batchRes.data.owner.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
@@ -173,7 +203,10 @@ export default class SecondaryProducerHandler {
     }
 
     // Check user is owner of the batch to update
-    if (batchRes.data.owner !== userRes.data.blockchainId) {
+    if (
+      batchRes.data.owner.toLowerCase() !==
+      userRes.data.blockchainId.toLowerCase()
+    ) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
@@ -203,11 +236,34 @@ export default class SecondaryProducerHandler {
     const soldProductId = sellRes.data;
     const ownership = new Ownership();
     ownership.bottleId = soldProductId;
+    ownership.originBatchId = sellData.batchId;
     ownership.ownerAccountId = buyerUserRes.data.blockchainId;
     ownership.type = OWNERSHIP_TYPES.SOLD;
 
     await OwnershipRepository.CreateOwnership(ownership);
 
     return { ok: true, status: StatusCodes.OK, data: { soldProductId } };
+  }
+
+  static async GetFilteredBuyers(searchQuery: string) {
+    const usersRes = await AuthHandler.GetFilteredUsers(
+      searchQuery,
+      ROLES.BUYER,
+    );
+    if (!usersRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    const formattedBuyers = usersRes.data.map((user) => ({
+      firebaseUid: user.firebaseUid,
+      email: user.email,
+      userName: user.userName,
+    }));
+
+    return { ok: true, status: StatusCodes.OK, data: formattedBuyers };
   }
 }

@@ -1,10 +1,9 @@
 import { useMemo } from 'react';
 import { FormHandleChange } from '@/common/hooks/useForm/types';
 import Labels from '../Labels';
-import Img from '@/common/components/Img';
 import cn from '@/common/utils/classNames';
-import iconCheck from '@/public/assets/icon-checkbox-input.svg';
 import styles from './InputCheckbox.module.css';
+import FaIcon from '@/common/components/FaIcon';
 
 const CONTAINER_STYLE = 'gap-m';
 const BOX_STYLE = 'border border-n2 rounded-rs p-m';
@@ -78,17 +77,14 @@ const InputCheckbox: React.FC<Props> = ({
       <span
         className={cn(
           styles.check,
-          'block shrink-0 border transition-[box-shadow,background-color] duration-300',
+          'flex items-center justify-center shrink-0 border transition-[box-shadow,background-color] duration-300',
           CHECKBOX_BASE_STYLE,
           isChecked ? CHECKED_STYLE : UNCHECKED_STYLE
         )}
+        data-testid="checkbox"
       >
         {isChecked && (
-          <Img
-            src={iconCheck}
-            alt="checked"
-            className="block w-full h-full object-contain"
-          />
+          <FaIcon type="fa-solid fa-check" className="text-n0 text-[0.8rem]" />
         )}
       </span>
       <Labels label={label} description={description} labelClassName="-mt-1" />

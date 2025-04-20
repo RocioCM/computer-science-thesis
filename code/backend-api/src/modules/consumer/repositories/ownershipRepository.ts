@@ -21,47 +21,15 @@ export default class OwnershipRepository {
     return { ok: true, status: StatusCodes.CREATED, data: createdOwner };
   }
 
-  static async GetAllOwnerships(): IResult<Ownership[]> {
-    const ownerships = await databaseHelper
-      .db()
-      .manager.find(Ownership, { where: { type: OWNERSHIP_TYPES.WASTE } });
-    return { ok: true, status: StatusCodes.OK, data: ownerships };
-  }
-
-  static async GetOwnershipByBottleId(bottleId: number): IResult<Ownership> {
-    const ownership = await databaseHelper.db().manager.findOne(Ownership, {
-      where: { bottleId, type: OWNERSHIP_TYPES.WASTE },
-    });
-    if (!ownership?.id) {
-      return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
-    }
-    return { ok: true, status: StatusCodes.OK, data: ownership };
-  }
-
-  static async GetOwnershipsByAccountId(
-    ownerAccountId: string,
-    page: number,
-    limit: number,
-  ): IResult<Ownership[]> {
-    const take = limit || 10; // Default limit to 10 if not provided
-    const skip = (page - 1) * take;
-
-    const ownerships = await databaseHelper.db().manager.find(Ownership, {
-      where: { ownerAccountId, type: OWNERSHIP_TYPES.WASTE },
-      skip,
-      take,
-    });
-
-    return { ok: true, status: StatusCodes.OK, data: ownerships };
-  }
-
   static async DeleteOwnershipByUserAndBottleId(
     ownerAccountId: string,
     bottleId: number,
   ): IResult<null> {
-    const deleteStatus = await databaseHelper
-      .db()
-      .manager.delete(Ownership, { ownerAccountId, bottleId });
+    const deleteStatus = await databaseHelper.db().manager.delete(Ownership, {
+      ownerAccountId,
+      bottleId,
+      type: OWNERSHIP_TYPES.WASTE,
+    });
     if (deleteStatus.affected === 0) {
       return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
     }
