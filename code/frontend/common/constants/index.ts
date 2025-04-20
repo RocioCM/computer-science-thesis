@@ -25,7 +25,7 @@ export const BASE_URL = isProduction
   ? process.env.BASE_PATH ?? 'https://lila.com.ar' // DON'T CHANGE THIS LINE.
   : LOCAL_URL; // You can change this line during development.
 
-export const API_BASE_URL = BASE_URL + '/api';
+export const API_BASE_URL = BASE_URL + '/api/blockchain-test';
 
 export const HTTP_STATUS = {
   ok: 200,
