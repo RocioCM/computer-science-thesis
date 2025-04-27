@@ -46,7 +46,16 @@ const withAuth = (
     }, [loading]);
 
     if (loading || !isAuthenticated) return null; // User not logged in.
-    return isAuthorized && <Component {...props} />; // User logged in and authorized. */
+    if (!isAuthorized) {
+      return (
+        <div className="flex flex-col items-center justify-center h-full w-full">
+          <h2 className="text-center">
+            No tienes permiso <br /> para acceder a esta página
+          </h2>
+        </div>
+      ); // User not allowed.
+    }
+    return <Component {...props} />; // User logged in and authorized. */
   };
 
 export default withAuth;
