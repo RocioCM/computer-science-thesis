@@ -560,10 +560,6 @@ The useForm hook returns some utility functions and variables that you can use t
 
 Go to each function's inline docs to get more information about how to use them.
 
-## DEVELOP: Docs for devs editing useForm hook
-
-/// TODO: this section docs are pending.
-
 ### What is a "fieldData" object?
 
 A "fieldData" object is an object that contains all the data related to a field in a form. It represents the static logic layer of a form field and it includes the following properties (some or all of them):

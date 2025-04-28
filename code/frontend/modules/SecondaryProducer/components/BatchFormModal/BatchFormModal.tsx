@@ -25,7 +25,7 @@ const BatchFormModal = ({
     if (!editingId) return;
     const payload: UpdateTrackingCodePayload = {
       id: editingId,
-      trackingCode: form.trackingCode,
+      trackingCode: form.trackingCode.toUpperCase(), // Ensure tracking code is uppercase
     };
     const { ok, status } = await SecondaryProducerServices.updateTrackingCode(
       payload

@@ -28,7 +28,18 @@ export default class WasteBottleRepository {
   }
 
   static async GetWasteBottleById(bottleId: number): IResult<WasteBottle> {
-    return this.callPureContractMethod<WasteBottle>('wasteBottles', bottleId);
+    const bottleRes = await this.callPureContractMethod<WasteBottle>(
+      'wasteBottles',
+      bottleId,
+    );
+    if (!bottleRes.ok || !bottleRes.data.id) {
+      return {
+        ok: false,
+        status: bottleRes.ok ? StatusCodes.NOT_FOUND : bottleRes.status,
+        data: null,
+      };
+    }
+    return bottleRes;
   }
 
   static async GetWasteBottlesList(

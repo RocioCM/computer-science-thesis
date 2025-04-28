@@ -19,7 +19,7 @@ const withLoginController = (View: LoginViewType) =>
       setIsLoading(true);
 
       const payload = {
-        email: form.email,
+        email: form.email.toLowerCase(),
         password: form.password,
       };
       const { ok } = await loginWithPassword(payload);

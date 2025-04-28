@@ -42,13 +42,13 @@ const BatchSaleModal: React.FC<Props> = ({
     const { ok } = await ConsumerServices.createWasteBottle(payload);
     if (ok) {
       toast.success(
-        'Venta completada exitosamente. Los productos seleccionados ya están en propiedad del comprador'
+        'Reciclaje registrado correctamente. ¡Gracias por reciclar!'
       );
       handleCancel();
       handleSuccess();
     } else {
       toast.error(
-        'No se pudo completar la venta. Por favor, inténtelo de nuevo más tarde'
+        'No se pudo registrar el reciclaje. Por favor, inténtelo de nuevo más tarde'
       );
     }
   };

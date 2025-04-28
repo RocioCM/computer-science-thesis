@@ -40,6 +40,7 @@ const withTrackingController = (View: TrackingViewType) =>
       } else {
         toast.error('No encontramos el lote base que buscas, revisa el ID');
       }
+      return { ok: ok && !!data };
     };
 
     const fetchProductBatchByCode = async (
@@ -58,6 +59,7 @@ const withTrackingController = (View: TrackingViewType) =>
           'No encontramos el lote de producto que buscas, revisa el código de seguimiento'
         );
       }
+      return { ok: ok && !!data };
     };
 
     const fetchProductBatchById = async (id: number) => {
@@ -90,6 +92,7 @@ const withTrackingController = (View: TrackingViewType) =>
           'No encontramos la botella reciclada que buscas, revisa el ID'
         );
       }
+      return { ok: ok && !!data };
     };
 
     const fetchRecyclingBatch = async (id: number) => {
@@ -114,6 +117,7 @@ const withTrackingController = (View: TrackingViewType) =>
           'No encontramos el lote de material reciclado que buscas, revisa el ID'
         );
       }
+      return { ok: ok && !!data };
     };
 
     const fetchProductBatchOptions = async (id: number, page: number) => {
@@ -178,18 +182,22 @@ const withTrackingController = (View: TrackingViewType) =>
       setTabsIdsOptions({});
       setCurrentTab(null);
 
+      let result: { ok: boolean } = { ok: false };
+
       if (type === TABS_KEYS.BASE_BATCH) {
-        await fetchBaseBatch(id);
+        result = await fetchBaseBatch(id);
       } else if (type === TABS_KEYS.PRODUCT_BATCH) {
-        await fetchProductBatchByCode(id);
+        result = await fetchProductBatchByCode(id);
       }
       if (type === TABS_KEYS.WASTE_BOTTLE) {
-        await fetchWasteBottle(id);
+        result = await fetchWasteBottle(id);
       }
       if (type === TABS_KEYS.RECYCLING_BATCH) {
-        await fetchRecyclingBatch(id);
+        result = await fetchRecyclingBatch(id);
       }
-      setCurrentTab(type);
+      if (result.ok) {
+        setCurrentTab(type);
+      }
     };
 
     const getCurrentTabContent = (tab: string | null) => {

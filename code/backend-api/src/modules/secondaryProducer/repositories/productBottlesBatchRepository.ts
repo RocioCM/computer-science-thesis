@@ -28,10 +28,18 @@ export default class ProductBottlesBatchRepository {
   }
 
   static async GetBatchById(batchId: number): IResult<ProductBottlesBatch> {
-    return this.callPureContractMethod<ProductBottlesBatch>(
+    const batchRes = await this.callPureContractMethod<ProductBottlesBatch>(
       'productBottles',
       batchId,
     );
+    if (!batchRes.ok || !batchRes.data.id) {
+      return {
+        ok: false,
+        status: batchRes.ok ? StatusCodes.NOT_FOUND : batchRes.status,
+        data: null,
+      };
+    }
+    return batchRes;
   }
 
   static async GetBatchByTrackingCode(

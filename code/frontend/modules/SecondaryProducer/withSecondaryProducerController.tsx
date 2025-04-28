@@ -159,6 +159,7 @@ const withSecondaryProducerController = (View: SecondaryProducerViewType) =>
         label: 'Reciclar',
         icon: 'fa-solid fa-recycle',
         callback: handleShowRecycle,
+        hide: (batch: ProductBottlesBatch) => batch.availableQuantity === 0,
       },
     ];
 

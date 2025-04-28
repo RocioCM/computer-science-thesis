@@ -6,6 +6,9 @@ import UserRepository from './repositories/userRepository';
 
 export default class AuthHandler {
   static async RegisterUser(user: CreateUserDTO): IResult<User> {
+    // Format data
+    user.email = user.email.toLowerCase().trim();
+
     const {
       ok,
       status,

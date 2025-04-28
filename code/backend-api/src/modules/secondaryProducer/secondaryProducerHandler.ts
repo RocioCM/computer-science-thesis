@@ -25,7 +25,9 @@ export default class SecondaryProducerHandler {
   static async GetBatchByTrackingCode(
     trackingCode: string,
   ): IResult<ProductBottlesBatch> {
-    return ProductBottlesBatchRepository.GetBatchByTrackingCode(trackingCode);
+    return ProductBottlesBatchRepository.GetBatchByTrackingCode(
+      trackingCode.toUpperCase(),
+    );
   }
 
   static async GetBaseBatchById(batchId: number): IResult<BaseBottlesBatch> {
@@ -83,7 +85,7 @@ export default class SecondaryProducerHandler {
 
     return ProductBottlesBatchRepository.UpdateTrackingCode(
       batch.id,
-      batch.trackingCode,
+      batch.trackingCode.toUpperCase().trim(),
     );
   }
 

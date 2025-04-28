@@ -1,7 +1,8 @@
+import { withAuth } from '@/common/libraries/auth';
 import TrackingView from '@/modules/Tracking';
 
 const TrackingPage = () => {
   return <TrackingView />;
 };
 
-export default TrackingPage;
+export default withAuth(TrackingPage);

@@ -38,8 +38,12 @@ export default class RecycledMaterialBatchRepository {
       'recycledMaterials',
       batchId,
     );
-    if (!batchRes.ok) {
-      return batchRes;
+    if (!batchRes.ok || !batchRes.data.id) {
+      return {
+        ok: false,
+        status: batchRes.ok ? StatusCodes.NOT_FOUND : batchRes.status,
+        data: null,
+      };
     }
 
     const batch: RecycledMaterialBatch = batchRes.data;

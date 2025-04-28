@@ -20,7 +20,7 @@ const withRegisterController = (View: RegisterViewType) =>
       setIsLoading(true);
 
       const payload = {
-        email: form.email,
+        email: form.email.toLowerCase(), // Ensure email is lowercase
         password: form.password,
         roleId: form.roleId,
       };
