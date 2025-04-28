@@ -4,6 +4,7 @@ import blockchainHelper from 'src/pkg/helpers/blockchainHelper';
 import { ProductBottlesBatch } from '../domain/productBatch';
 import { CONTRACT_ABI } from '../constants/abi';
 import { StatusCodes } from 'http-status-codes';
+import { ERRORS } from 'src/pkg/constants';
 
 export default class ProductBottlesBatchRepository {
   private static async callContractMethod(methodName: string, ...args: any[]) {
@@ -94,6 +95,13 @@ export default class ProductBottlesBatchRepository {
       batchId,
       quantity,
     );
+    if (!res.ok && res.data?.toLowerCase().includes('insufficient quantity')) {
+      return {
+        ok: false,
+        status: StatusCodes.BAD_REQUEST,
+        data: ERRORS.INSUFFICIENT_QUANTITY,
+      };
+    }
     return { ...res, data: null };
   }
 
@@ -111,6 +119,13 @@ export default class ProductBottlesBatchRepository {
       selledAt,
     );
     if (!result.ok) {
+      if (result.data?.toLowerCase().includes('insufficient quantity')) {
+        return {
+          ok: false,
+          status: StatusCodes.BAD_REQUEST,
+          data: ERRORS.INSUFFICIENT_QUANTITY,
+        };
+      }
       return result;
     }
 

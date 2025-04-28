@@ -26,6 +26,16 @@ export default class ConsumerHandler {
     if (!productBottleRes.ok) {
       return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
     }
+    if (
+      productBottleRes.data.availableQuantity >= productBottleRes.data.quantity
+    ) {
+      // Keep batches private until they are sold
+      return {
+        ok: false,
+        status: StatusCodes.NOT_FOUND,
+        data: null,
+      };
+    }
 
     const baseBatchRes = await SecondaryProducerHandler.GetBaseBatchById(
       productBottleRes.data.originBaseBatchId,
@@ -34,6 +44,14 @@ export default class ConsumerHandler {
       return {
         ok: false,
         status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+    if (baseBatchRes.data.soldQuantity <= 0) {
+      // Keep batches private until they are sold
+      return {
+        ok: false,
+        status: StatusCodes.NOT_FOUND,
         data: null,
       };
     }
@@ -179,6 +197,14 @@ export default class ConsumerHandler {
     if (!batchRes.ok) {
       return { ok: false, status: StatusCodes.BAD_REQUEST, data: null };
     }
+    if (batchRes.data.availableQuantity >= batchRes.data.quantity) {
+      // Keep batches private until they are sold
+      return {
+        ok: false,
+        status: StatusCodes.NOT_FOUND,
+        data: null,
+      };
+    }
 
     const createdBottleRes = await WasteBottleRepository.CreateWasteBottle(
       wasteBottle.trackingCode,
@@ -258,6 +284,15 @@ export default class ConsumerHandler {
       userRes.data.blockchainId.toLowerCase()
     ) {
       return { ok: false, status: StatusCodes.FORBIDDEN, data: null };
+    }
+
+    // Check if bottle is already recycled
+    if (!!wasteBottleRes.data.recycledBatchId) {
+      return {
+        ok: false,
+        status: StatusCodes.BAD_REQUEST,
+        data: null,
+      };
     }
 
     const deleteRes =

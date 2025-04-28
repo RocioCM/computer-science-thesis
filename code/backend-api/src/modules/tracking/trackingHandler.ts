@@ -8,7 +8,6 @@ import ConsumerHandler from '../consumer/consumerHandler';
 import RecyclerHandler from '../recycler/recyclerHandler';
 import OwnershipRepository from './repositories/ownershipRepository';
 import { OWNERSHIP_TYPES } from 'src/pkg/constants/ownership';
-import { ProductBottlesBatch } from '../secondaryProducer/domain/productBatch';
 
 export default class TrackingHandler {
   static async GetUserPublicData(
@@ -30,7 +29,19 @@ export default class TrackingHandler {
   }
 
   static async GetBaseBottlesBatchById(batchId: number) {
-    return ProducerHandler.GetBatchById(batchId);
+    const batchRes = await ProducerHandler.GetBatchById(batchId);
+    if (!batchRes.ok) {
+      return batchRes;
+    }
+    if (batchRes.data.soldQuantity <= 0) {
+      // Keep batches private until they are sold
+      return {
+        ok: false,
+        status: StatusCodes.NOT_FOUND,
+        data: null,
+      };
+    }
+    return batchRes;
   }
 
   static async GetAllProductsFromBaseBatch(
@@ -70,7 +81,21 @@ export default class TrackingHandler {
   }
 
   static async GetProductBatchByTrackingCode(trackingCode: string) {
-    return SecondaryProducerHandler.GetBatchByTrackingCode(trackingCode);
+    const batchRes =
+      await SecondaryProducerHandler.GetBatchByTrackingCode(trackingCode);
+    if (!batchRes.ok) {
+      return batchRes;
+    }
+    if (batchRes.data.availableQuantity === batchRes.data.quantity) {
+      // Keep batches private until they are sold.
+      return {
+        ok: false,
+        status: StatusCodes.NOT_FOUND,
+        data: null,
+      };
+    }
+
+    return batchRes;
   }
 
   static async GetAllWasteBottlesFromProductBatch(

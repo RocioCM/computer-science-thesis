@@ -14,7 +14,7 @@ const ConsumerServices = {
   getUserWasteBottles: (page: number, limit: number) =>
     request<WasteBottle[]>(`/consumer/waste?page=${page}&limit=${limit}`),
   getWasteBottleTracking: (wasteId: number) =>
-    request<BottleRecyclingTracking[]>(`/consumer/waste/${wasteId}`),
+    request<BottleRecyclingTracking>(`/consumer/waste/${wasteId}`),
   createWasteBottle: (payload: Partial<WasteBottle>) =>
     request('/consumer/waste', {
       method: 'POST',

@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import Button from '@/common/components/Button';
 import { SELL_FORM_INPUTS, SELL_FORM_STRUCT } from '../../constants';
 import useForm from '@/common/hooks/useForm';
+import { HTTP_STATUS } from '@/common/constants';
 
 interface Props extends ModalProps {
   handleCancel: () => any;
@@ -36,7 +37,7 @@ const BatchSaleModal: React.FC<Props> = ({
       quantity: form.quantity,
       buyerUid: form.buyerUid,
     };
-    const { ok } = await PrimaryProducerServices.sellBatch(payload);
+    const { ok, status } = await PrimaryProducerServices.sellBatch(payload);
     if (ok) {
       toast.success(
         'Venta completada exitosamente. Los envases seleccionados ya están en propiedad del comprador'
@@ -44,9 +45,15 @@ const BatchSaleModal: React.FC<Props> = ({
       handleCancel();
       handleSuccess();
     } else {
-      toast.error(
-        'No se pudo completar la venta. Por favor, inténtelo de nuevo más tarde'
-      );
+      if (status === HTTP_STATUS.badRequest) {
+        toast.error(
+          'No puedes vender más productos de los que tienes disponibles en tu lote'
+        );
+      } else {
+        toast.error(
+          'No se pudo completar la venta. Por favor, inténtelo de nuevo más tarde'
+        );
+      }
     }
   };
 

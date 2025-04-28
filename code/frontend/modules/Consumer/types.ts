@@ -3,9 +3,11 @@
 import { ActionMenuProps } from '@/common/components/ActionMenu';
 
 export interface ConsumerViewProps {
+  editingId: number | null;
   SearchModal: React.FC<any>;
   RecycleModal: React.FC<any>;
   DeleteModal: React.FC<any>;
+  DetailModal: React.FC<any>;
   trackingCode: string;
   handleSearchButton: () => void;
   handleRecycle: (trackingCode: string) => void;

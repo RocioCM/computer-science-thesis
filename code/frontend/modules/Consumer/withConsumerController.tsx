@@ -1,11 +1,12 @@
 import { ConsumerViewType, ConsumerViewProps } from './types';
-import BottleDetailModal from './components/BottleDetailModal';
+import BottleSearchModal from './components/BottleSearchModal';
 import useModal from '@/common/hooks/useModal';
 import BottleRecycleModal from './components/BottleRecycleModal';
 import { useRef, useState } from 'react';
 import ConsumerServices from './services';
 import { toast } from 'react-toastify';
 import ConfirmationModal from '@/common/components/ModalChildrens/ConfirmationModal';
+import BottleDetailModal from './components/BottleDetailModal';
 
 const withConsumerController = (View: ConsumerViewType) =>
   function Controller(): JSX.Element {
@@ -17,7 +18,11 @@ const withConsumerController = (View: ConsumerViewType) =>
       Modal: SearchModal,
       showModal: showSearchModal,
       hideModal: hideSearchModal,
-    } = useModal(false, BottleDetailModal);
+    } = useModal(false, BottleSearchModal);
+    const { Modal: DetailModal, showModal: showDetailModal } = useModal(
+      false,
+      BottleDetailModal
+    );
     const { Modal: RecycleModal, showModal: showRecycleModal } = useModal(
       false,
       BottleRecycleModal
@@ -67,6 +72,11 @@ const withConsumerController = (View: ConsumerViewType) =>
       setShouldRefresh(false);
     };
 
+    const handleShowDetail = (id: number) => {
+      showDetailModal();
+      editingId.current = id;
+    };
+
     const handleShowDelete = (id: number) => {
       editingId.current = id;
       showDeleteModal();
@@ -76,7 +86,7 @@ const withConsumerController = (View: ConsumerViewType) =>
       {
         label: 'Ver detalle',
         icon: 'fa-solid fa-eye',
-        callback: () => {}, ///
+        callback: handleShowDetail,
       },
       {
         label: 'Eliminar',
@@ -86,9 +96,11 @@ const withConsumerController = (View: ConsumerViewType) =>
     ];
 
     const viewProps: ConsumerViewProps = {
+      editingId: editingId.current,
       SearchModal,
       RecycleModal,
       DeleteModal,
+      DetailModal,
       handleSearchButton: showSearchModal,
       handleRecycle,
       handleDelete,

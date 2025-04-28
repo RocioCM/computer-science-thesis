@@ -226,10 +226,10 @@ export default class SecondaryProducerHandler {
       buyerUserRes.data.blockchainId,
     );
 
-    if (!sellRes.ok) {
+    if (!sellRes.ok || !sellRes.data) {
       return {
         ok: false,
-        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        status: sellRes.ok ? StatusCodes.INTERNAL_SERVER_ERROR : sellRes.status,
         data: null,
       };
     }

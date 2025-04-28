@@ -38,6 +38,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       case 'POST':
       case 'PUT':
       case 'DELETE': {
+        res.setTimeout(60000, () => {
+          log.error('Request timed out on endpoint: ', url);
+          res.status(504).send({ data: 'Request Timeout' });
+        });
+
         const resFromBack = await fetch(url, {
           headers: fetchHeaders,
           method,

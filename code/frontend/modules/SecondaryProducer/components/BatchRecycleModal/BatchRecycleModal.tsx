@@ -5,6 +5,7 @@ import SecondaryProducerServices from '../../services';
 import { RecycleBaseBottlesPayload } from '../../types';
 import useForm from '@/common/hooks/useForm';
 import { RECYCLE_FORM_INPUTS, RECYCLE_FORM_STRUCT } from '../../constants';
+import { HTTP_STATUS } from '@/common/constants';
 
 interface Props extends ModalProps {
   handleCancel: () => any;
@@ -25,15 +26,23 @@ const BatchRecycleModal: React.FC<Props> = ({
       productBatchId: editingId as number,
       quantity: form.quantity,
     };
-    const { ok } = await SecondaryProducerServices.recycleBatch(payload);
+    const { ok, status } = await SecondaryProducerServices.recycleBatch(
+      payload
+    );
     if (ok) {
       toast.success('Envases enviados para reciclaje correctamente');
       handleCancel();
       handleSuccess();
     } else {
-      toast.error(
-        'No se pudo completar el retiro de circulación. Por favor, inténtelo de nuevo más tarde'
-      );
+      if (status === HTTP_STATUS.badRequest) {
+        toast.error(
+          'No puedes reciclar más productos de los que tienes disponibles en tu lote'
+        );
+      } else {
+        toast.error(
+          'No se pudo completar el retiro de circulación. Por favor, inténtelo de nuevo más tarde'
+        );
+      }
     }
   };
 

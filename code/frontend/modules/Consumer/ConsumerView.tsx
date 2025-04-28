@@ -6,9 +6,11 @@ import Table from '@/common/components/Table';
 import ActionMenu from '@/common/components/ActionMenu';
 
 const ConsumerView: ConsumerViewType = ({
+  editingId,
   SearchModal,
   RecycleModal,
   DeleteModal,
+  DetailModal,
   handleSearchButton,
   handleRecycle,
   trackingCode,
@@ -68,6 +70,7 @@ const ConsumerView: ConsumerViewType = ({
 
       <SearchModal handleRecycle={handleRecycle} />
       <RecycleModal trackingCode={trackingCode} handleSuccess={handleRefresh} />
+      <DetailModal wasteBottleId={editingId} />
       <DeleteModal
         title="¿Confirmas que deseas eliminar esta botella?"
         subtitle="Simplemente dejarás de verla en tu lista de botellas recicladas"

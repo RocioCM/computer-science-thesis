@@ -13,3 +13,7 @@ export enum ROLES {
   RECYCLER = 5,
   BUYER = 6,
 }
+
+export const ERRORS = {
+  INSUFFICIENT_QUANTITY: 'insufficient-available-quantity',
+};
