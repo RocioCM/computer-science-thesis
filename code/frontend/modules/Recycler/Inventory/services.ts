@@ -8,8 +8,6 @@ import {
 } from './types';
 
 const RecyclerServices = {
-  searchBottle: (trackingCode: string) =>
-    request<BottleOrigin>(`/recycler/bottle/${trackingCode}`),
   getAvailableWasteBottles: (page: number, limit: number) =>
     request<WasteBottle[]>(
       `/recycler/bottles/available?page=${page}&limit=${limit}`

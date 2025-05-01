@@ -14,7 +14,10 @@ import AuthHandler from '../auth/authHandler';
 import { Ownership } from './domain/ownership';
 import { OWNERSHIP_TYPES } from 'src/pkg/constants/ownership';
 import OwnershipRepository from './repositories/ownershipRepository';
-import { TrackingOriginResponse } from '../consumer/domain/wasteBottle';
+import {
+  TrackingOriginResponse,
+  TrackingRecyclingResponse,
+} from '../consumer/domain/wasteBottle';
 import { ROLES } from 'src/pkg/constants';
 import { ZeroAddress } from 'ethers';
 
@@ -23,6 +26,12 @@ export default class RecyclerHandler {
     trackingCode: string,
   ): IResult<TrackingOriginResponse> {
     return ConsumerHandler.GetProductOriginByTrackingCode(trackingCode);
+  }
+
+  static async GetWasteBottleTracking(
+    wasteBottleId: number,
+  ): IResult<TrackingRecyclingResponse> {
+    return ConsumerHandler.GetWasteBottleTracking(wasteBottleId);
   }
 
   static async GetAllUserWasteBottles(

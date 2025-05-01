@@ -17,7 +17,9 @@ describe('Recycler Waste Bottles - BottleDetailModal', () => {
   });
 
   it('Matches snapshot', () => {
-    const { container } = render(<BottleDetailModal handleCancel={() => {}} />);
+    const { container } = render(
+      <BottleDetailModal wasteBottleId={1} handleCancel={() => {}} />
+    );
     expect(container).toMatchSnapshot();
   });
 });

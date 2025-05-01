@@ -85,7 +85,7 @@ const WasteBottlesView: WasteBottlesViewType = ({
       />
 
       <SearchModal />
-      <DetailModal editingId={editingId} />
+      <DetailModal wasteBottleId={editingId} />
       <AssignModal editingId={editingId} handleSuccess={handleRefresh} />
     </main>
   );

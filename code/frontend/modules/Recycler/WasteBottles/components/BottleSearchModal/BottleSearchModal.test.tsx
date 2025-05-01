@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
-import BottleDetailModal from './BottleDetailModal';
+import BottleSearchModal from './BottleSearchModal';
 
-describe('Consumer - BottleDetailModal', () => {
+describe('Recycler Waste Bottles - BottleSearchModal', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     const modalRoot = document.createElement('div');
@@ -17,9 +17,7 @@ describe('Consumer - BottleDetailModal', () => {
   });
 
   it('Matches snapshot', () => {
-    const { container } = render(
-      <BottleDetailModal wasteBottleId={1} handleCancel={() => {}} />
-    );
+    const { container } = render(<BottleSearchModal handleCancel={() => {}} />);
     expect(container).toMatchSnapshot();
   });
 });
