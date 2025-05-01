@@ -36,7 +36,7 @@ function Table({
 }: Props) {
   const [data, setData] = useState<DataType[]>([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
+  const pageRef = useRef(1);
   const reachedEnd = useRef(false); // To prevent multiple fetches when the user reaches the end of the table.
   const firstRender = useFirstRender();
 
@@ -45,6 +45,7 @@ function Table({
 
     setLoading(true);
 
+    const page = pageRef.current; // Get the current page from the ref
     const newData = await handleFetch(page, limit);
     page === 1 // First page
       ? setData(newData)
@@ -55,18 +56,25 @@ function Table({
     if (newData?.length < limit) reachedEnd.current = true;
 
     // Update the page to load the next page in future requests
-    setPage((prevPage) => prevPage + 1);
+    pageRef.current = page + 1; // Increment the page for the next fetch
     setLoading(false);
   };
 
-  const bottomRef = useInfiniteScroll(fetchData, [page, firstRender]);
+  const bottomRef = useInfiniteScroll(fetchData, [
+    pageRef.current,
+    firstRender,
+  ]);
 
   // Reset the table to its initial state and fetch the first page.
   const handleFullRefresh = async () => {
     reachedEnd.current = false;
     setData([]);
-    setPage(1);
-    await fetchData();
+    if (pageRef.current === 1) {
+      await fetchData(); // Manually re-fetch the first page if we are already on it.
+    } else {
+      pageRef.current = 1; // Reset the page to 1
+      // The next fetch will be triggered by the observer due to the re-render of setData and page value change-
+    }
     handleRefreshComplete();
   };
 
