@@ -1,4 +1,4 @@
-import { ConsumerViewType, ConsumerViewProps } from './types';
+import { ConsumerViewType, ConsumerViewProps, WasteBottle } from './types';
 import BottleSearchModal from './components/BottleSearchModal';
 import useModal from '@/common/hooks/useModal';
 import BottleRecycleModal from './components/BottleRecycleModal';
@@ -7,6 +7,7 @@ import ConsumerServices from './services';
 import { toast } from 'react-toastify';
 import ConfirmationModal from '@/common/components/ModalChildrens/ConfirmationModal';
 import BottleDetailModal from './components/BottleDetailModal';
+import { HTTP_STATUS } from '@/common/constants';
 
 const withConsumerController = (View: ConsumerViewType) =>
   function Controller(): JSX.Element {
@@ -51,7 +52,7 @@ const withConsumerController = (View: ConsumerViewType) =>
     };
 
     const handleDelete = async () => {
-      const { ok } = await ConsumerServices.deleteWasteBottle(
+      const { ok, status } = await ConsumerServices.deleteWasteBottle(
         editingId.current as number
       );
 
@@ -60,7 +61,11 @@ const withConsumerController = (View: ConsumerViewType) =>
         handleRefresh();
         hideDeleteModal();
       } else {
-        toast.error('Ocurrió un error al eliminar el envase de la lista');
+        if (status === HTTP_STATUS.conflict) {
+          toast.error('No se puede eliminar el envase porque ya fue reciclado');
+        } else {
+          toast.error('Ocurrió un error al eliminar el envase de la lista');
+        }
       }
     };
 
@@ -92,6 +97,7 @@ const withConsumerController = (View: ConsumerViewType) =>
         label: 'Eliminar',
         icon: 'fa-solid fa-trash-can',
         callback: handleShowDelete,
+        hide: (rowData: WasteBottle) => !!rowData.recycledBatchId,
       },
     ];
 
