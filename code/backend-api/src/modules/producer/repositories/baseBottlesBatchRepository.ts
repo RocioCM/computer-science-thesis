@@ -157,19 +157,28 @@ export default class BaseBottlesBatchRepository {
   static async RecycleBaseBottlesBatch(
     batchId: number,
     quantity: number,
-  ): IResult<null> {
+  ): IResult<number> {
     const res = await this.callContractMethod(
       'recycleBaseBottles',
       batchId,
       quantity,
     );
-    if (!res.ok && res.data?.toLowerCase().includes('insufficient quantity')) {
-      return {
-        ok: false,
-        status: StatusCodes.BAD_REQUEST,
-        data: ERRORS.INSUFFICIENT_QUANTITY,
-      };
+    if (!res.ok) {
+      if (res.data?.toLowerCase().includes('insufficient quantity')) {
+        return {
+          ok: false,
+          status: StatusCodes.BAD_REQUEST,
+          data: ERRORS.INSUFFICIENT_QUANTITY,
+        };
+      }
+      return res;
     }
-    return { ...res, data: null };
+
+    // Get created batch id from events emmited or default to 0.
+    const recyclingBatchId =
+      res.data.find((event) => event.name === 'BaseBottlesRecycled')
+        ?.args?.[1] ?? 0;
+
+    return { ok: true, status: StatusCodes.OK, data: recyclingBatchId };
   }
 }

@@ -26,7 +26,10 @@ interface BaseBottlesBatchContract {
 }
 
 interface RecycledMaterialContract {
-  function recycleBaseBottles(uint256 baseBatchId, uint256 quantity) external;
+  function recycleBaseBottles(
+    uint256 baseBatchId,
+    uint256 quantity
+  ) external returns (uint256);
 }
 
 contract ProductBottlesBatchContract {
@@ -47,7 +50,11 @@ contract ProductBottlesBatchContract {
     string indexed trackingCode
   );
   event ProductBatchDeleted(uint256 indexed batchId);
-  event ProductBottlesRecycled(uint256 indexed batchId, uint256 quantity);
+  event ProductBottlesRecycled(
+    uint256 indexed batchId,
+    uint256 indexed recyclingBatchId,
+    uint256 quantity
+  );
   event ProductBottlesSold(
     uint256 indexed productBatchId,
     uint256 indexed soldBatchId,
@@ -193,13 +200,13 @@ contract ProductBottlesBatchContract {
       'Product batch already deleted'
     );
 
-    recycledMaterialContract.recycleBaseBottles(
+    uint256 newRecyclingBatchId = recycledMaterialContract.recycleBaseBottles(
       productBatch.originBaseBatchId,
       quantity
     );
     productBottles[batchId].quantity -= quantity;
     productBottles[batchId].availableQuantity -= quantity;
-    emit ProductBottlesRecycled(batchId, quantity);
+    emit ProductBottlesRecycled(batchId, newRecyclingBatchId, quantity);
   }
 
   function sellProductBottle(

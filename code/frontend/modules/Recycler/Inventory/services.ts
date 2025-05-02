@@ -1,6 +1,5 @@
 import request from '@/common/services/request';
 import {
-  BottleOrigin,
   Buyer,
   RecyclingBatch,
   SellRecyclingBatchPayload,

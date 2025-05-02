@@ -23,7 +23,10 @@ struct BaseBottlesBatch {
 }
 
 interface RecycledMaterialContract {
-  function recycleBaseBottles(uint256 baseBatchId, uint256 quantity) external;
+  function recycleBaseBottles(
+    uint256 baseBatchId,
+    uint256 quantity
+  ) external returns (uint256);
 }
 
 interface ProductBottlesBatchContract {
@@ -46,7 +49,11 @@ contract BaseBottlesBatchContract {
   event BaseBatchCreated(uint256 indexed batchId, address indexed owner);
   event BaseBatchUpdated(uint256 indexed batchId);
   event BaseBatchDeleted(uint256 indexed batchId);
-  event BaseBottlesRecycled(uint256 indexed batchId, uint256 quantity);
+  event BaseBottlesRecycled(
+    uint256 indexed batchId,
+    uint256 indexed recyclingBatchId,
+    uint256 quantity
+  );
   event BaseBottlesSold(
     uint256 indexed batchId,
     uint256 quantity,
@@ -153,8 +160,11 @@ contract BaseBottlesBatchContract {
     require(bytes(batch.deletedAt).length == 0, 'Batch already deleted');
 
     batch.quantity -= quantity;
-    recycledMaterialContract.recycleBaseBottles(batchId, quantity);
-    emit BaseBottlesRecycled(batchId, quantity);
+    uint256 newRecyclingBatchId = recycledMaterialContract.recycleBaseBottles(
+      batchId,
+      quantity
+    );
+    emit BaseBottlesRecycled(batchId, newRecyclingBatchId, quantity);
   }
 
   function sellBaseBottles(
