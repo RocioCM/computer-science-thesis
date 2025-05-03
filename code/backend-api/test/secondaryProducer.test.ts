@@ -12,6 +12,7 @@ import AuthHandler from '../src/modules/auth/authHandler';
 import blockchainHelper from '../src/pkg/helpers/blockchainHelper';
 import SecondaryProducerHandler from 'src/modules/secondaryProducer/secondaryProducerHandler';
 import OwnershipRepository from 'src/modules/secondaryProducer/repositories/ownershipRepository';
+import { Ownership } from 'src/modules/secondaryProducer/domain/ownership';
 
 // Mock blockchain helper
 jest.mock('../src/pkg/helpers/blockchainHelper', () => ({
@@ -933,6 +934,32 @@ describe('Secondary Producer API', () => {
       expect(res.body.data).toBeNull();
     });
 
+    it('should return 404 when base batch is not found', async () => {
+      const spy = jest
+        .spyOn(SecondaryProducerHandler, 'GetBaseBatchById')
+        .mockResolvedValueOnce({
+          ok: false,
+          status: StatusCodes.NOT_FOUND,
+          data: null,
+        });
+
+      const recycleData = {
+        productBatchId: 1, // This will trigger not found in the mock
+        quantity: 50,
+      };
+
+      const res = await request(app)
+        .put(`${BASE_PATH}/secondary-producer/batch/recycle`)
+        .set('Authorization', `Bearer userWithId-userRole-SECONDARY_PRODUCER`)
+        .send(recycleData)
+        .expect(404);
+
+      expect(res.body.status).toBe(404);
+      expect(res.body.data).toBeNull();
+
+      spy.mockRestore();
+    });
+
     it('should return 401 when user is not the owner of the batch', async () => {
       // Mock user with different blockchain id
       jest.spyOn(AuthHandler, 'GetUserByFirebaseUid').mockResolvedValueOnce({
@@ -959,6 +986,124 @@ describe('Secondary Producer API', () => {
 
       expect(res.body.status).toBe(401);
       expect(res.body.data).toBeNull();
+    });
+
+    it('should return 500 when blockchain call fails', async () => {
+      // Mock blockchain helper function to simulate failure
+      jest.spyOn(blockchainHelper, 'callContractMethod').mockResolvedValueOnce({
+        ok: false,
+        status: StatusCodes.NOT_FOUND,
+        data: null,
+      });
+
+      const recycleData = {
+        productBatchId: 1,
+        quantity: 50,
+      };
+
+      const res = await request(app)
+        .put(`${BASE_PATH}/secondary-producer/batch/recycle`)
+        .set('Authorization', `Bearer userWithId-userRole-SECONDARY_PRODUCER`)
+        .send(recycleData)
+        .expect(404);
+
+      expect(res.body.status).toBe(404);
+      expect(res.body.data).toBeNull();
+    });
+
+    it('should return 500 when blockchain returns empty response', async () => {
+      // Mock blockchain helper function to simulate empty response
+      jest.spyOn(blockchainHelper, 'callContractMethod').mockResolvedValueOnce({
+        ok: true,
+        status: StatusCodes.OK,
+        data: [], // Empty response
+      });
+
+      const recycleData = {
+        productBatchId: 1,
+        quantity: 50,
+      };
+
+      const res = await request(app)
+        .put(`${BASE_PATH}/secondary-producer/batch/recycle`)
+        .set('Authorization', `Bearer userWithId-userRole-SECONDARY_PRODUCER`)
+        .send(recycleData)
+        .expect(500);
+
+      expect(res.body.status).toBe(500);
+      expect(res.body.data).toBeNull();
+    });
+
+    it('should return 500 when ownership creation fails', async () => {
+      // Mock blockchain helper function for selling bottles
+      jest.spyOn(blockchainHelper, 'callContractMethod').mockResolvedValueOnce({
+        ok: true,
+        status: StatusCodes.OK,
+        data: [{ name: 'ProductBottlesRecycled', args: [0, 1] }],
+      });
+
+      // Mock ownership repository to simulate failure
+      const spy = jest
+        .spyOn(OwnershipRepository, 'CreateOwnership')
+        .mockResolvedValueOnce({
+          ok: false,
+          status: StatusCodes.INTERNAL_SERVER_ERROR,
+          data: null,
+        });
+
+      const recycleData = {
+        productBatchId: 1,
+        quantity: 50,
+      };
+
+      const res = await request(app)
+        .put(`${BASE_PATH}/secondary-producer/batch/recycle`)
+        .set('Authorization', `Bearer userWithId-userRole-SECONDARY_PRODUCER`)
+        .send(recycleData)
+        .expect(500);
+
+      expect(res.body.status).toBe(500);
+      expect(res.body.data).toBeNull();
+
+      spy.mockRestore();
+    });
+
+    it('should return 500 when ownership creation fails twice', async () => {
+      // Mock blockchain helper function for selling bottles
+      jest.spyOn(blockchainHelper, 'callContractMethod').mockResolvedValueOnce({
+        ok: true,
+        status: StatusCodes.OK,
+        data: [{ name: 'ProductBottlesRecycled', args: [0, 1] }],
+      });
+
+      // Mock ownership repository to simulate failure
+      const spy = jest
+        .spyOn(OwnershipRepository, 'CreateOwnership')
+        .mockResolvedValueOnce({
+          ok: true,
+          status: StatusCodes.OK,
+          data: new Ownership(),
+        })
+        .mockResolvedValueOnce({
+          ok: false,
+          status: StatusCodes.INTERNAL_SERVER_ERROR,
+          data: null,
+        });
+
+      const recycleData = {
+        productBatchId: 1,
+        quantity: 50,
+      };
+
+      const res = await request(app)
+        .put(`${BASE_PATH}/secondary-producer/batch/recycle`)
+        .set('Authorization', `Bearer userWithId-userRole-SECONDARY_PRODUCER`)
+        .send(recycleData)
+        .expect(500);
+
+      expect(res.body.status).toBe(500);
+      expect(res.body.data).toBeNull();
+      spy.mockRestore();
     });
   });
 
@@ -1151,6 +1296,30 @@ describe('Secondary Producer API', () => {
             deletedAt: '',
           },
         });
+
+      const res = await request(app)
+        .put(`${BASE_PATH}/secondary-producer/batch/sell`)
+        .set('Authorization', `Bearer userWithId-userRole-SECONDARY_PRODUCER`)
+        .send(sellData)
+        .expect(500);
+
+      expect(res.body.status).toBe(500);
+      expect(res.body.data).toBeNull();
+    });
+
+    it('should return 500 when blockchain returns empty data', async () => {
+      const sellData = {
+        batchId: 1,
+        quantity: 50,
+        buyerUid: 'buyer1',
+      };
+
+      // Mock the blockchain call to return empty data
+      jest.spyOn(blockchainHelper, 'callContractMethod').mockResolvedValueOnce({
+        ok: true,
+        status: StatusCodes.OK,
+        data: [], // Empty data
+      });
 
       const res = await request(app)
         .put(`${BASE_PATH}/secondary-producer/batch/sell`)
