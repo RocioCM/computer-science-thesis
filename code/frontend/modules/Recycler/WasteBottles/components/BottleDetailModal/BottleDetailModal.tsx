@@ -3,6 +3,7 @@ import RecyclerServices from '../../services';
 import { toast } from 'react-toastify';
 import { Material } from '../../types';
 import { useEffect, useState } from 'react';
+import LoadingSpinner from '@/common/components/LoadingSpinner';
 
 export interface Props extends ModalProps {
   handleCancel: () => any;
@@ -15,8 +16,10 @@ const BottleDetailModal = ({
   ...props
 }: Props) => {
   const [wasteBottle, setWasteBottle] = useState<any | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const fetchWasteBottle = async (wasteBottleId: number) => {
+    setLoading(true);
     const { ok, data } = await RecyclerServices.getWasteBottleTracking(
       wasteBottleId
     );
@@ -43,6 +46,7 @@ const BottleDetailModal = ({
         'Código no encontrado. Por favor, verifique e intente nuevamente'
       );
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -57,7 +61,9 @@ const BottleDetailModal = ({
 
   return (
     <Modal handleCancel={handleCancel} big skippable {...props}>
-      <h2 className="w-full bg-n0">Buscar botellas</h2>
+      <h2 className="w-full bg-n0">Botella reciclada #{wasteBottleId}</h2>
+
+      {loading && <LoadingSpinner className="mt-8" />}
 
       {!!wasteBottle && (
         <>

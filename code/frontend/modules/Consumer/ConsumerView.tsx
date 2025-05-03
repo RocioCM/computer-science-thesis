@@ -22,7 +22,7 @@ const ConsumerView: ConsumerViewType = ({
   menuActions,
 }) => {
   return (
-    <main className="w-full h-screen p-2xl">
+    <main className="w-full h-screen flex flex-col p-2xl">
       <header className="pb-2xl flex items-center justify-between">
         <h1>Botellas recicladas</h1>
         <Button onClick={handleSearchButton}>

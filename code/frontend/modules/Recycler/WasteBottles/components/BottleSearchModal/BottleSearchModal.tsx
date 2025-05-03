@@ -31,7 +31,7 @@ const BottleSearchModal = ({ handleCancel, ...props }: Props) => {
 
   return (
     <Modal handleCancel={handleCancel} big skippable {...props}>
-      <h2 className="w-full bg-n0">Buscador de botellas</h2>
+      <h2 className="w-full bg-n0">Buscar botellas</h2>
       <div className="w-full flex gap-m mt-4">
         {formBuilder(SEARCH_FORM_INPUTS)}
         <Button
