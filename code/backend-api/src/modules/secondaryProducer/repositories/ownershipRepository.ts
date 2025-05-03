@@ -22,7 +22,10 @@ export default class OwnershipRepository {
   }
 
   static async DeleteOwnershipById(id: number): IResult<null> {
-    await databaseHelper.db().manager.delete(Ownership, id);
+    const result = await databaseHelper.db().manager.delete(Ownership, id);
+    if (result.affected === 0) {
+      return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
+    }
     return { ok: true, status: StatusCodes.OK, data: null };
   }
 

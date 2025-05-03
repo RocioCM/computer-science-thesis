@@ -141,11 +141,7 @@ export default class SecondaryProducerHandler {
     const deleteRes =
       await ProductBottlesBatchRepository.RejectBaseBottlesBatch(batchId);
     if (!deleteRes.ok) {
-      return {
-        ok: false,
-        status: StatusCodes.INTERNAL_SERVER_ERROR,
-        data: null,
-      };
+      return deleteRes;
     }
 
     const ownershipRes =
