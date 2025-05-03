@@ -883,6 +883,7 @@ describe('Consumer API', () => {
         expect.any(Array),
         'deleteWasteBottle',
         bottleId,
+        expect.any(String),
       );
     });
 

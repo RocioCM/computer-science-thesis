@@ -263,13 +263,13 @@ describe('Recycler API', () => {
     await teardownTestEnvironment();
   });
 
-  // GET /recycler/bottle/:trackingCode
-  describe('GET /recycler/bottle/:trackingCode', () => {
+  // GET /recycler/bottle/origin/:trackingCode
+  describe('GET /recycler/bottle/origin/:trackingCode', () => {
     it('should get bottle info by tracking code successfully', async () => {
       const trackingCode = 'track-123';
 
       const res = await request(app)
-        .get(`${BASE_PATH}/recycler/bottle/${trackingCode}`)
+        .get(`${BASE_PATH}/recycler/bottle/origin/${trackingCode}`)
         .set('Authorization', `Bearer userWithId-userRole-RECYCLER`)
         .expect(200);
 
@@ -288,7 +288,7 @@ describe('Recycler API', () => {
       const trackingCode = 'invalid-code';
 
       const res = await request(app)
-        .get(`${BASE_PATH}/recycler/bottle/${trackingCode}`)
+        .get(`${BASE_PATH}/recycler/bottle/origin/${trackingCode}`)
         .set('Authorization', `Bearer userWithId-userRole-RECYCLER`)
         .expect(404);
 

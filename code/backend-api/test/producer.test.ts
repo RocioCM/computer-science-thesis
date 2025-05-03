@@ -819,6 +819,13 @@ describe('Producer API', () => {
 
   describe('PUT /producer/batch/recycle', () => {
     it('should recycle base bottles batch', async () => {
+      // Mock blockchain helper function for recycling bottles
+      jest.spyOn(blockchainHelper, 'callContractMethod').mockResolvedValueOnce({
+        ok: true,
+        status: StatusCodes.OK,
+        data: [{ name: 'BaseBottlesRecycled', args: [0, 1] }],
+      });
+
       const recycleData = {
         batchId: 1,
         quantity: 50,
@@ -831,7 +838,7 @@ describe('Producer API', () => {
         .expect(200);
 
       expect(res.body.status).toBe(200);
-      expect(res.body.data).toBeNull();
+      expect(res.body.data.recyclingBatchId).toBe(1);
     });
 
     it('should not recycle base bottles batch if user is not authenticated', async () => {

@@ -542,6 +542,9 @@ describe('Secondary Producer API', () => {
         id: 1,
         trackingCode: 'new-tracking-code',
       };
+      const uppercaseTrackingCode = updateData.trackingCode
+        .toUpperCase()
+        .trim();
 
       const res = await request(app)
         .put(`${BASE_PATH}/secondary-producer/batch/code`)
@@ -556,7 +559,7 @@ describe('Secondary Producer API', () => {
         expect.any(Array),
         'updateTrackingCode',
         updateData.id,
-        updateData.trackingCode,
+        uppercaseTrackingCode,
       );
     });
 
@@ -832,6 +835,13 @@ describe('Secondary Producer API', () => {
   // PUT /secondary-producer/batch/recycle
   describe('PUT /secondary-producer/batch/recycle', () => {
     it('should recycle base bottles successfully', async () => {
+      // Mock blockchain helper function for selling bottles
+      jest.spyOn(blockchainHelper, 'callContractMethod').mockResolvedValueOnce({
+        ok: true,
+        status: StatusCodes.OK,
+        data: [{ name: 'ProductBottlesRecycled', args: [0, 1] }],
+      });
+
       const recycleData = {
         productBatchId: 1,
         quantity: 50,
@@ -844,7 +854,7 @@ describe('Secondary Producer API', () => {
         .expect(200);
 
       expect(res.body.status).toBe(200);
-      expect(res.body.data).toBeNull();
+      expect(res.body.data.recyclingBatchId).toBe(1);
       expect(blockchainHelper.callContractMethod).toHaveBeenCalledWith(
         expect.any(String),
         expect.any(Array),
