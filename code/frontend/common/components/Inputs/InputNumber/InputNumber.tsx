@@ -14,12 +14,20 @@ const InputNumber: React.FC<Props> = ({
 }) => {
   const lastKey = useRef<string>('');
 
+  const handleNumberChange = (name: string, value: string) => {
+    if (type === 'number') {
+      handleChange(name, Number(value.slice(0, 16)) || '');
+    } else {
+      handleChange(name, Number(value) || '');
+    }
+  };
+
   return (
     <Input
       {...props}
       type="number"
       value={`${value ?? ''}`}
-      handleChange={(name, value) => handleChange(name, Number(value) || '')}
+      handleChange={handleNumberChange}
       onWheelCapture={(e) => e.currentTarget.blur()}
       onKeyDown={(e) => {
         // Only accept digits and backspace
