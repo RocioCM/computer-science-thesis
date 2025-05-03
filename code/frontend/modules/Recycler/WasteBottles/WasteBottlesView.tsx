@@ -43,6 +43,7 @@ const WasteBottlesView: WasteBottlesViewType = ({
       </div>
 
       <Table
+        key={currentTab}
         title="lotes"
         handleFetch={handleFetchData}
         columns={[

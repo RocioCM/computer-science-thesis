@@ -56,6 +56,7 @@ const withWasteBottlesController = (View: WasteBottlesViewType) =>
     };
 
     const handleCurrentTab = (tab: string) => {
+      if (currentTab === tab) return;
       setCurrentTab(tab);
       handleRefresh();
     };
