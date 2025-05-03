@@ -3,7 +3,7 @@ import { RegisterViewType } from './types';
 import { REGISTER_INPUTS } from './constants';
 import Button from '@/common/components/Button';
 import Img from '@/common/components/Img';
-import bgImage from '@/public/assets/auth-bg.png';
+import bgImage from '@/public/assets/auth-bg.jpeg';
 import Link from 'next/link';
 
 const RegisterView: RegisterViewType = ({
