@@ -3,7 +3,7 @@
 exports[`Recycler - Inventory Page Matches snapshot 1`] = `
 <div>
   <main
-    class="w-full h-screen p-2xl"
+    class="w-full h-screen flex flex-col p-2xl"
   >
     <header
       class="pb-2xl flex items-center justify-between gap-s"

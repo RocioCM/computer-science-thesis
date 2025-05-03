@@ -1,3 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Primary Producer Recycled Batches - BatchDetailModal Matches snapshot 1`] = `<div />`;
+exports[`Primary Producer Recycled Batches - BatchDetailModal Matches snapshot 1`] = `
+<div>
+  <div
+    id="modal-root"
+  >
+    <div
+      class="bg-n10 bg-opacity-70 py-2xl px-xl w-full h-screen fixed top-0 left-0 z-modal flex justify-center items-center animate__animated animate__fadeIn"
+      data-testid="modal"
+    >
+      <div
+        class="bg-n0 min-w-[300px] min-h-[200px] rounded-rm overflow-y-auto flex flex-col items-center relative cursor-default animate__animated animate__zoomIn w-[700px] h-[700px] max-h-full max-w-full px-xl py-xl"
+      >
+        <div
+          class="flex justify-end w-full h-0 sticky top-0 z-10"
+        >
+          <img
+            alt="Cerrar"
+            class="h-6 w-auto cursor-pointer object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="30"
+            loading="lazy"
+            src="/_next/image?url=%2Fimg.jpg&w=64&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=32&q=75 1x, /_next/image?url=%2Fimg.jpg&w=64&q=75 2x"
+            style="color: transparent;"
+            width="30"
+          />
+        </div>
+        <h2
+          class="w-full bg-n0"
+        >
+          Lote de material #
+          1
+        </h2>
+        <span
+          class="block shrink-0 animate-spin w-8 text-[2rem] mt-8"
+          data-testid="loading-spinner"
+        >
+          <i
+            class="fa-solid fa-recycle"
+            data-testid="fa-icon"
+          />
+        </span>
+      </div>
+      <style>
+        
+          body {
+            overflow: hidden;
+          }
+        
+      </style>
+    </div>
+  </div>
+</div>
+`;

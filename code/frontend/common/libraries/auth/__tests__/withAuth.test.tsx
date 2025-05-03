@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { getByText, render } from '@testing-library/react';
 import withAuth from '../withAuth';
 import { useLoginContext } from '..';
 
@@ -73,8 +73,8 @@ describe('withAuth', () => {
       userHasRole: (role: number) => role === 3,
     });
     const Wrapped = withAuth(MockedComponent, 1);
-    const { container, queryByText } = render(<Wrapped />);
-    expect(container.firstChild).toBeNull();
+    const { queryByText, getByText } = render(<Wrapped />);
+    expect(getByText(/No tienes permiso/i)).toBeInTheDocument();
     expect(queryByText('Secret Page')).toBeNull();
   });
 

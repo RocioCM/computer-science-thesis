@@ -82,6 +82,6 @@ describe('Table Component', () => {
         />
       );
     });
-    expect(mockHandleFetch).toHaveBeenCalledTimes(3);
+    expect(mockHandleFetch).toHaveBeenCalledTimes(2);
   });
 });

@@ -3,23 +3,16 @@ import Modal from './Modal';
 
 describe('Modal Component', () => {
   beforeEach(() => {
-    const modalRoot = document.createElement('div');
-    modalRoot.setAttribute('id', 'modal-root');
-    document.body.appendChild(modalRoot);
-  });
-
-  afterEach(() => {
-    const modalRoot = document.getElementById('modal-root');
-    if (modalRoot) {
-      document.body.removeChild(modalRoot);
-    }
+    jest.clearAllMocks();
   });
 
   it('renders content correctly', () => {
     render(
-      <Modal handleCancel={() => {}}>
-        <div>Modal Content</div>
-      </Modal>
+      <div id="modal-root">
+        <Modal handleCancel={() => {}}>
+          <div>Modal Content</div>
+        </Modal>
+      </div>
     );
     expect(screen.getByText('Modal Content')).toBeInTheDocument();
   });
@@ -27,9 +20,11 @@ describe('Modal Component', () => {
   it('closes when clicking outside if skippable is true', () => {
     const handleCancel = jest.fn();
     render(
-      <Modal handleCancel={handleCancel} skippable>
-        <div data-testid="modal-content">Modal Content</div>
-      </Modal>
+      <div id="modal-root">
+        <Modal handleCancel={handleCancel} skippable>
+          <div data-testid="modal-content">Modal Content</div>
+        </Modal>
+      </div>
     );
     fireEvent.click(screen.getByTestId('modal')); // Modal background
     expect(handleCancel).toHaveBeenCalled();
@@ -38,9 +33,11 @@ describe('Modal Component', () => {
   it('does not close when clicking outside if skippable is false', () => {
     const handleCancel = jest.fn();
     render(
-      <Modal handleCancel={handleCancel} skippable={false}>
-        <div data-testid="modal-content">Modal Content</div>
-      </Modal>
+      <div id="modal-root">
+        <Modal handleCancel={handleCancel} skippable={false}>
+          <div data-testid="modal-content">Modal Content</div>
+        </Modal>
+      </div>
     );
     fireEvent.click(screen.getByTestId('modal'));
     expect(handleCancel).not.toHaveBeenCalled();
@@ -48,19 +45,31 @@ describe('Modal Component', () => {
 
   it('calls handleCancel when clicking the close button', () => {
     const handleCancel = jest.fn();
-    render(<Modal handleCancel={handleCancel} />);
+    render(
+      <div id="modal-root">
+        <Modal handleCancel={handleCancel} />
+      </div>
+    );
     const closeButton = screen.getByAltText('Cerrar');
     fireEvent.click(closeButton);
     expect(handleCancel).toHaveBeenCalled();
   });
 
   it('hides close button when hideCloseButton is true', () => {
-    render(<Modal handleCancel={() => {}} hideCloseButton />);
+    render(
+      <div id="modal-root">
+        <Modal handleCancel={() => {}} hideCloseButton />
+      </div>
+    );
     expect(screen.queryByAltText('Cerrar')).toBeNull();
   });
 
   it('renders big size when big is true', () => {
-    render(<Modal handleCancel={() => {}} big />);
+    render(
+      <div id="modal-root">
+        <Modal handleCancel={() => {}} big />
+      </div>
+    );
     expect(screen.getByTestId('modal').firstChild).toHaveClass(
       'w-[700px] h-[700px]'
     );
