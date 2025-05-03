@@ -69,7 +69,7 @@ exports[`Recycler Inventory - BatchFormModal Matches snapshot 1`] = `
                     placeholder="Ingresá el peso del lote de material"
                     required=""
                     type="number"
-                    value=""
+                    value="20"
                   />
                   <div
                     class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
@@ -100,7 +100,7 @@ exports[`Recycler Inventory - BatchFormModal Matches snapshot 1`] = `
                     placeholder="Ingresá el tamaño del lote"
                     required=""
                     type="text"
-                    value=""
+                    value="10x10"
                   />
                   <div
                     class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
@@ -131,7 +131,7 @@ exports[`Recycler Inventory - BatchFormModal Matches snapshot 1`] = `
                     placeholder="Ingresá el tipo de material del lote"
                     required=""
                     type="text"
-                    value=""
+                    value="Glass"
                   />
                   <div
                     class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
@@ -142,7 +142,7 @@ exports[`Recycler Inventory - BatchFormModal Matches snapshot 1`] = `
                 class="w-full"
               >
                 <span
-                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                  class="block relative z-10 w-max transition-all text-p mb-xs !cursor-default top-0 left-0 text-n10 font-semibold"
                 >
                   Fecha de producción
                 </span>
@@ -155,6 +155,7 @@ exports[`Recycler Inventory - BatchFormModal Matches snapshot 1`] = `
                   <input
                     class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
                     data-testid="input"
+                    disabled=""
                     form="[object Object]"
                     inputlabel="Fecha de producción"
                     max="2025-05-03"
@@ -163,7 +164,7 @@ exports[`Recycler Inventory - BatchFormModal Matches snapshot 1`] = `
                     placeholder="Seleccioná la fecha de producción"
                     required=""
                     type="date"
-                    value="2025-05-03"
+                    value="2023-01-01"
                   />
                   <div
                     class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
@@ -186,7 +187,9 @@ exports[`Recycler Inventory - BatchFormModal Matches snapshot 1`] = `
                   options=""
                   placeholder="Ingresá observaciones adicionales"
                   type="textarea"
-                />
+                >
+                  Test notes
+                </textarea>
               </label>
             </div>
             <hr
@@ -225,7 +228,7 @@ exports[`Recycler Inventory - BatchFormModal Matches snapshot 1`] = `
                       placeholder="Ingresá el nombre del material"
                       required=""
                       type="text"
-                      value=""
+                      value="Material A"
                     />
                     <div
                       class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
@@ -256,7 +259,7 @@ exports[`Recycler Inventory - BatchFormModal Matches snapshot 1`] = `
                       placeholder="Ingresá la cantidad de material"
                       required=""
                       type="number"
-                      value=""
+                      value="5"
                     />
                     <div
                       class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
@@ -287,7 +290,7 @@ exports[`Recycler Inventory - BatchFormModal Matches snapshot 1`] = `
                       placeholder="Ingresá la unidad de medida de la cantidad de material"
                       required=""
                       type="text"
-                      value=""
+                      value="kg"
                     />
                     <div
                       class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
@@ -315,16 +318,118 @@ exports[`Recycler Inventory - BatchFormModal Matches snapshot 1`] = `
               <h3>
                 Botellas
               </h3>
-              <span
-                class="block shrink-0 animate-spin w-8 text-[2rem] mx-auto my-4"
-                data-testid="loading-spinner"
-                style="width: 2rem; font-size: 2rem;"
+              <div
+                class="grid grid-cols-3 gap-2"
               >
-                <i
-                  class="fa-solid fa-recycle"
-                  data-testid="fa-icon"
-                />
-              </span>
+                <label
+                  class="flex flex-row items-start gap-m cursor-pointer col-span-3"
+                >
+                  <input
+                    class="col-span-3"
+                    hidden=""
+                    name="selectAll"
+                    type="checkbox"
+                    value=""
+                  />
+                  <span
+                    class="check flex items-center justify-center shrink-0 border transition-[box-shadow,background-color] duration-300 w-4 h-4 p-0.5 rounded-[0.25rem] bg-n0 border-n2"
+                    data-testid="checkbox"
+                  />
+                  <span
+                    class="flex flex-col gap-0"
+                  >
+                    <span
+                      class="p text-n10 -mt-1"
+                    >
+                      Seleccionar todas
+                    </span>
+                  </span>
+                </label>
+                <label
+                  class="flex flex-row items-start gap-m cursor-pointer"
+                >
+                  <input
+                    checked=""
+                    class=""
+                    hidden=""
+                    name="wasteBottleIds.1"
+                    type="checkbox"
+                    value="active"
+                  />
+                  <span
+                    class="check flex items-center justify-center shrink-0 border transition-[box-shadow,background-color] duration-300 w-4 h-4 p-0.5 rounded-[0.25rem] bg-n0 border-0 bg-p1"
+                    data-testid="checkbox"
+                  >
+                    <i
+                      class="fa-solid fa-check text-n0 text-[0.8rem]"
+                      data-testid="fa-icon"
+                    />
+                  </span>
+                  <span
+                    class="flex flex-col gap-0"
+                  >
+                    <span
+                      class="p text-n10 -mt-1"
+                    >
+                      Botella #1 (TRACK001)
+                    </span>
+                  </span>
+                </label>
+                <label
+                  class="flex flex-row items-start gap-m cursor-pointer"
+                >
+                  <input
+                    checked=""
+                    class=""
+                    hidden=""
+                    name="wasteBottleIds.2"
+                    type="checkbox"
+                    value="active"
+                  />
+                  <span
+                    class="check flex items-center justify-center shrink-0 border transition-[box-shadow,background-color] duration-300 w-4 h-4 p-0.5 rounded-[0.25rem] bg-n0 border-0 bg-p1"
+                    data-testid="checkbox"
+                  >
+                    <i
+                      class="fa-solid fa-check text-n0 text-[0.8rem]"
+                      data-testid="fa-icon"
+                    />
+                  </span>
+                  <span
+                    class="flex flex-col gap-0"
+                  >
+                    <span
+                      class="p text-n10 -mt-1"
+                    >
+                      Botella #2 (TRACK002)
+                    </span>
+                  </span>
+                </label>
+                <label
+                  class="flex flex-row items-start gap-m cursor-pointer"
+                >
+                  <input
+                    class=""
+                    hidden=""
+                    name="wasteBottleIds.3"
+                    type="checkbox"
+                    value=""
+                  />
+                  <span
+                    class="check flex items-center justify-center shrink-0 border transition-[box-shadow,background-color] duration-300 w-4 h-4 p-0.5 rounded-[0.25rem] bg-n0 border-n2"
+                    data-testid="checkbox"
+                  />
+                  <span
+                    class="flex flex-col gap-0"
+                  >
+                    <span
+                      class="p text-n10 -mt-1"
+                    >
+                      Botella #3 
+                    </span>
+                  </span>
+                </label>
+              </div>
             </div>
           </div>
           <button
