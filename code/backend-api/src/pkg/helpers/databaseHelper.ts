@@ -24,6 +24,7 @@ export function initializeDBSource() {
     logging: false,
     entities: [entitiesPath],
     poolSize: 10,
+    charset: 'utf8mb4',
   });
   return DBSource.initialize();
 }
