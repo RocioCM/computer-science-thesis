@@ -1,3 +1,97 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Recycler Waste Bottles - AssignBatchModal Matches snapshot 1`] = `<div />`;
+exports[`Recycler Waste Bottles - AssignBatchModal Matches snapshot 1`] = `
+<div>
+  <div
+    id="modal-root"
+  >
+    <div
+      class="bg-n10 bg-opacity-70 py-2xl px-xl w-full h-screen fixed top-0 left-0 z-modal flex justify-center items-center animate__animated animate__fadeIn cursor-pointer"
+      data-testid="modal"
+    >
+      <div
+        class="bg-n0 min-w-[300px] min-h-[200px] rounded-rm overflow-y-auto flex flex-col items-center relative cursor-default animate__animated animate__zoomIn w-[380px] h-max max-h-full max-w-full px-3xl py-3xl"
+      >
+        <div
+          class="flex justify-end w-full h-0 sticky top-0 z-10"
+        >
+          <img
+            alt="Cerrar"
+            class="h-6 w-auto cursor-pointer object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="30"
+            loading="lazy"
+            src="/_next/image?url=%2Fimg.jpg&w=64&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=32&q=75 1x, /_next/image?url=%2Fimg.jpg&w=64&q=75 2x"
+            style="color: transparent;"
+            width="30"
+          />
+        </div>
+        <h2
+          class="w-full bg-n0"
+        >
+          Asignar lote #
+          1
+        </h2>
+        <div
+          class="w-full flex flex-col gap-m my-xl"
+        >
+          <div
+            class="w-full"
+          >
+            <span
+              class="block relative z-10 w-max transition-all text-p mb-xs cursor-pointer top-0 left-0 text-n10 font-semibold"
+            >
+              ID del lote
+            </span>
+            <button
+              class="relative flex flex-row flex-nowrap justify-between items-center w-full border bg-transparent outline-none transition-shadow gap-xs p text-left rounded-rs border-n3 px-m py-m placeholder:text-n2 h-10 hover:border-n2 dropdonwFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2"
+              data-testid="dropdown"
+              name="batchId"
+            >
+              <span
+                class="flex-1 min-h-4"
+              >
+                Selecciona un lote
+              </span>
+              <i
+                class="inline-block w-2.5 h-2.5 rotate-0 "
+                data-testid="chevron-icon"
+              >
+                <svg
+                  class="w-full h-full block transition-transform duration-300 ease-out"
+                  fill="none"
+                  viewBox="0 0 15 9"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M14.7 1.89992L13.5 0.919922L7.50001 6.09992L1.50001 0.919921L0.300013 1.89992L7.50001 8.19992L14.7 1.89992Z"
+                    fill="var(--colors-neutrals-n10)"
+                  />
+                </svg>
+              </i>
+            </button>
+          </div>
+        </div>
+        <button
+          class="relative flex items-center justify-center gap-s rounded-rs font-semibold h-10 disabled:cursor-default disabled:bg-opacity-40  focusButton bg-p1 text-n0 py-s px-m w-full"
+          data-testid="button"
+          disabled=""
+        >
+          <span>
+            Asignar
+          </span>
+        </button>
+      </div>
+      <style>
+        
+          body {
+            overflow: hidden;
+          }
+        
+      </style>
+    </div>
+  </div>
+</div>
+`;

@@ -66,6 +66,8 @@ npm run deployProd
 
 After deployment, you have to update contract address and ABI in the API. You can find the API on [the backend-api repo](../backend-api/package.json). Elsecase, the application will continue working with an old contract.
 
+The newly deployed contract address will be printed in the terminal. The ABI is stored in the `artifacts/contracts` folder in JSON format.
+
 # Sample Tasks
 
 Try running some of the following tasks:

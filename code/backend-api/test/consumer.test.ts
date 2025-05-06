@@ -394,6 +394,73 @@ describe('Consumer API', () => {
       ).toHaveBeenCalledWith(trackingCode);
     });
 
+    it('should return 404 when tracking code is valid but not sold yet', async () => {
+      // Override GetBatchByTrackingCode for this test
+      jest
+        .spyOn(SecondaryProducerHandler, 'GetBatchByTrackingCode')
+        .mockResolvedValueOnce({
+          ok: true,
+          status: StatusCodes.OK,
+          data: {
+            id: 1,
+            quantity: 100,
+            availableQuantity: 100, // Not sold yet
+            originBaseBatchId: 1,
+            trackingCode: 'track-123',
+            owner: '0x1234567890abcdef',
+            createdAt: new Date().toISOString(),
+            deletedAt: '',
+          },
+        });
+
+      const trackingCode = 'track-123';
+
+      const res = await request(app)
+        .get(`${BASE_PATH}/consumer/origin/${trackingCode}`)
+        .set('Authorization', `Bearer userWithId-userRole-CONSUMER`)
+        .expect(404);
+
+      expect(res.body.status).toBe(404);
+      expect(res.body.data).toBeNull();
+    });
+
+    it('should return 404 when base batch is not sold yet', async () => {
+      // Override GetBaseBatchById for this test
+      jest
+        .spyOn(SecondaryProducerHandler, 'GetBaseBatchById')
+        .mockResolvedValueOnce({
+          ok: true,
+          status: StatusCodes.OK,
+          data: {
+            id: 1,
+            quantity: 100,
+            soldQuantity: 0, // Not sold yet
+            bottleType: {
+              weight: 500,
+              color: 'green',
+              thickness: 2,
+              shapeType: 'round',
+              originLocation: 'Argentina',
+              extraInfo: 'Recycled glass',
+              composition: [],
+            },
+            owner: '0x1234567890abcdef',
+            createdAt: new Date().toISOString(),
+            deletedAt: '',
+          },
+        });
+
+      const trackingCode = 'track-123';
+
+      const res = await request(app)
+        .get(`${BASE_PATH}/consumer/origin/${trackingCode}`)
+        .set('Authorization', `Bearer userWithId-userRole-CONSUMER`)
+        .expect(404);
+
+      expect(res.body.status).toBe(404);
+      expect(res.body.data).toBeNull();
+    });
+
     it('should return 500 when base batch retrieval fails', async () => {
       // Override the mock for this test
       jest
@@ -790,6 +857,40 @@ describe('Consumer API', () => {
       expect(res.body.data).toBeNull();
     });
 
+    it('should return 404 when tracking code is valid but not sold yet', async () => {
+      // Override GetBatchByTrackingCode for this test
+      jest
+        .spyOn(SecondaryProducerHandler, 'GetBatchByTrackingCode')
+        .mockResolvedValueOnce({
+          ok: true,
+          status: StatusCodes.OK,
+          data: {
+            id: 1,
+            quantity: 100,
+            availableQuantity: 100, // Not sold yet
+            originBaseBatchId: 1,
+            trackingCode: 'track-123',
+            owner: '0x1234567890abcdef',
+            createdAt: new Date().toISOString(),
+            deletedAt: '',
+          },
+        });
+
+      const wasteBottleData = {
+        trackingCode: 'track-123', // This will trigger not found
+        owner: 'userRole-CONSUMER',
+      };
+
+      const res = await request(app)
+        .post(`${BASE_PATH}/consumer/waste`)
+        .set('Authorization', `Bearer userWithId-userRole-CONSUMER`)
+        .send(wasteBottleData)
+        .expect(404);
+
+      expect(res.body.status).toBe(404);
+      expect(res.body.data).toBeNull();
+    });
+
     it('should return 500 when waste bottle creation fails', async () => {
       // Override callContractMethod for this test
       jest.spyOn(blockchainHelper, 'callContractMethod').mockResolvedValueOnce({
@@ -883,6 +984,7 @@ describe('Consumer API', () => {
         expect.any(Array),
         'deleteWasteBottle',
         bottleId,
+        expect.any(String),
       );
     });
 
@@ -959,6 +1061,18 @@ describe('Consumer API', () => {
         .expect(403);
 
       expect(res.body.status).toBe(403);
+      expect(res.body.data).toBeNull();
+    });
+
+    it('should return 409 when bottle is already recycled', async () => {
+      const bottleId = 2; // This ID has recycledBatchId set to 1 in our mock
+
+      const res = await request(app)
+        .delete(`${BASE_PATH}/consumer/waste/${bottleId}`)
+        .set('Authorization', `Bearer userWithId-userRole-CONSUMER`)
+        .expect(409);
+
+      expect(res.body.status).toBe(409);
       expect(res.body.data).toBeNull();
     });
 

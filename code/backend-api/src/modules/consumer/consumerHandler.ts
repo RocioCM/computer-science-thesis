@@ -280,7 +280,7 @@ export default class ConsumerHandler {
 
     // Check user is owner of the bottle to delete
     if (
-      wasteBottleRes.data.owner.toLowerCase() !==
+      wasteBottleRes.data.creator.toLowerCase() !==
       userRes.data.blockchainId.toLowerCase()
     ) {
       return { ok: false, status: StatusCodes.FORBIDDEN, data: null };
@@ -290,7 +290,7 @@ export default class ConsumerHandler {
     if (!!wasteBottleRes.data.recycledBatchId) {
       return {
         ok: false,
-        status: StatusCodes.BAD_REQUEST,
+        status: StatusCodes.CONFLICT,
         data: null,
       };
     }
@@ -307,7 +307,7 @@ export default class ConsumerHandler {
 
     await WatcherRepository.DeleteWatcherByBottleId(wasteBottleId);
     await OwnershipRepository.DeleteOwnershipByUserAndBottleId(
-      userRes.data.blockchainId,
+      wasteBottleRes.data.owner.toLowerCase(),
       wasteBottleId,
     );
 

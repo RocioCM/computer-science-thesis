@@ -63,7 +63,7 @@ const TrackingView: TrackingViewType = ({
         </Button>
       </div>
 
-      <div className="w-full flex-1 flex gap-m">
+      <div className="w-full flex-1 overflow-hidden flex gap-m">
         <div className="relative bg-n0 shadow-e2 border rounded-lg flex justify-center items-center gap-l w-max min-w-[400px] h-max shrink-0 px-m py-3xl">
           <div className="absolute mr-s bottom-[3.4rem] w-[calc(100%-7.8rem)] border-b-n3 border-2"></div>
           {TIMELINE_ITEMS.map((item) => {
@@ -77,8 +77,9 @@ const TrackingView: TrackingViewType = ({
                 className={cn(
                   'relative flex flex-col items-center gap-xs w-full p-s rounded-lg',
                   !tabDisabled
-                    ? 'opacity-100 cursor-pointer hover:bg-p1-25'
-                    : 'text-n3 !cursor-default'
+                    ? 'opacity-100 cursor-pointer hover:bg-n2 hover:bg-opacity-50'
+                    : 'text-n3 !cursor-default',
+                  currentTab === item.key ? '!bg-p1-25' : 'bg-transparent'
                 )}
                 role="button"
                 onClick={() => {

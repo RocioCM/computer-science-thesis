@@ -4,20 +4,14 @@ import BottleDetailModal from './BottleDetailModal';
 describe('Recycler Waste Bottles - BottleDetailModal', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    const modalRoot = document.createElement('div');
-    modalRoot.setAttribute('id', 'modal-root');
-    document.body.appendChild(modalRoot);
-  });
-
-  afterEach(() => {
-    const modalRoot = document.getElementById('modal-root');
-    if (modalRoot) {
-      document.body.removeChild(modalRoot);
-    }
   });
 
   it('Matches snapshot', () => {
-    const { container } = render(<BottleDetailModal handleCancel={() => {}} />);
+    const { container } = render(
+      <div id="modal-root">
+        <BottleDetailModal wasteBottleId={1} handleCancel={() => {}} />
+      </div>
+    );
     expect(container).toMatchSnapshot();
   });
 });

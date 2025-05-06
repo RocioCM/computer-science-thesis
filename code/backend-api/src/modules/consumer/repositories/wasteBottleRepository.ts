@@ -77,7 +77,12 @@ export default class WasteBottleRepository {
   }
 
   static async DeleteWasteBottle(bottleId: number): IResult<null> {
-    const res = await this.callContractMethod('deleteWasteBottle', bottleId);
+    const deletedAt = new Date().toISOString();
+    const res = await this.callContractMethod(
+      'deleteWasteBottle',
+      bottleId,
+      deletedAt,
+    );
     return { ...res, data: null };
   }
 }

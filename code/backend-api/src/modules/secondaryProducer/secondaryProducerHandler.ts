@@ -6,7 +6,7 @@ import {
   RecycleBaseBottlesDTO,
   SellProductBottlesDTO,
   SellResponse,
-  SoldProductBatch,
+  RecycleResponse,
   UpdateTrackingCodeDTO,
 } from './domain/productBatch';
 import ProductBottlesBatchRepository from './repositories/productBottlesBatchRepository';
@@ -141,11 +141,7 @@ export default class SecondaryProducerHandler {
     const deleteRes =
       await ProductBottlesBatchRepository.RejectBaseBottlesBatch(batchId);
     if (!deleteRes.ok) {
-      return {
-        ok: false,
-        status: StatusCodes.INTERNAL_SERVER_ERROR,
-        data: null,
-      };
+      return deleteRes;
     }
 
     const ownershipRes =
@@ -161,7 +157,7 @@ export default class SecondaryProducerHandler {
   static async RecycleBaseBottles(
     firebaseUid: string,
     batch: RecycleBaseBottlesDTO,
-  ): IResult<null> {
+  ): IResult<RecycleResponse> {
     const userRes = await AuthHandler.GetUserByFirebaseUid(firebaseUid);
     if (!userRes.ok) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
@@ -174,6 +170,13 @@ export default class SecondaryProducerHandler {
       return { ok: false, status: StatusCodes.NOT_FOUND, data: null };
     }
 
+    const baseBatchRes = await SecondaryProducerHandler.GetBaseBatchById(
+      batchRes.data.originBaseBatchId,
+    );
+    if (!baseBatchRes.ok) {
+      return baseBatchRes;
+    }
+
     // Check user is owner of the batch to update
     if (
       batchRes.data.owner.toLowerCase() !==
@@ -182,10 +185,54 @@ export default class SecondaryProducerHandler {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
-    return ProductBottlesBatchRepository.RecycleProductBottles(
-      batch.productBatchId,
-      batch.quantity,
-    );
+    const recycleRes =
+      await ProductBottlesBatchRepository.RecycleProductBottles(
+        batch.productBatchId,
+        batch.quantity,
+      );
+    if (!recycleRes.ok || !recycleRes.data) {
+      return {
+        ok: false,
+        status: recycleRes.ok
+          ? StatusCodes.INTERNAL_SERVER_ERROR
+          : recycleRes.status,
+        data: null,
+      };
+    }
+
+    const recyclingBatchId = recycleRes.data;
+    const ownership = new Ownership();
+    ownership.bottleId = recyclingBatchId;
+    ownership.originBatchId = baseBatchRes.data.id;
+    ownership.ownerAccountId = baseBatchRes.data.owner;
+    ownership.type = OWNERSHIP_TYPES.RECYCLED;
+
+    const ownershipRes = await OwnershipRepository.CreateOwnership(ownership);
+    if (!ownershipRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    ownership.type = OWNERSHIP_TYPES.RECYCLED_SOLD;
+    ownership.originBatchId = recyclingBatchId;
+
+    const ownershipRes2 = await OwnershipRepository.CreateOwnership(ownership);
+    if (!ownershipRes2.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    return {
+      ok: true,
+      status: StatusCodes.OK,
+      data: { recyclingBatchId },
+    };
   }
 
   static async SellProductBottles(

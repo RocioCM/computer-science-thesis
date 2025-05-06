@@ -266,7 +266,7 @@ describe('BaseBottlesBatchContract', function () {
     const tx = await baseBatchContract.recycleBaseBottles(1, 20);
     await expect(tx)
       .to.emit(baseBatchContract, 'BaseBottlesRecycled')
-      .withArgs(1, 20);
+      .withArgs(1, 1, 20);
 
     const batch = await baseBatchContract.baseBottlesBatches(1);
     expect(batch.quantity).to.equal(80);
@@ -345,7 +345,7 @@ describe('BaseBottlesBatchContract', function () {
     );
     await expect(tx)
       .to.emit(baseBatchContract, 'BaseBottlesSold')
-      .withArgs(1, 30,1, buyerAddress);
+      .withArgs(1, 30, 1, buyerAddress);
 
     const batch = await baseBatchContract.baseBottlesBatches(1);
     expect(batch.soldQuantity).to.equal(30);

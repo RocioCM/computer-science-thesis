@@ -184,6 +184,25 @@ jest.mock('../src/modules/consumer/consumerHandler', () => ({
       },
     };
   }),
+  GetWasteBottleTracking: jest.fn().mockImplementation(async (bottleId) => {
+    if (bottleId === 999) {
+      return {
+        ok: false,
+        status: StatusCodes.NOT_FOUND,
+        data: null,
+      };
+    }
+    return {
+      ok: true,
+      status: StatusCodes.OK,
+      data: [
+        {
+          stage: 'recycling',
+          data: { someProp: 'value' },
+        },
+      ],
+    };
+  }),
   GetWasteBottlesList: jest.fn().mockImplementation(async (bottleIds) => {
     if (!bottleIds || bottleIds.length === 0) {
       return {
@@ -263,13 +282,13 @@ describe('Recycler API', () => {
     await teardownTestEnvironment();
   });
 
-  // GET /recycler/bottle/:trackingCode
-  describe('GET /recycler/bottle/:trackingCode', () => {
+  // GET /recycler/bottle/origin/:trackingCode
+  describe('GET /recycler/bottle/origin/:trackingCode', () => {
     it('should get bottle info by tracking code successfully', async () => {
       const trackingCode = 'track-123';
 
       const res = await request(app)
-        .get(`${BASE_PATH}/recycler/bottle/${trackingCode}`)
+        .get(`${BASE_PATH}/recycler/bottle/origin/${trackingCode}`)
         .set('Authorization', `Bearer userWithId-userRole-RECYCLER`)
         .expect(200);
 
@@ -288,12 +307,48 @@ describe('Recycler API', () => {
       const trackingCode = 'invalid-code';
 
       const res = await request(app)
-        .get(`${BASE_PATH}/recycler/bottle/${trackingCode}`)
+        .get(`${BASE_PATH}/recycler/bottle/origin/${trackingCode}`)
         .set('Authorization', `Bearer userWithId-userRole-RECYCLER`)
         .expect(404);
 
       expect(res.body.status).toBe(404);
       expect(res.body.data).toBeNull();
+    });
+  });
+
+  // GET /recycler/bottle/tracking/:id
+  describe('GET /recycler/bottle/tracking/:id', () => {
+    it('should get waste bottle tracking info successfully', async () => {
+      const spy = jest
+        .spyOn(ConsumerHandler, 'GetWasteBottleTracking')
+        .mockResolvedValueOnce({
+          ok: true,
+          status: StatusCodes.OK,
+          data: [{ stage: 'recycling', data: { someProp: 'value' } }],
+        });
+      const bottleId = 1;
+
+      const res = await request(app)
+        .get(`${BASE_PATH}/recycler/bottle/tracking/${bottleId}`)
+        .set('Authorization', `Bearer userWithId-userRole-RECYCLER`)
+        .expect(200);
+
+      expect(res.body.status).toBe(200);
+      expect(res.body.data).toHaveLength(1);
+      expect(res.body.data[0]).toHaveProperty('stage', 'recycling');
+      expect(res.body.data[0].data).toHaveProperty('someProp', 'value');
+
+      spy.mockRestore(); // Restore the original implementation
+    });
+
+    it('should return 400 when bottle ID is invalid', async () => {
+      const res = await request(app)
+        .get(`${BASE_PATH}/recycler/bottle/tracking/invalid-id`)
+        .set('Authorization', `Bearer userWithId-userRole-RECYCLER`)
+        .expect(400);
+
+      expect(res.body.status).toBe(400);
+      expect(res.body.data).toBe('Invalid bottle ID');
     });
   });
 

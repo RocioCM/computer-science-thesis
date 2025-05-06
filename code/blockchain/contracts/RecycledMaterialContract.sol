@@ -163,7 +163,7 @@ contract RecycledMaterialContract {
     string memory extraInfo,
     address creator,
     string memory createdAt
-  ) public onlyContractOwnerOrSelf {
+  ) public onlyContractOwnerOrSelf returns (uint256) {
     RecycledMaterialBatch
       memory newRecycledMaterialBatch = RecycledMaterialBatch(
         nextRecycledMaterialBatchId,
@@ -181,6 +181,7 @@ contract RecycledMaterialContract {
     recycledMaterials[nextRecycledMaterialBatchId] = newRecycledMaterialBatch;
     emit RecycledMaterialBatchCreated(nextRecycledMaterialBatchId, creator);
     nextRecycledMaterialBatchId++;
+    return newRecycledMaterialBatch.id;
   }
 
   function addWasteBottleToBatch(
@@ -285,7 +286,7 @@ contract RecycledMaterialContract {
   function recycleBaseBottles(
     uint256 baseBatchId,
     uint256 quantity
-  ) external onlyBaseOrProductContract {
+  ) external onlyBaseOrProductContract returns (uint256) {
     BaseBottlesBatchContract.BaseBottlesBatch
       memory baseBatch = baseBottlesBatchContract.getBaseBottlesBatch(
         baseBatchId
@@ -293,7 +294,7 @@ contract RecycledMaterialContract {
 
     uint256 newRecycledBatchId = nextRecycledMaterialBatchId;
     this.createRecycledMaterialBatch(
-      quantity * baseBatch.bottleType.weight,
+      (quantity * baseBatch.bottleType.weight) / 1000, // bottle weight is in grams, recycled batch weight is in kg
       string.concat(Strings.toString(quantity), ' bottles'),
       string.concat(baseBatch.bottleType.color, ' glass'),
       baseBatch.bottleType.composition,
@@ -302,6 +303,7 @@ contract RecycledMaterialContract {
       baseBatch.createdAt
     );
     this.sellRecycledMaterialBatch(newRecycledBatchId, baseBatch.owner);
+    return newRecycledBatchId;
   }
 
   function sellRecycledMaterialBatch(

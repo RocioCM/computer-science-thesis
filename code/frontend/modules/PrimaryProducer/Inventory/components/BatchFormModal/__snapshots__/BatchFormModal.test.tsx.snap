@@ -1,3 +1,436 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `<div />`;
+exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
+<div>
+  <div
+    id="modal-root"
+  >
+    <div
+      class="bg-n10 bg-opacity-70 py-2xl px-xl w-full h-screen fixed top-0 left-0 z-modal flex justify-center items-center animate__animated animate__fadeIn"
+      data-testid="modal"
+    >
+      <div
+        class="bg-n0 min-w-[300px] min-h-[200px] rounded-rm overflow-y-auto flex flex-col items-center relative cursor-default animate__animated animate__zoomIn w-[700px] h-[700px] max-h-full max-w-full px-xl py-xl"
+      >
+        <div
+          class="flex justify-end w-full h-0 sticky top-0 z-10"
+        >
+          <img
+            alt="Cerrar"
+            class="h-6 w-auto cursor-pointer object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="30"
+            loading="lazy"
+            src="/_next/image?url=%2Fimg.jpg&w=64&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=32&q=75 1x, /_next/image?url=%2Fimg.jpg&w=64&q=75 2x"
+            style="color: transparent;"
+            width="30"
+          />
+        </div>
+        <h2
+          class="w-full bg-n0"
+        >
+          Editar
+           lote de botellas
+           
+          #1
+        </h2>
+        <form
+          class="h-full w-full overflow-auto hide-scroll relative pt-2"
+        >
+          <div
+            class="flex flex-col gap-2"
+          >
+            <div
+              class="grid grid-cols-2 gap-2"
+            >
+              <div
+                class="w-full"
+              >
+                <span
+                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                >
+                  Cantidad de envases
+                </span>
+                <div
+                  class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+                >
+                  <div
+                    class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                  <input
+                    class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                    data-testid="input"
+                    form="[object Object]"
+                    inputlabel="Cantidad de envases"
+                    name="quantity"
+                    options=""
+                    placeholder="Ingresá la cantidad de envases"
+                    required=""
+                    type="number"
+                    value=""
+                  />
+                  <div
+                    class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                </div>
+              </div>
+              <div
+                class="w-full"
+              >
+                <span
+                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                >
+                  Peso por envase (en gramos)
+                </span>
+                <div
+                  class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+                >
+                  <div
+                    class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                  <input
+                    class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                    data-testid="input"
+                    form="[object Object]"
+                    inputlabel="Peso por envase (en gramos)"
+                    name="bottleType.weight"
+                    options=""
+                    placeholder="Ingresá el peso por envase (gramos)"
+                    required=""
+                    type="number"
+                    value=""
+                  />
+                  <div
+                    class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                </div>
+              </div>
+              <div
+                class="w-full"
+              >
+                <span
+                  class="block relative z-10 w-max transition-all text-p mb-xs cursor-pointer top-0 left-0 text-n10 font-semibold"
+                >
+                  Color del envase
+                </span>
+                <button
+                  class="relative flex flex-row flex-nowrap justify-between items-center w-full border bg-transparent outline-none transition-shadow gap-xs p text-left rounded-rs border-n3 px-m py-m placeholder:text-n2 h-10 hover:border-n2 dropdonwFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2"
+                  data-testid="dropdown"
+                  name="bottleType.color"
+                >
+                  <span
+                    class="flex-1 min-h-4"
+                  >
+                    Seleccioná el color del envase
+                  </span>
+                  <i
+                    class="inline-block w-2.5 h-2.5 rotate-0 "
+                    data-testid="chevron-icon"
+                  >
+                    <svg
+                      class="w-full h-full block transition-transform duration-300 ease-out"
+                      fill="none"
+                      viewBox="0 0 15 9"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M14.7 1.89992L13.5 0.919922L7.50001 6.09992L1.50001 0.919921L0.300013 1.89992L7.50001 8.19992L14.7 1.89992Z"
+                        fill="var(--colors-neutrals-n10)"
+                      />
+                    </svg>
+                  </i>
+                </button>
+              </div>
+              <div
+                class="w-full"
+              >
+                <span
+                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                >
+                  Espesor (en milímetros)
+                </span>
+                <div
+                  class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+                >
+                  <div
+                    class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                  <input
+                    class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                    data-testid="input"
+                    form="[object Object]"
+                    inputlabel="Espesor (en milímetros)"
+                    name="bottleType.thickness"
+                    options=""
+                    placeholder="Ingresá el espesor (mm)"
+                    required=""
+                    type="number"
+                    value=""
+                  />
+                  <div
+                    class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                </div>
+              </div>
+              <div
+                class="w-full"
+              >
+                <span
+                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                >
+                  Tipo/forma del envase
+                </span>
+                <div
+                  class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+                >
+                  <div
+                    class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                  <input
+                    class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                    data-testid="input"
+                    form="[object Object]"
+                    inputlabel="Tipo/forma del envase"
+                    name="bottleType.shapeType"
+                    options=""
+                    placeholder="Ingresá el tipo/forma del envase"
+                    required=""
+                    type="text"
+                    value=""
+                  />
+                  <div
+                    class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                </div>
+              </div>
+            </div>
+            <hr
+              class="my-4"
+            />
+            <div
+              class="flex flex-col gap-2"
+            >
+              <h3>
+                Composición
+              </h3>
+              <div
+                class="flex gap-2"
+              >
+                <div
+                  class="w-full"
+                >
+                  <span
+                    class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                  >
+                    Nombre del material
+                  </span>
+                  <div
+                    class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+                  >
+                    <div
+                      class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+                    />
+                    <input
+                      class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                      data-testid="input"
+                      form="[object Object]"
+                      inputlabel="Nombre del material"
+                      name="bottleType.composition.0.name"
+                      options=""
+                      placeholder="Ingresá el nombre del material"
+                      required=""
+                      type="text"
+                      value=""
+                    />
+                    <div
+                      class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="w-full"
+                >
+                  <span
+                    class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                  >
+                    Cantidad de material
+                  </span>
+                  <div
+                    class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+                  >
+                    <div
+                      class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+                    />
+                    <input
+                      class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                      data-testid="input"
+                      form="[object Object]"
+                      inputlabel="Cantidad de material"
+                      name="bottleType.composition.0.amount"
+                      options=""
+                      placeholder="Ingresá la cantidad de material"
+                      required=""
+                      type="number"
+                      value=""
+                    />
+                    <div
+                      class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="w-full"
+                >
+                  <span
+                    class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                  >
+                    Unidad de medida
+                  </span>
+                  <div
+                    class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+                  >
+                    <div
+                      class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+                    />
+                    <input
+                      class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                      data-testid="input"
+                      form="[object Object]"
+                      inputlabel="Unidad de medida"
+                      name="bottleType.composition.0.measureUnit"
+                      options=""
+                      placeholder="Ingresá la unidad de medida de la cantidad de material"
+                      required=""
+                      type="text"
+                      value=""
+                    />
+                    <div
+                      class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+                    />
+                  </div>
+                </div>
+              </div>
+              <button
+                class="relative flex items-center justify-center gap-s rounded-rs font-semibold h-10 disabled:cursor-default disabled:bg-opacity-40  focusButton bg-transparent text-p1 border border-p1 py-s px-m w-max"
+                data-testid="button"
+              >
+                <i
+                  class="fa-solid fa-plus"
+                  data-testid="fa-icon"
+                />
+                 Agregar material
+              </button>
+            </div>
+            <hr
+              class="my-4"
+            />
+            <div
+              class="grid grid-cols-2 gap-2"
+            >
+              <div
+                class="w-full"
+              >
+                <span
+                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                >
+                  Fecha de producción
+                </span>
+                <div
+                  class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+                >
+                  <div
+                    class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                  <input
+                    class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                    data-testid="input"
+                    form="[object Object]"
+                    inputlabel="Fecha de producción"
+                    max="2025-05-03"
+                    name="createdAt"
+                    options=""
+                    placeholder="Seleccioná la fecha de producción"
+                    required=""
+                    type="date"
+                    value="2025-05-03"
+                  />
+                  <div
+                    class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                </div>
+              </div>
+              <div
+                class="w-full"
+              >
+                <span
+                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                >
+                  Localización de producción
+                </span>
+                <div
+                  class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+                >
+                  <div
+                    class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                  <input
+                    class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                    data-testid="input"
+                    form="[object Object]"
+                    inputlabel="Localización de producción"
+                    name="bottleType.originLocation"
+                    options=""
+                    placeholder="Ingresá la localización de producción"
+                    required=""
+                    type="text"
+                    value=""
+                  />
+                  <div
+                    class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                </div>
+              </div>
+              <label
+                class="w-full block col-span-2"
+              >
+                <span
+                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                >
+                  Observaciones adicionales (opcional)
+                </span>
+                <textarea
+                  class="input block w-full h-max relative resize-none border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-m placeholder:text-n2 min-h-[5rem] hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                  form="[object Object]"
+                  inputlabel="Observaciones adicionales (opcional)"
+                  name="bottleType.extraInfo"
+                  options=""
+                  placeholder="Ingresá observaciones adicionales"
+                  type="textarea"
+                />
+              </label>
+            </div>
+          </div>
+          <button
+            class="relative flex items-center justify-center gap-s rounded-rs font-semibold h-10 disabled:cursor-default disabled:bg-opacity-40  focusButton bg-p1 text-n0 py-s px-m w-max ml-auto mt-4 sticky bottom-0 min-w-[10rem]"
+            data-testid="button"
+            disabled=""
+          >
+            <span>
+              Actualizar
+            </span>
+          </button>
+        </form>
+      </div>
+      <style>
+        
+          body {
+            overflow: hidden;
+          }
+        
+      </style>
+    </div>
+  </div>
+</div>
+`;

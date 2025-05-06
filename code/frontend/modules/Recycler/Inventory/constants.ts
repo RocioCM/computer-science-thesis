@@ -86,13 +86,13 @@ export const BATCH_FORM_INPUTS_1: FormBuilderField[] = [
     type: INPUT_TYPES.number,
     name: 'weight',
     placeholder: 'Ingresá el peso del lote de material',
-    label: 'Peso del fardo (en kg)',
+    label: 'Peso del lote (en kg)',
   },
   {
     type: INPUT_TYPES.text,
     name: 'size',
-    placeholder: 'Ingresá el tamaño del fardo',
-    label: 'Tamaño del fardo (con unidades)',
+    placeholder: 'Ingresá el tamaño del lote',
+    label: 'Tamaño del lote (con unidades)',
   },
   {
     type: INPUT_TYPES.text,

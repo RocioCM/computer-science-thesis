@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
-import BatchDetailModal from './BatchDetailModal';
+import BottleSearchModal from './BottleSearchModal';
 
-describe('Primary Producer Recycled Batches - BatchDetailModal', () => {
+describe('Recycler Waste Bottles - BottleSearchModal', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -9,7 +9,7 @@ describe('Primary Producer Recycled Batches - BatchDetailModal', () => {
   it('Matches snapshot', () => {
     const { container } = render(
       <div id="modal-root">
-        <BatchDetailModal editingId={1} handleCancel={() => {}} />
+        <BottleSearchModal handleCancel={() => {}} />
       </div>
     );
     expect(container).toMatchSnapshot();

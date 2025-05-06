@@ -39,11 +39,6 @@ export interface RecyclingBatch {
   deletedAt?: string;
 }
 
-export type BottleOrigin = Array<{
-  stage: string;
-  data: any;
-}>;
-
 export interface WasteBottle {
   id: number;
   trackingCode: string;

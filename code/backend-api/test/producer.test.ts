@@ -11,6 +11,7 @@ import blockchainHelper from '../src/pkg/helpers/blockchainHelper';
 import AuthHandler from '../src/modules/auth/authHandler';
 import OwnershipRepository from '../src/modules/producer/repositories/ownershipRepository';
 import RecyclerHandler from '../src/modules/recycler/recyclerHandler';
+import { Ownership } from 'src/modules/producer/domain/ownership';
 
 // Mock blockchain helper
 jest.mock('../src/pkg/helpers/blockchainHelper', () => ({
@@ -815,10 +816,41 @@ describe('Producer API', () => {
       expect(res.body.status).toBe(500);
       expect(res.body.data).toBeNull();
     });
+
+    it('should handle selling error when blockchain returns empty response', async () => {
+      // Mock blockchain helper function for selling bottles
+      jest.spyOn(blockchainHelper, 'callContractMethod').mockResolvedValueOnce({
+        ok: true,
+        status: StatusCodes.OK,
+        data: [],
+      });
+
+      const sellData = {
+        batchId: 1,
+        quantity: 50,
+        buyerUid: 'buyer-uid',
+      };
+
+      const res = await request(app)
+        .put(`${BASE_PATH}/producer/batch/sell`)
+        .set('Authorization', `Bearer userWithId-userRole-PRODUCER`)
+        .send(sellData)
+        .expect(500);
+
+      expect(res.body.status).toBe(500);
+      expect(res.body.data).toBeNull();
+    });
   });
 
   describe('PUT /producer/batch/recycle', () => {
     it('should recycle base bottles batch', async () => {
+      // Mock blockchain helper function for recycling bottles
+      jest.spyOn(blockchainHelper, 'callContractMethod').mockResolvedValueOnce({
+        ok: true,
+        status: StatusCodes.OK,
+        data: [{ name: 'BaseBottlesRecycled', args: [0, 1] }],
+      });
+
       const recycleData = {
         batchId: 1,
         quantity: 50,
@@ -831,7 +863,7 @@ describe('Producer API', () => {
         .expect(200);
 
       expect(res.body.status).toBe(200);
-      expect(res.body.data).toBeNull();
+      expect(res.body.data.recyclingBatchId).toBe(1);
     });
 
     it('should not recycle base bottles batch if user is not authenticated', async () => {
@@ -931,6 +963,119 @@ describe('Producer API', () => {
         .expect(401);
 
       expect(res.body.status).toBe(401);
+      expect(res.body.data).toBeNull();
+    });
+
+    it('should handle recycle error when blockchain fails', async () => {
+      // Mock blockchain helper function for recycling bottles
+      jest.spyOn(blockchainHelper, 'callContractMethod').mockResolvedValueOnce({
+        ok: false,
+        status: StatusCodes.NOT_FOUND,
+        data: null,
+      });
+
+      const recycleData = {
+        batchId: 1,
+        quantity: 50,
+      };
+
+      const res = await request(app)
+        .put(`${BASE_PATH}/producer/batch/recycle`)
+        .set('Authorization', `Bearer userWithId-userRole-PRODUCER`)
+        .send(recycleData)
+        .expect(404);
+
+      expect(res.body.status).toBe(404);
+      expect(res.body.data).toBeNull();
+    });
+
+    it('should handle recycle error when blockchain returns empty response', async () => {
+      // Mock blockchain helper function for recycling bottles
+      jest.spyOn(blockchainHelper, 'callContractMethod').mockResolvedValueOnce({
+        ok: true,
+        status: StatusCodes.OK,
+        data: [],
+      });
+
+      const recycleData = {
+        batchId: 1,
+        quantity: 50,
+      };
+
+      const res = await request(app)
+        .put(`${BASE_PATH}/producer/batch/recycle`)
+        .set('Authorization', `Bearer userWithId-userRole-PRODUCER`)
+        .send(recycleData)
+        .expect(500);
+
+      expect(res.body.status).toBe(500);
+      expect(res.body.data).toBeNull();
+    });
+
+    it('should handle recycle error when ownership repository fails once', async () => {
+      // Mock blockchain helper function for recycling bottles
+      jest.spyOn(blockchainHelper, 'callContractMethod').mockResolvedValueOnce({
+        ok: true,
+        status: StatusCodes.OK,
+        data: [{ name: 'BaseBottlesRecycled', args: [0, 1] }],
+      });
+
+      // Mock OwnershipRepository.GetOwnershipByBottleId to return an error
+      jest.spyOn(OwnershipRepository, 'CreateOwnership').mockResolvedValueOnce({
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      });
+
+      const recycleData = {
+        batchId: 1,
+        quantity: 50,
+      };
+
+      const res = await request(app)
+        .put(`${BASE_PATH}/producer/batch/recycle`)
+        .set('Authorization', `Bearer userWithId-userRole-PRODUCER`)
+        .send(recycleData)
+        .expect(500);
+
+      expect(res.body.status).toBe(500);
+      expect(res.body.data).toBeNull();
+    });
+
+    it('should handle recycle error when ownership repository fails twice', async () => {
+      // Mock blockchain helper function for recycling bottles
+      jest.spyOn(blockchainHelper, 'callContractMethod').mockResolvedValueOnce({
+        ok: true,
+        status: StatusCodes.OK,
+        data: [{ name: 'BaseBottlesRecycled', args: [0, 1] }],
+      });
+
+      // Mock OwnershipRepository.GetOwnershipByBottleId to return an error
+      jest
+        .spyOn(OwnershipRepository, 'CreateOwnership')
+        .mockResolvedValueOnce({
+          ok: true,
+          status: StatusCodes.OK,
+          data: new Ownership(),
+        })
+        .mockResolvedValueOnce({
+          ok: false,
+          status: StatusCodes.INTERNAL_SERVER_ERROR,
+          data: null,
+        });
+
+      const recycleData = {
+        batchId: 1,
+        quantity: 50,
+      };
+
+      const res = await request(app)
+        .put(`${BASE_PATH}/producer/batch/recycle`)
+        .set('Authorization', `Bearer userWithId-userRole-PRODUCER`)
+        .send(recycleData)
+        .expect(500);
+
+      expect(res.body.status).toBe(500);
       expect(res.body.data).toBeNull();
     });
   });

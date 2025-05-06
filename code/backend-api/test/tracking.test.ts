@@ -120,6 +120,7 @@ jest.mock('../src/modules/producer/producerHandler', () => ({
       data: {
         id,
         quantity: 200,
+        soldQuantity: 100,
         bottleType: {
           weight: 500,
           color: 'green',
@@ -340,6 +341,38 @@ describe('Tracking API', () => {
       expect(res.body.status).toBe(404);
       expect(res.body.data).toBeNull();
     });
+
+    it("should return 404 when base batch isn't sold yet", async () => {
+      jest.spyOn(ProducerHandler, 'GetBatchById').mockResolvedValueOnce({
+        ok: true,
+        status: StatusCodes.OK,
+        data: {
+          id: 1,
+          quantity: 200,
+          soldQuantity: 0,
+          bottleType: {
+            weight: 500,
+            color: 'green',
+            thickness: 2,
+            shapeType: 'round',
+            originLocation: 'Argentina',
+            extraInfo: 'Recycled glass',
+            composition: [],
+          },
+          owner: '0x1234567890abcdef',
+          createdAt: new Date().toISOString(),
+          deletedAt: '',
+        },
+      });
+      const batchId = 1;
+
+      const res = await request(app)
+        .get(`${BASE_PATH}/tracking/base-batch/${batchId}`)
+        .expect(404);
+
+      expect(res.body.status).toBe(404);
+      expect(res.body.data).toBeNull();
+    });
   });
 
   // GET /tracking/base-batch/:id/products
@@ -547,6 +580,33 @@ describe('Tracking API', () => {
 
     it('should return 404 when batch is not found', async () => {
       const trackingCode = 'invalid-code'; // This will trigger not found in the mock
+
+      const res = await request(app)
+        .get(`${BASE_PATH}/tracking/product-batch/trackingCode/${trackingCode}`)
+        .expect(404);
+
+      expect(res.body.status).toBe(404);
+      expect(res.body.data).toBeNull();
+    });
+
+    it("should return 404 when product batch isn't sold yet", async () => {
+      jest
+        .spyOn(SecondaryProducerHandler, 'GetBatchByTrackingCode')
+        .mockResolvedValueOnce({
+          ok: true,
+          status: StatusCodes.OK,
+          data: {
+            id: 1,
+            quantity: 100,
+            availableQuantity: 100,
+            originBaseBatchId: 1,
+            trackingCode: 'track-123',
+            owner: '0x1234567890abcdef',
+            createdAt: new Date().toISOString(),
+            deletedAt: '',
+          },
+        });
+      const trackingCode = 'track-123';
 
       const res = await request(app)
         .get(`${BASE_PATH}/tracking/product-batch/trackingCode/${trackingCode}`)

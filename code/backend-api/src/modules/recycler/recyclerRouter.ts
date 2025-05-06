@@ -23,6 +23,18 @@ async function GetBottleInfoByTrackingCode(req: Request, res: Response) {
   responseHelper.build(res, status, data);
 }
 
+async function GetWasteBottleTracking(req: Request, res: Response) {
+  const id = requestHelper.parseUint(req.params.id);
+  if (id === null) {
+    responseHelper.build(res, 400, 'Invalid bottle ID');
+    return;
+  }
+
+  const { status, data } = await RecyclerHandler.GetWasteBottleTracking(id);
+
+  responseHelper.build(res, status, data);
+}
+
 async function GetAllUserWasteBottles(req: Request, res: Response) {
   const userRes = await Authenticate(req, ROLES.RECYCLER);
   if (!userRes.ok) {
@@ -241,7 +253,8 @@ const RecyclerRouter = Router();
 
 middlewareHelper.applyAsyncHandlerMiddleware(RecyclerRouter);
 
-RecyclerRouter.get('/bottle/:trackingCode', GetBottleInfoByTrackingCode);
+RecyclerRouter.get('/bottle/origin/:trackingCode', GetBottleInfoByTrackingCode);
+RecyclerRouter.get('/bottle/tracking/:id', GetWasteBottleTracking);
 RecyclerRouter.get('/bottles', GetAllUserWasteBottles);
 RecyclerRouter.get('/bottles/available', GetUserAvailableWasteBottles);
 RecyclerRouter.get('/batch/:id', GetRecyclingBatchById);

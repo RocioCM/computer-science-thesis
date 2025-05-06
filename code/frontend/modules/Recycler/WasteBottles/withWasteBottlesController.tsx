@@ -5,6 +5,7 @@ import {
   WasteBottle,
 } from './types';
 import BottleDetailModal from './components/BottleDetailModal';
+import BottleSearchModal from './components/BottleSearchModal';
 import AssignBatchModal from './components/AssignBatchModal';
 import useModal from '@/common/hooks/useModal';
 import { toast } from 'react-toastify';
@@ -19,11 +20,11 @@ const withWasteBottlesController = (View: WasteBottlesViewType) =>
 
     const { Modal: SearchModal, showModal: showSearchModal } = useModal(
       false,
-      BottleDetailModal
+      BottleSearchModal
     );
     const { Modal: DetailModal, showModal: showDetailModal } = useModal(
       false,
-      BottleDetailModal /// TODO: add different modal
+      BottleDetailModal
     );
     const { Modal: AssignModal, showModal: showAssignModal } = useModal(
       false,
@@ -55,6 +56,7 @@ const withWasteBottlesController = (View: WasteBottlesViewType) =>
     };
 
     const handleCurrentTab = (tab: string) => {
+      if (currentTab === tab) return;
       setCurrentTab(tab);
       handleRefresh();
     };

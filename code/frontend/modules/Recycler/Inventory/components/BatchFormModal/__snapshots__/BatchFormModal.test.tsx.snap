@@ -1,3 +1,456 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Recycler Inventory - BatchFormModal Matches snapshot 1`] = `<div />`;
+exports[`Recycler Inventory - BatchFormModal Matches snapshot 1`] = `
+<div>
+  <div
+    id="modal-root"
+  >
+    <div
+      class="bg-n10 bg-opacity-70 py-2xl px-xl w-full h-screen fixed top-0 left-0 z-modal flex justify-center items-center animate__animated animate__fadeIn"
+      data-testid="modal"
+    >
+      <div
+        class="bg-n0 min-w-[300px] min-h-[200px] rounded-rm overflow-y-auto flex flex-col items-center relative cursor-default animate__animated animate__zoomIn w-[700px] h-[700px] max-h-full max-w-full px-xl py-xl"
+      >
+        <div
+          class="flex justify-end w-full h-0 sticky top-0 z-10"
+        >
+          <img
+            alt="Cerrar"
+            class="h-6 w-auto cursor-pointer object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="30"
+            loading="lazy"
+            src="/_next/image?url=%2Fimg.jpg&w=64&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=32&q=75 1x, /_next/image?url=%2Fimg.jpg&w=64&q=75 2x"
+            style="color: transparent;"
+            width="30"
+          />
+        </div>
+        <h2
+          class="w-full bg-n0"
+        >
+          Editar
+           lote de material
+           
+          #1
+        </h2>
+        <form
+          class="h-full w-full overflow-auto hide-scroll relative pt-2"
+        >
+          <div
+            class="flex flex-col gap-2"
+          >
+            <div
+              class="grid grid-cols-2 gap-2"
+            >
+              <div
+                class="w-full"
+              >
+                <span
+                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                >
+                  Peso del lote (en kg)
+                </span>
+                <div
+                  class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+                >
+                  <div
+                    class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                  <input
+                    class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                    data-testid="input"
+                    form="[object Object]"
+                    inputlabel="Peso del lote (en kg)"
+                    name="weight"
+                    options=""
+                    placeholder="Ingresá el peso del lote de material"
+                    required=""
+                    type="number"
+                    value="20"
+                  />
+                  <div
+                    class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                </div>
+              </div>
+              <div
+                class="w-full"
+              >
+                <span
+                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                >
+                  Tamaño del lote (con unidades)
+                </span>
+                <div
+                  class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+                >
+                  <div
+                    class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                  <input
+                    class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                    data-testid="input"
+                    form="[object Object]"
+                    inputlabel="Tamaño del lote (con unidades)"
+                    name="size"
+                    options=""
+                    placeholder="Ingresá el tamaño del lote"
+                    required=""
+                    type="text"
+                    value="10x10"
+                  />
+                  <div
+                    class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                </div>
+              </div>
+              <div
+                class="w-full"
+              >
+                <span
+                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                >
+                  Tipo de material
+                </span>
+                <div
+                  class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+                >
+                  <div
+                    class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                  <input
+                    class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                    data-testid="input"
+                    form="[object Object]"
+                    inputlabel="Tipo de material"
+                    name="materialType"
+                    options=""
+                    placeholder="Ingresá el tipo de material del lote"
+                    required=""
+                    type="text"
+                    value="Glass"
+                  />
+                  <div
+                    class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                </div>
+              </div>
+              <div
+                class="w-full"
+              >
+                <span
+                  class="block relative z-10 w-max transition-all text-p mb-xs !cursor-default top-0 left-0 text-n10 font-semibold"
+                >
+                  Fecha de producción
+                </span>
+                <div
+                  class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+                >
+                  <div
+                    class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                  <input
+                    class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                    data-testid="input"
+                    disabled=""
+                    form="[object Object]"
+                    inputlabel="Fecha de producción"
+                    max="2025-05-03"
+                    name="createdAt"
+                    options=""
+                    placeholder="Seleccioná la fecha de producción"
+                    required=""
+                    type="date"
+                    value="2023-01-01"
+                  />
+                  <div
+                    class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+                  />
+                </div>
+              </div>
+              <label
+                class="w-full block col-span-2"
+              >
+                <span
+                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                >
+                  Observaciones adicionales (opcional)
+                </span>
+                <textarea
+                  class="input block w-full h-max relative resize-none border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-m placeholder:text-n2 min-h-[5rem] hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                  form="[object Object]"
+                  inputlabel="Observaciones adicionales (opcional)"
+                  name="extraInfo"
+                  options=""
+                  placeholder="Ingresá observaciones adicionales"
+                  type="textarea"
+                >
+                  Test notes
+                </textarea>
+              </label>
+            </div>
+            <hr
+              class="my-4"
+            />
+            <div
+              class="flex flex-col gap-2"
+            >
+              <h3>
+                Composición
+              </h3>
+              <div
+                class="flex gap-2"
+              >
+                <div
+                  class="w-full"
+                >
+                  <span
+                    class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                  >
+                    Nombre del material
+                  </span>
+                  <div
+                    class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+                  >
+                    <div
+                      class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+                    />
+                    <input
+                      class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                      data-testid="input"
+                      form="[object Object]"
+                      inputlabel="Nombre del material"
+                      name="composition.0.name"
+                      options=""
+                      placeholder="Ingresá el nombre del material"
+                      required=""
+                      type="text"
+                      value="Material A"
+                    />
+                    <div
+                      class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="w-full"
+                >
+                  <span
+                    class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                  >
+                    Cantidad de material
+                  </span>
+                  <div
+                    class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+                  >
+                    <div
+                      class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+                    />
+                    <input
+                      class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                      data-testid="input"
+                      form="[object Object]"
+                      inputlabel="Cantidad de material"
+                      name="composition.0.amount"
+                      options=""
+                      placeholder="Ingresá la cantidad de material"
+                      required=""
+                      type="number"
+                      value="5"
+                    />
+                    <div
+                      class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="w-full"
+                >
+                  <span
+                    class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                  >
+                    Unidad de medida
+                  </span>
+                  <div
+                    class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+                  >
+                    <div
+                      class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+                    />
+                    <input
+                      class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                      data-testid="input"
+                      form="[object Object]"
+                      inputlabel="Unidad de medida"
+                      name="composition.0.measureUnit"
+                      options=""
+                      placeholder="Ingresá la unidad de medida de la cantidad de material"
+                      required=""
+                      type="text"
+                      value="kg"
+                    />
+                    <div
+                      class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+                    />
+                  </div>
+                </div>
+              </div>
+              <button
+                class="relative flex items-center justify-center gap-s rounded-rs font-semibold h-10 disabled:cursor-default disabled:bg-opacity-40  focusButton bg-transparent text-p1 border border-p1 py-s px-m w-max"
+                data-testid="button"
+              >
+                <i
+                  class="fa-solid fa-plus"
+                  data-testid="fa-icon"
+                />
+                 Agregar material
+              </button>
+            </div>
+            <hr
+              class="my-4"
+            />
+            <div
+              class="flex flex-col gap-2"
+            >
+              <h3>
+                Botellas
+              </h3>
+              <div
+                class="grid grid-cols-3 gap-2"
+              >
+                <label
+                  class="flex flex-row items-start gap-m cursor-pointer col-span-3"
+                >
+                  <input
+                    class="col-span-3"
+                    hidden=""
+                    name="selectAll"
+                    type="checkbox"
+                    value=""
+                  />
+                  <span
+                    class="check flex items-center justify-center shrink-0 border transition-[box-shadow,background-color] duration-300 w-4 h-4 p-0.5 rounded-[0.25rem] bg-n0 border-n2"
+                    data-testid="checkbox"
+                  />
+                  <span
+                    class="flex flex-col gap-0"
+                  >
+                    <span
+                      class="p text-n10 -mt-1"
+                    >
+                      Seleccionar todas
+                    </span>
+                  </span>
+                </label>
+                <label
+                  class="flex flex-row items-start gap-m cursor-pointer"
+                >
+                  <input
+                    checked=""
+                    class=""
+                    hidden=""
+                    name="wasteBottleIds.1"
+                    type="checkbox"
+                    value="active"
+                  />
+                  <span
+                    class="check flex items-center justify-center shrink-0 border transition-[box-shadow,background-color] duration-300 w-4 h-4 p-0.5 rounded-[0.25rem] bg-n0 border-0 bg-p1"
+                    data-testid="checkbox"
+                  >
+                    <i
+                      class="fa-solid fa-check text-n0 text-[0.8rem]"
+                      data-testid="fa-icon"
+                    />
+                  </span>
+                  <span
+                    class="flex flex-col gap-0"
+                  >
+                    <span
+                      class="p text-n10 -mt-1"
+                    >
+                      Botella #1 (TRACK001)
+                    </span>
+                  </span>
+                </label>
+                <label
+                  class="flex flex-row items-start gap-m cursor-pointer"
+                >
+                  <input
+                    checked=""
+                    class=""
+                    hidden=""
+                    name="wasteBottleIds.2"
+                    type="checkbox"
+                    value="active"
+                  />
+                  <span
+                    class="check flex items-center justify-center shrink-0 border transition-[box-shadow,background-color] duration-300 w-4 h-4 p-0.5 rounded-[0.25rem] bg-n0 border-0 bg-p1"
+                    data-testid="checkbox"
+                  >
+                    <i
+                      class="fa-solid fa-check text-n0 text-[0.8rem]"
+                      data-testid="fa-icon"
+                    />
+                  </span>
+                  <span
+                    class="flex flex-col gap-0"
+                  >
+                    <span
+                      class="p text-n10 -mt-1"
+                    >
+                      Botella #2 (TRACK002)
+                    </span>
+                  </span>
+                </label>
+                <label
+                  class="flex flex-row items-start gap-m cursor-pointer"
+                >
+                  <input
+                    class=""
+                    hidden=""
+                    name="wasteBottleIds.3"
+                    type="checkbox"
+                    value=""
+                  />
+                  <span
+                    class="check flex items-center justify-center shrink-0 border transition-[box-shadow,background-color] duration-300 w-4 h-4 p-0.5 rounded-[0.25rem] bg-n0 border-n2"
+                    data-testid="checkbox"
+                  />
+                  <span
+                    class="flex flex-col gap-0"
+                  >
+                    <span
+                      class="p text-n10 -mt-1"
+                    >
+                      Botella #3 
+                    </span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <button
+            class="relative flex items-center justify-center gap-s rounded-rs font-semibold h-10 disabled:cursor-default disabled:bg-opacity-40  focusButton bg-p1 text-n0 py-s px-m w-max ml-auto mt-4 sticky bottom-0 min-w-[10rem]"
+            data-testid="button"
+            disabled=""
+          >
+            <span>
+              Actualizar
+            </span>
+          </button>
+        </form>
+      </div>
+      <style>
+        
+          body {
+            overflow: hidden;
+          }
+        
+      </style>
+    </div>
+  </div>
+</div>
+`;

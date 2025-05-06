@@ -357,6 +357,7 @@ describe('ProductBottlesBatchContract', function () {
 
     it('Should recycle product bottles correctly', async function () {
       const batchId = 1;
+      const recyclingBatchId = 1; // Assuming this is the ID of the recycled material batch
       const recycleQuantity = 20;
 
       const tx = await productContract.recycleProductBottles(
@@ -365,7 +366,7 @@ describe('ProductBottlesBatchContract', function () {
       );
       await expect(tx)
         .to.emit(productContract, 'ProductBottlesRecycled')
-        .withArgs(batchId, recycleQuantity);
+        .withArgs(batchId, recyclingBatchId, recycleQuantity);
 
       const batch = await productContract.productBottles(batchId);
       expect(batch.quantity).to.equal(10);

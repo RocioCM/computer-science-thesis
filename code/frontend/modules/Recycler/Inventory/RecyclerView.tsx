@@ -21,7 +21,7 @@ const RecyclerView: RecyclerViewType = ({
   menuActions,
 }) => {
   return (
-    <main className="w-full h-screen p-2xl">
+    <main className="w-full h-screen flex flex-col p-2xl">
       <header className="pb-2xl flex items-center justify-between gap-s">
         <h1>Lotes de Material</h1>
         <Button onClick={handleCreateButton}>

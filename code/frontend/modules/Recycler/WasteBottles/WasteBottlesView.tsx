@@ -21,7 +21,7 @@ const WasteBottlesView: WasteBottlesViewType = ({
   handleSearchButton,
 }) => {
   return (
-    <main className="w-full h-screen p-2xl">
+    <main className="w-full h-screen flex flex-col p-2xl">
       <header className="pb-2xl flex items-center justify-between gap-s">
         <h1>Inventario de envases</h1>
         <Button onClick={handleSearchButton} className="!ml-auto">
@@ -43,6 +43,7 @@ const WasteBottlesView: WasteBottlesViewType = ({
       </div>
 
       <Table
+        key={currentTab}
         title="lotes"
         handleFetch={handleFetchData}
         columns={[
@@ -85,7 +86,7 @@ const WasteBottlesView: WasteBottlesViewType = ({
       />
 
       <SearchModal />
-      <DetailModal editingId={editingId} />
+      <DetailModal wasteBottleId={editingId} />
       <AssignModal editingId={editingId} handleSuccess={handleRefresh} />
     </main>
   );

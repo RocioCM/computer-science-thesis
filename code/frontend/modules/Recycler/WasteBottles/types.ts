@@ -54,6 +54,11 @@ export type BottleOrigin = Array<{
   data: any;
 }>;
 
+export type BottleRecyclingTracking = Array<{
+  stage: string;
+  data: any;
+}>;
+
 export interface Material {
   name: string;
   amount: number;

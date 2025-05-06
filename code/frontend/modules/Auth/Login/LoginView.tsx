@@ -2,7 +2,7 @@ import withLoginController from './withLoginController';
 import { LoginViewType } from './types';
 import Img from '@/common/components/Img';
 import Button from '@/common/components/Button';
-import bgImage from '@/public/assets/auth-bg.png';
+import bgImage from '@/public/assets/auth-bg.jpeg';
 import { LOGIN_INPUTS } from './constants';
 import Link from 'next/link';
 

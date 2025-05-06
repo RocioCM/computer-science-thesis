@@ -4,6 +4,7 @@ import {
   BaseBottlesBatch,
   CreateBaseBottlesBatchDTO,
   CreationResponse,
+  RecycleResponse,
   SellBaseBottlesDTO,
   SellResponse,
   UpdateBaseBottlesBatchDTO,
@@ -233,7 +234,7 @@ export default class ProducerHandler {
     firebaseUid: string,
     batchId: number,
     quantity: number,
-  ): IResult<null> {
+  ): IResult<RecycleResponse> {
     const userRes = await AuthHandler.GetUserByFirebaseUid(firebaseUid);
     if (!userRes.ok) {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
@@ -252,10 +253,53 @@ export default class ProducerHandler {
       return { ok: false, status: StatusCodes.UNAUTHORIZED, data: null };
     }
 
-    return BaseBottlesBatchRepository.RecycleBaseBottlesBatch(
+    const recycleRes = await BaseBottlesBatchRepository.RecycleBaseBottlesBatch(
       batchId,
       quantity,
     );
+    if (!recycleRes.ok || !recycleRes.data) {
+      return {
+        ok: false,
+        status: recycleRes.ok
+          ? StatusCodes.INTERNAL_SERVER_ERROR
+          : recycleRes.status,
+        data: null,
+      };
+    }
+
+    const recyclingBatchId = recycleRes.data;
+    const ownership = new Ownership();
+    ownership.bottleId = recyclingBatchId;
+    ownership.originBatchId = batchId;
+    ownership.ownerAccountId = userRes.data.blockchainId;
+    ownership.type = OWNERSHIP_TYPES.RECYCLED;
+
+    const ownershipRes = await OwnershipRepository.CreateOwnership(ownership);
+    if (!ownershipRes.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    ownership.type = OWNERSHIP_TYPES.RECYCLED_SOLD;
+    ownership.originBatchId = recyclingBatchId;
+
+    const ownershipRes2 = await OwnershipRepository.CreateOwnership(ownership);
+    if (!ownershipRes2.ok) {
+      return {
+        ok: false,
+        status: StatusCodes.INTERNAL_SERVER_ERROR,
+        data: null,
+      };
+    }
+
+    return {
+      ok: true,
+      status: StatusCodes.OK,
+      data: { recyclingBatchId },
+    };
   }
 
   static async GetFilteredBuyers(searchQuery: string) {

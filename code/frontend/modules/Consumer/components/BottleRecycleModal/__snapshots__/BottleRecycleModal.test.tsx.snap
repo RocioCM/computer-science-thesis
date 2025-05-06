@@ -1,3 +1,127 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Consumer - BottleRecycleModal Matches snapshot 1`] = `<div />`;
+exports[`Consumer - BottleRecycleModal Matches snapshot 1`] = `
+<div>
+  <div
+    id="modal-root"
+  >
+    <div
+      class="bg-n10 bg-opacity-70 py-2xl px-xl w-full h-screen fixed top-0 left-0 z-modal flex justify-center items-center animate__animated animate__fadeIn cursor-pointer"
+      data-testid="modal"
+    >
+      <div
+        class="bg-n0 min-w-[300px] min-h-[200px] rounded-rm overflow-y-auto flex flex-col items-center relative cursor-default animate__animated animate__zoomIn w-[380px] h-max max-h-full max-w-full px-3xl py-3xl"
+      >
+        <div
+          class="flex justify-end w-full h-0 sticky top-0 z-10"
+        >
+          <img
+            alt="Cerrar"
+            class="h-6 w-auto cursor-pointer object-contain"
+            data-nimg="1"
+            decoding="async"
+            height="30"
+            loading="lazy"
+            src="/_next/image?url=%2Fimg.jpg&w=64&q=75"
+            srcset="/_next/image?url=%2Fimg.jpg&w=32&q=75 1x, /_next/image?url=%2Fimg.jpg&w=64&q=75 2x"
+            style="color: transparent;"
+            width="30"
+          />
+        </div>
+        <h2
+          class="w-full bg-n0"
+        >
+          Enviar a reciclar
+        </h2>
+        <div
+          class="w-full flex flex-col gap-m my-xl"
+        >
+          <div
+            class="w-full"
+          >
+            <span
+              class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+            >
+              Código de seguimiento
+            </span>
+            <div
+              class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+            >
+              <div
+                class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+              />
+              <input
+                class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent"
+                data-testid="input"
+                form="[object Object]"
+                inputlabel="Código de seguimiento"
+                name="trackingCode"
+                options=""
+                placeholder="Ingresá el código de seguimiento"
+                required=""
+                type="text"
+                value="123"
+              />
+              <div
+                class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+              />
+            </div>
+          </div>
+          <div
+            class="w-full"
+          >
+            <span
+              class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+            >
+              Reciclador/a
+            </span>
+            <div
+              class="relative flex flex-row flex-nowrap justify-between items-center w-full"
+            >
+              <div
+                class="absolute left-0 h-full w-max flex flex-row items-center gap-xs"
+              />
+              <input
+                class="input block w-full relative border bg-transparent outline-none transition-shadow p rounded-rs border-n3 px-m py-xs placeholder:text-n2 h-10 hover:border-n2 inputFocus focus:border-p1 focus:border-2 disabled:text-n3 disabled:bg-n1 disabled:border-n2 disabled:placeholder:text-transparent pr-8"
+                data-testid="input"
+                form="[object Object]"
+                inputlabel="Reciclador/a"
+                name="recyclerUid"
+                options=""
+                placeholder="Ingresá el nombre o correo del reciclador"
+                required=""
+                type="text"
+                value=""
+              />
+              <div
+                class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
+              >
+                <i
+                  class="fa-solid fa-search mr-3"
+                  data-testid="fa-icon"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          class="relative flex items-center justify-center gap-s rounded-rs font-semibold h-10 disabled:cursor-default disabled:bg-opacity-40  focusButton bg-p1 text-n0 py-s px-m w-full"
+          data-testid="button"
+          disabled=""
+        >
+          <span>
+            Enviar
+          </span>
+        </button>
+      </div>
+      <style>
+        
+          body {
+            overflow: hidden;
+          }
+        
+      </style>
+    </div>
+  </div>
+</div>
+`;

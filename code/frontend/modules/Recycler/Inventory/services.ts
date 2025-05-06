@@ -1,6 +1,5 @@
 import request from '@/common/services/request';
 import {
-  BottleOrigin,
   Buyer,
   RecyclingBatch,
   SellRecyclingBatchPayload,
@@ -8,8 +7,6 @@ import {
 } from './types';
 
 const RecyclerServices = {
-  searchBottle: (trackingCode: string) =>
-    request<BottleOrigin>(`/recycler/bottle/${trackingCode}`),
   getAvailableWasteBottles: (page: number, limit: number) =>
     request<WasteBottle[]>(
       `/recycler/bottles/available?page=${page}&limit=${limit}`

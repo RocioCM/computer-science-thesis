@@ -131,3 +131,7 @@ export class RecycleBaseBottlesDTO {
   @IsInt()
   quantity: number;
 }
+
+export type RecycleResponse = {
+  recyclingBatchId: number;
+};

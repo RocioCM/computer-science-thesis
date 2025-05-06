@@ -85,6 +85,10 @@ export class RecycleBaseBottlesDTO {
   quantity: number;
 }
 
+export type RecycleResponse = {
+  recyclingBatchId: number;
+};
+
 export class SellProductBottlesDTO {
   @Expose()
   @IsInt()
