@@ -40,7 +40,7 @@ exports[`Consumer - BottleRecycleModal Matches snapshot 1`] = `
             class="w-full"
           >
             <span
-              class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+              class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
             >
               Código de seguimiento
             </span>
@@ -57,7 +57,7 @@ exports[`Consumer - BottleRecycleModal Matches snapshot 1`] = `
                 inputlabel="Código de seguimiento"
                 name="trackingCode"
                 options=""
-                placeholder="Ingresá el código de seguimiento"
+                placeholder="ABC1234XYZ"
                 required=""
                 type="text"
                 value="123"
@@ -71,7 +71,7 @@ exports[`Consumer - BottleRecycleModal Matches snapshot 1`] = `
             class="w-full"
           >
             <span
-              class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+              class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
             >
               Reciclador/a
             </span>
@@ -88,7 +88,7 @@ exports[`Consumer - BottleRecycleModal Matches snapshot 1`] = `
                 inputlabel="Reciclador/a"
                 name="recyclerUid"
                 options=""
-                placeholder="Ingresá el nombre o correo del reciclador"
+                placeholder="Busca por nombre o correo del reciclador"
                 required=""
                 type="text"
                 value=""

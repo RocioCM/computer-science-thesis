@@ -19,7 +19,7 @@ exports[`Tracking Page Matches snapshot 1`] = `
         class="w-full !w-[12rem] shrink-0"
       >
         <span
-          class="block relative z-10 w-max transition-all text-p mb-xs cursor-pointer top-0 left-0 text-n10 font-semibold"
+          class="block relative z-10 w-max transition-all text-p mb-xs cursor-pointer top-0 left-0 text-n4 font-medium"
         >
           Tipo
         </span>
@@ -53,7 +53,7 @@ exports[`Tracking Page Matches snapshot 1`] = `
         class="w-full !max-w-[20rem] shrink-0"
       >
         <span
-          class="block relative z-10 w-max transition-all text-p mb-xs !cursor-default top-0 left-0 text-n10 font-semibold"
+          class="block relative z-10 w-max transition-all text-p mb-xs !cursor-default top-0 left-0 text-n4 font-medium"
         >
           ID
         </span>

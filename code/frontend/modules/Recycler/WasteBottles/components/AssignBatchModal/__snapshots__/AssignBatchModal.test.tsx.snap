@@ -41,7 +41,7 @@ exports[`Recycler Waste Bottles - AssignBatchModal Matches snapshot 1`] = `
             class="w-full"
           >
             <span
-              class="block relative z-10 w-max transition-all text-p mb-xs cursor-pointer top-0 left-0 text-n10 font-semibold"
+              class="block relative z-10 w-max transition-all text-p mb-xs cursor-pointer top-0 left-0 text-n4 font-medium"
             >
               ID del lote
             </span>

@@ -41,7 +41,7 @@ exports[`Recycler Inventory - BatchSaleModal Matches snapshot 1`] = `
             class="w-full"
           >
             <span
-              class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+              class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
             >
               Comprador
             </span>
@@ -58,7 +58,7 @@ exports[`Recycler Inventory - BatchSaleModal Matches snapshot 1`] = `
                 inputlabel="Comprador"
                 name="buyerUid"
                 options=""
-                placeholder="Ingresá el nombre o correo del comprador"
+                placeholder="Busca por nombre o correo del comprador"
                 required=""
                 type="text"
                 value=""
