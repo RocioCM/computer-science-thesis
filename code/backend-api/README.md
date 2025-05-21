@@ -148,6 +148,61 @@ Este comando:
 4. Ejecuta las pruebas de integración
 5. Detiene automáticamente el nodo de Hardhat al finalizar (si no se detiene, puedes detenerlo manualmente cerrando la terminal).
 
+### Pruebas de carga (k6)
+
+Las pruebas de carga permiten evaluar el rendimiento y la escalabilidad de la API bajo diferentes niveles de tráfico. Se utilizan para identificar posibles cuellos de botella y garantizar que el sistema pueda manejar la carga esperada en producción.
+
+**Requisitos previos:**
+
+- Tener instalado k6: [Instrucciones de instalación](https://k6.io/docs/getting-started/installation/)
+- La API debe estar en ejecución (`npm run dev` o `npm start`)
+- Actualizar el archivo [tests/load/load-test.js](./tests/load/load-test.js) con la URL de la API y un token JWT de autenticación válido.
+
+**Ejecutar pruebas de carga básicas:**
+
+```bash
+# Asegúrate de que la API esté en ejecución en otro terminal
+npm run dev
+
+# En un terminal nuevo, ejecuta las pruebas de carga
+k6 run tests/load/load-test.js
+```
+
+Este comando ejecuta un escenario de carga básico que simula múltiples usuarios accediendo a la API simultáneamente. La prueba generará un informe con métricas como:
+
+- Tiempo de respuesta promedio
+- Solicitudes por segundo
+- Tasa de errores
+- Uso de recursos
+
+Puedes editar el archivo de pruebas para ajustar los parámetros según las necesidades:
+
+- Número de usuarios virtuales
+- Duración de la prueba
+- Endpoints a probar
+- Umbrales de rendimiento aceptables
+
+### Pruebas de seguridad
+
+Las pruebas de seguridad verifican que los mecanismos de autenticación y autorización funcionen correctamente, protegiendo los endpoints y recursos de la API.
+
+**Ejecutar pruebas de seguridad:**
+
+```bash
+# Asegúrate de que la API esté en ejecución en otro terminal
+npm run dev
+
+# En un terminal nuevo, ejecuta las pruebas de seguridad
+k6 run tests/security/auth-test.js
+```
+
+Este comando ejecuta una serie de pruebas que verifican:
+
+- Protección de endpoints restringidos
+- Rechazo de tokens inválidos o expirados
+- Validación correcta de roles de usuario
+- Aplicación adecuada de políticas de autorización
+
 ### Cuándo ejecutar cada tipo de prueba
 
 - **Pruebas unitarias (unit-test)**: útiles durante el desarrollo para verificar rápidamente cambios en componentes individuales. Son rápidas, atómicas y no tienen dependencias externas.
@@ -155,3 +210,7 @@ Este comando:
 - **Cobertura de código (coverage)**: se debe ejecutar antes de subir cambios para asegurar que las pruebas cubran adecuadamente el código nuevo o modificado.
 
 - **Pruebas de integración (integration-test)**: se deben ejecutar cuando sea necesario verificar el flujo completo de interacción con la blockchain o entre múltiples módulos. Son más lentas pero verifican el sistema de manera más completa. Es recomendable ejecutarlas antes de un despliegue a producción o al finalizar una funcionalidad que involucre múltiples módulos o interacciones con la blockchain.
+
+- **Prubas de carga (k6)**: se deben ejecutar antes o después de un despliegue a producción para verificar el rendimiento y la escalabilidad de la API bajo diferentes niveles de tráfico. También son útiles para identificar cuellos de botella y garantizar que el sistema pueda manejar la carga esperada.
+
+- **Pruebas de seguridad (k6)**: se deben ejecutar antes de un despliegue a producción para verificar que los mecanismos de autenticación y autorización funcionen correctamente. También son útiles para identificar vulnerabilidades y garantizar la seguridad de la API.

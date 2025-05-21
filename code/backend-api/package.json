@@ -10,7 +10,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
     "coverage": "cross-env NODE_ENV=test jest tests/unit --coverage",
     "unit-test": "cross-env NODE_ENV=test jest tests/unit --watch --no-coverage",
-    "integration-test": "cross-env NODE_ENV=test node scripts/run-integration-tests-new.js"
+    "integration-test": "cross-env NODE_ENV=test node scripts/run-integration-tests.js"
   },
   "author": "",
   "license": "ISC",
@@ -29,6 +29,7 @@
     "firebase-admin": "^13.0.2",
     "http-status-codes": "^2.3.0",
     "jest": "^29.7.0",
+    "k6": "^0.0.0",
     "mysql": "^2.18.1",
     "reflect-metadata": "^0.2.2",
     "sqlite3": "^5.1.7",
