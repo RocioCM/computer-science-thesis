@@ -7,9 +7,10 @@
     "dev": "cross-env NODE_ENV=development nodemon src/cmd/main.ts",
     "build": "cross-env NODE_ENV=production tsc",
     "lint": "eslint \"src/**/*.ts\" --fix",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "test": "cross-env NODE_ENV=test jest --watch",
-    "coverage": "cross-env NODE_ENV=test jest --coverage"
+    "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
+    "coverage": "cross-env NODE_ENV=test jest tests/unit --coverage",
+    "unit-test": "cross-env NODE_ENV=test jest tests/unit --watch --no-coverage",
+    "integration-test": "cross-env NODE_ENV=test node scripts/run-integration-tests-new.js"
   },
   "author": "",
   "license": "ISC",

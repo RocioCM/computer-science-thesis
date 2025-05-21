@@ -5,7 +5,7 @@ const { compilerOptions } = require('./tsconfig.json');
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  roots: ['<rootDir>/test'], // Directories where Jest will look for test files
+  roots: ['<rootDir>/tests'], // Directories where Jest will look for test files
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleFileExtensions: ['ts', 'js', 'json', 'node'],
   collectCoverage: true, // Enable coverage reports

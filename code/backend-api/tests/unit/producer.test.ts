@@ -3,18 +3,18 @@ import {
   cleanupTestDatabase,
   setupTestEnvironment,
   teardownTestEnvironment,
-} from './utils';
-import app from '../src/internal/server';
-import { BASE_PATH, ROLES } from '../src/pkg/constants';
+} from '../utils';
+import app from 'src/internal/server';
+import { BASE_PATH, ROLES } from 'src/pkg/constants';
 import { StatusCodes } from 'http-status-codes';
-import blockchainHelper from '../src/pkg/helpers/blockchainHelper';
-import AuthHandler from '../src/modules/auth/authHandler';
-import OwnershipRepository from '../src/modules/producer/repositories/ownershipRepository';
-import RecyclerHandler from '../src/modules/recycler/recyclerHandler';
+import blockchainHelper from 'src/pkg/helpers/blockchainHelper';
+import AuthHandler from 'src/modules/auth/authHandler';
+import OwnershipRepository from 'src/modules/producer/repositories/ownershipRepository';
+import RecyclerHandler from 'src/modules/recycler/recyclerHandler';
 import { Ownership } from 'src/modules/producer/domain/ownership';
 
 // Mock blockchain helper
-jest.mock('../src/pkg/helpers/blockchainHelper', () => ({
+jest.mock('src/pkg/helpers/blockchainHelper', () => ({
   callContractMethod: jest.fn(),
   callPureContractMethod: jest
     .fn()
@@ -71,7 +71,7 @@ jest.mock('../src/pkg/helpers/blockchainHelper', () => ({
 }));
 
 // Mock AuthHandler
-jest.mock('../src/modules/auth/authHandler', () => ({
+jest.mock('src/modules/auth/authHandler', () => ({
   GetUserByFirebaseUid: jest.fn().mockResolvedValue({
     ok: true,
     status: 200,
@@ -82,7 +82,7 @@ jest.mock('../src/modules/auth/authHandler', () => ({
 }));
 
 // Mock recycler handler
-jest.mock('../src/modules/recycler/recyclerHandler', () => ({
+jest.mock('src/modules/recycler/recyclerHandler', () => ({
   GetRecyclingBatchById: jest.fn(),
   GetAllUserRecyclingBatches: jest.fn(),
 }));
