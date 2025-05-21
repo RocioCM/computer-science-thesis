@@ -95,18 +95,19 @@ const BatchFormModal = ({
 
   return (
     <Modal handleCancel={handleCancel} big skippable={false} {...props}>
-      <h2 className="w-full bg-n0">
+      <h2 className="w-full font-medium text-[1.75rem]  bg-n0 border-b border-n2 pb-2 mb-1">
         {isEditing ? 'Editar' : 'Crear'} lote de botellas{' '}
         {editingId ? `#${editingId}` : ''}
       </h2>
-      <form className="h-full w-full overflow-auto hide-scroll relative pt-2">
+      <form className="h-full w-full overflow-auto hide-scroll relative pt-6">
         <div className="flex flex-col gap-2">
-          <div className="grid grid-cols-2 gap-2">
+          <h3 className="font-medium mb-2">1. Detalles del envase</h3>
+          <div className="grid grid-cols-2 gap-3">
             {formBuilder(BATCH_FORM_INPUTS_1)}
           </div>
-          <hr className="my-4" />
-          <div className="flex flex-col gap-2">
-            <h3>Composición</h3>
+          <hr className="my-4 border-n2 border-[1px]" />
+          <div className="flex flex-col gap-x-3 gap-y-4">
+            <h3 className="font-medium mb-1">2. Composición del material</h3>
             {form.bottleType?.composition?.map((_: any, i: number) => (
               <div key={i} className="flex gap-2">
                 {formBuilder(
@@ -136,7 +137,8 @@ const BatchFormModal = ({
               <FaIcon type="fa-solid fa-plus" /> Agregar material
             </Button>
           </div>
-          <hr className="my-4" />
+          <hr className="my-4 border-n2 border-[1px]" />
+          <h3 className="font-medium mb-2">3. Información de Producción</h3>
           <div className="grid grid-cols-2 gap-2">
             {formBuilder(BATCH_FORM_INPUTS_2)}
           </div>

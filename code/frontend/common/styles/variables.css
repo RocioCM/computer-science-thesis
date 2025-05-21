@@ -16,8 +16,8 @@
   --colors-neutrals-n2: #bfbfbf;
   --colors-neutrals-n3: #808080;
   --colors-neutrals-n4: #595959;
-  --colors-bg: #e5eaf5;
-  --colors-palette-p1: #01b369;
+  --colors-bg: linear-gradient(180deg, #ffffff 0%, #b9f4dc 120%);
+  --colors-palette-p1: #45b184;
   --colors-palette-p1-25: #39915040;
   --colors-palette-p1-50: #39915080;
   --colors-palette-p2: #3e43d3;

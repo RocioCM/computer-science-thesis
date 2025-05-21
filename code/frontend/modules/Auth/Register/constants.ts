@@ -26,19 +26,19 @@ export const REGISTER_INPUTS: FormBuilderField[] = [
   {
     type: INPUT_TYPES.text,
     name: 'email',
-    placeholder: 'Ingresá tu email',
+    placeholder: '',
     label: 'Correo electrónico',
   },
   {
     type: INPUT_TYPES.password,
     name: 'password',
-    placeholder: 'Ingresá tu contraseña',
+    placeholder: '',
     label: 'Contraseña',
   },
   {
     type: INPUT_TYPES.dropdown,
     name: 'roleId',
-    placeholder: 'Seleccioná tu rol',
+    placeholder: 'Selecciona un rol',
     label: 'Rol',
     dropdownOptions: ROLES_OPTIONS,
   },

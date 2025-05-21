@@ -17,7 +17,7 @@ export const BATCH_CODE_FORM_INPUTS: FormBuilderField[] = [
   {
     type: INPUT_TYPES.text,
     name: 'trackingCode',
-    placeholder: 'Ingresá el código de seguimiento',
+    placeholder: 'ABC1234XYZ',
     label: 'Código de seguimiento',
   },
 ];
@@ -42,13 +42,13 @@ export const SELL_FORM_INPUTS: FormBuilderField[] = [
   {
     type: INPUT_TYPES.number,
     name: 'quantity',
-    placeholder: 'Ingresá la cantidad de unidades a vender',
+    placeholder: '100',
     label: 'Cantidad de botellas a vender',
   },
   {
     type: INPUT_TYPES.autocomplete,
     name: 'buyerUid',
-    placeholder: 'Ingresá el nombre o correo del comprador',
+    placeholder: 'Busca por nombre o correo del comprador',
     label: 'Comprador',
   },
 ];
@@ -68,7 +68,7 @@ export const RECYCLE_FORM_INPUTS: FormBuilderField[] = [
   {
     type: INPUT_TYPES.number,
     name: 'quantity',
-    placeholder: 'Ingresá la cantidad de envases a reciclar',
+    placeholder: '100',
     label: 'Cantidad de envases a reciclar',
   },
 ];
