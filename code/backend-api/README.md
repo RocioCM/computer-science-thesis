@@ -214,3 +214,67 @@ Este comando ejecuta una serie de pruebas que verifican:
 - **Prubas de carga (k6)**: se deben ejecutar antes o después de un despliegue a producción para verificar el rendimiento y la escalabilidad de la API bajo diferentes niveles de tráfico. También son útiles para identificar cuellos de botella y garantizar que el sistema pueda manejar la carga esperada.
 
 - **Pruebas de seguridad (k6)**: se deben ejecutar antes de un despliegue a producción para verificar que los mecanismos de autenticación y autorización funcionen correctamente. También son útiles para identificar vulnerabilidades y garantizar la seguridad de la API.
+
+## Documentación de la API
+
+El proyecto utiliza tsoa y Swagger UI para generar documentación interactiva de la API. Esta documentación se genera automáticamente a partir de los controladores y modelos de TypeScript.
+
+### Visualizar la documentación
+
+Durante el desarrollo, la documentación de la API está disponible en:
+
+```
+http://localhost:8080/api/blockchain-test/docs
+```
+
+### Generar documentación
+
+La documentación se genera automáticamente al ejecutar el servidor en modo desarrollo:
+
+```bash
+npm run dev
+```
+
+También puedes generar la documentación manualmente:
+
+```bash
+npm run build:docs
+```
+
+O ejecutar un servidor dedicado para la documentación:
+
+```bash
+npm run swagger
+```
+
+### Estructura de la documentación
+
+Los controladores para la documentación se encuentran en archivos con el patrón `*Controller.ts` dentro de cada módulo. Estos controladores utilizan decoradores como `@Route`, `@Get`, `@Post`, `@Security`, etc. para definir las rutas y sus características.
+
+Ejemplo:
+
+```typescript
+@Route('recycler')
+@Tags('Recycler')
+export class RecyclerController extends Controller {
+  /**
+   * Get information about a bottle by its tracking code
+   * @param trackingCode The unique tracking code of the bottle
+   */
+  @Get('bottle/origin/{trackingCode}')
+  public async getBottleInfoByTrackingCode(
+    @Path() trackingCode: string,
+  ): Promise<TrackingOriginResponse> {
+    // Implementation
+  }
+}
+```
+
+### Actualizar la documentación
+
+Al crear nuevos endpoints o modificar los existentes, asegúrate de:
+
+1. Crear o actualizar el controlador correspondiente
+2. Documentar los parámetros y respuestas con JSDoc
+3. Utilizar los decoradores de tsoa para definir rutas, métodos y seguridad
+4. Regenerar la documentación con `npm run build:docs`
