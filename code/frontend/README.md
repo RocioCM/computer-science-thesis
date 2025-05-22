@@ -48,6 +48,13 @@ Para ejecutar el contenedor:
 docker run -p 3000:3000 frontend-bottle-tracing
 ```
 
+Para desplegar en producción, asegúrate de tener configuradas las variables de entorno necesarias (listadas en [.env.sample](./.env.sample) y [Jenkinsfile](./Jenkinsfile)) en tu entorno de producción.
+
+Variables de entorno necesarias:
+
+- `BASE_PATH`: Ruta a la API backend (ejemplo: `http://localhost:8080/api`)
+- `NEXT_PUBLIC_FIREBASE_CONFIG`: JSON de configuración del cliente de Firebase para autenticación y almacenamiento.
+
 ## Entorno de Desarrollo
 
 ### Ejecución de Pruebas
