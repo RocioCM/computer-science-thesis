@@ -13,15 +13,15 @@ import {
 import ProducerHandler from './producerHandler';
 
 // Import necessary for express-jsdoc-swagger to get the schemas
-import 'src/pkg/constants/swaggerSchemas';
-import './constants/swaggerSchemas';
+import 'src/pkg/interfaces/swaggerSchemas';
+import './domain/swaggerSchemas';
 
 //---- Routers ----//
 
 /**
  * GET /producer/batch/{id}
  * @summary Obtiene un lote de botellas base por su ID
- * @tags Productor Primario - Operaciones para productores de botellas
+ * @tags 2. Productor Primario - Operaciones para productores de botellas
  * @param {number} id.path.required - ID del lote
  * @security BearerAuth
  * @return {BaseBottlesBatchResponse} 200 - Lote encontrado
@@ -50,7 +50,7 @@ async function GetBatchById(req: Request, res: Response) {
 /**
  * GET /producer/batches/user
  * @summary Obtiene todos los lotes de botellas base del usuario autenticado
- * @tags Productor Primario - Operaciones para productores de botellas
+ * @tags 2. Productor Primario - Operaciones para productores de botellas
  * @param {number} page.query - Número de página - default: 1
  * @param {number} limit.query - Límite de resultados por página - default: 10
  * @security BearerAuth
@@ -81,7 +81,7 @@ async function GetAllBatchesByUser(req: Request, res: Response) {
 /**
  * POST /producer/batch
  * @summary Crea un nuevo lote de botellas base
- * @tags Productor Primario - Operaciones para productores de botellas
+ * @tags 2. Productor Primario - Operaciones para productores de botellas
  * @param {CreateBaseBottlesBatchRequest} request.body.required - Datos del lote
  * @security BearerAuth
  * @return {CreationResponse} 201 - Lote creado exitosamente
@@ -129,7 +129,7 @@ async function CreateBaseBottlesBatch(req: Request, res: Response) {
 /**
  * PUT /producer/batch
  * @summary Actualiza un lote de botellas base existente
- * @tags Productor Primario - Operaciones para productores de botellas
+ * @tags 2. Productor Primario - Operaciones para productores de botellas
  * @param {UpdateBaseBottlesBatchRequest} request.body.required - Datos del lote
  * @security BearerAuth
  * @return {SuccessResponse} 200 - Lote actualizado correctamente
@@ -180,7 +180,7 @@ async function UpdateBaseBottlesBatch(req: Request, res: Response) {
 /**
  * DELETE /producer/batch/{id}
  * @summary Elimina un lote de botellas base
- * @tags Productor Primario - Operaciones para productores de botellas
+ * @tags 2. Productor Primario - Operaciones para productores de botellas
  * @param {number} id.path.required - ID del lote
  * @security BearerAuth
  * @return {SuccessResponse} 200 - Lote eliminado correctamente
@@ -213,7 +213,7 @@ async function DeleteBaseBottlesBatch(req: Request, res: Response) {
 /**
  * PUT /producer/batch/sell
  * @summary Registra la venta de botellas base
- * @tags Productor Primario - Operaciones para productores de botellas
+ * @tags 2. Productor Primario - Operaciones para productores de botellas
  * @param {SellBaseBottlesRequest} request.body.required - Datos de la venta
  * @security BearerAuth
  * @return {SellResponse} 200 - Venta registrada correctamente
@@ -249,7 +249,7 @@ async function SellBaseBottles(req: Request, res: Response) {
 /**
  * PUT /producer/batch/recycle
  * @summary Registra el reciclado de un lote de botellas base
- * @tags Productor Primario - Operaciones para productores de botellas
+ * @tags 2. Productor Primario - Operaciones para productores de botellas
  * @param {RecycleBaseBottlesRequest} request.body.required - Datos del reciclado
  * @security BearerAuth
  * @return {RecycleResponse} 200 - Reciclado registrado correctamente
@@ -286,7 +286,7 @@ async function RecycleBaseBottlesBatch(req: Request, res: Response) {
 /**
  * GET /producer/buyers
  * @summary Obtiene compradores filtrados por término de búsqueda
- * @tags Productor Primario - Operaciones para productores de botellas
+ * @tags 2. Productor Primario - Operaciones para productores de botellas
  * @param {string} query.query - Término de búsqueda para filtrar compradores
  * @security BearerAuth
  * @return {BuyersListResponse} 200 - Lista de compradores filtrados
@@ -309,7 +309,7 @@ async function GetFilteredBuyers(req: Request, res: Response) {
 /**
  * GET /producer/recycled-batches
  * @summary Obtiene todos los lotes de reciclaje del usuario autenticado
- * @tags Productor Primario - Operaciones para productores de botellas
+ * @tags 2. Productor Primario - Operaciones para productores de botellas
  * @param {number} page.query - Número de página - default: 1
  * @param {number} limit.query - Límite de resultados por página - default: 10
  * @security BearerAuth
@@ -340,7 +340,7 @@ async function GetAllUserRecyclingBatches(req: Request, res: Response) {
 /**
  * GET /producer/recycled-batch/{id}
  * @summary Obtiene un lote de reciclaje por su ID
- * @tags Productor Primario - Operaciones para productores de botellas
+ * @tags 2. Productor Primario - Operaciones para productores de botellas
  * @param {number} id.path.required - ID del lote de reciclaje
  * @security BearerAuth
  * @return {RecycledMaterialBatchResponse} 200 - Lote de reciclaje encontrado

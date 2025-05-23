@@ -31,8 +31,8 @@ const options = {
   filesPattern: [
     './modules/**/*Router.ts',
     './modules/**/domain/*.ts',
-    './modules/**/constants/swaggerSchemas.ts',
-    './pkg/constants/swaggerSchemas.ts',
+    './modules/**/domain/swaggerSchemas.ts',
+    './pkg/interfaces/swaggerSchemas.ts',
   ], // Docs URL
   swaggerUIPath: BASE_PATH + '/api-docs',
   // Json docs URL

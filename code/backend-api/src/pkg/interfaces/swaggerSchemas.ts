@@ -5,42 +5,42 @@
 /**
  * Empty success response
  * @typedef {object} SuccessResponse
- * @property {number} status.required - HTTP status code
- * @property {object|null} data.required - Response data - example: null
+ * @property {number} status.required - HTTP status code - enum:200,201
+ * @property {object|null} data.required - Response data - enum: null
  */
 
 /**
  * Generic error response
  * @typedef {object} ErrorResponse
- * @property {number} status.required - HTTP status code
+ * @property {number} status.required - HTTP status code - enum:500,400,401,404,409
  * @property {string|null} data.required - Error message
  */
 
 /**
  * Bad Request Error (400)
  * @typedef {object} ErrorResponse400
- * @property {number} status.required - HTTP status code - example: 400
+ * @property {number} status.required - HTTP status code - enum:400
  * @property {string|null} data.required - Error message
  */
 
 /**
  * Unauthorized Error (401)
  * @typedef {object} ErrorResponse401
- * @property {number} status.required - HTTP status code - example: 401
+ * @property {number} status.required - HTTP status code - enum:401
  * @property {string|null} data.required - Error message
  */
 
 /**
  * Not Found Error (404)
  * @typedef {object} ErrorResponse404
- * @property {number} status.required - HTTP status code - example: 404
+ * @property {number} status.required - HTTP status code - enum:404
  * @property {string|null} data.required - Error message
  */
 
 /**
  * Conflict Error (409)
  * @typedef {object} ErrorResponse409
- * @property {number} status.required - HTTP status code - example: 409
+ * @property {number} status.required - HTTP status code - enum:409
  * @property {string|null} data.required - Error message
  */
 
@@ -95,6 +95,59 @@
  * @typedef {object} BaseBottlesBatchListResponse
  * @property {number} status.required - Código de estado HTTP 200
  * @property {BaseBottlesBatch[]} data.required - Lista de lotes de botellas
+ */
+
+/**
+ * Product Bottles Batch model
+ * @typedef {object} ProductBottlesBatch
+ * @property {number} id.required - ID del lote
+ * @property {number} originBaseBatchId.required - ID del lote de botellas base de origen
+ * @property {number} quantity.required - Cantidad de botellas en el lote
+ * @property {number} availableQuantity.required - Cantidad de botellas en el lote disponibles para venta
+ * @property {string} owner.required - Dirección del propietario
+ * @property {string} trackingCode - Código de seguimiento
+ * @property {string} createdAt - Fecha de creación
+ * @property {string} deletedAt - Fecha de eliminación
+ */
+
+/**
+ * Product Bottles Batch response
+ * @typedef {object} ProductBottlesBatchResponse
+ * @property {number} status.required - Código de estado HTTP 200
+ * @property {ProductBottlesBatch} data.required - Datos del lote de botellas de producto
+ */
+
+/**
+ * Product Bottles Batches list response
+ * @typedef {object} ProductBottlesBatchListResponse
+ * @property {number} status.required - Código de estado HTTP 200
+ * @property {ProductBottlesBatch[]} data.required - Lista de lotes de botellas de producto
+ */
+
+/**
+ * Waste Bottle model
+ * @typedef {object} WasteBottle
+ * @property {number} id.required - ID de la botella de desecho
+ * @property {string} trackingCode.required - Código de seguimiento de la botella
+ * @property {string} creator.required - Dirección del creador en la blockchain
+ * @property {string} owner.required - Dirección del propietario en la blockchain
+ * @property {number} recycledBatchId - ID del lote de reciclaje si fue reciclada
+ * @property {string} createdAt - Fecha de creación
+ * @property {string} deletedAt - Fecha de eliminación
+ */
+
+/**
+ * Waste Bottles list response
+ * @typedef {object} WasteBottleListResponse
+ * @property {number} status.required - Código de estado HTTP 200
+ * @property {WasteBottle[]} data.required - Lista de botellas de desecho
+ */
+
+/**
+ * Waste Bottle model response
+ * @typedef {object} WasteBottleResponse
+ * @property {number} status.required - Código de estado HTTP 200
+ * @property {WasteBottle} data.required - Datos de la botella de desecho
  */
 
 /**
