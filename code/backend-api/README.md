@@ -4,6 +4,12 @@ API backend para el sistema de trazabilidad de botellas basado en blockchain. Pe
 
 Este repositorio contiene la implementación de la API RESTful en Node.JS utilizando Typescript y Express, así como la lógica de negocio e integraciones necesarias para interactuar con una base de datos SQL y con los contratos inteligentes desplegados en la red blockchain.
 
+## Documentación API
+
+Esta API cuenta con una documentación generada automáticamente utilizando Swagger. La documentación incluye información sobre los endpoints disponibles, los parámetros requeridos, los esquemas de respuesta y ejemplos de uso. Esta documentación puede ser accedida a través de la URL `/api-docs` una vez que la API esté en funcionamiento.
+
+Para más detalles sobre cómo acceder y utilizar la documentación, consulta el archivo [SWAGGER_README.md](./docs/SWAGGER_README.md).
+
 ## Configuración del Entorno
 
 ### Requisitos Previos

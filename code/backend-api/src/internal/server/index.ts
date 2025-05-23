@@ -1,12 +1,52 @@
 import express, { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import cors from 'cors';
+import expressJSDocSwagger from 'express-jsdoc-swagger';
 import apiMiddleware from './routes';
 import { BASE_PATH } from 'src/pkg/constants';
 import responseHelper from 'src/pkg/helpers/responseHelper';
 import logger from 'src/pkg/helpers/logger';
+import path from 'path';
+
+// Swagger configuration
+const options = {
+  info: {
+    version: '1.0.0',
+    title: 'Sistema de Trazabilidad de Botellas API',
+    description:
+      'API para el seguimiento del ciclo de vida de botellas de vidrio en blockchain',
+    contact: {
+      name: 'UNCuyo LCC',
+    },
+  },
+  security: {
+    BearerAuth: {
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+    },
+  },
+  baseDir: path.join(__dirname, '../..'),
+  // File patterns to search for JSDoc comments - include swagger-schemas.ts
+  filesPattern: [
+    './modules/**/*Router.ts',
+    './modules/**/domain/*.ts',
+    './modules/**/constants/swaggerSchemas.ts',
+    './pkg/constants/swaggerSchemas.ts',
+  ], // Docs URL
+  swaggerUIPath: BASE_PATH + '/api-docs',
+  // Json docs URL
+  apiDocsPath: BASE_PATH + '/api-docs.json',
+  // This is the URL that will be used to access the API documentation
+  baseURL: BASE_PATH,
+  // Set server URL to include the BASE_PATH
+  servers: [{ url: BASE_PATH, description: 'Current API server' }],
+};
 
 const server = express();
+
+// Initialize Swagger
+expressJSDocSwagger(server)(options);
 
 // Configure express to parse JSON data in the request body
 server.use(express.json());
