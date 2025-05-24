@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { ethers } from 'ethers';
 import { IResult } from 'src/pkg/interfaces/result';
-import { getEnv } from 'src/pkg/helpers/env';
+import { getEnv, isTest } from 'src/pkg/helpers/env';
 import logger from 'src/pkg/helpers/logger';
 
 type ABIInput = {
@@ -183,6 +183,21 @@ function getWallet(): ethers.Wallet {
   return wallet;
 }
 
+async function getNonce(
+  provider: ethers.Provider,
+  address: string,
+): Promise<number> {
+  let nonce: number;
+  if (isTest()) {
+    // Use nonce manager in tests to avoid race conditions
+    nonce = require('../../../tests/utils').getNextNonce();
+  } else {
+    // In non-test environments, get nonce from provider
+    nonce = await provider.getTransactionCount(address);
+  }
+  return nonce;
+}
+
 async function callContractMethod(
   contractAddress: string,
   abi: ABI,
@@ -194,7 +209,7 @@ async function callContractMethod(
     const contract = new ethers.Contract(contractAddress, abi, wallet);
 
     const provider = wallet.provider!;
-    const nonce = await provider.getTransactionCount(wallet.address);
+    const nonce = await getNonce(provider, wallet.address);
 
     const txOptions: Partial<ethers.ContractTransaction> = { nonce };
 
@@ -236,7 +251,6 @@ async function callPureContractMethod<T = any>(
 
     const method = contract.getFunction(methodName);
     const res: ethers.Result = await method(...args);
-    console.log('callPureContractMethod', methodName, res);
     return formatResponse<T>(abi, methodName, res);
   } catch (err: any) {
     logger.error('BLOCKCHAIN TRANSACTION ERROR: ', err);

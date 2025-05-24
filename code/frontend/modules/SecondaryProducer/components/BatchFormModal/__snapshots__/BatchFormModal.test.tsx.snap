@@ -41,7 +41,7 @@ exports[`Secondary Producer - BatchFormModal Matches snapshot 1`] = `
             class="w-full"
           >
             <span
-              class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+              class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
             >
               Código de seguimiento
             </span>
@@ -58,7 +58,7 @@ exports[`Secondary Producer - BatchFormModal Matches snapshot 1`] = `
                 inputlabel="Código de seguimiento"
                 name="trackingCode"
                 options=""
-                placeholder="Ingresá el código de seguimiento"
+                placeholder="ABC1234XYZ"
                 required=""
                 type="text"
                 value=""

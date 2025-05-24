@@ -29,7 +29,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
           />
         </div>
         <h2
-          class="w-full bg-n0"
+          class="w-full font-medium text-[1.75rem]  bg-n0 border-b border-n2 pb-2 mb-1"
         >
           Editar
            lote de botellas
@@ -37,19 +37,24 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
           #1
         </h2>
         <form
-          class="h-full w-full overflow-auto hide-scroll relative pt-2"
+          class="h-full w-full overflow-auto hide-scroll relative pt-6"
         >
           <div
             class="flex flex-col gap-2"
           >
+            <h3
+              class="font-medium mb-2"
+            >
+              1. Detalles del envase
+            </h3>
             <div
-              class="grid grid-cols-2 gap-2"
+              class="grid grid-cols-2 gap-3"
             >
               <div
                 class="w-full"
               >
                 <span
-                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
                 >
                   Cantidad de envases
                 </span>
@@ -66,7 +71,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                     inputlabel="Cantidad de envases"
                     name="quantity"
                     options=""
-                    placeholder="Ingresá la cantidad de envases"
+                    placeholder="1000"
                     required=""
                     type="number"
                     value=""
@@ -80,7 +85,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                 class="w-full"
               >
                 <span
-                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
                 >
                   Peso por envase (en gramos)
                 </span>
@@ -97,7 +102,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                     inputlabel="Peso por envase (en gramos)"
                     name="bottleType.weight"
                     options=""
-                    placeholder="Ingresá el peso por envase (gramos)"
+                    placeholder="300"
                     required=""
                     type="number"
                     value=""
@@ -111,7 +116,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                 class="w-full"
               >
                 <span
-                  class="block relative z-10 w-max transition-all text-p mb-xs cursor-pointer top-0 left-0 text-n10 font-semibold"
+                  class="block relative z-10 w-max transition-all text-p mb-xs cursor-pointer top-0 left-0 text-n4 font-medium"
                 >
                   Color del envase
                 </span>
@@ -123,7 +128,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                   <span
                     class="flex-1 min-h-4"
                   >
-                    Seleccioná el color del envase
+                    Seleccioná una opción
                   </span>
                   <i
                     class="inline-block w-2.5 h-2.5 rotate-0 "
@@ -147,7 +152,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                 class="w-full"
               >
                 <span
-                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
                 >
                   Espesor (en milímetros)
                 </span>
@@ -164,7 +169,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                     inputlabel="Espesor (en milímetros)"
                     name="bottleType.thickness"
                     options=""
-                    placeholder="Ingresá el espesor (mm)"
+                    placeholder="3"
                     required=""
                     type="number"
                     value=""
@@ -178,7 +183,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                 class="w-full"
               >
                 <span
-                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
                 >
                   Tipo/forma del envase
                 </span>
@@ -195,7 +200,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                     inputlabel="Tipo/forma del envase"
                     name="bottleType.shapeType"
                     options=""
-                    placeholder="Ingresá el tipo/forma del envase"
+                    placeholder="Estándar"
                     required=""
                     type="text"
                     value=""
@@ -207,13 +212,15 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
               </div>
             </div>
             <hr
-              class="my-4"
+              class="my-4 border-n2 border-[1px]"
             />
             <div
-              class="flex flex-col gap-2"
+              class="flex flex-col gap-x-3 gap-y-4"
             >
-              <h3>
-                Composición
+              <h3
+                class="font-medium mb-1"
+              >
+                2. Composición del material
               </h3>
               <div
                 class="flex gap-2"
@@ -222,7 +229,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                   class="w-full"
                 >
                   <span
-                    class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                    class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
                   >
                     Nombre del material
                   </span>
@@ -239,7 +246,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                       inputlabel="Nombre del material"
                       name="bottleType.composition.0.name"
                       options=""
-                      placeholder="Ingresá el nombre del material"
+                      placeholder="Calcín"
                       required=""
                       type="text"
                       value=""
@@ -253,7 +260,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                   class="w-full"
                 >
                   <span
-                    class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                    class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
                   >
                     Cantidad de material
                   </span>
@@ -270,7 +277,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                       inputlabel="Cantidad de material"
                       name="bottleType.composition.0.amount"
                       options=""
-                      placeholder="Ingresá la cantidad de material"
+                      placeholder="10"
                       required=""
                       type="number"
                       value=""
@@ -284,7 +291,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                   class="w-full"
                 >
                   <span
-                    class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                    class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
                   >
                     Unidad de medida
                   </span>
@@ -301,7 +308,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                       inputlabel="Unidad de medida"
                       name="bottleType.composition.0.measureUnit"
                       options=""
-                      placeholder="Ingresá la unidad de medida de la cantidad de material"
+                      placeholder="%"
                       required=""
                       type="text"
                       value=""
@@ -324,8 +331,13 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
               </button>
             </div>
             <hr
-              class="my-4"
+              class="my-4 border-n2 border-[1px]"
             />
+            <h3
+              class="font-medium mb-2"
+            >
+              3. Información de Producción
+            </h3>
             <div
               class="grid grid-cols-2 gap-2"
             >
@@ -333,7 +345,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                 class="w-full"
               >
                 <span
-                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
                 >
                   Fecha de producción
                 </span>
@@ -348,13 +360,13 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                     data-testid="input"
                     form="[object Object]"
                     inputlabel="Fecha de producción"
-                    max="2025-05-03"
+                    max="2025-05-21"
                     name="createdAt"
                     options=""
                     placeholder="Seleccioná la fecha de producción"
                     required=""
                     type="date"
-                    value="2025-05-03"
+                    value="2025-05-21"
                   />
                   <div
                     class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"
@@ -365,7 +377,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                 class="w-full"
               >
                 <span
-                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
                 >
                   Localización de producción
                 </span>
@@ -382,7 +394,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                     inputlabel="Localización de producción"
                     name="bottleType.originLocation"
                     options=""
-                    placeholder="Ingresá la localización de producción"
+                    placeholder="Mendoza"
                     required=""
                     type="text"
                     value=""
@@ -396,7 +408,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                 class="w-full block col-span-2"
               >
                 <span
-                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+                  class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
                 >
                   Observaciones adicionales (opcional)
                 </span>
@@ -406,7 +418,7 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                   inputlabel="Observaciones adicionales (opcional)"
                   name="bottleType.extraInfo"
                   options=""
-                  placeholder="Ingresá observaciones adicionales"
+                  placeholder=""
                   type="textarea"
                 />
               </label>

@@ -92,11 +92,14 @@ function Table({
       className={cn('w-full h-full overflow-auto', className)}
     >
       <table className="w-full relative">
-        <thead className="sticky top-0 bg-n0 rounded-lg text-left">
+        <thead className="sticky top-0 z-10 bg-n0 rounded-lg text-left">
           <tr>
             {columns.map((column, index) => (
-              <th key={index} className={cn('h6 p-s last:text-center')}>
-                {column.title}
+              <th
+                key={index}
+                className={cn('h6 p-s bg-p3 text-n0 last:text-center')}
+              >
+                <span className="font-medium">{column.title}</span>
               </th>
             ))}
           </tr>

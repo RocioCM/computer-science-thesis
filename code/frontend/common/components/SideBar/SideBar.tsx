@@ -15,26 +15,14 @@ interface NavItem {
 }
 
 const NAV_ITEMS_BY_ROLE: Record<string, NavItem[]> = {
-  [ROLES.admin]: [
-    {
-      name: 'Inicio',
-      path: '/',
-      icon: 'fa-solid fa-list',
-    },
-    {
-      name: 'Seguimiento',
-      path: '/tracking',
-      icon: 'fa-solid fa-arrows-spin',
-    },
-  ],
   [ROLES.producer]: [
     {
-      name: 'Inicio',
-      path: '/',
+      name: 'Lotes producidos',
+      path: '/producer',
       icon: 'fa-solid fa-list',
     },
     {
-      name: 'Material Reciclado',
+      name: 'Material reciclado',
       path: '/producer/recycled-batches',
       icon: 'fa-solid fa-recycle',
     },
@@ -46,8 +34,8 @@ const NAV_ITEMS_BY_ROLE: Record<string, NavItem[]> = {
   ],
   [ROLES.secondary_producer]: [
     {
-      name: 'Inicio',
-      path: '/',
+      name: 'Inventario',
+      path: '/secondary-producer',
       icon: 'fa-solid fa-list',
     },
     {
@@ -58,8 +46,8 @@ const NAV_ITEMS_BY_ROLE: Record<string, NavItem[]> = {
   ],
   [ROLES.consumer]: [
     {
-      name: 'Inicio',
-      path: '/',
+      name: 'Botellas recicladas',
+      path: '/consumer',
       icon: 'fa-solid fa-list',
     },
     {
@@ -70,8 +58,8 @@ const NAV_ITEMS_BY_ROLE: Record<string, NavItem[]> = {
   ],
   [ROLES.recycler]: [
     {
-      name: 'Inventario',
-      path: '/',
+      name: 'Lotes de material',
+      path: '/recycler',
       icon: 'fa-solid fa-list',
     },
     {
@@ -105,20 +93,23 @@ const Item = ({
   icon,
   text,
   isExpanded,
+  isActive,
 }: {
   icon?: string;
   text: string;
   isExpanded: boolean;
+  isActive?: boolean;
 }) => (
   <div
     className={cn(
-      'h-max flex items-center font-medium cursor-pointer hover:text-p1 duration-1000 w-max'
+      'h-max flex items-center font-medium cursor-pointer hover:text-p1 duration-1000 w-max',
+      isActive ? 'text-p1' : ''
     )}
   >
     {icon && <FaIcon type={icon} className="text-base w-4 h-4" />}
     <p
       className={cn(
-        'font-medium h-6 leading-6 flex transition-[width,padding] overflow-hidden duration-500',
+        'h-6 leading-6 flex transition-[width,padding] overflow-hidden duration-500',
         isExpanded ? 'w-[8rem] pl-3' : 'w-0 pl-0'
       )}
     >
@@ -131,15 +122,14 @@ const SideBar: React.FC<SideBarProps> = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const { isLoggedIn, user, logout } = useLoginContext();
   const router = useRouter();
+  const path = router.asPath.split('?')[0];
 
   const { Modal: LogoutModal, showModal: showLogoutModal } = useModal(
     false,
     ConfirmationModal
   );
 
-  const handleHomeRedirect = () => {
-    router.push('/');
-  };
+  const { Modal: SupportModal, showModal: showSupportModal } = useModal();
 
   const navItems = user?.role
     ? NAV_ITEMS_BY_ROLE[user.role] ?? NAV_ITEMS_BY_ROLE.default
@@ -156,22 +146,31 @@ const SideBar: React.FC<SideBarProps> = () => {
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
     >
-      <div onClick={handleHomeRedirect} className="cursor-pointer">
-        <Item icon="fa-solid fa-meteor" text="Tesis" isExpanded={isExpanded} />
-      </div>
       <ul className="flex-1 flex flex-col gap-4">
         {navItems.map((item) => (
           <li key={item.name}>
             <Link href={item.path}>
-              <Item icon={item.icon} text={item.name} isExpanded={isExpanded} />
+              <Item
+                icon={item.icon}
+                text={item.name}
+                isExpanded={isExpanded}
+                isActive={path === item.path}
+              />
             </Link>
           </li>
         ))}
       </ul>
-
       <Link href="/profile">
-        <Item icon="fa-regular fa-user" text="Perfil" isExpanded={isExpanded} />
+        <Item
+          icon="fa-regular fa-user"
+          text="Perfil"
+          isExpanded={isExpanded}
+          isActive={path === '/profile'}
+        />
       </Link>
+      <div onClick={showSupportModal}>
+        <Item icon="fa-solid fa-headset" text="Ayuda" isExpanded={isExpanded} />
+      </div>
       <div
         onClick={() => showLogoutModal()}
         className="w-full h-max flex flex-col justify-center items-center shrink-0"
@@ -182,9 +181,45 @@ const SideBar: React.FC<SideBarProps> = () => {
           isExpanded={isExpanded}
         />
       </div>
+
+      <SupportModal>
+        <div className="flex flex-col items-center p-4 text-center">
+          <FaIcon
+            type="fa-solid fa-headset"
+            className="text-4xl text-p1 mb-3"
+          />
+          <h2 className="text-2xl font-semibold mb-2">Ayuda</h2>
+          <p className="mb-6 text-gray-600">
+            Estamos disponibles para ayudarte con cualquier problema o duda
+            sobre el sistema.
+          </p>
+
+          <div className="flex justify-center gap-4 w-full max-w-md">
+            <a
+              href="https://wa.me/+5492610000000"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center gap-2 bg-p1 text-n0 py-3 px-4 rounded-lg"
+            >
+              <FaIcon type="fa-brands fa-whatsapp" className="text-xl" />
+              <span>WhatsApp</span>
+            </a>
+
+            <a
+              href="mailto:support@tesis.com"
+              className="w-full flex items-center justify-center gap-2 bg-p3 text-n0 py-3 px-4 rounded-lg"
+            >
+              <FaIcon type="fa-solid fa-envelope" className="text-lg" />
+              <span>Email</span>
+            </a>
+          </div>
+        </div>
+      </SupportModal>
+
       <LogoutModal
-        title="¿Confirmas que deseas cerrar sesión?"
+        title="¿Deseas cerrar sesión?"
         subtitle="Si cierras sesión, deberás volver a iniciar sesión para acceder a tu cuenta."
+        icon="fa-solid fa-right-from-bracket"
         handleConfirm={() => logout(true)}
       />
     </nav>

@@ -9,7 +9,7 @@
     "lint": "next lint",
     "check": "next lint && tsc",
     "type-check": "tsc",
-    "test": "jest --watch",
+    "test": "jest --watch --no-coverage",
     "coverage": "jest --coverage",
     "cast": "node ./scripts/cast.js",
     "tailwind-cast": "node ./scripts/tailwind-cast.js"

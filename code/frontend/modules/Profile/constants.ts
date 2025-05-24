@@ -69,6 +69,7 @@ export const PROFILE_INPUTS: FormBuilderField[] = [
   {
     type: INPUT_TYPES.text,
     name: 'phone',
+    placeholder: '+5492610000000',
     label: 'Teléfono',
   },
 ];

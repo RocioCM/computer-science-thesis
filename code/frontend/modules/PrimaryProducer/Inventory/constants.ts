@@ -86,19 +86,19 @@ export const BATCH_FORM_INPUTS_1: FormBuilderField[] = [
   {
     type: INPUT_TYPES.number,
     name: 'quantity',
-    placeholder: 'Ingresá la cantidad de envases',
+    placeholder: '1000',
     label: 'Cantidad de envases',
   },
   {
     type: INPUT_TYPES.number,
     name: 'bottleType.weight',
-    placeholder: 'Ingresá el peso por envase (gramos)',
+    placeholder: '300',
     label: 'Peso por envase (en gramos)',
   },
   {
     type: INPUT_TYPES.dropdown,
     name: 'bottleType.color',
-    placeholder: 'Seleccioná el color del envase',
+    placeholder: 'Seleccioná una opción',
     label: 'Color del envase',
     dropdownOptions: [
       { value: 'transparente', label: 'Transparente' },
@@ -110,13 +110,13 @@ export const BATCH_FORM_INPUTS_1: FormBuilderField[] = [
   {
     type: INPUT_TYPES.number,
     name: 'bottleType.thickness',
-    placeholder: 'Ingresá el espesor (mm)',
+    placeholder: '3',
     label: 'Espesor (en milímetros)',
   },
   {
     type: INPUT_TYPES.text,
     name: 'bottleType.shapeType',
-    placeholder: 'Ingresá el tipo/forma del envase',
+    placeholder: 'Estándar',
     label: 'Tipo/forma del envase',
   },
 ];
@@ -125,19 +125,19 @@ export const BATCH_COMPOSITION_FORM_INPUTS: FormBuilderField[] = [
   {
     type: INPUT_TYPES.text,
     name: 'name',
-    placeholder: 'Ingresá el nombre del material',
+    placeholder: 'Calcín',
     label: 'Nombre del material',
   },
   {
     type: INPUT_TYPES.number,
     name: 'amount',
-    placeholder: 'Ingresá la cantidad de material',
+    placeholder: '10',
     label: 'Cantidad de material',
   },
   {
     type: INPUT_TYPES.text,
     name: 'measureUnit',
-    placeholder: 'Ingresá la unidad de medida de la cantidad de material',
+    placeholder: '%',
     label: 'Unidad de medida',
   },
 ];
@@ -153,13 +153,13 @@ export const BATCH_FORM_INPUTS_2: FormBuilderField[] = [
   {
     type: INPUT_TYPES.text,
     name: 'bottleType.originLocation',
-    placeholder: 'Ingresá la localización de producción',
+    placeholder: 'Mendoza',
     label: 'Localización de producción',
   },
   {
     type: INPUT_TYPES.textarea,
     name: 'bottleType.extraInfo',
-    placeholder: 'Ingresá observaciones adicionales',
+    placeholder: '',
     label: 'Observaciones adicionales (opcional)',
     containerClassName: 'col-span-2',
   },
@@ -185,13 +185,13 @@ export const SELL_FORM_INPUTS: FormBuilderField[] = [
   {
     type: INPUT_TYPES.number,
     name: 'quantity',
-    placeholder: 'Ingresá la cantidad de envases a vender',
+    placeholder: '500',
     label: 'Cantidad de envases a vender',
   },
   {
     type: INPUT_TYPES.autocomplete,
     name: 'buyerUid',
-    placeholder: 'Ingresá el nombre o correo del comprador',
+    placeholder: 'Busca por nombre o correo del comprador',
     label: 'Comprador',
   },
 ];
@@ -211,7 +211,7 @@ export const RECYCLE_FORM_INPUTS: FormBuilderField[] = [
   {
     type: INPUT_TYPES.number,
     name: 'quantity',
-    placeholder: 'Ingresá la cantidad de envases a reciclar',
+    placeholder: '500',
     label: 'Cantidad de envases a reciclar',
   },
 ];

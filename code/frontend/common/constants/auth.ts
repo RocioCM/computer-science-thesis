@@ -14,7 +14,6 @@ export const ROLES = {
 };
 
 export const ROLES_OPTIONS = [
-  { label: 'Administrador', value: ROLES.admin },
   { label: 'Productor primario', value: ROLES.producer },
   { label: 'Productor secundario', value: ROLES.secondary_producer },
   { label: 'Comprador', value: ROLES.buyer },

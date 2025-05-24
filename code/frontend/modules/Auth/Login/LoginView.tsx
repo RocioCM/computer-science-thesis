@@ -25,17 +25,17 @@ const LoginView: LoginViewType = ({
         className="relative w-full min-w-[300px] max-w-[500px] h-max max-h-full overflow-auto rounded-rs border border-n2 bg-n0 shadow-e3 p-2xl flex flex-col gap-xl"
         onSubmit={handleLogin}
       >
-        <h2>Bienvenido</h2>
+        <h2 className="font-medium">Iniciar sesión</h2>
         <div className="flex flex-col gap-s">{formBuilder(LOGIN_INPUTS)}</div>
         <p className="text-center">
-          ¿No tenés cuenta?{' '}
+          ¿No tienes cuenta?{' '}
           <Link href="/auth/register" className="font-semibold text-p1">
-            Registrate acá
+            Regístrate aquí
           </Link>
         </p>
         <Button
           handleClick={handleLogin}
-          label="Iniciar sesión"
+          label="Ingresar"
           disabled={!submitEnabled}
           isLoading={isLoading}
           width="full"

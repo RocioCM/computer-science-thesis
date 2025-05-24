@@ -4,19 +4,19 @@ import * as firebaseAdmin from 'firebase-admin';
 import { ethers } from 'ethers';
 import express from 'express';
 
-import { Authenticate, initializeAdmin } from '../src/pkg/helpers/authHelper';
-import blockchainHelper, { ABI } from '../src/pkg/helpers/blockchainHelper';
-import { getEnv } from '../src/pkg/helpers/env';
-import logger from '../src/pkg/helpers/logger';
-import middlewareHelper from '../src/pkg/helpers/middlewareHelper';
-import requestHelper from '../src/pkg/helpers/requestHelper';
-import responseHelper from '../src/pkg/helpers/responseHelper';
-import { User } from '../src/modules/auth/domain/user';
+import { Authenticate, initializeAdmin } from 'src/pkg/helpers/authHelper';
+import blockchainHelper, { ABI } from 'src/pkg/helpers/blockchainHelper';
+import { getEnv } from 'src/pkg/helpers/env';
+import logger from 'src/pkg/helpers/logger';
+import middlewareHelper from 'src/pkg/helpers/middlewareHelper';
+import requestHelper from 'src/pkg/helpers/requestHelper';
+import responseHelper from 'src/pkg/helpers/responseHelper';
+import { User } from 'src/modules/auth/domain/user';
 import {
   cleanupTestDatabase,
   setupTestEnvironment,
   teardownTestEnvironment,
-} from './utils';
+} from '../utils';
 import { ROLES } from 'src/pkg/constants';
 
 // Mock ethers

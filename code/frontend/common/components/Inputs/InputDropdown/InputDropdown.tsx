@@ -9,7 +9,7 @@ import styles from './InputDropdown.module.css';
 
 const LABEL_STYLE = {
   base: 'text-p mb-xs cursor-pointer',
-  floatingOnTop: 'top-0 left-0 text-n10 font-semibold',
+  floatingOnTop: 'top-0 left-0 text-n4 font-medium',
   floatingInsideInput:
     'top-[calc(2*var(--spacing-m)+var(--spacing-xs))] left-m text-n2 font-medium cursor-text',
   disabled: '!cursor-default',

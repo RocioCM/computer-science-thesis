@@ -1,22 +1,22 @@
 import request from 'supertest';
-import app from '../src/internal/server';
-import { BASE_PATH, ROLES } from '../src/pkg/constants';
+import app from 'src/internal/server';
+import { BASE_PATH, ROLES } from 'src/pkg/constants';
 import {
   setupTestEnvironment,
   cleanupTestDatabase,
   teardownTestEnvironment,
-} from './utils';
+} from '../utils';
 import { StatusCodes } from 'http-status-codes';
-import blockchainHelper from '../src/pkg/helpers/blockchainHelper';
-import AuthHandler from '../src/modules/auth/authHandler';
-import RecyclerHandler from '../src/modules/recycler/recyclerHandler';
-import SecondaryProducerHandler from '../src/modules/secondaryProducer/secondaryProducerHandler';
-import WatcherRepository from '../src/modules/consumer/repositories/watcherRepository';
-import OwnershipRepository from '../src/modules/consumer/repositories/ownershipRepository';
+import blockchainHelper from 'src/pkg/helpers/blockchainHelper';
+import AuthHandler from 'src/modules/auth/authHandler';
+import RecyclerHandler from 'src/modules/recycler/recyclerHandler';
+import SecondaryProducerHandler from 'src/modules/secondaryProducer/secondaryProducerHandler';
+import WatcherRepository from 'src/modules/consumer/repositories/watcherRepository';
+import OwnershipRepository from 'src/modules/consumer/repositories/ownershipRepository';
 import ConsumerHandler from 'src/modules/consumer/consumerHandler';
 
 // Mock blockchain helper
-jest.mock('../src/pkg/helpers/blockchainHelper', () => ({
+jest.mock('src/pkg/helpers/blockchainHelper', () => ({
   callContractMethod: jest
     .fn()
     .mockImplementation(async (contractAddress, abi, methodName, ...args) => {
@@ -113,7 +113,7 @@ jest.mock('../src/pkg/helpers/blockchainHelper', () => ({
 }));
 
 // Mock AuthHandler
-jest.mock('../src/modules/auth/authHandler', () => ({
+jest.mock('src/modules/auth/authHandler', () => ({
   GetUserByFirebaseUid: jest.fn().mockImplementation(async (uid) => {
     if (uid === 'invalid-uid') {
       return {
@@ -185,7 +185,7 @@ jest.mock('../src/modules/auth/authHandler', () => ({
 }));
 
 // Mock SecondaryProducerHandler
-jest.mock('../src/modules/secondaryProducer/secondaryProducerHandler', () => ({
+jest.mock('src/modules/secondaryProducer/secondaryProducerHandler', () => ({
   GetBatchByTrackingCode: jest.fn().mockImplementation(async (trackingCode) => {
     if (trackingCode === 'invalid-code') {
       return {
@@ -241,7 +241,7 @@ jest.mock('../src/modules/secondaryProducer/secondaryProducerHandler', () => ({
 }));
 
 // Mock RecyclerHandler
-jest.mock('../src/modules/recycler/recyclerHandler', () => ({
+jest.mock('src/modules/recycler/recyclerHandler', () => ({
   GetRecyclingBatchById: jest.fn().mockImplementation(async (id) => {
     if (id === 999) {
       return {
@@ -753,9 +753,9 @@ describe('Consumer API', () => {
         .post(`${BASE_PATH}/consumer/waste`)
         .set('Authorization', `Bearer userWithId-userRole-CONSUMER`)
         .send(wasteBottleData)
-        .expect(200);
+        .expect(201);
 
-      expect(res.body.status).toBe(200);
+      expect(res.body.status).toBe(201);
       expect(res.body.data).toHaveProperty('bottleId', 1);
       expect(blockchainHelper.callContractMethod).toHaveBeenCalledWith(
         expect.any(String),

@@ -1,6 +1,6 @@
 import request from 'supertest';
-import app from '../src/internal/server';
-import { BASE_PATH } from '../src/pkg/constants';
+import app from 'src/internal/server';
+import { BASE_PATH } from 'src/pkg/constants';
 import AuthHandler from 'src/modules/auth/authHandler';
 
 describe('App setup', () => {
@@ -23,7 +23,7 @@ describe('App setup', () => {
 
     const res = await request(app)
       .get(BASE_PATH + '/auth/user')
-      .set('Authorization', 'Bearer userWithId-new-user-uid')
+      .set('Authorization', 'Bearer userWithId-some-uid')
       .expect(500);
 
     expect(res.body.status).toBe(500);

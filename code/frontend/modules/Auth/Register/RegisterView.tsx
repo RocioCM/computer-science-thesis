@@ -27,14 +27,14 @@ const RegisterView: RegisterViewType = ({
         onSubmit={handleRegister}
         key={formKey}
       >
-        <h2>Registro</h2>
+        <h2 className="font-medium">Registro</h2>
         <div className="flex flex-col gap-s">
           {formBuilder(REGISTER_INPUTS)}
         </div>
         <p className="text-center">
-          ¿Ya tenés cuenta?{' '}
+          ¿Ya tienes cuenta?{' '}
           <Link href="/auth/login" className="font-semibold text-p1">
-            Ingresá acá
+            Ingresa aquí
           </Link>
         </p>
         <Button

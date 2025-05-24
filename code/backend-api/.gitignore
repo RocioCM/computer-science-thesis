@@ -26,6 +26,7 @@ yarn-error.log*
 .env*.production
 .env*.dev
 .env*.local
+.env.test
 
 # ts
 tsconfig.tsbuildinfo

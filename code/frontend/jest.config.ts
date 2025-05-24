@@ -12,9 +12,9 @@ const customJestConfig = {
     '^@/(.*)$': '<rootDir>/$1', // Adjust for your Next.js path aliases
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  collectCoverage: true,
+  collectCoverage: false,
   coverageDirectory: 'coverage',
-  coverageReporters: ['text', 'lcov'],
+  coverageReporters: ['text-summary', 'lcov'],
   coveragePathIgnorePatterns: [
     '<rootDir>/common/hooks/useForm/', // Ignore useForm as it is outside the scope of this project
     '<rootDir>/common/context/', // Ignore context as it is mocked

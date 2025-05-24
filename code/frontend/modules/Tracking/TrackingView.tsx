@@ -29,7 +29,7 @@ const TrackingView: TrackingViewType = ({
         <InputDropdown
           name="type"
           label="Tipo"
-          placeholder="Elegir tipo"
+          placeholder="Elige un tipo"
           options={[
             { label: 'Lote Base', value: TABS_KEYS.BASE_BATCH },
             { label: 'Lote Producto', value: TABS_KEYS.PRODUCT_BATCH },
