@@ -1,5 +1,5 @@
-# Use Node.js 18 as the base image
-FROM node:18-alpine
+# Use Node.js 20 as the base image
+FROM node:20-alpine
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -16,16 +16,13 @@ COPY . .
 # Build TypeScript code
 RUN npm run build
 
-# Create a more robust path-register.js file to handle module resolution
-RUN echo 'const tsConfig = require("./tsconfig.json"); \n\
-const tsConfigPaths = require("tsconfig-paths"); \n\
-\n\
-const baseUrl = "./dist"; \n\
-const cleanup = tsConfigPaths.register({ \n\
-  baseUrl, \n\
-  paths: tsConfig.compilerOptions.paths \n\
-});\n\
-\n\
+RUN echo 'const tsConfig = require("./tsconfig.json"); \
+const tsConfigPaths = require("tsconfig-paths"); \
+const baseUrl = "./dist"; \
+const cleanup = tsConfigPaths.register({ \
+  baseUrl, \
+  paths: tsConfig.compilerOptions.paths \
+});\
 process.env.NODE_ENV = process.env.NODE_ENV || "production";' > path-register.js
 
 # Ensure source files are kept for Swagger documentation (needed for JSDoc comments)
