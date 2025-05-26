@@ -16,6 +16,7 @@ COPY . .
 # Build TypeScript code
 RUN npm run build
 
+# Create a path-register.js file to handle module resolution
 RUN echo 'const tsConfig = require("./tsconfig.json"); \
 const tsConfigPaths = require("tsconfig-paths"); \
 const baseUrl = "./dist"; \
