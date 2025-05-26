@@ -21,7 +21,7 @@ const PrimaryProducerView: PrimaryProducerViewType = ({
   menuActions,
 }) => {
   return (
-    <main className="w-full h-screen flex flex-col p-2xl">
+    <main className="w-full h-screen flex flex-col p-2xl animate__animated  animate__fadeIn">
       <header className="pb-2xl flex items-center justify-between">
         <h1>Lotes producidos</h1>
         <Button onClick={handleCreateButton}>

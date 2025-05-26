@@ -35,13 +35,14 @@ const BatchDetailModal: React.FC<Props> = ({
 
   return (
     <Modal handleCancel={handleCancel} big skippable={false} {...props}>
-      <h2 className="w-full bg-n0">Lote de material #{editingId}</h2>
-
+      <h2 className="w-full font-medium text-[1.75rem]  bg-n0 border-b border-n2 pb-2">
+        Lote de material #{editingId}
+      </h2>
       {batch ? (
-        <div className="h-full w-full overflow-auto hide-scroll relative pt-2">
+        <div className="h-full w-full flex flex-col gap-4 overflow-auto hide-scroll relative pt-2">
           {/* Información General */}
-          <div className="grid grid-cols-2 gap-m mt-4">
-            <h3 className="text-lg font-semibold border-b py-2 col-span-2">
+          <div className="grid grid-cols-2 gap-m my-2">
+            <h3 className="text-lg font-semibold pb-2 col-span-2">
               Información General
             </h3>
             <p>
@@ -59,10 +60,10 @@ const BatchDetailModal: React.FC<Props> = ({
               {new Date(batch.createdAt).toLocaleDateString()}
             </p>
           </div>
-
+          <hr />
           {/* Composición */}
-          <div className="mt-6">
-            <h3 className="text-lg font-semibold border-t py-2">Composición</h3>
+          <div>
+            <h3 className="text-lg font-semibold  pb-2">Composición</h3>
             {batch.composition.length > 0 ? (
               <table className="w-full mt-2 border border-gray-300 rounded-md">
                 <thead>
@@ -88,19 +89,22 @@ const BatchDetailModal: React.FC<Props> = ({
               </p>
             )}
           </div>
+          <hr className="mt-4" />
+
           {/* Información Adicional */}
           {batch.extraInfo && (
-            <div className="mt-6">
-              <h3 className="text-lg font-semibold border-t py-2">
+            <div className="">
+              <h3 className="text-lg font-semibold py-2">
                 Información Adicional
               </h3>
               <p className="text-gray-700 mt-2">{batch.extraInfo}</p>
+              <hr />
             </div>
           )}
 
           {/* Botellas */}
-          <div className="mt-6">
-            <h3 className="text-lg font-semibold border-t py-2">Botellas</h3>
+          <div>
+            <h3 className="text-lg font-semibold py-2">Botellas</h3>
             {batch.wasteBottleIds.length > 0 ? (
               <ul className="grid grid-cols-4 gap-2">
                 {batch.wasteBottleIds.map((bottleId) => (

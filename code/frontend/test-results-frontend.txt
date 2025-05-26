@@ -1,0 +1,519 @@
+PASS common/libraries/auth/__tests__/withAuth.test.tsx (5.229 s)
+  withAuth
+    √ renders null if loading is true (72 ms)
+    √ redirects if not authenticated (11 ms)
+    √ renders component if authenticated (105 ms)
+    √ renders component if role allowed (13 ms)
+    √ does not render page if role not allowed (42 ms)
+    √ renders component if multiple roles allowed (12 ms)
+
+PASS common/components/Table/Table.test.tsx (5.613 s)
+  Table Component
+    √ renders table and columns (356 ms)
+    √ shows fetched data (50 ms)
+    √ shows no data message when empty (38 ms)
+    √ calls handleFetch on refresh (59 ms)
+
+(node:10072) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS modules/SecondaryProducer/SecondaryProducer.test.tsx (6.44 s)
+  Secondary Producer Page
+    √ Matches snapshot (426 ms)
+
+(node:2268) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please 
+use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS modules/Consumer/Consumer.test.tsx (6.433 s)
+  Consumer Page
+    √ Matches snapshot (471 ms)
+
+(node:2184) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please 
+use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS common/libraries/auth/__tests__/useAuthState.test.ts
+  useAuthState
+    √ should initialize with loading state (15 ms)
+    √ hook should have default return for context (16 ms)
+    √ should register user (10 ms)
+    √ should not register user if registerUser fails (5 ms)
+    √ loginWithPassword should call loadUserInContext (12 ms)
+    √ loginWithPassword should not login if loginWithPassword fails (12 ms)
+    √ loginWithGoogle should call loadUserInContext (9 ms)
+    √ should not login if loginWithGoogle fails (6 ms)
+    √ should refresh user from cached token (7 ms)
+    √ refreshUser should not login if refreshUser fails (7 ms)
+    √ refreshUser should not login if getUserData fails (5 ms)
+    √ should update user data (8 ms)
+    √ should not update user data if updateUserData fails (4 ms)
+    √ logout should dispatch logout action (13 ms)
+    √ logout should reload page (6 ms)
+    √ userHasRole should return false if not logged in (5 ms)
+    √ userHasRole should return false if provided user does not have allowed role (4 ms)
+    √ userHasRole should return true if provided user has allowed role (5 ms)
+    √ userHasRole should return true if current user has allowed role (6 ms)
+    √ userHasRole should return false if current user does not have allowed role (5 ms)
+
+(node:18312) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:11668) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+PASS modules/Auth/Login/Login.test.tsx (7.324 s)
+  Login Page
+    √ Matches snapshot (579 ms)
+    √ does not submit with empty fields (368 ms)
+    √ Displays error when login fails (171 ms)
+    √ Handles successful login (143 ms)
+
+PASS modules/Auth/Register/Register.test.tsx (7.848 s)
+  Register Page
+    √ Matches snapshot (550 ms)
+    √ Displays error when registration fails due to conflict (615 ms)
+    √ Displays error when registration fails due to unknown error (287 ms)
+    √ Displays success message on successful registration (290 ms)
+
+PASS modules/Recycler/WasteBottles/WasteBottles.test.tsx
+  Recycler - Waste Bottles Page
+    √ Matches snapshot (117 ms)
+
+PASS modules/PrimaryProducer/Inventory/PrimaryProducerView.test.tsx
+  Primary Producer Page
+    √ Matches snapshot (147 ms)
+
+PASS modules/Profile/Profile.test.tsx
+  Profile Page
+    √ Matches snapshot (487 ms)
+    √ disables read-only fields (86 ms)
+    √ submits profile update successfully (535 ms)
+    √ shows error message on failed profile update (213 ms)
+
+PASS modules/Recycler/Inventory/Recycler.test.tsx
+  Recycler - Inventory Page
+    √ Matches snapshot (180 ms)
+
+PASS common/components/Inputs/InputDropdown/InputDropdown.test.tsx
+  InputDropdown Component
+    √ renders correctly with label and placeholder (32 ms)
+    √ opens the dropdown when clicked (204 ms)
+    √ calls handleChange with the correct value when an option is selected (86 ms)    
+    √ calls handleChange with the correct value when an option is already selected (99 ms)
+    √ renders options when clicking on label (110 ms)
+    √ calls handleChange with the correct value when an option is selected and multiple is true (95 ms)
+    √ renders correct placeholder when multiple is true and 1 item is selected (14 ms)    √ renders the selected value when an option is selected (15 ms)
+    √ renders multiple selected values when multiple is true (16 ms)
+    √ selects option when multiple is true (96 ms)
+    √ unselects option when an option is already selected when multiple is true (187 ms)
+    √ disables the dropdown when isDisabled is true (37 ms)
+    √ renders error message when errorMessage is provided (141 ms)
+
+PASS modules/PrimaryProducer/Inventory/components/BatchFormModal/BatchFormModal.test.tsx
+  Primary Producer Inventory - BatchFormModal
+    √ Matches snapshot (678 ms)
+
+PASS modules/Recycler/Inventory/components/BatchFormModal/BatchFormModal.test.tsx
+  Recycler Inventory - BatchFormModal
+    √ Matches snapshot (757 ms)
+    √ renders in creation mode correctly (197 ms)
+    √ renders in edit mode correctly (159 ms)
+    √ handles bottle fetch error correctly (137 ms)
+    √ handles batch data fetch error correctly (145 ms)
+    √ shows loading spinner while fetching bottles (76 ms)
+
+PASS modules/Tracking/Tracking.test.tsx (10.965 s)
+  Tracking Page
+    √ Matches snapshot (297 ms)
+    √ renders the form and timeline correctly (515 ms)
+    √ disables the ID input when no type is selected (56 ms)
+    √ enables the ID input when a type is selected (198 ms)
+    √ calls the correct service when searching for a base batch (648 ms)
+    √ shows an error toast when the base batch is not found (401 ms)
+    √ calls the correct service when searching for a product batch (466 ms)
+    √ shows an error toast when product batch is not found (509 ms)
+    √ calls the correct service when searching for a waste bottle (428 ms)
+    √ shows an error toast when waste bottle is not found (461 ms)
+    √ calls the correct service when searching for a recycling batch (524 ms)
+    √ shows an error toast when recycling batch is not found (423 ms)
+
+PASS common/components/Button/Button.test.tsx
+  Button Component
+    √ renders correctly (180 ms)
+    √ triggers onClick when clicked (28 ms)
+    √ displays loading indicator when isLoading is true (40 ms)
+    √ disables button when disabled prop is true (21 ms)
+    √ renders with iconStart and iconEnd (39 ms)
+    √ handles async click correctly (34 ms)
+    √ defaults to handleClick if handleClick prop isn't provided (27 ms)
+    √ applies custom className (23 ms)
+    √ applies variant styles (20 ms)
+    √ applies size styles (24 ms)
+    √ applies width styles (33 ms)
+    √ applies custom width styles (20 ms)
+
+PASS common/components/Inputs/InputAutocomplete/InputAutocomplete.test.tsx
+  InputAutocomplete Component
+    √ renders correctly with placeholder (140 ms)
+    √ calls handleSearch when typing in the input (420 ms)
+    √ displays options when search results are available (187 ms)
+    √ calls handleChange with the correct value when an option is selected (182 ms)   
+    √ shows loading spinner while searching (53 ms)
+    √ renders the selected value when an option is selected (166 ms)
+
+PASS modules/PrimaryProducer/RecycledBatches/RecycledBatches.test.tsx
+  Primary Producer - Recycled Batches Page
+    √ Matches snapshot (77 ms)
+
+PASS modules/Recycler/WasteBottles/components/BottleDetailModal/BottleDetailModal.test.tsx
+  Recycler Waste Bottles - BottleDetailModal
+    √ Matches snapshot (134 ms)
+
+PASS common/components/SideBar/SideBar.test.tsx
+  SideBar Component
+    √ renders when user is logged in (46 ms)
+    √ does not render if user is not logged in (9 ms)
+    √ does not render if path starts with /auth (5 ms)
+    √ shows logout modal when clicking "Cerrar sesión" (86 ms)
+    √ logs out when confirming logout (75 ms)
+    √ navigates home when clicking Tesis icon (43 ms)
+    √ expands and collapses on mouse enter and leave (79 ms)
+
+PASS modules/Consumer/components/BottleSearchModal/BottleSearchModal.test.tsx
+  Consumer - BottleSearchModal
+    √ Matches snapshot (198 ms)
+
+PASS modules/PrimaryProducer/Inventory/components/BatchRecycleModal/BatchRecycleModal.test.tsx
+  Primary Producer Inventory - BatchRecycleModal
+    √ Matches snapshot (209 ms)
+
+PASS common/components/Toast/Toast.test.tsx
+  Toast Component
+    √ displays toast with correct icon (303 ms)
+    √ displays loading message (92 ms)
+    √ handles different toast types (99 ms)
+
+PASS modules/SecondaryProducer/components/BatchFormModal/BatchFormModal.test.tsx
+  Secondary Producer - BatchFormModal
+    √ Matches snapshot (224 ms)
+
+PASS common/components/Inputs/Input/Input.test.tsx
+  Input Component
+    √ renders correctly with default props (149 ms)
+    √ should float label when input has value and showFloatingLabel is set to 'true' (74 ms)
+    √ handles onChange events (35 ms)
+    √ focuses input when label is clicked (51 ms)
+    √ displays error message when error prop is provided after input (53 ms)
+    √ applies error styles when error prop is provided after blur (35 ms)
+    √ handles placeholder text (16 ms)
+    √ handles disabled state (44 ms)
+    √ handles required field validation (32 ms)
+    √ applies custom className (32 ms)
+
+PASS modules/SecondaryProducer/components/BatchDetailModal/BatchDetailModal.test.tsx
+  Secondary Producer - BatchDetailModal
+    √ Matches snapshot (38 ms)
+
+PASS common/components/ModalChildrens/ConfirmationModal/ConfirmationModal.test.tsx
+  ConfirmationModal Component
+    √ renders with title and optional subtitle (33 ms)
+    √ calls handleConfirm when confirm button is clicked (38 ms)
+    √ calls handleCancel when cancel button is clicked (26 ms)
+    √ should not crash if handleCancel is not provided and cancel button is clicked (29 ms)
+    √ disables confirm button when disableConfirm is true (78 ms)
+    √ hides cancel button when hideCancel is true (29 ms)
+    √ hides both buttons when hideButtons is true (46 ms)
+    √ renders children when provided (24 ms)
+
+PASS common/components/Modal/Modal.test.tsx
+  Modal Component
+    √ renders content correctly (86 ms)
+    √ closes when clicking outside if skippable is true (24 ms)
+    √ does not close when clicking outside if skippable is false (32 ms)
+    √ calls handleCancel when clicking the close button (32 ms)
+    √ hides close button when hideCloseButton is true (23 ms)
+    √ renders big size when big is true (23 ms)
+
+PASS modules/Recycler/Inventory/components/BatchSaleModal/BatchSaleModal.test.tsx
+  Recycler Inventory - BatchSaleModal
+    √ Matches snapshot (257 ms)
+
+PASS modules/SecondaryProducer/components/BatchSaleModal/BatchSaleModal.test.tsx
+  Secondary Producer - BatchSaleModal
+    √ Matches snapshot (181 ms)
+
+PASS modules/Consumer/components/BottleRecycleModal/BottleRecycleModal.test.tsx
+  Consumer - BottleRecycleModal
+    √ Matches snapshot (632 ms)
+
+PASS modules/SecondaryProducer/components/BatchRecycleModal/BatchRecycleModal.test.tsx  Secondary Producer - BatchRecycleModal
+    √ Matches snapshot (247 ms)
+
+PASS common/components/Inputs/InputTextArea/InputTextArea.test.tsx
+  Input Component
+    √ renders correctly with default props (219 ms)
+    √ should float label when input has value and showFloatingLabel is set to 'true' (57 ms)
+    √ handles onChange events (38 ms)
+    √ displays error message when error prop is provided after input (33 ms)
+    √ applies error styles when error prop is provided after blur (40 ms)
+    √ handles placeholder text (9 ms)
+    √ handles disabled state (22 ms)
+    √ handles required field validation (34 ms)
+    √ applies custom className (22 ms)
+
+PASS common/components/ComingSoon/ComingSoon.test.tsx
+  ComingSoon Component
+    √ renders correctly (46 ms)
+    √ renders with a title (15 ms)
+
+PASS modules/Tracking/components/BaseBatchTab/BaseBatchTab.test.tsx
+  Tracking - BaseBatchTab
+    √ Matches snapshot (150 ms)
+
+PASS modules/PrimaryProducer/Inventory/components/BatchSaleModal/BatchSaleModal.test.tsx
+  Primary Producer Inventory - BatchSaleModal
+    √ Matches snapshot (172 ms)
+
+PASS common/components/Inputs/Labels/Labels.test.tsx
+  Labels Component
+    √ renders correctly with label and description (16 ms)
+    √ renders only the label when description is not provided (8 ms)
+    √ renders only the description when label is not provided (8 ms)
+    √ renders null when neither label nor description is provided (4 ms)
+    √ applies custom class names to container, label, and description (11 ms)
+
+PASS modules/Tracking/components/AccountDetails/AccountDetails.test.tsx
+  Tracking - AccountDetails
+    √ Matches snapshot (15 ms)
+    √ show account information (78 ms)
+
+PASS common/components/Inputs/InputPassword/InputPassword.test.tsx
+  InputPassword Component
+    √ renders with input type "password" by default (32 ms)
+    √ toggles visibility when clicking the toggle button (157 ms)
+    √ does not toggle visibility when 'disabled' prop is true (59 ms)
+    √ displays the correct icon based on visibility state (52 ms)
+
+PASS modules/Consumer/components/BottleDetailModal/BottleDetailModal.test.tsx
+  Consumer - BottleDetailModal
+    √ Matches snapshot (99 ms)
+
+PASS modules/Tracking/components/WasteBottleTab/WasteBottleTab.test.tsx
+  Tracking - WasteBottleTab
+    √ Matches snapshot with batch (27 ms)
+    √ Matches snapshot with options (14 ms)
+
+PASS modules/Recycler/WasteBottles/components/BottleSearchModal/BottleSearchModal.test.tsx
+  Recycler Waste Bottles - BottleSearchModal
+    √ Matches snapshot (141 ms)
+
+PASS modules/Recycler/WasteBottles/components/AssignBatchModal/AssignBatchModal.test.tsx
+  Recycler Waste Bottles - AssignBatchModal
+    √ Matches snapshot (62 ms)
+
+PASS common/hooks/__tests__/useInfiniteScroll.test.ts
+  useInfiniteScroll
+    √ does not fetch if element is not observed (15 ms)
+    √ calls handleFetch when intersection occurs (12 ms)
+
+PASS common/hooks/__tests__/useFirstRender.test.ts
+  useFirstRender
+    √ returns false aafter renders (15 ms)
+
+PASS common/components/Card/Card.test.tsx
+  Card Component
+    √ renders correctly (17 ms)
+    √ applies custom className (12 ms)
+    √ applies shadow styles (7 ms)
+    √ applies rounded styles (5 ms)
+    √ applies padding styles (7 ms)
+    √ applies paddingX and paddingY styles (9 ms)
+    √ renders children correctly (10 ms)
+
+PASS modules/PrimaryProducer/RecycledBatches/components/BatchDetailModal/BatchDetailModal.test.tsx
+  Primary Producer Recycled Batches - BatchDetailModal
+    √ Matches snapshot (36 ms)
+
+PASS modules/Recycler/Inventory/components/BatchDetailModal/BatchDetailModal.test.tsx
+  Recycler Inventory - BatchDetailModal
+    √ Matches snapshot (48 ms)
+
+PASS common/components/Inputs/InputCheckbox/InputCheckbox.test.tsx
+  InputCheckbox Component
+    √ renders correctly with label and description (47 ms)
+    √ handles correctly no initial value (41 ms)
+    √ calls handleChange with the correct value when checked (20 ms)
+    √ calls handleChange with the correct value when unchecked (31 ms)
+    √ renders as disabled when isDisabled is true (14 ms)
+    √ applies box style when box prop is true (13 ms)
+    √ renders the check icon when checked (16 ms)
+    √ does not render the check icon when unchecked (25 ms)
+
+PASS common/components/LoadingSpinner/LoadingSpinner.test.tsx
+  LoadingSpinner Component
+    √ renders correctly (14 ms)
+    √ applies custom size (26 ms)
+    √ applies custom color (10 ms)
+    √ applies custom className (4 ms)
+
+PASS modules/Tracking/components/ProductBatchTab/ProductBatchTab.test.tsx
+  Tracking - ProductBatchTab
+    √ Matches snapshot with batch (89 ms)
+    √ Matches snapshot with options (16 ms)
+
+PASS common/hooks/__tests__/useToggle.test.ts
+  useToggle
+    √ initializes correctly (8 ms)
+    √ sets initial state (9 ms)
+    √ toggles state (11 ms)
+    √ sets true and false (21 ms)
+
+PASS common/components/Inputs/ErrorMessage/ErrorMessage.test.tsx
+  ErrorMessage Component
+    √ renders correctly with an error message (22 ms)
+    √ does not render anything when errorMessage is not provided (4 ms)
+    √ applies custom className when provided (5 ms)
+
+PASS common/components/Inputs/InputNumber/InputNumber.test.tsx
+  InputNumber Component
+    √ renders correctly and displays the provided value as a string (27 ms)
+    √ triggers blur on mouse wheel (onWheelCapture) (17 ms)
+    √ converts changed value to a number or empty string and calls handleChange (15 ms)
+    KeyDown behavior for type "number"
+      √ allows allowed keys and prevents disallowed ones (13 ms)
+    KeyDown behavior for type "float"
+      √ allows digits and a single dot (or comma) when not already present (17 ms)    
+      √ prevents disallowed keys for float input (7 ms)
+
+PASS common/hooks/__tests__/useConditionalComponent.test.tsx
+  useConditionalComponent
+    √ initial state hidden (9 ms)
+    √ shows component when toggled (9 ms)
+    √ invokes handleCancel prop (5 ms)
+
+PASS modules/Tracking/components/RecyclingBatchTab/RecyclingBatchTab.test.tsx
+  Tracking - RecyclingBatchTab
+    √ Matches snapshot (47 ms)
+
+PASS common/components/Img/Img.test.tsx
+  Img Component
+    √ renders correctly (16 ms)
+    √ applies custom className (12 ms)
+    √ applies width and height (12 ms)
+
+PASS modules/PrimaryProducer/Inventory/components/BatchDetailModal/BatchDetailModal.test.tsx
+  Primary Producer Inventory - BatchDetailModal
+    √ Matches snapshot (55 ms)
+
+PASS common/components/ActionMenu/ActionMenu.test.tsx
+  ActionMenu Component
+    √ renders correctly (22 ms)
+    √ toggles menu visibility on click (27 ms)
+    √ calls action callback on action click (22 ms)
+    √ renders with custom className (14 ms)
+    √ renders action with icon (18 ms)
+    √ hides menu on blur (27 ms)
+
+PASS common/hooks/__tests__/useModal.test.tsx
+  useModal
+    √ initializes with a hidden modal (9 ms)
+    √ shows and hides modal (8 ms)
+
+PASS common/utils/utils.test.ts
+  cn function
+    √ joins multiple class names (15 ms)
+    √ filters out invalid values (1 ms)
+    √ returns an empty string if no valid classes are provided (2 ms)
+  logger
+    √ should not log anything when DEBUG_ENABLED is false (3 ms)
+    √ should not display debug messages when DEBUG_ENABLED is false (2 ms)
+  getEndpointUrl
+    √ constructs URL with given endpoint array (2 ms)
+    √ adds query parameters if provided (1 ms)
+    √ returns base url if no params (1 ms)
+  formatters
+    formatStringToNumber
+      √ parses string to number (2 ms)
+      √ returns 0 if value is falsy (2 ms)
+      √ returns the number if value is already a number (1 ms)
+    parseFixed
+      √ returns a number with specified decimals (2 ms)
+      √ returns NaN for invalid value (1 ms)
+    formatNumberToLocal
+      √ formats a valid number correctly (12 ms)
+      √ returns empty string for invalid value (2 ms)
+
+PASS common/components/ChevronIcon/ChevronIcon.test.tsx
+  ChevronIcon Component
+    √ renders correctly (23 ms)
+    √ applies custom color (9 ms)
+    √ applies custom size (6 ms)
+    √ applies custom className (9 ms)
+    √ applies rotation based on type (6 ms)
+    √ handles onClick event (17 ms)
+
+PASS common/components/FaIcon/FaIcon.test.tsx
+  FaIcon Component
+    √ renders correctly (11 ms)
+    √ applies custom className (9 ms)
+    √ applies custom color (15 ms)
+
+PASS common/libraries/auth/__tests__/reducer.test.ts
+  reducer
+    √ should handle LOGIN (3 ms)
+    √ should handle LOGOUT (11 ms)
+    √ should handle LOADED (2 ms)
+    √ should handle unexpected action type (1 ms)
+
+PASS common/hooks/__tests__/useDebouncedState.test.ts
+  useDebouncedState
+    √ initializes correctly (9 ms)
+    √ delays setting the new value (10 ms)
+    √ sets the last value (11 ms)
+
+PASS common/hooks/__tests__/useClickOutside.test.ts
+  useClickOutside
+    √ calls handler when clicking outside (15 ms)
+    √ does not call handler when clicking inside (18 ms)
+
+PASS common/libraries/auth/__tests__/FirebaseAuthServices.test.ts
+  FirebaseAuthServices
+    √ initAuthStateListener should return unsubscribe function (4 ms)
+    √ initAuthStateListener should call handleUserLogin on auth state change (4 ms)   
+    √ initAuthStateListener should call handleUserLogout on auth state change (2 ms)  
+    √ getFormattedUser should return formatted user (1 ms)
+    √ refreshUser should return formatted user on success (2 ms)
+    √ refreshUser should handle missing currentUser (1 ms)
+    √ refreshUser should handle exceptions (1 ms)
+    √ loginWithGoogle should return formatted user on success (2 ms)
+    √ loginWithGoogle should handle exceptions (1 ms)
+    √ loginWithPassword should return formatted user on success (2 ms)
+    √ loginWithPassword should handle exceptions (1 ms)
+    √ sendRecoverPasswordMail should handle success (1 ms)
+    √ sendRecoverPasswordMail should handle exceptions (1 ms)
+    √ resetPassword should handle success (1 ms)
+    √ resetPassword should handle exceptions (1 ms)
+    √ logout should handle success (1 ms)
+    √ logout should handle exceptions (1 ms)
+
+PASS common/libraries/auth/__tests__/session.test.ts
+  session
+    √ getSession should return sessionToken (2 ms)
+    √ updateSession should set sessionToken (2 ms)
+    √ removeSession should remove sessionToken (1 ms)
+
+PASS common/libraries/auth/__tests__/UserServices.test.ts
+  UserServices
+    √ getUserData should call request (2 ms)
+    √ updateUser should call request with correct params (2 ms)
+    √ registerUser should call request with correct body (2 ms)
+
+PASS common/services/request.test.ts
+  request function
+    √ calls API route when not server side (2 ms)
+    √ returns error object on non-200 response (1 ms)
+    √ handles exceptions safely (1 ms)
+    √ defaults to null data (1 ms)
+    √ sends bearer authorization header (2 ms)
+
+Test Suites: 70 passed, 70 total  
+Tests:       286 passed, 286 total
+Snapshots:   35 passed, 35 total  
+Time:        50.129 s
+Ran all test suites.

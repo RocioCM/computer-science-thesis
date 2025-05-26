@@ -1,22 +1,22 @@
 import request from 'supertest';
-import app from '../src/internal/server';
-import { BASE_PATH } from '../src/pkg/constants';
-import { OWNERSHIP_TYPES } from '../src/pkg/constants/ownership';
+import app from 'src/internal/server';
+import { BASE_PATH } from 'src/pkg/constants';
+import { OWNERSHIP_TYPES } from 'src/pkg/constants/ownership';
 import {
   setupTestEnvironment,
   cleanupTestDatabase,
   teardownTestEnvironment,
-} from './utils';
+} from '../utils';
 import { StatusCodes } from 'http-status-codes';
-import AuthHandler from '../src/modules/auth/authHandler';
-import ConsumerHandler from '../src/modules/consumer/consumerHandler';
-import RecyclerHandler from '../src/modules/recycler/recyclerHandler';
-import ProducerHandler from '../src/modules/producer/producerHandler';
-import SecondaryProducerHandler from '../src/modules/secondaryProducer/secondaryProducerHandler';
-import OwnershipRepository from '../src/modules/tracking/repositories/ownershipRepository';
+import AuthHandler from 'src/modules/auth/authHandler';
+import ConsumerHandler from 'src/modules/consumer/consumerHandler';
+import RecyclerHandler from 'src/modules/recycler/recyclerHandler';
+import ProducerHandler from 'src/modules/producer/producerHandler';
+import SecondaryProducerHandler from 'src/modules/secondaryProducer/secondaryProducerHandler';
+import OwnershipRepository from 'src/modules/tracking/repositories/ownershipRepository';
 
 // Mock blockchain helper
-jest.mock('../src/pkg/helpers/blockchainHelper', () => ({
+jest.mock('src/pkg/helpers/blockchainHelper', () => ({
   callContractMethod: jest
     .fn()
     .mockImplementation(async (_contractAddress, _abi, methodName, ...args) => {
@@ -61,7 +61,7 @@ jest.mock('../src/pkg/helpers/blockchainHelper', () => ({
 }));
 
 // Mock AuthHandler
-jest.mock('../src/modules/auth/authHandler', () => ({
+jest.mock('src/modules/auth/authHandler', () => ({
   GetUserByFirebaseUid: jest.fn().mockImplementation(async (uid) => {
     if (uid === 'invalid-uid') {
       return {
@@ -105,7 +105,7 @@ jest.mock('../src/modules/auth/authHandler', () => ({
 }));
 
 // Mock ProducerHandler
-jest.mock('../src/modules/producer/producerHandler', () => ({
+jest.mock('src/modules/producer/producerHandler', () => ({
   GetBatchById: jest.fn().mockImplementation(async (id) => {
     if (id === 999) {
       return {
@@ -139,7 +139,7 @@ jest.mock('../src/modules/producer/producerHandler', () => ({
 }));
 
 // Mock SecondaryProducerHandler
-jest.mock('../src/modules/secondaryProducer/secondaryProducerHandler', () => ({
+jest.mock('src/modules/secondaryProducer/secondaryProducerHandler', () => ({
   GetBatchById: jest.fn().mockImplementation(async (id) => {
     if (id === 999) {
       return {
@@ -189,7 +189,7 @@ jest.mock('../src/modules/secondaryProducer/secondaryProducerHandler', () => ({
 }));
 
 // Mock ConsumerHandler
-jest.mock('../src/modules/consumer/consumerHandler', () => ({
+jest.mock('src/modules/consumer/consumerHandler', () => ({
   GetWasteBottleById: jest.fn().mockImplementation(async (id) => {
     if (id === 999) {
       return {
@@ -222,7 +222,7 @@ jest.mock('../src/modules/consumer/consumerHandler', () => ({
 }));
 
 // Mock RecyclerHandler
-jest.mock('../src/modules/recycler/recyclerHandler', () => ({
+jest.mock('src/modules/recycler/recyclerHandler', () => ({
   GetRecyclingBatchById: jest.fn().mockImplementation(async (id) => {
     if (id === 999) {
       return {

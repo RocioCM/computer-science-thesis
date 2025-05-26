@@ -6,7 +6,7 @@ exports[`Profile Page Matches snapshot 1`] = `
     class="w-full h-screen overflow-auto p-xl"
   >
     <form
-      class="relative w-full max-w-[1000px] mx-auto h-max flex flex-col gap-xl overflow-auto rounded-rs border border-n bg-n0 p-2xl shadow-e2"
+      class="relative w-full max-w-[1000px] mx-auto h-full flex flex-col gap-xl overflow-auto rounded-rs border border-n bg-n0 p-2xl shadow-e2"
     >
       <h2>
         Perfil
@@ -18,7 +18,7 @@ exports[`Profile Page Matches snapshot 1`] = `
           class="w-full"
         >
           <span
-            class="block relative z-10 w-max transition-all text-p mb-xs !cursor-default top-0 left-0 text-n10 font-semibold"
+            class="block relative z-10 w-max transition-all text-p mb-xs !cursor-default top-0 left-0 text-n4 font-medium"
           >
             Correo electrónico
           </span>
@@ -49,7 +49,7 @@ exports[`Profile Page Matches snapshot 1`] = `
           class="w-full"
         >
           <span
-            class="block relative z-10 w-max transition-all text-p mb-xs cursor-pointer !cursor-default top-0 left-0 text-n10 font-semibold"
+            class="block relative z-10 w-max transition-all text-p mb-xs cursor-pointer !cursor-default top-0 left-0 text-n4 font-medium"
           >
             Rol
           </span>
@@ -61,9 +61,7 @@ exports[`Profile Page Matches snapshot 1`] = `
           >
             <span
               class="flex-1 min-h-4"
-            >
-              Administrador
-            </span>
+            />
             <i
               class="inline-block w-2.5 h-2.5 rotate-0 "
               data-testid="chevron-icon"
@@ -86,7 +84,7 @@ exports[`Profile Page Matches snapshot 1`] = `
           class="w-full"
         >
           <span
-            class="block relative z-10 w-max transition-all text-p mb-xs !cursor-default top-0 left-0 text-n10 font-semibold"
+            class="block relative z-10 w-max transition-all text-p mb-xs !cursor-default top-0 left-0 text-n4 font-medium"
           >
             Dirección Blockchain
           </span>
@@ -117,7 +115,7 @@ exports[`Profile Page Matches snapshot 1`] = `
           class="w-full"
         >
           <span
-            class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+            class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
           >
             Nombre de usuario (opcional)
           </span>
@@ -147,7 +145,7 @@ exports[`Profile Page Matches snapshot 1`] = `
           class="w-full"
         >
           <span
-            class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+            class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
           >
             Nombre del Responsable (opcional)
           </span>
@@ -177,7 +175,7 @@ exports[`Profile Page Matches snapshot 1`] = `
           class="w-full"
         >
           <span
-            class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+            class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
           >
             Teléfono
           </span>
@@ -194,7 +192,7 @@ exports[`Profile Page Matches snapshot 1`] = `
               inputlabel="Teléfono"
               name="phone"
               options=""
-              placeholder=""
+              placeholder="+5492610000000"
               required=""
               type="text"
               value="1234567890"
@@ -206,7 +204,7 @@ exports[`Profile Page Matches snapshot 1`] = `
         </div>
       </div>
       <button
-        class="relative flex items-center justify-center gap-s rounded-rs font-semibold h-10 disabled:cursor-default disabled:bg-opacity-40  focusButton bg-p1 text-n0 py-s px-m w-[12rem] mt-4 ml-auto"
+        class="relative flex items-center justify-center gap-s rounded-rs font-semibold h-10 disabled:cursor-default disabled:bg-opacity-40  focusButton bg-p1 text-n0 py-s px-m w-[12rem] mt-auto ml-auto"
         data-testid="button"
         disabled=""
       >

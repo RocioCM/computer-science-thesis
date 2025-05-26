@@ -91,12 +91,15 @@ function Table({
       data-testid="table"
       className={cn('w-full h-full overflow-auto', className)}
     >
-      <table className="w-full relative">
-        <thead className="sticky top-0 bg-n0 rounded-lg text-left">
+      <table className="w-full relative h-fit">
+        <thead className="sticky top-0 z-10 bg-n0 rounded-lg text-left">
           <tr>
             {columns.map((column, index) => (
-              <th key={index} className={cn('h6 p-s last:text-center')}>
-                {column.title}
+              <th
+                key={index}
+                className={cn('h6 p-s bg-p3 text-n0 last:text-center')}
+              >
+                <span className="font-medium">{column.title}</span>
               </th>
             ))}
           </tr>
@@ -112,9 +115,15 @@ function Table({
             </tr>
           ))}
         </tbody>
-        <tfoot ref={bottomRef as React.RefObject<HTMLTableSectionElement>}>
-          <tr>
-            <td colSpan={columns.length} className="px-4 py-2 text-center">
+        <tfoot
+          ref={bottomRef as React.RefObject<HTMLTableSectionElement>}
+          className="h-full"
+        >
+          <tr className="h-full">
+            <td
+              colSpan={columns.length}
+              className="px-4 py-2 h-full text-center"
+            >
               {loading && (
                 <LoadingSpinner size="1.7rem" className="mx-auto mt-8" />
               )}

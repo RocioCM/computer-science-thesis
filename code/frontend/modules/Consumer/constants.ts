@@ -40,13 +40,13 @@ export const RECYCLE_FORM_INPUTS: FormBuilderField[] = [
   {
     type: INPUT_TYPES.text,
     name: 'trackingCode',
-    placeholder: 'Ingresá el código de seguimiento',
+    placeholder: 'ABC1234XYZ',
     label: 'Código de seguimiento',
   },
   {
     type: INPUT_TYPES.autocomplete,
     name: 'recyclerUid',
-    placeholder: 'Ingresá el nombre o correo del reciclador',
+    placeholder: 'Busca por nombre o correo del reciclador',
     label: 'Reciclador/a',
   },
 ];

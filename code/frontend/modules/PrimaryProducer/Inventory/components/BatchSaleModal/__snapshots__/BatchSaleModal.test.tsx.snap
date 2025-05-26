@@ -41,7 +41,7 @@ exports[`Primary Producer Inventory - BatchSaleModal Matches snapshot 1`] = `
             class="w-full"
           >
             <span
-              class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+              class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
             >
               Cantidad de envases a vender
             </span>
@@ -58,7 +58,7 @@ exports[`Primary Producer Inventory - BatchSaleModal Matches snapshot 1`] = `
                 inputlabel="Cantidad de envases a vender"
                 name="quantity"
                 options=""
-                placeholder="Ingresá la cantidad de envases a vender"
+                placeholder="500"
                 required=""
                 type="number"
                 value=""
@@ -72,7 +72,7 @@ exports[`Primary Producer Inventory - BatchSaleModal Matches snapshot 1`] = `
             class="w-full"
           >
             <span
-              class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+              class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
             >
               Comprador
             </span>
@@ -89,7 +89,7 @@ exports[`Primary Producer Inventory - BatchSaleModal Matches snapshot 1`] = `
                 inputlabel="Comprador"
                 name="buyerUid"
                 options=""
-                placeholder="Ingresá el nombre o correo del comprador"
+                placeholder="Busca por nombre o correo del comprador"
                 required=""
                 type="text"
                 value=""

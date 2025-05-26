@@ -24,7 +24,7 @@ const LOCAL_URL = 'http://localhost:8080';
 // All these url values on the client side are not reliable and may differ from the server side.
 export const BASE_URL = isProduction
   ? process.env.BASE_PATH ?? 'https://lila.com.ar' // DON'T CHANGE THIS LINE.
-  : LOCAL_URL; // You can change this line during development.
+  : TEST_URL; // You can change this line during development.
 
 export const API_BASE_URL = BASE_URL + '/api/blockchain-test';
 

@@ -85,32 +85,32 @@ export const BATCH_FORM_INPUTS_1: FormBuilderField[] = [
   {
     type: INPUT_TYPES.number,
     name: 'weight',
-    placeholder: 'Ingresá el peso del lote de material',
+    placeholder: '100',
     label: 'Peso del lote (en kg)',
   },
   {
     type: INPUT_TYPES.text,
     name: 'size',
-    placeholder: 'Ingresá el tamaño del lote',
+    placeholder: '1m3',
     label: 'Tamaño del lote (con unidades)',
   },
   {
     type: INPUT_TYPES.text,
     name: 'materialType',
-    placeholder: 'Ingresá el tipo de material del lote',
+    placeholder: 'Vidrio',
     label: 'Tipo de material',
   },
   {
     type: INPUT_TYPES.date,
     name: 'createdAt',
-    placeholder: 'Seleccioná la fecha de producción',
+    placeholder: 'Selecciona una fecha',
     label: 'Fecha de producción',
     max: new Date().toISOString().split('T')[0],
   },
   {
     type: INPUT_TYPES.textarea,
     name: 'extraInfo',
-    placeholder: 'Ingresá observaciones adicionales',
+    placeholder: '',
     label: 'Observaciones adicionales (opcional)',
     containerClassName: 'col-span-2',
   },
@@ -120,19 +120,19 @@ export const BATCH_COMPOSITION_FORM_INPUTS: FormBuilderField[] = [
   {
     type: INPUT_TYPES.text,
     name: 'name',
-    placeholder: 'Ingresá el nombre del material',
+    placeholder: 'Vidrio blanco',
     label: 'Nombre del material',
   },
   {
     type: INPUT_TYPES.number,
     name: 'amount',
-    placeholder: 'Ingresá la cantidad de material',
+    placeholder: '90',
     label: 'Cantidad de material',
   },
   {
     type: INPUT_TYPES.text,
     name: 'measureUnit',
-    placeholder: 'Ingresá la unidad de medida de la cantidad de material',
+    placeholder: '%',
     label: 'Unidad de medida',
   },
 ];
@@ -151,7 +151,7 @@ export const SELL_FORM_INPUTS: FormBuilderField[] = [
   {
     type: INPUT_TYPES.autocomplete,
     name: 'buyerUid',
-    placeholder: 'Ingresá el nombre o correo del comprador',
+    placeholder: 'Busca por nombre o correo del comprador',
     label: 'Comprador',
   },
 ];

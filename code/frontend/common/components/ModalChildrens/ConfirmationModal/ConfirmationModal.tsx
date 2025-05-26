@@ -8,6 +8,7 @@ interface Props extends ModalProps {
   handleCancel: () => any;
   title: string;
   subtitle?: string;
+  icon?: string;
   confirmLabel?: string;
   cancelLabel?: string;
   disableConfirm?: boolean;
@@ -18,8 +19,9 @@ interface Props extends ModalProps {
 const CONTAINER_STYLES = 'w-[450px] w-max-full items-center';
 
 const ICON_STYLES =
-  'w-12 h-12 flex items-center justify-center text-xl border border-n2 rounded-rs mr-auto mb-3';
-const TITLE_STYLES = 'text-start font-semibold text-xl';
+  'w-12 h-12 shrink-0 flex items-center justify-center text-xl border border-n2 rounded-rs mr-auto';
+const TITLE_STYLES =
+  'flex gap-2 items-center justify-start text-start font-semibold text-xl';
 const SUBTITLE_STYLES = 'text-start';
 
 const TITLES_CTN_STYLES = 'gap-5';
@@ -28,6 +30,7 @@ const BTN_CTN_STYLES = 'mt-10 gap-m';
 const ConfirmationModal = ({
   title,
   subtitle,
+  icon = 'fa-regular fa-flag',
   confirmLabel = 'Aceptar',
   cancelLabel = 'Cancelar',
   handleConfirm = () => {},
@@ -47,14 +50,16 @@ const ConfirmationModal = ({
       contentClassName={cn('flex flex-col', CONTAINER_STYLES)}
       {...props}
     >
-      <div className={ICON_STYLES}>
-        <FaIcon type="fa-regular fa-flag" />
-      </div>
       <div
         data-testid="confirmation-modal"
         className={cn('flex flex-col w-full', TITLES_CTN_STYLES)}
       >
-        <h3 className={TITLE_STYLES}>{title}</h3>
+        <h3 className={TITLE_STYLES}>
+          <div className={ICON_STYLES}>
+            <FaIcon type={icon} />
+          </div>
+          <span className="w-full">{title}</span>
+        </h3>
         {subtitle && <h6 className={SUBTITLE_STYLES}>{subtitle}</h6>}
       </div>
 

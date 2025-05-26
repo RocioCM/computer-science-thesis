@@ -19,13 +19,13 @@ export const LOGIN_INPUTS: FormBuilderField[] = [
   {
     type: INPUT_TYPES.text,
     name: 'email',
-    placeholder: 'Ingresá tu email',
+    placeholder: '',
     label: 'Correo electrónico',
   },
   {
     type: INPUT_TYPES.password,
     name: 'password',
-    placeholder: 'Ingresá tu contraseña',
+    placeholder: '',
     label: 'Contraseña',
   },
 ];
