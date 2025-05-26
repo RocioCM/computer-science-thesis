@@ -46,7 +46,9 @@ const BatchRecycleModal: React.FC<Props> = ({
 
   return (
     <Modal handleCancel={handleCancel} {...props}>
-      <h2 className="w-full bg-n0">Reciclaje de lote #{editingId}</h2>
+      <h2 className="w-full font-medium text-[1.75rem]  bg-n0 border-b border-n2 pb-2 mb-1">
+        Reciclaje de lote #{editingId}
+      </h2>
       <div className="w-full flex flex-col gap-m my-xl">
         {formBuilder(RECYCLE_FORM_INPUTS)}
       </div>

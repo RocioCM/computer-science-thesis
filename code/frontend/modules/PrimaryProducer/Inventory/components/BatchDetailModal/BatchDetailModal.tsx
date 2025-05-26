@@ -33,7 +33,9 @@ const BatchDetailModal: React.FC<Props> = ({
 
   return (
     <Modal handleCancel={handleCancel} big skippable={false} {...props}>
-      <h2 className="w-full bg-n0">Lote de botellas #{editingId}</h2>
+      <h2 className="w-full font-medium text-[1.75rem]  bg-n0 border-b border-n2 pb-2 mb-1">
+        Lote de botellas #{editingId}
+      </h2>
 
       {batch ? (
         <div className="h-full w-full overflow-auto hide-scroll relative pt-2">
@@ -87,7 +89,7 @@ const BatchDetailModal: React.FC<Props> = ({
           </div>
 
           {/* Composición */}
-          <div className="mt-6">
+          <div className="mt-6 flex flex-col gap-2">
             <h3 className="text-lg font-semibold border-b pb-2">Composición</h3>
             {batch.bottleType.composition.length > 0 ? (
               <table className="w-full mt-2 border border-gray-300 rounded-md">
@@ -125,7 +127,9 @@ const BatchDetailModal: React.FC<Props> = ({
           )}
         </div>
       ) : (
-        <LoadingSpinner className="mt-8" />
+        <div className="w-full h-full flex flex-col items-center justify-center">
+          <LoadingSpinner className="mt-8" />
+        </div>
       )}
     </Modal>
   );

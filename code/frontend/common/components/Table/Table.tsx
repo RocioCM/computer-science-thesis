@@ -91,7 +91,7 @@ function Table({
       data-testid="table"
       className={cn('w-full h-full overflow-auto', className)}
     >
-      <table className="w-full relative">
+      <table className="w-full relative h-fit">
         <thead className="sticky top-0 z-10 bg-n0 rounded-lg text-left">
           <tr>
             {columns.map((column, index) => (
@@ -115,9 +115,15 @@ function Table({
             </tr>
           ))}
         </tbody>
-        <tfoot ref={bottomRef as React.RefObject<HTMLTableSectionElement>}>
-          <tr>
-            <td colSpan={columns.length} className="px-4 py-2 text-center">
+        <tfoot
+          ref={bottomRef as React.RefObject<HTMLTableSectionElement>}
+          className="h-full"
+        >
+          <tr className="h-full">
+            <td
+              colSpan={columns.length}
+              className="px-4 py-2 h-full text-center"
+            >
               {loading && (
                 <LoadingSpinner size="1.7rem" className="mx-auto mt-8" />
               )}

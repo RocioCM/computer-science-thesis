@@ -110,7 +110,8 @@ const Item = ({
     <p
       className={cn(
         'h-6 leading-6 flex transition-[width,padding] overflow-hidden duration-500',
-        isExpanded ? 'w-[8rem] pl-3' : 'w-0 pl-0'
+        isExpanded ? 'w-[8rem] pl-3' : 'w-0 pl-0',
+        isActive ? 'font-semibold' : 'font-normal'
       )}
     >
       {text}

@@ -10,12 +10,14 @@ const ProfileView: ProfileViewType = ({
   isLoading,
 }) => {
   return (
-    <main className="w-full h-screen overflow-auto p-xl">
+    <main className="w-full h-screen flex flex-col p-2xl animate__animated  animate__fadeIn">
+      <header className="pb-2xl flex items-center justify-between">
+        <h1>Perfil</h1>
+      </header>
       <form
-        className="relative w-full max-w-[1000px] mx-auto h-full flex flex-col gap-xl overflow-auto rounded-rs border border-n bg-n0 p-2xl shadow-e2"
+        className="relative w-full  mx-auto flex-1 flex flex-col gap-xl overflow-auto rounded-rs border border-n bg-n0 p-2xl shadow-e2"
         onSubmit={handleUpdateProfile}
       >
-        <h2>Perfil</h2>
         <div className="grid grid-cols-2 gap-x-m gap-y-xl">
           {formBuilder(PROFILE_INPUTS)}
         </div>

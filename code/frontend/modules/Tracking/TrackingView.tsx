@@ -20,7 +20,7 @@ const TrackingView: TrackingViewType = ({
   getCurrentTabContent,
 }) => {
   return (
-    <main className="w-full h-screen p-2xl flex flex-col pb-m">
+    <main className="w-full h-screen p-2xl flex flex-col pb-m animate__animated  animate__fadeIn">
       <header className="pb-2xl flex items-center justify-between gap-s">
         <h1>Seguimiento</h1>
       </header>
