@@ -59,6 +59,16 @@ const PrimaryProducerView: PrimaryProducerViewType = ({
             ),
           },
           {
+            name: 'status',
+            title: 'Estado',
+            formatter: (rowData: BottleBatch) =>
+              rowData.soldQuantity <= 0
+                ? 'Disponible'
+                : rowData.soldQuantity < rowData.quantity
+                ? 'En venta'
+                : 'Vendido',
+          },
+          {
             name: 'actions',
             title: 'Acciones',
             formatter: (rowData: BottleBatch) => (

@@ -54,10 +54,13 @@ const BatchDetailModal: React.FC<Props> = ({
             </h3>
             <p>
               <span className="font-semibold">Material:</span>{' '}
-              {batch.materialType}
+              {batch.materialType.includes('glass')
+                ? `vidrio ${batch.materialType.replace('glass', '')}`
+                : batch.materialType}
             </p>
             <p>
-              <span className="font-semibold">Tamaño:</span> {batch.size}
+              <span className="font-semibold">Tamaño:</span>{' '}
+              {batch.size.replace('bottles', 'botellas')}
             </p>
             <p>
               <span className="font-semibold">Peso:</span> {batch.weight} kg

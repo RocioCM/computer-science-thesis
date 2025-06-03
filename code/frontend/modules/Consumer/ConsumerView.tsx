@@ -32,7 +32,7 @@ const ConsumerView: ConsumerViewType = ({
       </header>
 
       <Table
-        title="lotes"
+        title="envases reciclados"
         handleFetch={handleFetchData}
         columns={[
           { name: 'id', title: 'ID' },
@@ -46,7 +46,8 @@ const ConsumerView: ConsumerViewType = ({
           {
             name: 'status',
             title: 'Estado',
-            formatter: (_rowData: WasteBottle) => <span>{'Pendiente'}</span>,
+            formatter: (rowData: WasteBottle) =>
+              rowData.recycledBatchId ? 'Reciclada' : 'Reciclaje pendiente',
           },
 
           {

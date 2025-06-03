@@ -17,12 +17,12 @@ interface NavItem {
 const NAV_ITEMS_BY_ROLE: Record<string, NavItem[]> = {
   [ROLES.producer]: [
     {
-      name: 'Lotes producidos',
+      name: 'Lotes',
       path: '/producer',
       icon: 'fa-solid fa-list',
     },
     {
-      name: 'Material reciclado',
+      name: 'Material',
       path: '/producer/recycled-batches',
       icon: 'fa-solid fa-recycle',
     },
@@ -46,7 +46,7 @@ const NAV_ITEMS_BY_ROLE: Record<string, NavItem[]> = {
   ],
   [ROLES.consumer]: [
     {
-      name: 'Botellas recicladas',
+      name: 'Botellas',
       path: '/consumer',
       icon: 'fa-solid fa-list',
     },
@@ -58,7 +58,7 @@ const NAV_ITEMS_BY_ROLE: Record<string, NavItem[]> = {
   ],
   [ROLES.recycler]: [
     {
-      name: 'Lotes de material',
+      name: 'Lotes',
       path: '/recycler',
       icon: 'fa-solid fa-list',
     },

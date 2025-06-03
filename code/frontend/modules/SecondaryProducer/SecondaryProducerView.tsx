@@ -25,7 +25,7 @@ const SecondaryProducerView: SecondaryProducerViewType = ({
         <h1>Inventario de envases</h1>
       </header>
       <Table
-        title="lotes"
+        title="envases"
         handleFetch={handleFetchData}
         columns={[
           { name: 'id', title: 'ID' },

@@ -44,7 +44,7 @@ const WasteBottlesView: WasteBottlesViewType = ({
 
       <Table
         key={currentTab}
-        title="lotes"
+        title="envases reciclados"
         handleFetch={handleFetchData}
         columns={[
           { name: 'id', title: 'ID' },

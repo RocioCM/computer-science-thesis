@@ -22,7 +22,17 @@ const RecycledBatchesView: RecycledBatchesViewType = ({
         columns={[
           { name: 'id', title: 'ID' },
           { name: 'weight', title: 'Peso (kg)' },
-          { name: 'materialType', title: 'Tipo de material' },
+          {
+            name: 'materialType',
+            title: 'Tipo de material',
+            formatter: (rowData: RecyclingBatch) => (
+              <span className="capitalize">
+                {rowData.materialType.includes('glass')
+                  ? `Vidrio ${rowData.materialType.replace('glass', '')}`
+                  : rowData.materialType}
+              </span>
+            ),
+          },
           {
             name: 'createdAt',
             title: 'Fecha de creación',
