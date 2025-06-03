@@ -26,6 +26,9 @@ const cleanup = tsConfigPaths.register({ \
 });\
 process.env.NODE_ENV = process.env.NODE_ENV || "production";' > path-register.js
 
+# Ensure the public directory exists
+RUN mkdir -p public
+
 # Ensure source files are kept for Swagger documentation (needed for JSDoc comments)
 # Copy all swagger schema files to their respective locations in dist
 RUN find /usr/src/app/src -name "swaggerSchemas.ts" | while read file; do \

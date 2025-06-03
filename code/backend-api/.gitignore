@@ -10,6 +10,7 @@
 
 # production
 /dist
+/public/swagger.json
 
 # misc
 .DS_Store

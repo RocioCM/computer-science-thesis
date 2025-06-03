@@ -6,6 +6,15 @@ Este proyecto utiliza [express-jsdoc-swagger](https://www.npmjs.com/package/expr
 
 Una vez que el servidor esté en funcionamiento, puedes acceder a la documentación Swagger en: [http://localhost:8080/api/blockchain-test/api-docs](http://localhost:8080/api/blockchain-test/api-docs)
 
+## Generación de documentación para producción
+
+La documentación se genera automáticamente en tiempo de desarrollo, pero para entornos de producción, necesitamos pre-generar el archivo swagger.json:
+
+1. Ejecuta `npm run generate-swagger` para generar el archivo swagger.json en la carpeta public/
+2. Este archivo se incluirá en la imagen de Docker durante el proceso de construcción (`npm run build`)
+
+El script de construcción ya incluye automáticamente el paso de generación de swagger, por lo que normalmente solo necesitas ejecutar `npm run build`.
+
 ## Estructura de comentarios JSDoc para endpoints
 
 Para documentar un endpoint, se utilizan comentarios JSDoc antes de cada función manejadora de rutas:
@@ -33,7 +42,7 @@ async function nombreFuncion(req, res) {
 
 ## Definición de esquemas
 
-Los esquemas de datos se definen en el archivo [src/pkg/constants/swagger-schemas.ts](../src/pkg/constants/swagger-schemas.ts) utilizando comentarios JSDoc:
+Los esquemas de datos se definen usando comentarios JSDoc:
 
 ```typescript
 /**
@@ -45,13 +54,12 @@ Los esquemas de datos se definen en el archivo [src/pkg/constants/swagger-schema
 
 ## Actualización de la documentación
 
-La documentación se genera automáticamente en tiempo de ejecución a partir de los comentarios JSDoc. Para actualizar la documentación:
+En entorno de desarrollo, la documentación se genera automáticamente en tiempo de ejecución a partir de los comentarios JSDoc. Para actualizar la documentación:
 
 1. Añade o modifica los comentarios JSDoc en los archivos de router (`*Router.ts`)
-2. Si necesitas nuevos esquemas, añádelos en `swagger-schemas.ts`
-3. Reinicia la aplicación
-
-No se requiere ningún paso de compilación adicional para generar la documentación.
+2. Si necesitas nuevos esquemas, añádelos en archivos de definición de esquemas `swaggerSchemas.ts`
+3. Para entorno de desarrollo, simplemente reinicia la aplicación
+4. Para entorno de producción, ejecuta `npm run generate-swagger` o simplemente haz un nuevo build de la aplicación
 
 ## Referencias
 
