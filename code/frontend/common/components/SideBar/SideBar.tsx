@@ -184,7 +184,7 @@ const SideBar: React.FC<SideBarProps> = () => {
       </div>
 
       <SupportModal>
-        <div className="flex flex-col items-center p-4 text-center">
+        <div className="flex flex-col h-full items-center text-center">
           <FaIcon
             type="fa-solid fa-headset"
             className="text-4xl text-p1 mb-3"
@@ -195,7 +195,7 @@ const SideBar: React.FC<SideBarProps> = () => {
             sobre el sistema.
           </p>
 
-          <div className="flex justify-center gap-4 w-full max-w-md">
+          <div className="flex justify-center gap-4 w-full">
             <a
               href="https://wa.me/+5492610000000"
               target="_blank"

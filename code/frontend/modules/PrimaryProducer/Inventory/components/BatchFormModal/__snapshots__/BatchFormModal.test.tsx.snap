@@ -360,13 +360,13 @@ exports[`Primary Producer Inventory - BatchFormModal Matches snapshot 1`] = `
                     data-testid="input"
                     form="[object Object]"
                     inputlabel="Fecha de producción"
-                    max="2025-05-21"
+                    max="2025-05-01"
                     name="createdAt"
                     options=""
                     placeholder="Seleccioná la fecha de producción"
                     required=""
                     type="date"
-                    value="2025-05-21"
+                    value="2025-05-01"
                   />
                   <div
                     class="absolute right-0 h-full w-max flex flex-row items-center gap-xs"

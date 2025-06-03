@@ -1,5 +1,9 @@
 import '@testing-library/jest-dom';
 
+// Mock new Date() to return a fixed date
+const mockDate = new Date('2025-05-01T00:00:00Z');
+global.Date = jest.fn(() => mockDate) as unknown as DateConstructor;
+
 // Mocking Next Router and Next Navigation
 jest.mock('next/router', () => require('next-router-mock'));
 jest.mock('next/navigation', () => ({

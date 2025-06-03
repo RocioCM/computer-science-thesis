@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tracking - TimeLineProgress Matches snapshot 1`] = `
+<div>
+  <div
+    class="grid w-full items-center gap-0 px-[3rem]"
+    style="grid-template-columns: auto 1fr auto 1fr auto 1fr auto;"
+  >
+    <div
+      class="flex justify-center"
+    >
+      <span
+        class="rounded-full w-5 h-5 border shrink-0 z-10 bg-n0 border-p1"
+        title=""
+      />
+    </div>
+    <div
+      class="h-[2px] w-full transition-all duration-300  border-t-2 border-dashed border-n3"
+    />
+    <div
+      class="flex justify-center"
+    >
+      <span
+        class="rounded-full w-5 h-5 border shrink-0 z-10 bg-n0 border-p1"
+        title=""
+      />
+    </div>
+    <div
+      class="h-[2px] w-full transition-all duration-300  border-t-2 border-dashed border-n3"
+    />
+    <div
+      class="flex justify-center"
+    >
+      <span
+        class="rounded-full w-5 h-5 border shrink-0 z-10 bg-n0 border-p1"
+        title=""
+      />
+    </div>
+    <div
+      class="h-[2px] w-full transition-all duration-300  border-t-2 border-dashed border-n3"
+    />
+    <div
+      class="flex justify-center"
+    >
+      <span
+        class="rounded-full w-5 h-5 border shrink-0 z-10 bg-n0 border-p1"
+        title=""
+      />
+    </div>
+  </div>
+</div>
+`;

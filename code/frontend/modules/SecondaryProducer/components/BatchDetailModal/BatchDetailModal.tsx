@@ -46,13 +46,22 @@ const BatchDetailModal: React.FC<Props> = ({
   }, [editingId]);
 
   return (
-    <Modal handleCancel={handleCancel} big skippable={false} {...props}>
-      <h2 className="w-full bg-n0">Lote de envases #{editingId}</h2>
+    <Modal
+      handleCancel={handleCancel}
+      big
+      skippable={false}
+      {...props}
+      className="flex !justify-end w-full h-full !items-end !p-0"
+      contentClassName="!rounded-none animate__slideInRight h-screen !px-10"
+    >
+      <h2 className="w-full font-medium text-[1.75rem] bg-n0  pb-2">
+        Lote de envases #{editingId}
+      </h2>
 
       {batch ? (
         <div className="h-full w-full overflow-auto hide-scroll relative pt-2">
           {/* Información General */}
-          <div className="grid grid-cols-2 gap-3xl mt-4">
+          <section className="grid md:grid-cols-2 gap-2 border border-n2 rounded-xl p-4">
             <div className=" space-y-2">
               <h3 className="text-lg font-semibold border-b pb-2">
                 Información General
@@ -96,39 +105,42 @@ const BatchDetailModal: React.FC<Props> = ({
                 </div>
               </div>
             )}
-          </div>
-
-          {/* Composición */}
-          <div className="mt-6">
-            <h3 className="text-lg font-semibold border-b pb-2">Composición</h3>
-            {baseBatch?.bottleType.composition.length ? (
-              <table className="w-full mt-2 border border-gray-300 rounded-md">
-                <thead>
-                  <tr className="bg-gray-100 text-gray-700">
-                    <th className="px-4 py-2 text-left">Material</th>
-                    <th className="px-4 py-2 text-left">Cantidad</th>
-                    <th className="px-4 py-2 text-left">Unidad</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {baseBatch.bottleType.composition.map((material, index) => (
-                    <tr key={index} className="border-t">
-                      <td className="px-4 py-2">{material.name}</td>
-                      <td className="px-4 py-2">{material.amount}</td>
-                      <td className="px-4 py-2">{material.measureUnit}</td>
+            {/* Composición */}
+            <div className="mt-2 col-span-2">
+              <h3 className="text-lg font-semibold border-b pb-2">
+                Composición
+              </h3>
+              {baseBatch?.bottleType.composition.length ? (
+                <table className="w-full mt-2 border border-gray-300 rounded-md">
+                  <thead>
+                    <tr className="bg-gray-100 text-gray-700">
+                      <th className="px-4 py-2 text-left">Material</th>
+                      <th className="px-4 py-2 text-left">Cantidad</th>
+                      <th className="px-4 py-2 text-left">Unidad</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <p className="text-gray-600 mt-2">
-                No hay información de composición.
-              </p>
-            )}
-          </div>
+                  </thead>
+                  <tbody>
+                    {baseBatch.bottleType.composition.map((material, index) => (
+                      <tr key={index} className="border-t">
+                        <td className="px-4 py-2">{material.name}</td>
+                        <td className="px-4 py-2">{material.amount}</td>
+                        <td className="px-4 py-2">{material.measureUnit}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <p className="text-gray-600 mt-2">
+                  No hay información de composición.
+                </p>
+              )}
+            </div>
+          </section>
         </div>
       ) : (
-        <LoadingSpinner className="mt-8" />
+        <div className="w-full h-full flex items-center justify-center">
+          <LoadingSpinner className="mt-8" />
+        </div>
       )}
     </Modal>
   );

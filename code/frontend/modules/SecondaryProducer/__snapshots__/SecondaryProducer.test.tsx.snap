@@ -17,7 +17,7 @@ exports[`Secondary Producer Page Matches snapshot 1`] = `
       data-testid="table"
     >
       <table
-        class="w-full relative"
+        class="w-full relative h-fit"
       >
         <thead
           class="sticky top-0 z-10 bg-n0 rounded-lg text-left"
@@ -89,10 +89,14 @@ exports[`Secondary Producer Page Matches snapshot 1`] = `
           </tr>
         </thead>
         <tbody />
-        <tfoot>
-          <tr>
+        <tfoot
+          class="h-full"
+        >
+          <tr
+            class="h-full"
+          >
             <td
-              class="px-4 py-2 text-center"
+              class="px-4 py-2 h-full text-center"
               colspan="7"
             >
               <span

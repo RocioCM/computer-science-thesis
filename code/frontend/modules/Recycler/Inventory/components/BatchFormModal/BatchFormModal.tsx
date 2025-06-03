@@ -166,11 +166,11 @@ const BatchFormModal = ({
 
   return (
     <Modal handleCancel={handleCancel} big skippable={false} {...props}>
-      <h2 className="w-full bg-n0">
+      <h2 className="w-full font-medium text-[1.75rem] bg-n0 border-b border-n2 pb-2 mb-1">
         {isEditing ? 'Editar' : 'Crear'} lote de material{' '}
         {editingId ? `#${editingId}` : ''}
       </h2>
-      <form className="h-full w-full overflow-auto hide-scroll relative pt-2">
+      <form className="h-full w-full overflow-auto hide-scroll relative ">
         <div className="flex flex-col gap-2">
           <div className="grid grid-cols-2 gap-2">
             {formBuilder(BATCH_FORM_INPUTS_1)}

@@ -29,7 +29,7 @@ exports[`Primary Producer Inventory - BatchSaleModal Matches snapshot 1`] = `
           />
         </div>
         <h2
-          class="w-full bg-n0"
+          class="w-full font-medium text-[1.75rem]  bg-n0 border-b border-n2 pb-2 mb-1"
         >
           Venta lote #
           1

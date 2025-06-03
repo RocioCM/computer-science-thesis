@@ -65,7 +65,12 @@ const withTrackingController = (View: TrackingViewType) =>
     const fetchProductBatchById = async (id: number) => {
       const { ok, data } = await TrackingServices.getProductBatchById(id);
       if (ok && data) {
-        setTabsData((prev) => ({ ...prev, [TABS_KEYS.PRODUCT_BATCH]: data }));
+        setTabsData((prev) => ({
+          ...prev,
+          [TABS_KEYS.PRODUCT_BATCH]: data,
+          wasteBottle: null, // Reset waste bottles to avoid stale data
+          recyclingBatch: null, // Reset recycling batch to avoid stale data
+        }));
         fetchWasteBottlesFromProductBatch(data.id, 1);
       } else {
         toast.error(
@@ -83,6 +88,11 @@ const withTrackingController = (View: TrackingViewType) =>
           tabsData.recyclingBatch?.id !== data.recycledBatchId
         ) {
           fetchRecyclingBatch(data.recycledBatchId);
+        } else if (!data.recycledBatchId) {
+          setTabsData((prev) => ({
+            ...prev,
+            [TABS_KEYS.RECYCLING_BATCH]: null,
+          }));
         }
         if (data.trackingCode !== tabsData.productBatch?.trackingCode) {
           fetchProductBatchByCode(data.trackingCode, false);
@@ -103,13 +113,12 @@ const withTrackingController = (View: TrackingViewType) =>
           ...prev,
           [TABS_KEYS.WASTE_BOTTLE]: {
             page: 1,
-            items: [
-              ...(prev[TABS_KEYS.WASTE_BOTTLE]?.items || []),
-              ...data.wasteBottleIds.map((id) => ({
-                label: `Envase Reciclado #${id}`,
-                value: id,
-              })),
-            ],
+            items: prev[TABS_KEYS.WASTE_BOTTLE]?.items?.length
+              ? prev[TABS_KEYS.WASTE_BOTTLE].items
+              : data.wasteBottleIds.map((id) => ({
+                  label: `Envase Reciclado #${id}`,
+                  value: id,
+                })),
           },
         }));
       } else {
@@ -135,7 +144,6 @@ const withTrackingController = (View: TrackingViewType) =>
           [TABS_KEYS.PRODUCT_BATCH]: {
             page,
             items: [
-              ...(prev[TABS_KEYS.PRODUCT_BATCH]?.items || []),
               ...data.map((id) => ({
                 label: `Lote de Productos #${id}`,
                 value: id,
@@ -162,7 +170,6 @@ const withTrackingController = (View: TrackingViewType) =>
           [TABS_KEYS.WASTE_BOTTLE]: {
             page,
             items: [
-              ...(prev[TABS_KEYS.WASTE_BOTTLE]?.items || []),
               ...data.map((id) => ({
                 label: `Envase Reciclado #${id}`,
                 value: id,
@@ -179,8 +186,8 @@ const withTrackingController = (View: TrackingViewType) =>
 
       // First of all, reset previous search.
       setTabsData({});
-      setTabsIdsOptions({});
       setCurrentTab(null);
+      setTabsIdsOptions({});
 
       let result: { ok: boolean } = { ok: false };
 
