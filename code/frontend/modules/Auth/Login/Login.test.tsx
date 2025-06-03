@@ -34,7 +34,7 @@ describe('Login Page', () => {
 
     const [emailInput, passwordInput] = screen.queryAllByTestId('input');
     const submitButton = screen.getByRole('button', {
-      name: /iniciar sesión/i,
+      name: /ingresar/i,
     });
 
     await act(async () => {
@@ -62,7 +62,7 @@ describe('Login Page', () => {
 
     const [emailInput, passwordInput] = screen.queryAllByTestId('input');
     const submitButton = screen.getByRole('button', {
-      name: /iniciar sesión/i,
+      name: /ingresar/i,
     });
 
     await act(async () => {
@@ -97,7 +97,7 @@ describe('Login Page', () => {
 
     const [emailInput, passwordInput] = screen.queryAllByTestId('input');
     const submitButton = screen.getByRole('button', {
-      name: /iniciar sesión/i,
+      name: /ingresar/i,
     });
 
     await act(async () => {

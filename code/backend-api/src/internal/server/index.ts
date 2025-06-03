@@ -4,9 +4,13 @@ import cors from 'cors';
 import apiMiddleware from './routes';
 import { BASE_PATH } from 'src/pkg/constants';
 import responseHelper from 'src/pkg/helpers/responseHelper';
+import docsHelper from 'src/pkg/helpers/docsHelper';
 import logger from 'src/pkg/helpers/logger';
 
 const server = express();
+
+// Initialize and configure Swagger documentation for endpoints.
+docsHelper.initSwaggerDocs(server);
 
 // Configure express to parse JSON data in the request body
 server.use(express.json());

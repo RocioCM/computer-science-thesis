@@ -20,7 +20,9 @@ exports[`Register Page Matches snapshot 1`] = `
     <form
       class="relative w-full min-w-[300px] max-w-[500px] h-max max-h-full overflow-auto rounded-rs border border-n2 bg-n0 shadow-e3 p-2xl flex flex-col gap-xl"
     >
-      <h2>
+      <h2
+        class="font-medium"
+      >
         Registro
       </h2>
       <div
@@ -30,7 +32,7 @@ exports[`Register Page Matches snapshot 1`] = `
           class="w-full"
         >
           <span
-            class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+            class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
           >
             Correo electrónico
           </span>
@@ -47,7 +49,7 @@ exports[`Register Page Matches snapshot 1`] = `
               inputlabel="Correo electrónico"
               name="email"
               options=""
-              placeholder="Ingresá tu email"
+              placeholder=""
               required=""
               type="text"
               value=""
@@ -61,7 +63,7 @@ exports[`Register Page Matches snapshot 1`] = `
           class="w-full"
         >
           <span
-            class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n10 font-semibold"
+            class="block relative z-10 w-max transition-all text-p mb-xs top-0 left-0 text-n4 font-medium"
           >
             Contraseña
           </span>
@@ -78,7 +80,7 @@ exports[`Register Page Matches snapshot 1`] = `
               inputlabel="Contraseña"
               name="password"
               options=""
-              placeholder="Ingresá tu contraseña"
+              placeholder=""
               required=""
               type="password"
               value=""
@@ -106,7 +108,7 @@ exports[`Register Page Matches snapshot 1`] = `
           class="w-full"
         >
           <span
-            class="block relative z-10 w-max transition-all text-p mb-xs cursor-pointer top-0 left-0 text-n10 font-semibold"
+            class="block relative z-10 w-max transition-all text-p mb-xs cursor-pointer top-0 left-0 text-n4 font-medium"
           >
             Rol
           </span>
@@ -118,7 +120,7 @@ exports[`Register Page Matches snapshot 1`] = `
             <span
               class="flex-1 min-h-4"
             >
-              Seleccioná tu rol
+              Selecciona un rol
             </span>
             <i
               class="inline-block w-2.5 h-2.5 rotate-0 "
@@ -142,13 +144,13 @@ exports[`Register Page Matches snapshot 1`] = `
       <p
         class="text-center"
       >
-        ¿Ya tenés cuenta?
+        ¿Ya tienes cuenta?
          
         <a
           class="font-semibold text-p1"
           href="/auth/login"
         >
-          Ingresá acá
+          Ingresa aquí
         </a>
       </p>
       <button

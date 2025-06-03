@@ -62,9 +62,7 @@ describe('SideBar Component', () => {
       fireEvent.click(screen.getByText('Cerrar sesión'));
     });
     expect(screen.getByTestId('confirmation-modal')).toBeInTheDocument();
-    expect(
-      screen.getByText('¿Confirmas que deseas cerrar sesión?')
-    ).toBeInTheDocument();
+    expect(screen.getByText('¿Deseas cerrar sesión?')).toBeInTheDocument();
   });
 
   it('logs out when confirming logout', async () => {
@@ -83,14 +81,6 @@ describe('SideBar Component', () => {
     expect(logoutMock).toHaveBeenCalledTimes(1);
   });
 
-  it('navigates home when clicking Tesis icon', () => {
-    const pushMock = jest.fn();
-    mockedUseRouter.mockReturnValueOnce({ push: pushMock, asPath: '/' });
-    render(<SideBar />);
-    fireEvent.click(screen.getByText('Tesis'));
-    expect(pushMock).toHaveBeenCalledWith('/');
-  });
-
   it('expands and collapses on mouse enter and leave', async () => {
     render(<SideBar />);
     const sidebar = screen.getByTestId('sidebar');
@@ -99,12 +89,12 @@ describe('SideBar Component', () => {
       // Simulate mouse enter
       fireEvent.mouseEnter(sidebar);
     });
-    expect(screen.getByText('Tesis')).toHaveClass('w-[8rem]');
+    expect(screen.getByText('Perfil')).toHaveClass('w-[8rem]');
 
     await act(async () => {
       // Simulate mouse leave
       fireEvent.mouseLeave(sidebar);
     });
-    expect(screen.getByText('Tesis')).toHaveClass('w-0');
+    expect(screen.getByText('Perfil')).toHaveClass('w-0');
   });
 });

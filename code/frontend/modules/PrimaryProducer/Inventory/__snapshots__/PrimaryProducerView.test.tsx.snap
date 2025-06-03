@@ -3,7 +3,7 @@
 exports[`Primary Producer Page Matches snapshot 1`] = `
 <div>
   <main
-    class="w-full h-screen flex flex-col p-2xl"
+    class="w-full h-screen flex flex-col p-2xl animate__animated  animate__fadeIn"
   >
     <header
       class="pb-2xl flex items-center justify-between"
@@ -27,54 +27,86 @@ exports[`Primary Producer Page Matches snapshot 1`] = `
       data-testid="table"
     >
       <table
-        class="w-full relative"
+        class="w-full relative h-fit"
       >
         <thead
-          class="sticky top-0 bg-n0 rounded-lg text-left"
+          class="sticky top-0 z-10 bg-n0 rounded-lg text-left"
         >
           <tr>
             <th
-              class="h6 p-s last:text-center"
+              class="h6 p-s bg-p3 text-n0 last:text-center"
             >
-              ID
+              <span
+                class="font-medium"
+              >
+                ID
+              </span>
             </th>
             <th
-              class="h6 p-s last:text-center"
+              class="h6 p-s bg-p3 text-n0 last:text-center"
             >
-              Cantidad
+              <span
+                class="font-medium"
+              >
+                Cantidad
+              </span>
             </th>
             <th
-              class="h6 p-s last:text-center"
+              class="h6 p-s bg-p3 text-n0 last:text-center"
             >
-              Cantidad vendida
+              <span
+                class="font-medium"
+              >
+                Cantidad vendida
+              </span>
             </th>
             <th
-              class="h6 p-s last:text-center"
+              class="h6 p-s bg-p3 text-n0 last:text-center"
             >
-              Fecha de creación
+              <span
+                class="font-medium"
+              >
+                Fecha de creación
+              </span>
             </th>
             <th
-              class="h6 p-s last:text-center"
+              class="h6 p-s bg-p3 text-n0 last:text-center"
             >
-              Color
+              <span
+                class="font-medium"
+              >
+                Color
+              </span>
             </th>
             <th
-              class="h6 p-s last:text-center"
+              class="h6 p-s bg-p3 text-n0 last:text-center"
             >
-              Peso por envase
+              <span
+                class="font-medium"
+              >
+                Peso por envase
+              </span>
             </th>
             <th
-              class="h6 p-s last:text-center"
+              class="h6 p-s bg-p3 text-n0 last:text-center"
             >
-              Acciones
+              <span
+                class="font-medium"
+              >
+                Acciones
+              </span>
             </th>
           </tr>
         </thead>
         <tbody />
-        <tfoot>
-          <tr>
+        <tfoot
+          class="h-full"
+        >
+          <tr
+            class="h-full"
+          >
             <td
-              class="px-4 py-2 text-center"
+              class="px-4 py-2 h-full text-center"
               colspan="7"
             >
               <span

@@ -6,11 +6,11 @@ exports[`Consumer - BottleDetailModal Matches snapshot 1`] = `
     id="modal-root"
   >
     <div
-      class="bg-n10 bg-opacity-70 py-2xl px-xl w-full h-screen fixed top-0 left-0 z-modal flex justify-center items-center animate__animated animate__fadeIn cursor-pointer"
+      class="bg-n10 bg-opacity-70 py-2xl px-xl w-full h-screen fixed top-0 left-0 z-modal flex justify-center items-center animate__animated animate__fadeIn cursor-pointer flex !justify-end w-full h-full !items-end !p-0"
       data-testid="modal"
     >
       <div
-        class="bg-n0 min-w-[300px] min-h-[200px] rounded-rm overflow-y-auto flex flex-col items-center relative cursor-default animate__animated animate__zoomIn w-[700px] h-[700px] max-h-full max-w-full px-xl py-xl"
+        class="bg-n0 min-w-[300px] min-h-[200px] rounded-rm overflow-y-auto flex flex-col items-center relative cursor-default animate__animated animate__zoomIn w-[700px] h-[700px] max-h-full max-w-full px-xl py-xl !rounded-none animate__slideInRight h-screen !px-10"
       >
         <div
           class="flex justify-end w-full h-0 sticky top-0 z-10"
@@ -29,20 +29,25 @@ exports[`Consumer - BottleDetailModal Matches snapshot 1`] = `
           />
         </div>
         <h2
-          class="w-full bg-n0"
+          class="w-full font-medium text-[1.75rem] bg-n0  pb-2 "
         >
           Botella reciclada #
           1
         </h2>
-        <span
-          class="block shrink-0 animate-spin w-8 text-[2rem] mt-8"
-          data-testid="loading-spinner"
+        <div
+          class="h-full w-full flex items-center justify-center"
         >
-          <i
-            class="fa-solid fa-recycle"
-            data-testid="fa-icon"
-          />
-        </span>
+          <span
+            class="block shrink-0 animate-spin w-8 text-[2rem] mt-8"
+            data-testid="loading-spinner"
+            style="width: 3rem; font-size: 3rem;"
+          >
+            <i
+              class="fa-solid fa-recycle"
+              data-testid="fa-icon"
+            />
+          </span>
+        </div>
       </div>
       <style>
         

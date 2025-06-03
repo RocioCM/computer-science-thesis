@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ProductBottlesBatch } from '../../types';
+import FaIcon from '@/common/components/FaIcon';
 
 interface Props {
   batch?: ProductBottlesBatch | null;
@@ -8,14 +9,22 @@ interface Props {
 }
 
 const ProductBatchTab: React.FC<Props> = ({ batch, options, handleOption }) => {
-  return batch ? (
+  const [showOptions, setShowOptions] = useState(false);
+  return batch && !showOptions ? (
     <div className="h-full w-full overflow-auto hide-scroll relative">
       {/* Información General */}
-      <div>
-        <div className=" space-y-2">
-          <h3 className="text-lg font-semibold border-b pb-2">
-            Información General
-          </h3>
+      <div className="flex flex-1">
+        <div className=" space-y-2 w-full">
+          <div className="w-full flex justify-between">
+            <h3 className="text-lg font-semibold border-b pb-2">
+              Información General
+            </h3>
+            {options.length > 1 && (
+              <button onClick={() => setShowOptions(!showOptions)}>
+                <FaIcon type="fa-solid fa-list" />
+              </button>
+            )}
+          </div>
           <p>
             <span className="font-semibold">Código de seguimiento:</span>{' '}
             {batch.trackingCode || 'Sin código'}
@@ -44,7 +53,10 @@ const ProductBatchTab: React.FC<Props> = ({ batch, options, handleOption }) => {
         {options.map((option) => (
           <li
             key={option.value}
-            onClick={() => handleOption(option.value)}
+            onClick={() => {
+              setShowOptions(false);
+              handleOption(option.value);
+            }}
             className="
 					cursor-pointer underline"
           >

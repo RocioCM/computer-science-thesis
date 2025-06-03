@@ -7,6 +7,7 @@ import {
   PRODUCT_CONTRACT_NAME,
   RECYCLE_CONTRACT_NAME,
 } from '../test/constants';
+import fs from 'fs';
 
 type Contract = Awaited<
   ReturnType<HardhatRuntimeEnvironment['ethers']['deployContract']>
@@ -104,10 +105,18 @@ async function main() {
   }
 
   logger.info("Contract's addresses:");
-  logger.info(`BASE_BATCH_CONTRACT_ADDRESS="${baseBatchAddress}"`);
-  logger.info(`PRODUCT_BATCH_CONTRACT_ADDRESS="${productAddress}"`);
-  logger.info(`RECYCLING_CONTRACT_ADDRESS="${recycledAddress}"`);
+  console.log(`BASE_BATCH_CONTRACT_ADDRESS="${baseBatchAddress}"`);
+  console.log(`PRODUCT_BATCH_CONTRACT_ADDRESS="${productAddress}"`);
+  console.log(`RECYCLING_CONTRACT_ADDRESS="${recycledAddress}"`);
   logger.success('Successful deployment!');
+
+  // Save addresses in addresses.json for test scripts.
+  const addresses = {
+    BASE_BATCH_CONTRACT_ADDRESS: baseBatchAddress,
+    PRODUCT_BATCH_CONTRACT_ADDRESS: productAddress,
+    RECYCLING_CONTRACT_ADDRESS: recycledAddress,
+  };
+  fs.writeFileSync('addresses.json', JSON.stringify(addresses, null, 2));
 }
 
 main()

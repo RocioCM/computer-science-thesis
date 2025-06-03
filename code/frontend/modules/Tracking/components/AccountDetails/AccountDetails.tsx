@@ -32,9 +32,9 @@ const AccountDetails: React.FC<Props> = ({ blockchainId }) => {
       >
         {userData?.userName ? userData.userName : blockchainId}
       </span>
-      <Modal>
+      <Modal contentClassName="w-max">
         {userData ? (
-          <div className="w-full my-auto space-y-xs">
+          <div className="w-full my-auto space-y-s">
             <p>
               <span className="font-semibold">Nombre:</span> {userData.userName}
             </p>

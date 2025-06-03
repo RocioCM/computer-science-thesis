@@ -26,11 +26,22 @@ const cleanup = tsConfigPaths.register({ \
 });\
 process.env.NODE_ENV = process.env.NODE_ENV || "production";' > path-register.js
 
+# Ensure the public directory exists
+RUN mkdir -p public
+
+# Ensure source files are kept for Swagger documentation (needed for JSDoc comments)
+# Copy all swagger schema files to their respective locations in dist
+RUN find /usr/src/app/src -name "swaggerSchemas.ts" | while read file; do \
+  dist_dir=$(echo $file | sed 's|/usr/src/app/src|/usr/src/app/dist/src|'); \
+  mkdir -p "$(dirname "$dist_dir")"; \
+  cp "$file" "$dist_dir"; \
+done
+
 # Install only production dependencies to reduce image size
 RUN npm prune --production
 
-# Keep tsconfig-paths as it's needed for runtime
-RUN npm install --no-save tsconfig-paths
+# Keep tsconfig-paths and other necessary packages for runtime
+RUN npm install --no-save tsconfig-paths express-jsdoc-swagger
 
 # Set environment variable for production
 ENV NODE_ENV=production

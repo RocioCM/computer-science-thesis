@@ -1,14 +1,14 @@
 import request from 'supertest';
-import app from '../src/internal/server';
-import { BASE_PATH, ROLES } from '../src/pkg/constants';
+import app from 'src/internal/server';
+import { BASE_PATH, ROLES } from 'src/pkg/constants';
 import {
   setupTestEnvironment,
   cleanupTestDatabase,
   teardownTestEnvironment,
-} from './utils';
-import FirebaseAuthRepository from '../src/modules/auth/repositories/firebaseAuthRepository';
-import UserRepository from '../src/modules/auth/repositories/userRepository';
-import AuthHandler from '../src/modules/auth/authHandler';
+} from '../utils';
+import FirebaseAuthRepository from 'src/modules/auth/repositories/firebaseAuthRepository';
+import UserRepository from 'src/modules/auth/repositories/userRepository';
+import AuthHandler from 'src/modules/auth/authHandler';
 
 describe('Auth API', () => {
   beforeAll(async () => {
@@ -128,7 +128,7 @@ describe('Auth API', () => {
       // Use the token to get the authenticated user
       const res = await request(app)
         .get(BASE_PATH + '/auth/user')
-        .set('Authorization', 'Bearer userWithId-new-user-uid')
+        .set('Authorization', 'Bearer userWithId-test')
         .expect(200);
       expect(res.body.status).toBe(200);
       expect(res.body.data).toHaveProperty('id');
@@ -172,7 +172,7 @@ describe('Auth API', () => {
       // Use the token to get the base user
       let res = await request(app)
         .get(BASE_PATH + '/auth/user')
-        .set('Authorization', 'Bearer userWithId-new-user-uid')
+        .set('Authorization', 'Bearer userWithId-test')
         .expect(200);
       expect(res.body.data.userName).toBe('');
       expect(res.body.data.managerName).toBe('');
@@ -187,14 +187,14 @@ describe('Auth API', () => {
 
       res = await request(app)
         .put(BASE_PATH + '/auth/user')
-        .set('Authorization', 'Bearer userWithId-new-user-uid')
+        .set('Authorization', 'Bearer userWithId-test')
         .send(updatedUser)
         .expect(200);
 
       // Use the token to get the updated user
       res = await request(app)
         .get(BASE_PATH + '/auth/user')
-        .set('Authorization', 'Bearer userWithId-new-user-uid')
+        .set('Authorization', 'Bearer userWithId-test')
         .expect(200);
       expect(res.body.status).toBe(200);
       expect(res.body.data.email).toBe(loginUser.email);
@@ -270,7 +270,7 @@ describe('Auth API', () => {
         .expect(201);
 
       // Use the created user uid to get the authenticated user
-      const uid = 'new-user-uid';
+      const uid = 'test';
       const result = await AuthHandler.GetUserByFirebaseUid(uid);
 
       expect(result.ok).toBe(true);

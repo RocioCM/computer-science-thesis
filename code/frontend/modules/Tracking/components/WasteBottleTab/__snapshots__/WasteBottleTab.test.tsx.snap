@@ -11,11 +11,15 @@ exports[`Tracking - WasteBottleTab Matches snapshot with batch 1`] = `
       <div
         class="space-y-2"
       >
-        <h3
-          class="text-lg font-semibold border-b pb-2"
+        <div
+          class="w-full flex justify-between items-center"
         >
-          Información General
-        </h3>
+          <h3
+            class="text-lg font-semibold border-b pb-2"
+          >
+            Información General
+          </h3>
+        </div>
         <p>
           <span
             class="font-semibold"
@@ -45,7 +49,7 @@ exports[`Tracking - WasteBottleTab Matches snapshot with batch 1`] = `
             Fecha de reciclaje:
           </span>
            
-          13/4/2025
+          30/4/2025
         </p>
       </div>
     </div>
@@ -67,7 +71,7 @@ exports[`Tracking - WasteBottleTab Matches snapshot with options 1`] = `
       class="mt-2 space-y-2 list-disc list-inside"
     >
       <li
-        class="        cursor-pointer underline"
+        class="      cursor-pointer underline"
       >
         <span
           class="font-semibold"
@@ -76,7 +80,7 @@ exports[`Tracking - WasteBottleTab Matches snapshot with options 1`] = `
         </span>
       </li>
       <li
-        class="        cursor-pointer underline"
+        class="      cursor-pointer underline"
       >
         <span
           class="font-semibold"

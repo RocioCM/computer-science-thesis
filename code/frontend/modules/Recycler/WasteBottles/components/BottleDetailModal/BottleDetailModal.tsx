@@ -60,18 +60,29 @@ const BottleDetailModal = ({
   }
 
   return (
-    <Modal handleCancel={handleCancel} big skippable {...props}>
-      <h2 className="w-full bg-n0">Botella reciclada #{wasteBottleId}</h2>
+    <Modal
+      handleCancel={handleCancel}
+      big
+      skippable
+      {...props}
+      className="flex !justify-end w-full h-full  !items-end !p-0"
+      contentClassName="!rounded-none animate__slideInRight h-screen !px-10"
+    >
+      <h2 className="w-full font-medium text-[1.75rem] bg-n0  pb-2">
+        Botella reciclada #{wasteBottleId}
+      </h2>
 
-      {loading && <LoadingSpinner className="mt-8" />}
+      {loading && (
+        <div className="w-full h-full flex items-center justify-center">
+          <LoadingSpinner className="mt-8" size="3rem" />
+        </div>
+      )}
 
       {!!wasteBottle && (
         <>
-          <hr className="w-[95%] border border-n1 my-6 mx-auto" />
-
           <div className="h-full w-full overflow-auto hide-scroll relative pt-2">
             {/* Información General */}
-            <div className="grid grid-cols-2 gap-3xl">
+            <section className="grid md:grid-cols-2 gap-6 border  border-n2 rounded-xl p-4">
               {wasteBottle.product && (
                 <div className=" space-y-2">
                   <h3 className="text-lg font-semibold pb-2">
@@ -133,7 +144,7 @@ const BottleDetailModal = ({
                   </div>
 
                   {/* Composición */}
-                  <div className="mt-6 col-span-2">
+                  <div className="col-span-2">
                     <h3 className="text-lg font-semibold pb-2">Composición</h3>
                     {wasteBottle.base?.bottleType.composition.length ? (
                       <table className="w-full mt-2 border border-n2 rounded-md">
@@ -196,7 +207,7 @@ const BottleDetailModal = ({
                   </div>
 
                   {/* Composición */}
-                  <div className="mt-6">
+                  <div>
                     <h3 className="text-lg font-semibold border-t py-2">
                       Composición
                     </h3>
@@ -242,7 +253,7 @@ const BottleDetailModal = ({
                   )}
                 </div>
               )}
-            </div>
+            </section>
           </div>
         </>
       )}

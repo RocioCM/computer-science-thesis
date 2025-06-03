@@ -51,7 +51,9 @@ const BatchSaleModal: React.FC<Props> = ({
 
   return (
     <Modal handleCancel={handleCancel} {...props}>
-      <h2 className="w-full bg-n0">Venta lote #{editingId}</h2>
+      <h2 className="w-full font-medium text-[1.75rem] bg-n0 border-b border-n2 pb-2">
+        Venta lote #{editingId}
+      </h2>
       <div className="w-full flex flex-col gap-m my-xl">
         {formBuilder(SELL_FORM_INPUTS, {
           handleSearch: { buyerUid: getBuyers },

@@ -248,7 +248,7 @@ export default class RecyclerHandler {
       };
     }
 
-    return { ok: true, status: StatusCodes.OK, data: { batchId } };
+    return { ok: true, status: StatusCodes.CREATED, data: { batchId } };
   }
 
   static async UpdateRecyclingBatch(

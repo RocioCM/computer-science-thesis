@@ -10,6 +10,7 @@
 
 # production
 /dist
+/public/swagger.json
 
 # misc
 .DS_Store
@@ -26,6 +27,7 @@ yarn-error.log*
 .env*.production
 .env*.dev
 .env*.local
+.env.test
 
 # ts
 tsconfig.tsbuildinfo

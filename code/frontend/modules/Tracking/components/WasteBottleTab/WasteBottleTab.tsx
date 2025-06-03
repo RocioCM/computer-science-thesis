@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { WasteBottle } from '../../types';
 import AccountDetails from '../AccountDetails';
+import FaIcon from '@/common/components/FaIcon';
 
 interface Props {
   bottle?: WasteBottle | null;
@@ -9,14 +10,23 @@ interface Props {
 }
 
 const WasteBottleTab: React.FC<Props> = ({ bottle, options, handleOption }) => {
-  return bottle ? (
+  const [showOptions, setShowOptions] = useState(false);
+
+  return bottle && !showOptions ? (
     <div className="h-full w-full overflow-auto hide-scroll relative">
       {/* Información General */}
       <div className="">
         <div className="space-y-2">
-          <h3 className="text-lg font-semibold border-b pb-2">
-            Información General
-          </h3>
+          <div className="w-full flex justify-between items-center">
+            <h3 className="text-lg font-semibold border-b pb-2">
+              Información General
+            </h3>
+            {options.length > 1 && (
+              <button onClick={() => setShowOptions(!showOptions)}>
+                <FaIcon type="fa-solid fa-list" />
+              </button>
+            )}
+          </div>
           <p>
             <span className="font-semibold">Código de seguimiento:</span>{' '}
             {bottle.trackingCode}
@@ -41,7 +51,10 @@ const WasteBottleTab: React.FC<Props> = ({ bottle, options, handleOption }) => {
         {options.map((option) => (
           <li
             key={option.value}
-            onClick={() => handleOption(option.value)}
+            onClick={() => {
+              setShowOptions(false);
+              handleOption(option.value);
+            }}
             className="
 					cursor-pointer underline"
           >

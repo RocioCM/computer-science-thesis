@@ -1,5 +1,5 @@
 import { ROLES } from './src/pkg/constants';
-import { AppDataSource } from './test/utils';
+import { AppDataSource } from './tests/utils';
 import dotenv from 'dotenv';
 
 // Load test environment variables
@@ -20,12 +20,13 @@ jest.mock('firebase-admin', () => ({
       }
       return Promise.reject(new Error('Invalid token'));
     }),
-    getUser: jest.fn((uid) => {
+    getUser: jest.fn((uid: string) => {
       if (uid.startsWith('userRole')) {
-        const roleId = ROLES[uid.split(/-(.*)/, 2)[1]];
+        const [, role, ...userId] = uid.split(/-/);
+        const roleId = ROLES[role as keyof typeof ROLES];
         if (roleId) {
           return Promise.resolve({
-            uid: 'new-user-uid',
+            uid: userId.join('-') || 'new-user-uid',
             email: 'test@example.com',
             customClaims: { role: roleId },
           });
@@ -41,7 +42,9 @@ jest.mock('firebase-admin', () => ({
       });
     }),
 
-    createUser: jest.fn().mockResolvedValue({ uid: 'new-user-uid' }),
+    createUser: jest.fn(({ email }: { email: string }) => ({
+      uid: email.split('@')[0] || 'new-user-uid',
+    })),
     setCustomUserClaims: jest.fn().mockResolvedValue(undefined),
     deleteUser: jest.fn().mockResolvedValue(undefined),
   }),

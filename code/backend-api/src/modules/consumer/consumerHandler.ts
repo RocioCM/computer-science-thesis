@@ -256,7 +256,7 @@ export default class ConsumerHandler {
 
     return {
       ok: true,
-      status: StatusCodes.OK,
+      status: StatusCodes.CREATED,
       data: {
         bottleId: wasteBottleId,
       },

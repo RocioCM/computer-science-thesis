@@ -17,54 +17,86 @@ exports[`Secondary Producer Page Matches snapshot 1`] = `
       data-testid="table"
     >
       <table
-        class="w-full relative"
+        class="w-full relative h-fit"
       >
         <thead
-          class="sticky top-0 bg-n0 rounded-lg text-left"
+          class="sticky top-0 z-10 bg-n0 rounded-lg text-left"
         >
           <tr>
             <th
-              class="h6 p-s last:text-center"
+              class="h6 p-s bg-p3 text-n0 last:text-center"
             >
-              ID
+              <span
+                class="font-medium"
+              >
+                ID
+              </span>
             </th>
             <th
-              class="h6 p-s last:text-center"
+              class="h6 p-s bg-p3 text-n0 last:text-center"
             >
-              Cantidad
+              <span
+                class="font-medium"
+              >
+                Cantidad
+              </span>
             </th>
             <th
-              class="h6 p-s last:text-center"
+              class="h6 p-s bg-p3 text-n0 last:text-center"
             >
-              Cantidad disponible
+              <span
+                class="font-medium"
+              >
+                Cantidad disponible
+              </span>
             </th>
             <th
-              class="h6 p-s last:text-center"
+              class="h6 p-s bg-p3 text-n0 last:text-center"
             >
-              Fecha de creación
+              <span
+                class="font-medium"
+              >
+                Fecha de creación
+              </span>
             </th>
             <th
-              class="h6 p-s last:text-center"
+              class="h6 p-s bg-p3 text-n0 last:text-center"
             >
-              Código de seguimiento
+              <span
+                class="font-medium"
+              >
+                Código de seguimiento
+              </span>
             </th>
             <th
-              class="h6 p-s last:text-center"
+              class="h6 p-s bg-p3 text-n0 last:text-center"
             >
-              Estado
+              <span
+                class="font-medium"
+              >
+                Estado
+              </span>
             </th>
             <th
-              class="h6 p-s last:text-center"
+              class="h6 p-s bg-p3 text-n0 last:text-center"
             >
-              Acciones
+              <span
+                class="font-medium"
+              >
+                Acciones
+              </span>
             </th>
           </tr>
         </thead>
         <tbody />
-        <tfoot>
-          <tr>
+        <tfoot
+          class="h-full"
+        >
+          <tr
+            class="h-full"
+          >
             <td
-              class="px-4 py-2 text-center"
+              class="px-4 py-2 h-full text-center"
               colspan="7"
             >
               <span
