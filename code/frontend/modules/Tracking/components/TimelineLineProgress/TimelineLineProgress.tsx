@@ -20,7 +20,6 @@ const TimelineLineWithDots = ({ tabsData }: { tabsData: TabsData }) => {
       else break;
     }
 
-    let i = 0;
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev < filled) return prev + 1;
@@ -52,7 +51,6 @@ const TimelineLineWithDots = ({ tabsData }: { tabsData: TabsData }) => {
           month: '2-digit',
           day: '2-digit',
         });
-        console.log(date);
         const tabDisabled =
           !tabData &&
           Array.isArray(tabsData?.[steps[index]]) &&
