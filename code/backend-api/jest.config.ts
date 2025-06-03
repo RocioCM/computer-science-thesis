@@ -12,9 +12,10 @@ module.exports = {
   collectCoverageFrom: [
     'src/**/*.{ts,js}', // Include all source files in coverage
     '!src/pkg/helpers/databaseHelper.ts', // Exclude database helper as it is mocked during tests
+    '!src/pkg/helpers/docsHelper.ts', // Exclude database helper as it is not relevant for tests
   ],
   coverageDirectory: 'coverage', // Directory where reports will be saved
-  coverageReporters: ['lcov', 'text'], // Formats for the report
+  coverageReporters: ['lcov', 'text-summary'], // Formats for the report
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: '<rootDir>/',
   }),
