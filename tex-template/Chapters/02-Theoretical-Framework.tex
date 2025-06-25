@@ -1,0 +1,74 @@
+\chapter[Marco Teórico]{Marco Teórico}
+\label{cp:theoretical-framework}
+
+\parindent0pt
+
+
+% La tecnología blockchain se define como una estructura de datos distribuida y descentralizada que permite registrar transacciones de forma segura, inmutable y transparente sin requerir una autoridad central que administre o valide los intercambios. Esta tecnología fue introducida originalmente en 2008 como el fundamento del sistema de criptomonedas Bitcoin, y desde entonces ha evolucionado para incluir una amplia gama de aplicaciones más allá del ámbito financiero \cite{farhana2022blockchain, rennock2018blockchain}.
+
+% Técnicamente, una blockchain está compuesta por bloques enlazados que contienen un conjunto de transacciones. Cada bloque posee un encabezado que incluye un hash criptográfico del bloque anterior, así como su propio hash calculado sobre el contenido del bloque. Este encadenamiento de bloques garantiza la integridad de la información, ya que cualquier alteración en un bloque modificaría su hash y rompería la cadena \cite{farhana2022blockchain}. La validación y adición de nuevos bloques se realiza mediante algoritmos de consenso como Proof of Work (PoW), Proof of Stake (PoS), y Proof of Authority (PoA), cada uno con diferentes niveles de eficiencia, seguridad y descentralización \cite{diaz2022protocolos}.
+
+% El funcionamiento general de una blockchain puede representarse en el siguiente esquema:
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{blockchain_diagram.png}
+%     \caption{Estructura típica de bloques en una blockchain.}
+%     \label{fig:blockchain-structure}
+% \end{figure}
+
+% Un componente clave de esta tecnología es el uso de smart contracts, que son programas informáticos almacenados en la blockchain que se ejecutan automáticamente al cumplirse condiciones preestablecidas. Estos contratos permiten automatizar procesos en entornos descentralizados, reduciendo la necesidad de intermediarios y mejorando la eficiencia operativa \cite{farhana2022blockchain}.
+
+% Las ventajas de blockchain frente a otras tecnologías incluyen la inmutabilidad de los datos, transparencia en las operaciones, resistencia a manipulaciones, y descentralización del control. Estos atributos promueven la confianza entre partes que no necesitan conocerse o confiar entre sí para interactuar. Sin embargo, también existen desventajas, como el alto consumo energético asociado con ciertos algoritmos de consenso como PoW, limitaciones en la escalabilidad y velocidad de procesamiento, y la complejidad para cumplir con normativas de privacidad y protección de datos en sistemas públicos \cite{rennock2018blockchain, diaz2022protocolos}.
+
+% Los casos de uso de blockchain se han diversificado considerablemente, abarcando sectores como las finanzas, la salud, la educación, la administración pública, y el Internet de las Cosas (IoT). Particularmente relevante para esta tesis es su aplicación en la gestión de cadenas de suministro y la economía circular, donde se utiliza para mejorar la trazabilidad de productos, asegurar el cumplimiento de normativas ambientales, y facilitar la valorización de materiales reciclables como el vidrio \cite{farhana2022blockchain}.
+
+% En el contexto de la economía circular, blockchain permite registrar el ciclo de vida completo de un producto, desde la extracción de materias primas hasta su reciclaje, asegurando transparencia y verificabilidad en cada etapa. Este enfoque se alinea con las exigencias de sostenibilidad y trazabilidad que demandan las nuevas políticas ambientales, facilitando la integración de modelos productivos más eficientes y respetuosos con el entorno \cite{diaz2022protocolos}.
+
+
+\section{Blockchain}
+La tecnología blockchain, o cadena de bloques, se define como un ``libro mayor digital, descentralizado y distribuido en el que las transacciones se registran y añaden en orden cronológico con el objetivo de crear registros permanentes e inalterables ``. Es una tecnología que ha revolucionado los negocios, las industrias y el comercio al eliminar la necesidad de una autoridad central de almacenamiento y control. Funciona como una base de datos distribuida donde la información se almacena en bloques que están encadenados utilizando funciones criptográficas. Cada bloque contiene un conjunto de transacciones, junto con una marca de tiempo y funciones criptográficas. Los bloques se enlazan al bloque anterior mediante un valor hash y una referencia hash, formando una cadena que no puede ser modificada retroactivamente sin alterar toda la estructura.
+
+Planteo técnico con un esquema conceptual: Imaginando un esquema de su funcionamiento, una red Blockchain está compuesta por nodos, que son ordenadores o computadoras conectados que tienen la capacidad de cómputo y almacenamiento. La característica fundamental de estas redes es su naturaleza descentralizada y distribuida, lo que significa que no existe un servidor central que controle la información, sino que los datos están distribuidos y replicados en cada nodo de la red.
+
+El proceso de funcionamiento se desarrolla en los siguientes pasos:
+
+Un nodo de la red inicia una transacción, firmándola con su clave privada.
+La transacción se representa en un nuevo bloque.
+Este nuevo bloque se envía a todos los nodos de la cadena, que lo validan, aceptan y añaden al final del registro. La verificación y autenticación de las transacciones son realizadas por cada nodo participante en la red.
+Una vez validado por los nodos, el bloque queda registrado en la cadena de forma segura y permanente, completándose la transacción.
+Después de añadir un bloque, otro nuevo se añade a continuación, repitiéndose el proceso.
+La seguridad del sistema se garantiza mediante claves criptográficas y algoritmos de consenso, que aseguran que todos los nodos de la red lleguen a un acuerdo sobre la información registrada, impidiendo modificaciones o manipulaciones una vez que un bloque ha sido autenticado. Cualquier intento de modificación en una copia sería inútil, ya que el cambio debería realizarse en todas las copias que posee cada nodo. La inmutabilidad de los registros es tan robusta que es "imposible" romper la cadena en el estado actual de la tecnología.
+
+El concepto de contratos inteligentes (smart contracts) es fundamental en Blockchain 2.0, con Ethereum siendo un ejemplo prominente. Estos contratos son códigos de programación que se ejecutan de forma autónoma y automática en la blockchain, sin la necesidad de intermediarios. Sus términos se expresan en comandos de código en lugar de lenguaje legal tradicional, lo que elimina ambigüedades y asegura que, si se cumplen ciertas condiciones predefinidas, el contrato se auto-ejecute y dispare una acción o compensación. Los contratos inteligentes mejoran la eficiencia, velocidad y seguridad de las transacciones.
+
+Ventajas y desventajas de la Blockchain respecto a otras tecnologías: La tecnología Blockchain ofrece múltiples ventajas:
+
+Transparencia y trazabilidad mejoradas: Permite monitorear el movimiento de materiales, componentes y productos a lo largo de toda la cadena de suministro, mejorando la inmutabilidad de la información y la transparencia. Es crucial para reconstruir el historial de un producto y conocer su destino inmediato.
+Gestión de datos segura e inmutable: Una vez autenticada, la información en un bloque no puede ser modificada, garantizando datos muy seguros y a prueba de manipulaciones. La naturaleza distribuida y descentralizada de Blockchain asegura la integridad y autenticidad de las transacciones.
+Reducción de costos y mejora de la eficiencia: Elimina la necesidad de intermediarios y automatiza procesos, agilizando procedimientos y reduciendo tiempos.
+Incentivos para la sostenibilidad: Puede fomentar un comportamiento adecuado en la gestión de residuos al permitir sistemas de recompensa digital.
+Ausencia de autoridad central: Su carácter descentralizado y distribuido elimina la dependencia de una única entidad, lo que aumenta la seguridad y la resistencia a la manipulación.
+Aumento de la confianza: Proporciona información consistente a todos los participantes de la cadena de suministro, mejorando la confianza entre las partes.
+Automatización: Optimiza y automatiza procesos en diversos campos.
+Sin embargo, Blockchain también presenta desafíos y limitaciones:
+
+Inmadurez tecnológica: Se encuentra en sus primeras etapas de desarrollo y aplicación, con gran parte de la investigación en fases conceptuales y proyectos piloto.
+Escalabilidad: Presenta limitaciones en la cantidad de transacciones por segundo (ej. Bitcoin maneja 3-7 tps y Ethereum 15 tps, muy por debajo de sistemas como Visa con 1736 tps), lo que puede generar demoras. La escalabilidad sigue siendo un problema crítico.
+Alto consumo energético: Algunos algoritmos de consenso, como el "Proof of Work" (PoW) usado por Bitcoin y en parte por Ethereum, requieren una alta capacidad computacional y conllevan un significativo consumo de energía, lo que genera una considerable huella de carbono.
+Vulnerabilidad: A pesar de su seguridad, no está exenta de riesgos como ataques del 51%, "doble-gasto", ataques Sybil, DDoS o vulneraciones criptográficas. También puede haber problemas como la "bifurcación" (fork) de la cadena o ataques de "phishing" para obtener credenciales.
+Falta de conocimiento y talento técnico: Existe poca conciencia general sobre su utilidad y una escasez de desarrolladores especializados en esta tecnología.
+Altos costos de implementación: Los costos iniciales de implementación y el mantenimiento continuo pueden ser muy elevados.
+Problemas regulatorios y legales: La falta de marcos legales y regulaciones claras es una barrera para su adopción, y existen debates sobre la privacidad de los datos debido a la inmutabilidad y transparencia de los registros.
+Complejidad de integración: Su integración con sistemas existentes puede ser compleja.
+Blockchain vs. Tecnologías Tradicionales de Trazabilidad: Los sistemas tradicionales de trazabilidad a menudo dependen de terceros de confianza, con datos almacenados en papel o en bases de datos centralizadas. Estos enfoques son propensos a problemas de integridad de datos, altos costos, ineficiencias por procesos manuales, errores humanos y manipulación. En contraste, Blockchain ofrece un nuevo modelo donde la autenticidad no es verificada por un tercero, sino por la propia red de nodos mediante consenso. La naturaleza descentralizada de Blockchain, donde cada participante tiene una copia del registro, contrasta con el modelo centralizado, donde un error puede llevar a la pérdida de información o comprometer su integridad. Esta tecnología permite vincular bienes físicos a registros virtuales utilizando tecnologías como etiquetas RFID para una trazabilidad precisa. Si bien los sistemas de gestión de bases de datos tradicionales (DBMS) ofrecen alto rendimiento y baja latencia, Blockchain todavía carece de algunas de estas características, aunque su fortaleza radica en la inmutabilidad y la seguridad de los registros, reduciendo los riesgos de fraude.
+
+Casos de uso (Economía Circular, Trazabilidad y Cadena de Suministros): Blockchain se ha convertido en un habilitador crítico para acelerar la transición hacia la Economía Circular (EC). Al desplegar contratos inteligentes y capacidades de tokenización, Blockchain mejora la eficiencia del sistema. Esta tecnología puede sustentar todo el sistema de gestión de residuos y habilitar la EC junto con otras tecnologías como el Internet de las Cosas (IoT). Permite la trazabilidad de datos clave como el monitoreo del uso de materias primas y la implementación de mecanismos de control automáticos, haciendo la producción más eficiente y limpia. Facilita la transición hacia la economía circular en la cadena alimentaria. Específicamente, en la gestión de residuos, Blockchain se aplica para mejorar la transparencia, eficiencia y rendición de cuentas. Por ejemplo:
+
+Residuos plásticos: Facilita transacciones financieras directas y transparentes, incentiva el reciclaje con criptomonedas y asegura el seguimiento preciso de residuos.
+Residuos electrónicos (e-waste): Habilita módulos de contratos inteligentes para la interacción entre las partes interesadas y rastrea el ciclo de vida de los dispositivos para una disposición responsable.
+Residuos textiles: Permite la confirmación descentralizada de transacciones y registros inmutables para la trazabilidad, previniendo el vertido ilegal.
+Residuos médicos y peligrosos: Apoya el registro y la compartición de información en tiempo real, la transparencia de datos y el seguimiento fácil de residuos, previniendo la falsificación y manipulación.
+En el ámbito de la trazabilidad, Blockchain es crucial y se utiliza para reconstruir el proceso histórico de un producto y conocer su destino inmediato. La integración de Blockchain con IoT permite una trazabilidad más precisa a lo largo de todo el ciclo de vida del producto. Por ejemplo, los dispositivos IoT pueden monitorear el flujo de productos y la contribución de cada agente en la gestión de residuos, mientras que Blockchain asegura la inmutabilidad e integridad de estos datos. Esta combinación es esencial para la gestión inteligente de residuos.
+
+En la cadena de suministro (SCM), Blockchain desempeña un papel transformador. Aporta un aumento significativo en la seguridad, confidencialidad, trazabilidad, transparencia, precisión de datos, privacidad, eficiencia, responsabilidad y confianza. Se utiliza en diversos sectores como la agricultura, alimentos, industria, marítimo y medioambiental. Por ejemplo, en el sector alimenticio, impulsa el valor percibido del producto y la calidad, además de fortalecer la confianza entre las partes interesadas. Para el sector industrial, se enfoca en la planeación y el intercambio de información para una mayor sostenibilidad. En el sector textil, mejora los procesos internos, la trazabilidad y previene la falsificación. La tecnología Blockchain, unida a IoT, puede proporcionar soluciones eficientes y eficaces para la cadena de suministro, mejorando la recopilación de datos y los beneficios para las partes interesadas. Si bien su aplicación aún está en desarrollo, su potencial para optimizar la trazabilidad y la sostenibilidad en la gestión de residuos es ampliamente reconocido.

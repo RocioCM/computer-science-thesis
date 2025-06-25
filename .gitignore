@@ -8,3 +8,11 @@
 *.bcf
 *.synctex*
 *.xml
+*.acn
+*.glo
+*.ist
+*.out
+*.toc
+*.lof
+*.lot
+*.minted

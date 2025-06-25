@@ -1,0 +1,38 @@
+{
+  "latex-workshop.latex.tools": [
+    {
+      "name": "xelatex",
+      "command": "xelatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-shell-escape",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "lualatex",
+      "command": "lualatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-shell-escape",
+        "%DOC%"
+      ]
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "XeLaTeX",
+      "tools": ["xelatex", "xelatex"]
+    },
+    {
+      "name": "LuaLaTeX",
+      "tools": ["lualatex", "lualatex"]
+    }
+  ],
+  "latex-workshop.latex.recipe.default": "XeLaTeX",
+  "editor.wordWrap": "on"
+}
