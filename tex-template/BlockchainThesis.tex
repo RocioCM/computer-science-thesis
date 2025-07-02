@@ -1,0 +1,84 @@
+%%% Document Options %%%
+\documentclass[
+    language=spanish, % Choose the language of the thesis. Available options: 'english', 'spanish'.
+    docstage=final,
+    media=paper,
+    linkcolor=black!45!black,
+    chapterstyle=fancy,
+]{UMUthesis} % Refer to the Wiki for a list of available options.
+
+%%% Document Version %%%
+\DocumentVersion{1.0.0} % This is required only if the 'docstage' is set to 'working'.
+
+%%% Document Metadata %%%
+\input{Metadata/Metadata}
+
+%%% Loading of Glossary and Acronyms %%%
+\makeglossaries
+\loadglsentries{Matter/04-Glossary}
+\loadglsentries[\acronymtype]{Matter/05-Acronyms}
+
+\begin{document}
+
+%%% Front Matter %%%
+\include{Matter/00-Cover}
+\include{Matter/01-Front-Page}
+
+%%% Roman Numeration %%%
+\pagenumbering{roman}
+
+%%% Frase celebre %%%
+\include{Matter/04-Famous-phrase}
+
+%%% Acknowledgements %%%
+\include{Matter/04-Acknowledgements}
+
+%%% Abstract %%%
+\include{Chapters/00-Abstract}
+
+%%% Table of Contents, List of Figures and List of Tables %%%
+\bookmarktocentry\tableofcontents
+\listoffigures
+\listoftables
+
+%%% Print: Glossary and Acronyms %%%
+%\glossarytoc\printnormalglossary
+\acronymtoc\printacronymglossary
+
+%%% Arabic Numeration %%%
+\pagenumbering{arabic}
+
+%%% Chapters of your thesis %%%%
+\include{Chapters/01-Introduction}
+\include{Chapters/02-Theoretical-Framework}
+\include{Chapters/02-Hypothe&Objectives}
+\include{Chapters/03-Mat&Meth}
+\include{Chapters/04-Chapter_1}
+\include{Chapters/05-Chapter_2}
+
+%%% Discusión %%%
+
+\include{Chapters/06-Discussion}
+
+%%% Conclusiones %%%
+
+\include{Chapters/07-Conclusions}
+
+%%% Bibliography %%%
+\renewcommand{\refname}{Bibliography}
+\printbibliography[title={\refname},heading=bibintoc]
+
+%%% Appendices: Work that *YOU* Developed %%%
+\appendix
+\input{Matter/06-Appendices}
+\input{Chapters/Appendices/00-AppendixA}
+\input{Chapters/Appendices/01-AppendixB}
+
+%%% Annexes: Work that *YOU DID NOT* Develop %%%
+\input{Matter/07-Annexes}
+\input{Chapters/Annexes/00-AnnexA}
+
+%%% Back Page %%%
+\input{Matter/08-Back-Page}
+
+\end{document}
