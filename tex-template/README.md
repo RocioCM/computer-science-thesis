@@ -1,7 +1,7 @@
 # Compile PDF
 
 ```bash
-xelatex BlockchainThesis.tex
+xelatex -interaction=nonstopmode BlockchainThesis.tex
 biber BlockchainThesis
-xelatex BlockchainThesis.tex
+xelatex -interaction=nonstopmode BlockchainThesis.tex
 ```
