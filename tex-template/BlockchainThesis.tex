@@ -17,6 +17,7 @@
 \makeglossaries
 \loadglsentries{Matter/04-Glossary}
 \loadglsentries[\acronymtype]{Matter/05-Acronyms}
+% TODO: fix glossary/acronyms are not printed in the document.
 
 \begin{document}
 
@@ -37,6 +38,7 @@
 \include{Chapters/00-Abstract}
 
 %%% Table of Contents, List of Figures and List of Tables %%%
+\renewcommand{\contentsname}{Tabla de Contenidos}
 \bookmarktocentry\tableofcontents
 \listoffigures
 \listoftables
@@ -56,17 +58,9 @@
 \include{Chapters/04-Chapter_1}
 \include{Chapters/05-Chapter_2}
 
-%%% Discusión %%%
-
-\include{Chapters/06-Discussion}
-
 %%% Conclusiones %%%
 
 \include{Chapters/07-Conclusions}
-
-%%% Bibliography %%%
-\renewcommand{\refname}{Bibliography}
-\printbibliography[title={\refname},heading=bibintoc]
 
 %%% Appendices: Work that *YOU* Developed %%%
 \appendix
@@ -77,6 +71,10 @@
 %%% Annexes: Work that *YOU DID NOT* Develop %%%
 \input{Matter/07-Annexes}
 \input{Chapters/Annexes/00-AnnexA}
+
+%%% Bibliography %%%
+\renewcommand{\refname}{Bibliografía}
+\printbibliography[title={\refname},heading=bibintoc]
 
 %%% Back Page %%%
 \input{Matter/08-Back-Page}
