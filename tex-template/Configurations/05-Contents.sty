@@ -11,6 +11,15 @@
 {\chapter*{\listtablename}\MakeLinkTarget*{listoftables}%
 \addcontentsline{toc}{frontmatter}{\listtablename}}{}{}
 
+% Espaciado compacto para ToC
+\let\oldtableofcontents\tableofcontents
+\renewcommand{\tableofcontents}{%
+    \begingroup
+    \setlength{\parskip}{0pt}
+    \oldtableofcontents
+    \endgroup
+}
+
 \NewCommandCopy\l@frontmatter\l@chapter
 \NewCommandCopy\l@backmatter\l@chapter
 
