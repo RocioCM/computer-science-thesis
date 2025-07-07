@@ -1,0 +1,18 @@
+\chapter[Implementación]{Implementación}
+\label{cp:implementation}
+
+\parindent0pt
+
+La implementación fue el proceso más largo y se llevó a cabo siguiendo la planificación.
+
+Explicar que se realizó desarrollo y unit testing de forma conjunta e intercalada.
+
+Al ser un sistema modular pero interconectado, el desarrollo se realizó por módulo desde adentro hacia afuera y no por dominio. Es decir, primero se programó el 100% de los smart contracts y sus tests. Después se implementó el 100% de la API y luego el 100% del frontend. Unit tests de frontend y api se desarrollaron junto con los sistemas y se revisaron y fortalecieron (aumento del coverage) luego de finalizar el desarrollo de funcionalidades. Siempre hay idas y vueltas al realizar la integración, pero ese fue el flujo de trabajo en general. A nivel dominio, el sistema se implementó siguiendo el ciclo de vida del vidrio: primero productor primario, luego secundario, luego consumidor, por último reciclador y recién luego de la cadena completa se hizo la funcionalidad de seguimiento end-to-end.
+
+Cuando se tuvo el software ejecutable y testeado con unit testing en un entorno local, se procedió al despliegue en un entorno de pruebas. Contar sobre las plataformas donde se desplegó cada módulo, el por qué (son gratuitas y ya, me sirve para un trabajo académico). Explicar que se configuraron herramientas de despliegue en docker para modularización, evitar conflictos de dependencias y que en el futuro se pueda transicionar fácilmente a un entorno productivo sin problemas ni necesidad de cambios.
+
+Despliegue podría tener su propia sección directamente?
+
+Explicar que en el mismo código se encuentra documentado el proceso de setup del proyecto en un entorno local y el despliegue en producción.
+
+Agregar que se configuró un swagger para la documentación backend para que en el futuro se puedan desarrollar nuevas apps frontend que se conecten al mismo sistema interno. 

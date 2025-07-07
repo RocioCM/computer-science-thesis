@@ -39,41 +39,54 @@
 
 %%% Table of Contents, List of Figures and List of Tables %%%
 \renewcommand{\contentsname}{Tabla de Contenidos}
-\bookmarktocentry\tableofcontents
-\listoffigures
-\listoftables
+\renewcommand{\listtablename}{Índice de Tablas}
+\renewcommand{\listfigurename}{Índice de Figuras}
 
-%%% Print: Glossary and Acronyms %%%
-%\glossarytoc\printnormalglossary
-\acronymtoc\printacronymglossary
+\bookmarktocentry\tableofcontents
+
+\listoffigures
 
 %%% Arabic Numeration %%%
 \pagenumbering{arabic}
 
+\listoftables
+
 %%% Chapters of your thesis %%%%
 \include{Chapters/01-Introduction}
 \include{Chapters/02-Theoretical-Framework}
-\include{Chapters/03-Mat&Meth}
-\include{Chapters/04-Chapter_1}
-\include{Chapters/05-Chapter_2}
+\include{Chapters/03-Methodology}
+\include{Chapters/04-Modelling}
+\include{Chapters/05-Design}
+\include{Chapters/06-Implementation}
+\include{Chapters/07-Testing}
 
 %%% Conclusiones %%%
 
-\include{Chapters/07-Conclusions}
+\include{Chapters/08-Conclusions}
 
 %%% Appendices: Work that *YOU* Developed %%%
 \appendix
 \input{Matter/06-Appendices}
-\input{Chapters/Appendices/00-AppendixA}
-\input{Chapters/Appendices/01-AppendixB}
+\input{Chapters/Appendices/00-ExternalContent.tex}
+\input{Chapters/Appendices/01-BlockchainTechnologies}
+\input{Chapters/Appendices/02-RecyclingMaterials}
+\input{Chapters/Appendices/03-VeralliaInterview}
+\input{Chapters/Appendices/04-EuropeTrip}
+\input{Chapters/Appendices/05-UserFlow}
+\input{Chapters/Appendices/06-AutomatedTestsExecution}
+\input{Chapters/Appendices/07-UAT}
 
 %%% Annexes: Work that *YOU DID NOT* Develop %%%
-\input{Matter/07-Annexes}
-\input{Chapters/Annexes/00-AnnexA}
+% \input{Matter/07-Annexes}
+% \input{Chapters/Annexes/00-AnnexA}
 
 %%% Bibliography %%%
 \renewcommand{\refname}{Bibliografía}
 \printbibliography[title={\refname},heading=bibintoc]
+
+%%% Print: Glossary and Acronyms %%%
+\glossarytoc\printnormalglossary
+\acronymtoc\printacronymglossary
 
 %%% Back Page %%%
 \input{Matter/08-Back-Page}

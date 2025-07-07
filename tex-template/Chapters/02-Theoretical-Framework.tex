@@ -5,20 +5,22 @@
 
 % TODO: fix redaction of all sections, add references, and improve the connection between sections
 
-\noindent Este capítulo introduce los fundamentos conceptuales que enmarcan la investigación, abordando la evolución y el alcance de la tecnología blockchain junto a sus aplicaciones en trazabilidad y gestión de residuos, así como los principios de la economía circular y la relevancia de las políticas sustentables en la transformación de las cadenas de suministro.
-
+Este capítulo presenta los fundamentos teóricos necesarios para comprender los conceptos relacionados con la tecnología \textit{blockchain} y su aplicación en la economía circular. Se aborda la estructura y funcionamiento de las cadenas de bloques, destacando sus características de descentralización, transparencia e inmutabilidad, así como los mecanismos de consenso que garantizan su seguridad y eficiencia. Además, se analiza el rol de los contratos inteligentes como herramientas para automatizar procesos y gestionar la lógica de negocio en entornos descentralizados. Asimismo, este capítulo explora los principios de la economía circular, enfatizando su enfoque regenerativo y su capacidad para transformar las cadenas de suministro hacia modelos más sostenibles. Se examinan las etapas del proceso de producción y reciclaje, con especial atención a la trazabilidad como habilitador para garantizar la transparencia y la eficiencia en una economía circular. Luego se incluye un análisis de la cadena de suministro del vidrio en el contexto mendocino, destacando su relevancia estratégica y los desafíos asociados a su implementación en un modelo circular. Finalmente, se explora el estado del arte de la tecnología \textit{blockchain} en la economía circular, identificando las tendencias actuales y las oportunidades de mejora en la trazabilidad y sostenibilidad de la cadena de suministro del vidrio.
 
 \section{Blockchain}
 
-La tecnología blockchain, o cadena de bloques, se define como una estructura de datos distribuida y descentralizada en la que la información se almacena en forma de transacciones agrupadas en bloques, de manera que cada bloque se vincula al anterior mediante un hash criptográfico \cite{tripathi2023comprehensive}. Su naturaleza distribuida radica en que cada nodo de la red mantiene una copia completa y actualizada del registro, lo cual asegura su transparencia y resiliencia al no depender de un servidor central \cite{bulkowska2023implementation}. Por su parte, la descentralización implica la ausencia de una autoridad central, ya que la validación y adición de nuevos bloques se rige por un mecanismo de consenso entre los nodos participantes de la red. La interconexión criptográfica entre los bloques confiere a blockchain su característica de inmutabilidad. Una vez que un bloque es añadido, su hash se calcula a partir de su contenido y el hash del bloque anterior. Cualquier intento de alterar el contenido de un bloque invalidaría este hash y, por ende, los hashes de todos los bloques subsiguientes, rompiendo la integridad criptográfica de la cadena. Este mecanismo permite la detección de cualquier intento de manipulación y la preservación de la integridad histórica del registro \cite{bulkowska2023implementation}.
+La tecnología \textit{blockchain}, o cadena de bloques, se define como una estructura de datos distribuida y descentralizada en la que la información se almacena en forma de transacciones agrupadas en bloques, de manera que cada bloque se vincula al anterior mediante un hash criptográfico \cite{tripathi2023comprehensive}. Su naturaleza distribuida radica en que cada nodo de la red mantiene una copia completa y actualizada del registro, lo cual asegura su transparencia y resiliencia al no depender de un servidor central \cite{bulkowska2023implementation}. Por su parte, la descentralización implica la ausencia de una autoridad central, ya que la validación y adición de nuevos bloques se rige por un mecanismo de consenso entre los nodos participantes de la red. La interconexión criptográfica entre los bloques confiere a blockchain su característica de inmutabilidad. Una vez que un bloque es añadido, su hash se calcula a partir de su contenido y el hash del bloque anterior. Cualquier intento de alterar el contenido de un bloque invalidaría este hash y, por ende, los hashes de todos los bloques subsiguientes, rompiendo la integridad criptográfica de la cadena. Este mecanismo permite la detección de cualquier intento de manipulación y la preservación de la integridad histórica del registro \cite{bulkowska2023implementation}.
 
 Esta tecnología fue implementada inicialmente en 2008 como el fundamento del sistema de criptomonedas Bitcoin \cite{satoshi2008bitcoin}. Desde entonces, ha trascendido el ámbito financiero para abarcar una amplia gama de aplicaciones \cite{bartolomeo2020introduccion}. Posteriormente, se han desarrollado diversos protocolos blockchain que han permitido la creación de redes más eficientes y adaptadas a distintas necesidades, como Ethereum \cite{buterin2013ethereum}, pionero en el concepto de contratos inteligentes, o Hyperledger \cite{androulaki2018hyperledger}, enfocado en aplicaciones empresariales \cite{sunny2022systematic, rennock2018blockchain}.
 
-Técnicamente, una blockchain se compone de bloques enlazados que encapsulan un conjunto de transacciones. Cada bloque consta de un encabezado y un cuerpo \cite{tripathi2023comprehensive}. El cuerpo alberga la lista de transacciones, mientras que el encabezado contiene metadatos, incluyendo el hash criptográfico del bloque anterior, una marca de tiempo, y un hash que identifica unívocamente el bloque actual, calculado sobre la totalidad de su contenido (tanto el encabezado como el cuerpo de transacciones). Este encadenamiento criptográfico de bloques en una red descentralizada garantiza la integridad e inmutabilidad de la información, ya que cualquier alteración en un bloque modificaría su hash y rompería la consistencia de la cadena, forzando a los nodos de la red a rechazar el bloque modificado o forzando al nodo que intenta modificarlo a actualizar todos los bloques posteriores \cite{sunny2022systematic}.
+Técnicamente, una blockchain se compone de bloques enlazados que encapsulan un conjunto de transacciones. Cada bloque consta de un encabezado y un cuerpo \cite{tripathi2023comprehensive}. El cuerpo alberga la lista de transacciones, mientras que el encabezado contiene metadatos, incluyendo el hash criptográfico del bloque anterior, una marca de tiempo, y un hash que identifica unívocamente el bloque actual, calculado sobre la totalidad de su contenido (tanto el encabezado como el cuerpo de transacciones). Este encadenamiento criptográfico de bloques en una red descentralizada garantiza la integridad e inmutabilidad de la información, ya que cualquier alteración en un bloque modificaría su hash y rompería la consistencia de la cadena, forzando a los nodos de la red a rechazar el bloque modificado o forzando al nodo que intenta modificarlo a actualizar todos los bloques posteriores \cite{sunny2022systematic}. En la Figura \ref{fig:blockchain-structure} se ilustra la estructura de una blockchain, donde cada bloque contiene un hash del bloque anterior, formando una cadena de bloques interconectados criptográficamente.
 
-\begin{block}[todo] % TODO
-    \textit{Insert simple diagram of a blockchain here}
-\end{block}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/blockchain-structure.png}
+    \caption{Estructura de una blockchain}
+    \label{fig:blockchain-structure}
+\end{figure}
 
 Al unirse a la red, un nodo descarga una copia completa de la cadena de bloques existente, lo que le confiere una visión completa del historial de transacciones \cite{bulkowska2023implementation}. Posteriormente, el nodo ejecuta el software del protocolo blockchain encargado de implementar el mecanismo de consenso. Cuando se genera una nueva transacción en dicho nodo, esta se transmite a la red y es recibida por los demás nodos. A su vez, el nodo recibe transacciones de otros nodos, las cuales son validadas mediante el mecanismo de consenso antes de ser añadidas a un bloque en su copia local de la cadena \cite{bulkowska2023implementation}.
 
@@ -28,16 +30,21 @@ Todo algoritmo de consenso debe asegurar que el costo de modificar un bloque de 
 
 De esta manera, la combinación de la estructura encadenada criptográficamente y el mecanismo de consenso convierten a la blockchain en una base de datos distribuida que permite registrar transacciones de forma segura, transparente e inmutable, prescindiendo de una autoridad central para la administración o validación de los intercambios.
 
-Para comprender el proceso de incorporación de una nueva transacción y su respectivo bloque en una blockchain, se presenta a continuación un esquema ilustrativo.
+En la Figura \ref{fig:blockchain-working} se presenta un esquema ilustrativo con los pasos del proceso de incorporación de una nueva transacción y su respectivo bloque en una blockchain. 
 
-\begin{block}[todo] % TODO: add numbered figure and update reference on previous paragraph
-    \textit{Insert diagram of transaction and block creation flow here}
-\end{block}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/block-creation.png}
+    \caption{Creación de una transacción y un bloque en una blockchain}
+    \label{fig:blockchain-working}
+\end{figure}
+
+El proceso de incorporación de una nueva transacción y su respectivo bloque en una blockchain se desarrolla a través de los siguientes pasos:
 
 \begin{enumerate}
     \item Un nodo de la red crea y firma una nueva transacción con su clave privada.
     \item La transacción se propaga a través de la red P2P, donde es recibida por los nodos participantes.
-    \item Cada nodod valida la transacción individualmente, verificando la firma del remitente y asegurándose de que este dispone de los fondos o permisos necesarios. Una vez validada, la transacción se añade a un \textit{pool} de transacciones pendientes.
+    \item Cada nodo valida la transacción individualmente, verificando la firma del remitente y asegurándose de que este dispone de los fondos o permisos necesarios. Una vez validada, la transacción se añade a un \textit{pool} de transacciones pendientes.
     \item Un nodo (en el caso de PoW, un minero) selecciona un conjunto de transacciones pendientes del \textit{pool} para formar un nuevo bloque. Este bloque incluye las transacciones seleccionadas, el hash del bloque anterior y otros metadatos (como la marca de tiempo y un \textit{nonce} para PoW). El nodo luego calcula el hash de este nuevo bloque y, según el algoritmo de consenso, realiza el trabajo necesario para validarlo. En el caso de PoW, esto implica resolver un problema criptográfico que requiere una cantidad significativa de potencia computacional. En PoS, el nodo debe demostrar que posee una cantidad suficiente de fondos para participar en la validación del bloque.
     \item Una vez que el nodo ha validado el nuevo bloque (o "minado" en PoW), lo difunde a la red. Los demás nodos reciben este bloque y verifican su validez (incluyendo el hash, las transacciones y la prueba de trabajo/participación). Si el bloque es válido, lo añaden a su copia local de la cadena de bloques y descartan las transacciones ya incluidas de su \textit{pool} de pendientes. Si el bloque es inválido, es rechazado por cada nodo y no se añade a la cadena.
 \end{enumerate}
@@ -48,11 +55,15 @@ Si bien en su concepción inicial las transacciones en un bloque se asociaban co
 
 Los \textit{smart contracts}, o contratos inteligentes, son programas inmutables almacenados en una blockchain que se ejecutan automáticamente al cumplirse condiciones preestablecidas en su código \cite{bulkowska2023implementation}. Su función principal es automatizar procesos en entornos descentralizados, lo que reduce significativamente la dependencia de intermediarios humanos \cite{verma2023overview} y mejora la eficiencia operativa en múltiples sectores \cite{sunny2022systematic}.
 
-Un contrato inteligente se concibe como un conjunto de reglas y lógica de negocio codificadas. Cada contrato posee un código (las reglas) y un estado (la información dinámica) \cite{buterin2013ethereum}. El código es inmutable una vez desplegado en la blockchain mediante una transacción, garantizando la permanencia de las reglas establecidas. Su estado, sin embargo, puede evolucionar a medida que se interactúa con el contrato a través de transacciones. Es importante destacar que, si bien se describen como "auto-ejecutables" por su automatismo al cumplir condiciones, su ejecución es llevada a cabo por los nodos de la red que validan las transacciones e integran los cambios de estado en la cadena \cite{buterin2013ethereum}. Tanto el código como el estado del contrato se almacenan en la blockchain, asegurando su transparencia y disponibilidad pública. Por ejemplo, un contrato inteligente podría gestionar un sistema de votación, donde los participantes envían sus votos y el contrato contabiliza automáticamente los resultados al finalizar el periodo de votación.
+Un contrato inteligente se concibe como un conjunto de reglas y lógica de negocio codificadas. Cada contrato posee un código (las reglas) y un estado (la información dinámica) \cite{buterin2013ethereum}. El código es inmutable una vez desplegado en la blockchain mediante una transacción, garantizando la permanencia de las reglas establecidas. Su estado, sin embargo, puede evolucionar a medida que se interactúa con el contrato a través de transacciones. Es importante destacar que, si bien se describen como "auto-ejecutables" por su automatismo al cumplir condiciones, su ejecución es llevada a cabo por los nodos de la red que validan las transacciones e integran los cambios de estado en la cadena \cite{buterin2013ethereum}. Tanto el código como el estado del contrato se almacenan en la blockchain, asegurando su transparencia y disponibilidad pública. Por ejemplo, un contrato inteligente podría gestionar un sistema de votación, donde los participantes envían sus votos y el contrato contabiliza automáticamente los resultados al finalizar el periodo de votación. En la Figura \ref{fig:smart-contract-process} se ilustra el proceso de creación y ejecución de un contrato inteligente, describiendo las etapas desde su definición hasta su implementación y ejecución en la blockchain.
 
-\begin{block}[todo] % TODO: add numbered figure and update reference on previous paragraph
-    \textit{Insert diagram of contract creation and execution flow here, use the votation example}
-\end{block}
+% TODO: use the votation example in this figure to explain the flow of contract creation and execution.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/smart-contract-process.png}
+    \caption{Proceso de creación y ejecución de un contrato inteligente}
+    \label{fig:smart-contract-process}
+\end{figure}
 
 Para el desarrollo y ejecución de contratos inteligentes, se emplean lenguajes de programación específicos adaptados a cada plataforma blockchain \cite{bartolomeo2020introduccion}. Un ejemplo prominente es \textit{Solidity} \cite{taherdoost2023smart}, utilizado en Ethereum, un lenguaje orientado a objetos diseñado para esta finalidad. Estos contratos pueden interactuar entre sí y con el estado global de la blockchain, habilitando la creación de aplicaciones descentralizadas (dApps) que operan de forma autónoma y sin intermediarios en la red \cite{buterin2013ethereum}.
 
@@ -103,7 +114,9 @@ La economía circular ofrece una serie de ventajas frente al modelo lineal. Desd
 Sin embargo, también enfrenta barreras significativas. Existen desafíos culturales, normativos y tecnológicos que dificultan su implementación a gran escala. La transición requiere una transformación estructural en los sistemas productivos, inversión en infraestructura, marcos regulatorios adecuados y políticas de incentivos claros. Asimismo, implica repensar la educación y la formación de trabajadores para adaptarse a nuevas dinámicas laborales. En muchos contextos, como América Latina y el Caribe, también se identifican limitaciones institucionales y de gobernanza que deben ser abordadas para permitir una adopción efectiva del modelo.
 
 En definitiva, la economía circular no debe entenderse como una simple mejora del modelo actual, sino como una evolución hacia un sistema más integrado, resiliente y sostenible. Su implementación exige un enfoque sistémico, colaboración multisectorial y el uso estratégico de tecnologías habilitadoras como la trazabilidad digital y blockchain.
+
 % TODO improve this connection between the two sections
+
 Para comprender en profundidad la diferencia estructural entre la economía lineal y la economía circular, se incluyen a continuación esquemas comparativos que ilustran el flujo de recursos en ambos modelos. En el enfoque lineal, la cadena de suministro se organiza como un proceso unidireccional: los recursos son extraídos, transformados en productos, consumidos y finalmente desechados. Este modelo ignora el valor residual de los materiales, genera una creciente acumulación de residuos y no contempla mecanismos para reincorporar los productos al ciclo productivo una vez finalizada su vida útil.
 
 En contraste, la economía circular redefine el papel de la cadena de suministro transformándola en una red cerrada y regenerativa. El objetivo es mantener los productos, componentes y materiales en uso el mayor tiempo posible mediante estrategias de reutilización, reparación, remanufactura y reciclaje. La cadena se vuelve más dinámica e interdependiente, integrando bucles de retroalimentación entre los diferentes actores de la cadena de valor, incluyendo consumidores, productores, proveedores y gestores de residuos. Esta visión implica una transformación profunda del diseño de productos, los procesos logísticos, la distribución y la gestión del fin de vida.
@@ -223,3 +236,34 @@ Más allá del caso mendocino, el vidrio sigue siendo uno de los materiales más
 \begin{block}[todo]
     \textit{Fill this section with related projects and works}
 \end{block}
+
+[Mencionar y describir de manera fluída algunos de todos estos proyectos, comenzando desde lo más simple a lo más complejo. Primero tecnología para incentivar reciclaje, luego uso de blockchain en cadena de suministros, luego específicamente orientado a sustentabilidad y por último que además se concentren en dar trazabilidad. Sacar en limpio los aportes relevantes de cada uno y los puntos débiles (que resolverá mi trabajo)].
+
+Tecnología con incentivos para el reciclaje:
+\begin{itemize}
+    \item DRS (PFAND, Alemania)
+    \item Reciclos (España)
+    \item Colmena (Argentina)
+    \item Greenly Points (Argentina)
+    \item Plastic Bank (Canadá)
+\end{itemize}
+
+Aplicaciones de tecnología blockchain en la cadena de suministro para logística/trazabilidad:
+\begin{itemize}
+    \item Signeblock (España)
+\end{itemize}
+
+Uso de tecnología blockchain en la cadena de suministro para la sustentabilidad:
+\begin{itemize}
+    \item Modelo para la gestión de residuos [baralla2023waste]
+    \item Modelo ZERO para el Reciclaje de Plásticos con Tecnología Blockchain
+    \item Uso de Blockchain y Marcadores Moleculares para el Manejo Sostenible de Residuos Plásticos
+\end{itemize}
+
+Uso de tecnología blockchain en la cadena de suministro para trazabilidad para Sustentabilidad:
+\begin{itemize}
+    \item Circularise (Holanda)
+    \item Circulor (Reino Unido)
+\end{itemize}
+
+[Debo cerrar de alguna manera con conclusión o un párrafo el marco teórico antes de saltar a metodología? Quizás contar dónde acotamos el problema vistos los proyectos preexistentes? Dónde cuento que elegimos vidrio en Mendoza por el vino y que vamos a hacer un sistema de trazabilidad específicamente para esa cadena de suministros y todos sus actores??]
