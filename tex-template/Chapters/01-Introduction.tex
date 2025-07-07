@@ -3,43 +3,39 @@
 
 \parindent0pt
 
-% TODO: rewrite introduction, motivation, structure, etc.
-
-Este capítulo busca introducir cuál es la motivación de este trabajo y su interés, el objetivo que persigue y una breve guía de lectura del documento. 
-
-\begin{block}[todo]
-    \textit{Toda esta sección está sin revisar. El contenido sí es correcto, pero tengo que revisar la redacción y el formato.}
-\end{block}
-
 \section{Motivación}
 
-La motivación de este trabajo se da principalmente por 3 motivos encadenados:
+El mundo se enfrenta a un desafío ambiental sin precedentes: la gestión insostenible de los recursos naturales. La producción y consumo masivos de bienes generan un volumen creciente de residuos, lo que pone en riesgo la salud del planeta y el bienestar de las generaciones futuras \cite{IPCC2022, pelegri2021ipcc}. En este contexto, la transición hacia una economía circular se presenta como una solución prometedora para mitigar este impacto y construir un futuro más sostenible \cite{clima2022book}. Este modelo económico busca maximizar el valor de los recursos a lo largo de su ciclo de vida, minimizando el desperdicio y reintroduciendo los materiales en los sistemas de producción \cite{da2022economia, melendez2021economia}. Sin embargo, el principal desafío para lograr una economía circular radica en la falta de transparencia y trazabilidad dentro de las cadenas de suministro tradicionales.
 
-\begin{enumerate}
-	\item El mundo moderno genera más residuos de los que puede gestionar y esto está afectando al medioambiente y a nuestra propia salud.
-	\item La economía circular como modelo económico permite mejorar los ciclos de vida de los materiales para reducir residuos y aumentar los beneficios para los distintos actores de la cadena. Actualmente este modelo no se puede implementar funcionalmente debido a deficiencias de trazabilidad y falta de transparencia a lo largo de la cadena.
-	\item Recientemente la tecnología blockchain se está posicionando como una tecnología útil y confiable para brindar trazabilidad y confiabilidad a sistemas con múltiples actores y con falta de confianza entre ellos.
-\end{enumerate}
+Esta falta de visibilidad dificulta la capacidad para identificar oportunidades de reutilización y reciclaje, responsabilizar a las industrias por su impacto ambiental y empoderar a los consumidores para que tomen decisiones informadas. 
 
-Por último, de entre todos los residuos posibles elegimos:
+Investigaciones previas han explorado diversas tecnologías para mejorar la trazabilidad de la cadena de suministro, incluidos códigos de barras, etiquetas RFID y redes de sensores \cite{schuitemaker2020product}. Estas tecnologías ofrecen cierto nivel de capacidad de seguimiento; sin embargo, a menudo están limitadas por factores como la falta de estandarización, la fragmentación de información y la vulnerabilidad a la manipulación \cite{schuitemaker2020product}.
 
-\begin{itemize}
-	\item \textbf{Vidrio}: su alta reciclabilidad y bajo costo de procesamiento \cite{prodvidrio2024verallia} presentan una oportunidad perfecta para la trazabilidad efectiva en la cadena de suministro.
-	\item \textbf{Botellas}: por ser Mendoza una provincia productora y exportadora de vino embotellado en botellas de vidrio, se considera un material de interés local que se produce en volumen en la provincia.
-\end{itemize}
+En los últimos años, la tecnología blockchain ha surgido como una solución prometedora para abordar estas limitaciones \cite{baralla2023waste, bulkowska2023implementation, alnuaimi2023blockchain}. Sus características principales, como el registro de datos distribuido, la inmutabilidad y la transparencia, la convierten en una plataforma ideal para registrar y rastrear el movimiento de mercancías a lo largo de la cadena de suministro \cite{baralla2023waste}. Múltiples estudios han explorado diversas aplicaciones de la tecnología blockchain para la trazabilidad de la cadena de suministro, demostrando su potencial para mejorar la transparencia y la responsabilidad dentro de estos sistemas. Ejemplos de estas aplicaciones incluyen la creación de un registro inmutable del origen de los productos para verificar su autenticidad y combatir la falsificación \cite{bulkowska2023implementation}, el rastreo de materiales a lo largo de la cadena de suministro para apoyar una economía circular \cite{baralla2023waste}, la optimización de la logística y la gestión de inventario mediante información en tiempo real \cite{signeblock2024}, y la promoción de prácticas sostenibles al identificar productos con menor impacto ambiental \cite{bulkowska2023implementation}.
+
+La investigación existente reconoce el potencial de blockchain para la trazabilidad de la cadena de suministro, pero muchas soluciones propuestas se enfocan únicamente en la tecnología blockchain \cite{baralla2023waste, bulkowska2023implementation, alnuaimi2023blockchain}, lo que limita su aplicabilidad en contextos donde se requiere la integración con sistemas de gestión tradicionales y tecnologías complementarias. Además, la mayoría de los estudios se centran en casos de uso específicos, como la industria alimentaria o farmacéutica, dejando una brecha significativa en la aplicación de blockchain para mejorar la trazabilidad en otros sectores, como el reciclaje de vidrio.
+
+En Latinoamérica, el vidrio representa el 5\% de los residuos sólidos urbanos \cite{cepal2021economia}, y solo el 20\% de este vidrio se recicla \cite{verallia2022whitebook}. La baja tasa de reciclaje de vidrio en la región se debe a la falta de infraestructura y sistemas de gestión adecuados, así como a la falta de conciencia y educación sobre la importancia del reciclaje. Mejorar la trazabilidad en la cadena de suministro del vidrio facilita su reciclaje, ayudando a promover una economía circular sostenible en la región. Al visibilizar el flujo de materiales y promover prácticas de reciclaje, y facilitar la información y procesos a los usuarios, es posible reducir la generación de residuos, disminuir la extracción de materias primas vírgenes y fomentar la reutilización de materiales en la producción de nuevos envases de vidrio.
+
+Teniendo en consideración que la actividad económica principal de la provincia de Mendoza es la producción de vino, esta es una problemática local y concreta cuya solución puede tener un impacto real en la economía local. La industria del vidrio es un actor relevante en la cadena de suministro de vino al proveer los envases para el embotellado de los vinos. Por lo tanto, mejorar la trazabilidad en la cadena de suministro del vidrio puede tener un impacto significativo en la sostenibilidad de la industria vitivinícola y en la economía regional. 
+
+A su vez, este trabajo se enfoca específicamente . Esta decisión se fundamenta en la importancia del vidrio como material reciclable y la necesidad de mejorar su gestión dentro de la economía circular. 
+
+Este trabajo tiene como objetivo desarrollar una solución de trazabilidad basada en tecnología blockchain para la cadena de suministro y reciclaje de envases de vidrio con el fin de mejorar la transparencia y la sostenibilidad a lo largo de todo el ciclo. La solución propuesta busca abordar las limitaciones de las tecnologías existentes y proporcionar una plataforma que permita a los actores involucrados en la cadena de suministro del vidrio rastrear y verificar el origen, el movimiento y el estado de los envases a lo largo de su ciclo de vida.
+
+Este trabajo propone un enfoque abierto que permita integrar blockchain con Internet de las cosas (IoT) y sistemas de gestión tradicionales. Esta integración permite aprovechar los datos en tiempo real de los sensores de IoT, proporcionando una visión más completa y confiable del movimiento y el estado del producto a lo largo de la cadena de suministros. Además, esta solución es compatible con sistemas de gestión tradicionales, facilitando la adopción dentro de las prácticas comerciales existentes. Se espera que este enfoque combinado represente una implementación factible y práctica para mejorar la trazabilidad de la cadena de suministro, en última instancia, contribuyendo a la transición hacia una economía circular sostenible.
+
+Al abordar este caso de estudio específico, se busca proporcionar una solución concreta y aplicable en el ecosistema mendocino que a su vez pueda servir en un futuro como modelo para adaptarse a  otras industrias y a una variedad amplia de materiales reciclables.
 
 \section{Objetivos}
 
+El objetivo general de esta Tesina Final de Grado consiste en hacer uso de blockchain como tecnología de vanguardia para el desarrollo de una aplicación prototipo destinada a mejorar la trazabilidad en modelos de economía circular orientados al reciclaje de vidrio.
+
 \begin{itemize}
-	\item Entender los procesos de adopción de tecnologías tales como blockchain y las capacidades actuales en la región para el uso de sistemas de trazabilidad.
-	\item En todo lo referido a las Ciencias de la Computación, se busca que la alumna pueda desarrollar una aplicación prototipo funcional basada en tecnología blockchain. Esto permitirá la trazabilidad transparente, segura y en tiempo real de la gestión de residuos, en particular el vidrio, desde su generación hasta su disposición final, con el fin de garantizar el cumplimiento normativo, mejorar la eficiencia operativa y aumentar la confianza entre todos los actores involucrados en el proceso.
+	\item \textbf{Objetivo 1}: entender los procesos de adopción de tecnologías tales como blockchain y las capacidades actuales en la región para el uso de sistemas de trazabilidad.
+	\item \textbf{Objetivo 2}: en lo referido a las Ciencias de la Computación, se busca desarrollar una aplicación prototipo funcional basada en tecnología blockchain. Esto permitirá la trazabilidad transparente, segura y en tiempo real de la gestión de residuos, en particular el vidrio, desde su generación hasta su disposición final, con el fin de garantizar el cumplimiento normativo, mejorar la eficiencia operativa y aumentar la confianza entre todos los actores involucrados en el proceso.
 \end{itemize}
 
 \section{Estructura general del documento}
 
-
-\begin{block}[todo]
-    \textit{Esto lo voy a redactar al final recién, cuando tenga el documento completo.}
-\end{block}
-
-Este documento se estructura en las siguientes secciones [...]. Primero se introducen conceptos base sobre el problema y la tecnología, luego se indaga en soluciones existentes y antecedentes académicos. Después de entrar en contexto, se explica la metodología de trabajo elegida y se describe la ejecución del diseño, desarrollo y pruebas de la solución. Por último, se listan conclusiones y perspectivas futuras. Al final del trabajo se pueden encontrar anexos como lectura opcional y un glosario de términos específicos del problema o la tecnología que puede resultar de utilidad.
+El presente documento se encuentra organizado en capítulos, cada uno de los cuales aborda un aspecto del trabajo realizado. En primer lugar, en el Marco Teórico, se introducen los conceptos básicos relacionados con el problema y la tecnología utilizada, para desenlazar en un análisis de las soluciones existentes y los antecedentes académicos relevantes para contextualizar el trabajo. En el siguiente capítulo, se detalla la metodología adoptada y la planeación del trabajo. En capítulos posteriores se describe el proceso de diseño, desarrollo y pruebas de la solución propuesta. Finalmente, se presentan las conclusiones obtenidas y las perspectivas futuras del proyecto. Adicionalmente, al final del documento se incluyen anexos como lectura opcional y un glosario de términos específicos que pueden resultar útiles para el lector.
