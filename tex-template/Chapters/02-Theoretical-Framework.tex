@@ -9,20 +9,33 @@ Este capítulo presenta los fundamentos teóricos que sirven de base para este t
 
 \section{Blockchain}
 
-La tecnología \textit{blockchain} ha emergido como una de las innovaciones más disruptivas de la última década, transformando la forma en que se gestionan y verifican las transacciones digitales. Originalmente concebida como la base del sistema de criptomonedas Bitcoin \cite{satoshi2008bitcoin}, su potencial ha trascendido el ámbito financiero, encontrando aplicaciones en diversas industrias y sectores \cite{bartolomeo2020introduccion}. La blockchain se posiciona como una solución para los desafíos de confianza, transparencia e inmutabilidad en la gestión de datos, ofreciendo un registro distribuido y descentralizado que permite a múltiples partes interactuar sin necesidad de intermediarios \cite{bulkowska2023implementation}. Para lograr estas características, la blockchain combina conceptos de criptografía, redes distribuidas y teoría de juegos e incentivos, que garantizan la integridad y seguridad de la información almacenada \cite{sunny2022systematic}. Esta tecnología no plantea ninguna tecnología nueva, sino que integra y aplica principios existentes de manera innovadora para crear un sistema robusto y confiable \cite{bulkowska2023implementation}.
+Para comprender la necesidad e impacto de la tecnología blockchain, primero es necesario analizar la arquitectura predominante de Internet hasta la actualidad, basada tradicionalmente en un modelo centralizado cliente-servidor. En este esquema, los datos son almacenados en servidores administrados por proveedores, quienes actúan como intermediarios de confianza entre los clientes o usuarios. Aunque este modelo ha facilitado el intercambio de información a escala masiva, también ha generado problemas de confianza, seguridad y privacidad. La centralización implica que los usuarios ceden el control y gestión de sus datos a terceros, lo que puede derivar en una dependencia significativa de estas entidades para la integridad y disponibilidad de la información. Ejemplos de esto incluyen la exposición de datos personales privados en ciber-ataques, la interrupción de servicios por fallas en servidores centrales o la censura de contenido por decisiones unilaterales de las plataformas \cite{pending}.
 
-1. Por qué nace la Blockchain
-2. Sus características, cuando nace y qué conceptos junta.
-3. Diferencia con arquitectura web2 (descentralizado, distribuido, cliente/servidor)
-4. Cómo está estructurada
-5. Cómo funciona
-6. Smart contracts
-7. Pros y cons
-8. Casos de uso
+Ante los desafíos de confianza e integridad en los sistemas centralizados, la tecnología blockchain surgió en 2008 como una solución disruptiva. Su primera aplicación fue como base del sistema de criptomonedas Bitcoin \cite{satoshi2008bitcoin}, pero rápidamente demostró potencial por fuera del ámbito financiero. En la actualidad, blockchain se considera una herramienta útil para resolver problemas de confianza, transparencia e inmutabilidad en la gestión de datos. Su diseño permite registrar información de forma distribuida, sin necesidad de proveedores centralizados, habilitando la interacción directa entre múltiples partes \cite{bulkowska2023implementation}.
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/cliente-server-vs-p2p.png}
+    \caption{Comparación entre el modelo cliente-servidor y el modelo P2P}
+    \label{fig:web-architecture}
+\end{figure}
+
+Es importante destacar que blockchain no introduce tecnologías completamente nuevas, sino que integra de forma innovadora principios existentes de la computación y las matemáticas. Combina conceptos de criptografía (para asegurar la información), redes distribuidas (para la replicación de los datos) y teoría de juegos e incentivos (para coordinar el comportamiento de los participantes y garantizar la seguridad de los datos) \cite{sunny2022systematic, bulkowska2023implementation}. Esta integración produce un sistema seguro, transparente y resistente a manipulaciones, características difíciles de lograr en modelos centralizados. De esta manera, blockchain impulsa un nuevo paradigma donde el registro de la información es gestionado colectivamente, lo que permite transacciones y acuerdos entre pares sin depender de un tercero de confianza.
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/venn-blockchain.png}
+    \caption{Intersección de tecnologías y conceptos que componen la tecnología blockchain}
+    \label{fig:blockchain-venn}
+\end{figure}
+
+En las próximas páginas se explorará en detalle la estructura y funcionamiento de la tecnología blockchain, sus características distintivas, los mecanismos de consenso que garantizan su seguridad y el papel de los contratos inteligentes como herramientas para la automatización de procesos. Además, se analizarán las ventajas y desafíos asociados a su implementación, así como su potencial de uso más allá del ámbito financiero.
+
+\section{Estructura de una Blockchain}
 
 La tecnología \textit{blockchain}, o cadena de bloques, es una estructura de datos distribuida y descentralizada donde la información se organiza en transacciones agrupadas en bloques enlazados criptográficamente. Cada bloque posee un código único, conocido como \textit{hash del bloque}, que lo identifica y sirve para enlazarlo al bloque posterior. El hash de cada bloque se genera a partir de su contenido y del hash del bloque anterior, creando así una cadena continua de bloques interconectados \cite{tripathi2023comprehensive}.
 
-\begin{figure}[h]
+\begin{figure}[!htpb]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/blockchain-basic.jpg}
     \caption{Estructura básica de una cadena de bloques}
@@ -35,7 +48,7 @@ El código identificatorio del bloque, conocido también como \textit{hash del b
 
 El encadenamiento criptográfico de bloques en una red descentralizada, como requiere la blockchain, garantiza la integridad e inmutabilidad de la información, ya que cualquier alteración en un bloque modificaría su hash y rompería la consistencia de la cadena, forzando a cada nodo de la red descentralizada a rechazar el bloque modificado o forzando a cada nodo a modificar los hashes de todos los bloques posteriores \cite{sunny2022systematic}. En la Figura \ref{fig:blockchain-structure} se ilustra la estructura de una blockchain, donde cada bloque contiene un hash del bloque anterior, formando una cadena de bloques interconectados criptográficamente.
 
-\begin{figure}[h]
+\begin{figure}[!htpb]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/blockchain-structure.png}
     \caption{Contenido de un bloque en una cadena de bloques}
@@ -45,7 +58,7 @@ El encadenamiento criptográfico de bloques en una red descentralizada, como req
 
 % Esta tecnología se caracteriza por algunas propiedades fundamentales: descentralización, transparencia e inmutabilidad. Estas propiedades la hacen especialmente adecuada para casos de uso que requieren confianza, seguridad y trazabilidad en la gestión de datos \cite{bulkowska2023implementation}.
 
-La tecnología blockchain fue implementada inicialmente en 2008 como el fundamento del sistema de criptomonedas Bitcoin \cite{satoshi2008bitcoin}. Desde entonces, ha trascendido el ámbito financiero para abarcar una amplia gama de aplicaciones \cite{bartolomeo2020introduccion}. Posteriormente, se han desarrollado diversos protocolos blockchain que han permitido la creación de redes más eficientes y adaptadas a distintas necesidades, como Ethereum \cite{buterin2013ethereum}, pionero en el concepto de contratos inteligentes, o Hyperledger \cite{androulaki2018hyperledger}, enfocado en aplicaciones empresariales \cite{sunny2022systematic, rennock2018blockchain}.
+% La tecnología blockchain fue implementada inicialmente en 2008 como el fundamento del sistema de criptomonedas Bitcoin \cite{satoshi2008bitcoin}. Desde entonces, ha trascendido el ámbito financiero para abarcar una amplia gama de aplicaciones \cite{bartolomeo2020introduccion}. Posteriormente, se han desarrollado diversos protocolos blockchain que han permitido la creación de redes más eficientes y adaptadas a distintas necesidades, como Ethereum \cite{buterin2013ethereum}, pionero en el concepto de contratos inteligentes, o Hyperledger \cite{androulaki2018hyperledger}, enfocado en aplicaciones empresariales \cite{sunny2022systematic, rennock2018blockchain}.
 
 
 Su naturaleza distribuida radica en que cada nodo de la red mantiene una copia completa y actualizada del registro, lo cual asegura su transparencia y resiliencia al no depender de un servidor central \cite{bulkowska2023implementation}. Por su parte, la descentralización implica la ausencia de una autoridad central, ya que la validación y adición de nuevos bloques se rige por un mecanismo de consenso entre los nodos participantes de la red. 
@@ -63,7 +76,7 @@ De esta manera, la combinación de la estructura encadenada criptográficamente 
 
 En la Figura \ref{fig:blockchain-working} se presenta un esquema ilustrativo con los pasos del proceso de incorporación de una nueva transacción y su respectivo bloque en una blockchain. 
 
-\begin{figure}[h]
+\begin{figure}[!htpb]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/block-creation.png}
     \caption{Creación de una transacción y un bloque en una blockchain}
@@ -89,7 +102,7 @@ Los \textit{smart contracts}, o contratos inteligentes, son programas inmutables
 Un contrato inteligente se concibe como un conjunto de reglas y lógica de negocio codificadas. Cada contrato posee un código (las reglas) y un estado (la información dinámica) \cite{buterin2013ethereum}. El código es inmutable una vez desplegado en la blockchain mediante una transacción, garantizando la permanencia de las reglas establecidas. Su estado, sin embargo, puede evolucionar a medida que se interactúa con el contrato a través de transacciones. Es importante destacar que, si bien se describen como "auto-ejecutables" por su automatismo al cumplir condiciones, su ejecución es llevada a cabo por los nodos de la red que validan las transacciones e integran los cambios de estado en la cadena \cite{buterin2013ethereum}. Tanto el código como el estado del contrato se almacenan en la blockchain, asegurando su transparencia y disponibilidad pública. Por ejemplo, un contrato inteligente podría gestionar un sistema de votación, donde los participantes envían sus votos y el contrato contabiliza automáticamente los resultados al finalizar el periodo de votación. En la Figura \ref{fig:smart-contract-process} se ilustra el proceso de creación y ejecución de un contrato inteligente, describiendo las etapas desde su definición hasta su implementación y ejecución en la blockchain.
 
 % TODO: use the votation example in this figure to explain the flow of contract creation and execution.
-\begin{figure}[h]
+\begin{figure}[!htpb]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/smart-contract-process.png}
     \caption{Proceso de creación y ejecución de un contrato inteligente}
@@ -162,7 +175,7 @@ En el proceso de transición hacia modelos de desarrollo más sostenibles, la Un
 
 Sin embargo, el mayor hito internacional en la construcción de una visión compartida sobre sustentabilidad ha sido, sin duda, la adopción de los Objetivos de Desarrollo Sostenible (ODS) de Naciones Unidas en 2015. Este conjunto de 17 objetivos interconectados, acompañados por 169 metas y más de 230 indicadores, propone una agenda universal que orienta las políticas públicas hacia un desarrollo económico, social y ambiental equilibrado para 2030.
 
-% \begin{figure}[H]
+% \begin{figure}[!htpb]
 % 		\centering
 % 		\includegraphics[width=0.8\textwidth]{figures/ods.png}
 % 		\caption{Objetivos de Desarrollo Sostenible (ODS) de Naciones Unidas.}
@@ -228,7 +241,7 @@ Existen diversos materiales reciclables, cada uno con características particula
 
 El siguiente esquema conceptual sintetiza estas etapas como un ciclo cerrado, donde cada fase se conecta mediante mecanismos de trazabilidad digital que permiten el seguimiento de los materiales desde su origen hasta su reincorporación al sistema:
 
-% \begin{figure}[H]
+% \begin{figure}[!htpb]
 %     \centering
 %     % \includegraphics[width=\textwidth]{ruta/a/diagrama_produccion_reciclaje.png}
 %     \fbox{\parbox{0.9\textwidth}{\centering \textit{Placeholder: diagrama del proceso de producción y reciclaje con trazabilidad circular}}}
@@ -245,7 +258,7 @@ La cadena de suministro del vidrio en un modelo circular abarca múltiples etapa
 
 Este sistema se representa esquemáticamente en el siguiente diagrama, que ilustra las etapas circulares desde el diseño hasta la refabricación y reincorporación al ciclo productivo:
 
-% \begin{figure}[H]
+% \begin{figure}[!htpb]
 %     \centering
 %     % \includegraphics[width=\textwidth]{ruta/a/diagrama_cadena_vidrio.png}
 %     \fbox{\parbox{0.9\textwidth}{\centering \textit{Placeholder: diagrama de la cadena circular de suministro y reciclaje del vidrio}}}
