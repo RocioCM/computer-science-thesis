@@ -4,13 +4,26 @@
 \usepackage{fvextra} % Enhanced customisation of verbatim environments.
 \usepackage{csquotes} % Context-sensitive quotation marks.
 \usepackage{fontspec} % Required for custom fonts with XeLaTeX or LuaLaTeX.
-\newfontfamily\plexsans{IBM Plex Sans}
 
 \linespread{1.2} % Slightly increase line spacing.
-\setmainfont{TeX Gyre Pagella}[LetterSpace=0.7] % Set TeX Gyre Pagella as the main font.
 
-\newcommand{\latofont}{\fontspec{Lato}}
-\newcommand{\garamondfont}{\fontspec{EB Garamond}}
+\setmainfont[
+    Path = fonts/,
+    UprightFont = *-regular.otf,
+    LetterSpace = 0.7
+]{tex-gyre-pagella}
 
-\newcommand{\crimsonfont}{\fontspec{Crimson}[LetterSpace=-0.5]}
+\newfontfamily\crimsonfont[
+    Path = fonts/,
+    UprightFont = *-Regular.ttf,
+    ItalicFont = *-Italic.ttf,
+    BoldFont = *-Bold.ttf,
+    BoldItalicFont = *-BoldItalic.ttf,
+    LetterSpace = -0.5
+]{CrimsonText}
 
+\newfontfamily\plexsans[
+    Path = fonts/,
+    UprightFont = *-VariableFont.ttf,
+    ItalicFont = *-Italic-VariableFont.ttf
+]{IBMPlexSans}

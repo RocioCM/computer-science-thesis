@@ -5,7 +5,9 @@
 
 El modelo en V es un enfoque de desarrollo de software que enfatiza la importancia de las pruebas en cada fase del ciclo de vida del proyecto. A diferencia del modelo en cascada, donde las pruebas se realizan al final, el modelo en V establece una correspondencia directa entre cada fase de desarrollo (el lado izquierdo de la V) y una fase de pruebas (el lado derecho).
 
-El Modelado de requerimientos es la primera fase en el lado izquierdo de la V. En esta etapa, el objetivo es comprender, documentar y validar las necesidades y expectativas de los interesados en el sistema. Se trata de una fase estratégica antes de comenzar el desarrollo, ya que define lo que el sistema debe hacer y cómo debe comportarse. Un error en esta fase puede tener un efecto dominó en todas las fases siguientes, por lo que dedicar tiempo y esfuerzo para asegurar que los requerimientos sean claros, completos y factibles resulta en un ahorro significativo de tiempo y recursos en las etapas posteriores del proyecto.
+El Modelado de requerimientos es la primera fase en el lado izquierdo de la V. En esta etapa, el objetivo es comprender, documentar y validar las necesidades y expectativas de los interesados en el sistema. Se trata de una fase estratégica antes de comenzar el desarrollo, ya que define lo que el sistema debe hacer y cómo debe comportarse. Un error en esta fase puede tener un efecto dominó en todas las fases siguientes, por lo que dedicar tiempo y esfuerzo para asegurar que los requerimientos sean claros, completos y factibles resulta en un ahorro significativo de tiempo y recursos en las etapas posteriores del proyecto. 
+
+En el contexto de este trabajo de tesis, centrado en el desarrollo de una aplicación basada en tecnología blockchain para la trazabilidad y valorización del vidrio, el modelado de requerimientos fue fundamental para asegurar que el prototipo respondiera a las necesidades específicas de una economía circular transparente y sostenible.
 
 \begin{figure}[!htpb]
     \centering
@@ -14,8 +16,35 @@ El Modelado de requerimientos es la primera fase en el lado izquierdo de la V. E
     \label{fig:requirements-modelling-process}
 \end{figure}
 
+% Revisa la figura inicial: Asegúrate de que la figura requirements-modelling.png sea genérica para el proceso de modelado de requerimientos y no específica de tu proyecto, ya que la describes como las "Etapas del proceso de modelado de requerimientos" en general. Si es una figura propia de tu proceso, considera cambiar la leyenda a "Etapas del proceso de modelado de requerimientos implementado en este trabajo".
+
 La fase de modelado de requerimientos se subdivide a su vez en una serie de pasos estructurados en los cuales los requerimientos se van descubriendo, definiendo y refininando de forma iterativa. En este trabajo de tesis, el modelado de requerimientos comienza con la investigación del dominio del problema para conocer a los actores e interacciones del sistema, con esta información se realiza un Canvas de Propuesta de Valor donde se documentan necesidades y dolencias de cada actor (Sección \ref{sec:domain-definition}). Posteriormente, se realiza un diagrama de casos de uso (Sección \ref{sec:use-cases}) para pasar a la definición de requerimientos funcionales y no funcionales junto con sus interdependencias (Sección \ref{sec:requirements-definition}). Finalmente, se escriben las historias de usuario a partir de la lista de requerimientos, donde se definen los criterios de aceptación de cada requerimiento desde el punto de vista de un usuario del sistema (Sección \ref{sec:user-stories}). Las historias de usuario tienen un nivel de granularidad suficiente como para comenzar las etapas de diseño de arquitectura, estimación de esfuerzo y planificación de la generación de código.
 
+
+(((
+
+En esta primera etapa de la tesis, se adoptó el **modelo en V** como marco metodológico para el desarrollo del software. Este enfoque, a diferencia del modelo en cascada, enfatiza la integración de las pruebas a lo largo de todo el ciclo de vida del proyecto. Su estructura establece una correspondencia directa entre cada fase de desarrollo, ubicada en el lado izquierdo de la 'V', y una fase de validación y verificación en el lado derecho.
+
+---
+
+### **Modelado de Requerimientos en el Modelo en V**
+
+El **modelado de requerimientos** constituye la fase inicial en el lado izquierdo del modelo en V. El objetivo principal de esta etapa es comprender, documentar y validar las necesidades y expectativas de los interesados del sistema. Dada su naturaleza estratégica, esta fase es crucial para definir de forma precisa el comportamiento y las funcionalidades del sistema. Errores o ambigüedades en esta etapa pueden generar un efecto dominó en las subsiguientes fases de diseño, implementación y pruebas, resultando en un incremento de costos y tiempo. Por ello, la inversión de esfuerzo para asegurar que los requerimientos sean claros, completos y factibles es fundamental para el éxito del proyecto.
+
+En el contexto de este trabajo, centrado en el desarrollo de un prototipo de aplicación con tecnología blockchain para la trazabilidad y valorización del vidrio, el modelado de requerimientos se ejecutó de forma rigurosa para garantizar que el sistema respondiera a las necesidades específicas de una economía circular sostenible y transparente.
+
+El proceso de modelado de requerimientos se estructuró en una serie de pasos iterativos para descubrir, definir y refinar los requisitos. Este proceso se resume en la Figura \ref{fig:requirements-modelling-process}.
+
+\begin{figure}[!htpb]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Figures/requirements-modelling.png}
+    \caption{Etapas del proceso de modelado de requerimientos}
+    \label{fig:requirements-modelling-process}
+\end{figure}
+
+El proceso dio inicio con una investigación exhaustiva del dominio del problema para identificar los actores clave y sus interacciones. A partir de esta información, se elaboró un **Canvas de Propuesta de Valor** para documentar de manera flexible las necesidades y problemáticas de cada actor. Posteriormente, se modelaron los **casos de uso** para describir las funcionalidades del sistema desde la perspectiva del usuario. Esto sirvió como base para la definición formal de los **requerimientos funcionales y no funcionales**, incluyendo sus interdependencias. Finalmente, se redactaron **historias de usuario** con un nivel de detalle suficiente para definir los criterios de aceptación, lo cual permitió iniciar las etapas de diseño de arquitectura, estimación de esfuerzo y planificación de la implementación.
+
+)))
 \section{Definición de Dominio}
 \label{sec:domain-definition}
 
@@ -40,6 +69,8 @@ En este contexto, se identifican los siguientes actores clave:
 		\item **Centro de Reciclaje:** Responsable de recibir, procesar y reciclar el vidrio, asegurando que la información de trazabilidad se mantenga actualizada.
 \end{itemize}
 
+% Aclara los actores: En la lista de actores, tienes "Productor de Vidrio" y "Productor de Alimentos Embotellados". Para mayor claridad y consistencia con el ciclo de vida del vidrio, podrías considerar renombrar "Productor de Alimentos Embotellados" a algo como "Empresa Envasadora" o "Productor Secundario (usuario de envases de vidrio)".
+
 % TODO: acá decir "en adelante, productor primario y secundario"
 
 A partir de esta identificación, junto con la revisión de literatura, proyectos previos y entrevistas con actores del sector, se construye un \textit{Canvas de Propuesta de Valor}. Este diagrama semi-estructurado documenta de forma preliminar y flexible las necesidades y dolores de cada actor, permitiendo una comprensión más profunda de sus expectativas y requerimientos. En la Figura \ref{fig:value-proposition-canvas} se muestra el canvas elaborado para el sistema de trazabilidad de vidrio, donde se destacan por separado las necesidades y expectativas de cada actor involucrado.
@@ -60,7 +91,7 @@ Una vez definido el dominio del problema y los actores involucrados, el siguient
 
 En el caso de un prototipo de sistema de trazabilidad de vidrio, los casos de uso pueden incluir acciones como el registro de un nuevo lote de vidrio por parte del productor, la consulta de la trazabilidad del vidrio por parte del consumidor, o el registro de la recepción de un lote por parte del centro de reciclaje. A su vez, dado que es un prototipo tecnológico, se deben incluir casos de uso relacionados con la interacción del usuario con la plataforma, como la autenticación de usuarios y la visualización de datos en la interfaz.
 
-Los casos de uso se pueden representar gráficamente mediante diagramas de casos de uso, que muestran las interacciones entre los actores y el sistema. En la Figura \ref{fig:use-case-diagram} se presenta un diagrama de casos de uso para el sistema de trazabilidad de vidrio, donde se ilustran las principales funcionalidades y los actores involucrados. Cada caso de uso está asociado a un actor específico, lo que permite visualizar claramente las interacciones y responsabilidades de cada uno. En caso de que un caso de uso se comparta entre varios actores, se puede representar como un caso de uso heredado, lo que indica que varios actores pueden realizar la misma acción o funcionalidad.
+Los casos de uso se pueden representar gráficamente mediante diagramas de casos de uso, que muestran las interacciones entre los actores y el sistema. En la Figura \ref{fig:use-case-diagram} se presenta un diagrama de casos de uso para el sistema de trazabilidad de vidrio, donde se ilustran las principales funcionalidades y los actores involucrados. Cada caso de uso está asociado a un actor específico, lo que permite visualizar claramente las interacciones y responsabilidades de cada uno. En caso de que un caso de uso se comparta entre varios actores, se puede representar como un caso de uso heredado, lo que indica que varios actores pueden realizar la misma acción o funcionalidad. % Explicar bien lo de la herencia o mencionar como se ve en el diagrama.
 
 \begin{figure}[!htpb]
 		\centering
@@ -167,8 +198,6 @@ En esta sección cuento cómo arrancamos, cuáles fueron los pasos para consegui
 Cómo bajamos a jira estos requerimientos y armamos una planificación tentativa del desarrollo de estas funcionalidades.
 
 Contar que estos requerimientos se usan para realizar el diseño de la solución de software.
-
-Es una excelente base. La estructura que propones es muy completa y refleja un proceso de trabajo riguroso. Aquí te presento una versión más detallada y enriquecida, siguiendo tu esquema, para que quede perfectamente alineada con la redacción de una tesis.
 
 -----------
 

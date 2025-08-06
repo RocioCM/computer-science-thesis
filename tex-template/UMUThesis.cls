@@ -121,7 +121,6 @@
 \RequirePackage{setspace} % Adjust line spacing.
 \RequirePackage[newfloat]{minted} % Syntax highlighting for code.
 \RequirePackage{silence} % Suppress specific package warnings.
-\RequirePackage{fontawesome5} % Font awesome icons.
 \RequirePackage{calc} % Infix notation arithmetic.
 \RequirePackage{contour} % Countour words in a given color.
 \RequirePackage[normalem]{ulem} % A better underline.
