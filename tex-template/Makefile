@@ -8,8 +8,16 @@ LATEX_IMAGE = blang/latex:ctanfull
 DOCKER_RUN = docker run --rm -v $(PWD):/data $(LATEX_IMAGE)
 
 # Archivos fuente
-TEX_SRC = $(wildcard *.tex) $(wildcard chapters/*.tex)
-BIB_SRC = $(wildcard *.bib)
+# Incluir archivos en mayúsculas y subcarpetas relevantes para detectar cambios
+TEX_SRC = \
+	$(wildcard *.tex) \
+	$(wildcard Chapters/*.tex) \
+	$(wildcard Chapters/*/*.tex) \
+	$(wildcard Matter/*.tex) \
+	$(wildcard Metadata/*.tex) \
+	$(wildcard Configurations/*.sty) \
+	UMUThesis.cls
+BIB_SRC = $(wildcard *.bib) $(wildcard Bibliography/*.bib)
 
 # Regla principal: compilar PDF
 all: $(MAIN).pdf
