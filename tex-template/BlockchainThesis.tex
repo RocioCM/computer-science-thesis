@@ -1,7 +1,7 @@
 %%% Document Options %%%
 \documentclass[
     language=spanish, % Choose the language of the thesis. Available options: 'english', 'spanish'.
-    docstage=final,
+    docstage=working, % Set the document stage. Available options: 'working', 'final'.
     media=paper,
     linkcolor=black!45!black,
     chapterstyle=fancy,
@@ -46,11 +46,11 @@
 \bookmarktocentry\tableofcontents
 
 \listoffigures
+\listoftables
+% TODO: Check list of tables uses correct numbering and is rendered properly
 
 %%% Arabic Numeration %%%
 \pagenumbering{arabic}
-
-\listoftables
 
 %%% Chapters of your thesis %%%%
 \include{Chapters/01-Introduction}
@@ -77,6 +77,8 @@
 \input{Chapters/Appendices/06-UserFlow}
 \input{Chapters/Appendices/07-AutomatedTestsExecution}
 \input{Chapters/Appendices/08-UAT}
+
+% TODO: fix a partir de acá todos los headers siguen diciendo 8. User Acceptance Testing.
 
 %%% Annexes: Work that *YOU DID NOT* Develop %%%
 % \input{Matter/07-Annexes}

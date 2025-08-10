@@ -42,6 +42,6 @@
 			"tools": ["lualatex", "lualatex"]
 		}
 	],
-	"latex-workshop.latex.recipe.default": "make",
+	// "latex-workshop.latex.recipe.default": "make",
 	"editor.wordWrap": "on"
 }
