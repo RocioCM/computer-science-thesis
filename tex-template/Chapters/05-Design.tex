@@ -3,11 +3,39 @@
 
 \parindent0pt
 
-En esta sección voy a tener que diferenciar entre ambos tipos de diseño. Primero armé la arquitectura del sistema, separando en bloques frontend/api/datos. Contar cómo decidí esta arquitectura. Explicar  la comparación y elección de tecnologías para cada módulo. Fundamentar la elección de blockchain en base a la comparación que se hizo en el estado del arte. O hacer la comparación acá en vez de en el estado del arte?
-Explicar también las interfaces entre módulos (API rest en gral), pero si usé alguna librería para estas interfaces explicar cuál.
+- Los requerimientos func y no func son los fundamentos a partir de los cuales se diseña la solución.
+- El diseño de la solución en el modelo en v tiene dos fases: diseño de módulos y diseño de componentes.
+- Qué contempla cada una de estas etapas de diseño. Diferencias entre ambas, orden.
+- El diseño permite una visión global de la solución, asegurando que todos los componentes y módulos trabajen juntos de manera coherente previo a la implementación. 
+- La importancia de esta etapa esta en que si te la saltas luego el desarrollo se vuelve más complicado y propenso a errores, gaps, inconsistencias.
+- Cada etapa de diseño tiene su correspondiente etapa de pruebas en el otro lado de la v.
+- Los req no funcionales se contemplan en el diseño de modulos, aunque no tengan user story.
+- Los req funcionales se implementan siguiendo las historias de usuario, y se contemplan en el diseño de módulos y componentes.
+- A continuación se detalla en cada seccion cada uno de los diseños.
 
-Luego explicar el diseño de componentes, que sería interno a cada bloque. Cómo elegí la arquitectura de frontend, como elegí clean arch en back y las librerías que usé en back. Cómo armé la arquitectura de contratos en la blockchain y el modelo de datos en sql. 
+\section{Diseño de Módulos}
+\label{sec:module-design}
 
-Acá tengo que detallar la arquitectura de pantallas de front, la distribución de apis del back y la separación de contratos en blockchain.
+- Esta etapa se centra en tal cosa y es la primera, su entrada son los requerimientos, su salida es la arquitectura del sistema, que comprende módulos, interacciones y tecnologías.
+- Contar sobre la etapa de pruebas correspondiente del otro lado.
+- Criterios para separar módulos y definir las interfaces (basicamente usamos los estandares de la industria para apps webs de modo que en el futuro sea extensible, mantenible e integrable con otras fuentes de datos como iot en los procesos productivos).
+- Empezar a contar: Primero armé la arquitectura del sistema, separando en bloques frontend/api/datos. 
+- Contar que decidí separar los módulos segun rol y los compartidos aparte por el acoplamiento y separación de responsabilidades.
+- Contar para cada módulo la comparación y elección de tecnologías. 
+- Contar la comparación de blockchains y mencionar el apendice, justificar la elección de blockchain.
+- Explicar también las interfaces entre módulos (API rest en gral), pero si usé alguna librería para estas interfaces explicar cuál.
+- Contar sobre las combinación de blockchain y sql, y cómo se relacionan los datos de la blockchain con los datos de la base de datos sql.
 
-Explicar la combinación de Ownership en SQL con los datos en la blockchain para un trackeo eficiente, confiable y no redundante de información.
+\section{Diseño de Componentes}
+\label{sec:components-design}
+
+- Esta etapa es la segunda y se centra en tal cosa, su entrada son los módulos y requerimientos y su salida es la arquitectura de componentes, que comprende estructura de pantallas, apis y contratos.
+
+- Contar que elegi arch de módulos MVC en front, por qué y mostrar la división de funcionalidades por pantalla.
+- Contar en el front que también se eligió el sistema de diseño y paleta de colores, íconos, disposición del sistema y personalidad. Se decidió que sea una plataforma web, no mobile.
+- Contar que elegí clean arch en back, por qué y mostrar la división de funcionalidades por módulo. Mostrar la división de dominio.
+- Contar cómo armé la arquitectura de contratos en la blockchain y el modelo de datos en sql para un trackeo eficiente, confiable y no redundante de información. Mostrar los DER y reexplicar en detalle su interacción. Contar qué cubre cada contrato y cada tabla.
+- Explicar como el repository+handler unifica ambas cosas
+
+
+- Transicionar al siguiente cap. Que es la implementación, que es la etapa de desarrollo de la solución, donde se implementan los módulos y componentes diseñados en las etapas anteriores. Que haber hecho este diseño permite una implementación más fluida y organizada, ya que se cuenta con una guía clara de cómo deben interactuar los diferentes componentes y módulos.
