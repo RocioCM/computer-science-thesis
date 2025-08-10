@@ -3,10 +3,73 @@
 
 \parindent0pt
 
-Contar sobre las 3 etapas de pruebas integrales. Comenzando por integración, contar el enfoque, qué sistemas incluyen (api, sql, blockchain) y las características del entorno donde se desarrollaron. Contar que son pruebas automatizadas que pueden ejecutarse antes de cada despliegue. 
+La etapa de pruebas sirve para tal cosa. Comprende toda la segunda mitad de la v. Cada etapa de pruebas se corresponde con una de las etapas de desarrollo del software.
 
-Después las pruebas de sistema, contar que fueron manuales con una lista de casos de prueba por módulo simulando el uso de usuarios reales y validando consistencia de resultados entre actores del sistema. Agregar que también se hicieron pruebas no funcionales de rendimiento del sistema, aunque se hicieron sobre un entorno local (las de carga) debido a limitaciones de tráfico en los entornos deployados gratuitos. 
+Explicar como disminuye la granularidad de las pruebas a medida que avanzan las etapas. Contar diferencia entre automatizado y manual (diferente tiempo de ejecucion, no confundir con trigger).
 
-Finalmente, contar la experiencia de pruebas con usuarios. Contar también en esta etapa que hicimos un repaso de la UX del frontend y se hicieron mejoras en la UI y la experiencia de usuario.
+Contar brevemente sobre las 4 etapas de pruebas integrales. Comenzando unit testing, luego por integración y así. Simplemente decir el objetivo de cada una y poner la ref a la subsección donde se explican a continuación.
 
-En cada caso, hacer un breve resumen de cuántas pruebas se realizaron, sobre qué sistema (si aplica) y cantidad de bugs levantados y resueltos o desestimados. Contar que se cargaron en incidencias de Jira.
+Hacer una tabla comparativa de las etapas con: nombre, frecuencia de ejecucion, tipo (manual/automatizado), complejidad de planeamiento (en tiempo), complejidad de ejecucion (en tiempo), opcional modulos que cubre/alcance.
+
+\section{Pruebas Unitarias}
+\label{sec:unit-testing}
+
+Que son, objetivo, atomicidad de las pruebas, nivel de exhaustividad. Automatizados.
+Contar que es el coverage, para que sirve, medidas ideales.
+Explicar que en cada sistema se usa el framework correspondiente de pruebas, jest en todas pero con algun extra en cada una. 
+Contar como se dieron las pruebas durante la implementación en blockchain y en back y front.
+Contar en cada caso/repo que cubre un unit test.
+Poner tabla de cantidad de pruebas unitarias por módulo.
+Contar cantidad de bugs encontrados y resueltos o desestimados. Contar que se cargaron en incidencias de Jira y trackeado su resolución.
+Linkear al anexo 07 tests execution.
+Contar que estas pruebas sirven para revalidar facilmente el comportamiento de cada unidad funcional o componente en el futuro al realizar cambios, que es importante en un sistema que se proyecta expandir en un futuro. 
+Decir que antes de subir cambios nuevos a produccion se revisa que todos los unit tests pasen.
+
+\section{Pruebas de Integración}
+\label{sec:integration-testing}
+
+Que son, objetivo, atomicidad de las pruebas. Nivel de exhaustividad (bajo). Automatizados.
+Contar que se corresponde con la etapa de diseño de componentes, donde se diseñan componentes de cada módulo que interactúan entre sí y responsabilidades. Se prueban flujos que sean consistentes los datos e interaccion entre componentes.
+Contar que es unificado, que framework se uso, que modulos se prueban en simultaneo, en que entorno virtual se prueba. Que el entorno virtual debe ser simil real, nada de mocks de datos.
+Poner tabla de cantidad de pruebas unitarias por módulo.
+Contar cantidad de bugs encontrados y resueltos o desestimados (fueron 0).
+Contar que esto sirve para revisar que las interacciones entre modulos funcionan como se espera, y que los datos que se pasan entre ellos son consistentes. 
+Sirve volver a correrlos antes de cada despliegue a produccion.
+
+\section{Pruebas de Sistema}
+\label{sec:system-testing}
+
+Que son, objetivo, atomicidad de las pruebas. Nivel de exhaustividad (alto por cada requerimiento). Manuales.
+Contar que se corresponde con la etapa de diseño de modulos, donde se diseñan los modulos que interactúan entre sí y responsabilidades. Se prueban flujos que sean consistentes los datos e interaccion entre modulos. Se prueba que cada requerimiento se cumple. Cada prueba se documenta y corresponde a uno o mas requerimientos funcionales.
+Se ejecutan usando el sistema como si fuera un usuario real, siguiendo los flujos de usuario. No se usan mocks, se usa el sistema completo en el entorno deployado de prueba.
+Mostrar estructura de un caso de prueba del excel.
+Armar tabla de cantidad de pruebas por módulo y resultados obtenidos.
+Mostrar conteo de bugs levantados, resueltos, desestimados. 
+Contar que se cargaron en incidencias de Jira y trackeado su resolución.
+Linkear a donde sea que esten los casos de prueba documentados o un link.
+
+Contar que estas pruebas sirven para revalidar facilmente el comportamiento del sistema en su conjunto en el futuro al realizar cambios, se debe hacer una regresión y probar manualmente que todo sigue funcionando como se espera.
+Explicar que luego de resolver un bug, se vuelve a correr el caso de prueba que lo detectó para verificar que se haya resuelto.
+
+\section{Pruebas de Calidad}
+\label{sec:quality-testing}
+
+- contar el enfoque, qué sistemas incluyen (api, sql, blockchain), automatizados y las características del entorno donde se desarrollaron. Contar que prueban requerimientos no funcionales.
+- Contar limitaciones de su ejecucion en el entorno deployado (entornos gratuitos con limitaciones de tráfico).
+- Contar que algunas no tienen sentido hasta no hacerse en un entorno productivo real.
+- Igualmente dar resultados con números y conclusiones.
+
+\section{Pruebas de Aceptación con Usuarios}
+\label{sec:user-acceptance-testing}
+
+- contar el enfoque, qué sistemas incluyen (api, sql, blockchain), manuales y las características del entorno donde se desarrollaron. 
+- Contar que prueban requerimientos funcionales y no funcionales. Se corresponde con la etapa de modelado de requerimientos.
+- Contar la limitación para conseguir usuarios reales por ser un trabajo académico, pero se realizaron pruebas con usuarios simulados para validar la experiencia de uso.
+- Explicar el experimento y linkear al anexo 08 UAT.
+- Explicar la modalidad guiada y libre mixta del experimento.
+- Poner en tablas cantidad de casos de uso ejecutados, cantidad de participantes, cuenta de bugs y sugerencias realizadas, cuenta de resueltos y desestimados, se trackearon con jira.
+- Contar también en esta etapa que hicimos un repaso de la UX del frontend con el feedback y se hicieron mejoras en la UI y la experiencia de usuario.
+
+- Dar link a cómo quedó la UI y flujos de la app luego de las mejoras. Anexo? Screenshots del progreso en diseño y flujos?
+
+Explicar que despues de esto, el sistema ya esta validado suficiente y se considera listo para ser desplegado en producción. Hasta acá llegó este trabajo, ya que es solo académico, pero tuvo muchos aprendizajes. A continuación, las conclusiones, oportunidades de mejoras, altibajos y cosas futuras.
