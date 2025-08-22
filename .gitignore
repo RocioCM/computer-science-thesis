@@ -16,3 +16,4 @@ tex/**/*.bbl
 *.lof
 *.lot
 *.minted
+*.DS_Store
