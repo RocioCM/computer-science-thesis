@@ -3,6 +3,51 @@
 
 \parindent0pt
 
+-----
+
+# Análisis de requerimientos
+
+La introducción de este documento tiene como objetivo proporcionar un panorama global del proyecto, estableciendo claramente el propósito, el alcance, el valor y el público objetivo del producto. El objetivo final de este documento es definir de forma exhaustiva los requerimientos funcionales y no funcionales del sistema prototipo de trazabilidad de envases de vidrio, así como los requerimientos específicos del frontend del sistema. Estos requerimientos servirán como base para el diseño, desarrollo y validación del sistema.
+
+#### Propósito del Producto
+
+El propósito de este sistema es mejorar la trazabilidad en los modelos de economía circular orientados al reciclado de vidrio. Al proporcionar una plataforma que registre y audite las transacciones de residuos de vidrio a lo largo de toda la cadena de suministros, el sistema busca garantizar la transparencia y la eficiencia desde la producción del envase hasta su disposición final. Este registro confiable y verificable facilitará el cumplimiento normativo y mejorará la gestión de recursos en el sector.
+
+#### Alcance del Producto
+
+El alcance de este proyecto incluye el desarrollo de un contrato inteligente en la blockchain de Ethereum, una interfaz web para interactuar con dicho contrato, una base de datos SQL para almacenar información adicional, y una API que conecte todos estos componentes, junto con una API pública para facilitar la integración con otros sistemas. Además, se desarrollará un frontend prototipo específico para cada actor de la cadena de suministro de envases de vidrio (productores, comerciantes, recicladores y consumidores) que interactuará con el sistema de trazabilidad. El objetivo es centralizar y simplificar el acceso a la información de trazabilidad para todos los actores de la cadena de suministro de envases de vidrio, incluyendo productores, comerciantes, consumidores y recicladores.
+
+#### Valor del Producto
+
+El valor principal del sistema reside en su capacidad para garantizar la integridad y la transparencia de la información a lo largo de la cadena de suministro del vidrio reciclado. Este sistema no solo ayuda a cumplir con las normativas internacionales y locales, sino que también ofrece un beneficio competitivo a las empresas al mejorar la percepción de marca y aumentar la confianza del consumidor en productos sostenibles y responsables. Además, facilita la adopción de prácticas más sostenibles en la industria del vidrio al disponibilizar información detallada sobre la trazabilidad y el impacto ambiental de los envases.
+
+#### Público Objetivo
+
+El público objetivo del sistema incluye a todos los actores involucrados en la cadena de suministro de envases de vidrio, desde productores que necesitan certificar la sostenibilidad de sus productos hasta recicladores interesados en optimizar el proceso de recolección y reutilización de materiales. Además, reguladores y organismos de certificación podrán utilizar el sistema para verificar el cumplimiento de las normativas pertinentes.
+
+#### Uso Previsto
+
+El sistema será utilizado de diversas maneras según el rol del usuario:
+
+- **Productores** podrán registrar y verificar la producción de envases de vidrio con materias primas vírgenes o recicladas.
+- **Comerciantes** utilizarán el sistema para gestionar compras y verificar el origen del vidrio.
+- **Recicladores** podrán documentar el proceso de reciclaje y su cumplimiento con las normativas.
+- **Consumidores** tendrán acceso a información sobre la trazabilidad y sostenibilidad de los productos que compran y que reciclan.
+
+Cada uno de estos roles contará con interfaces y funcionalidades específicas diseñadas para facilitar estas operaciones. El sistema se convertirá en una fuente de información confiable y verificable para todos los actores involucrados en la cadena de suministro de envases de vidrio, a partir del cual se puedan desarrollar aplicaciones y servicios adicionales.
+
+## Requerimientos
+
+Un requerimiento de sistema representa una necesidad específica que el sistema de software debe satisfacer para cumplir con sus objetivos. Los requerimientos son fundamentales porque definen qué debe hacer el sistema (funcionalidad) y cómo debe comportarse (calidad y restricciones). Los requerimientos se clasifican en dos categorías:
+
+- **Requerimientos Funcionales**: Describen las funcionalidades que el sistema debe proporcionar. Estos requerimientos detallan las acciones que el sistema debe ser capaz de realizar, los procesos que debe soportar y las interacciones que debe permitir entre los usuarios y el sistema.
+
+- **Requerimientos No Funcionales**: Establecen las características de calidad que debe cumplir el sistema, como rendimiento, seguridad, escalabilidad y usabilidad. Estos no se centran en las funcionalidades específicas, sino en cómo el sistema debe ejecutarlas.
+
+Cada requerimiento debe ser claro, específico, medible y verificable. Un requerimiento se especifica generalmente en un formato que incluye un identificador único y una descripción detallada. A continuación, se presentan los requerimientos funcionales y no funcionales del sistema prototipo de trazabilidad de envases de vidrio, así como los requerimientos específicos del frontend del sistema.
+
+------
+
 El modelado de requerimientos constituye la etapa inicial del lado izquierdo del modelo en V, que enfatiza la importancia de las pruebas en cada fase del ciclo de vida del proyecto de software. El objetivo principal de esta etapa es comprender, documentar y validar las necesidades y expectativas de los interesados del sistema, definiendo de forma precisa su comportamiento y funcionalidades. Esta fase se asocia directamente con las pruebas de aceptación del lado derecho de la V, la etapa final del modelo, en la cual se verifica que el sistema cumple con los requerimientos definidos inicialmente.
 
 Un modelado de requerimientos preciso incide en las etapas subsiguientes de diseño, implementación y pruebas. Los errores o ambigüedades en la fase de modelado pueden propagarse a lo largo del proyecto, resultando en un aumento del tiempo y los recursos requeridos para corregirlos. Por lo tanto, la inversión de esfuerzo para asegurar que los requerimientos sean claros, completos y factibles reduce el riesgo de inconsistencias y la necesidad de refactorizaciones en fases posteriores, contribuyendo a la ejecución exitosa del proyecto.
