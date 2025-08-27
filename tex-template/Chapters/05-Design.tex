@@ -3,11 +3,7 @@
 
 \parindent0pt
 
-- La importancia de esta etapa esta en que si te la saltas luego el desarrollo se vuelve más complicado y propenso a errores, gaps, inconsistencias.
-
-------------
-
-En la fase de modelado de requerimientos se definieron las bases del sistema, estableciendo sus funcionalidades y características que el prototipo debe cumplir. Este capítulo aborda la etapa de diseño de solución, que es una transición entre la especificación de lo que el sistema debe hacer y el cómo se construirá, transformando los requisitos abstractos en una arquitectura concreta y un plan de implementación. El diseño permite obtener una visión integral del sistema antes de iniciar la implementación, lo que facilita la identificación de dependencias e interfaces y asegura que todos los componentes y módulos interactúen de manera coherente. Este proceso de planificación anticipada reduce la probabilidad de encontrar inconsistencias, fallas de lógica o funcionalidades indefinidas durante las fases de desarrollo y pruebas.
+En la fase de modelado de requerimientos se definieron las bases del sistema, estableciendo sus funcionalidades y características que el prototipo debe cumplir. A partir de estas bases, es posible proceder a la etapa de diseño de solución, que es una transición entre la especificación de lo que el sistema debe hacer y el cómo se construirá, transformando los requisitos abstractos en una arquitectura concreta y un plan de implementación. El diseño permite obtener una visión integral del sistema antes de iniciar la implementación, lo que facilita la identificación de dependencias e interfaces y asegura que todos los componentes y módulos interactúen de manera coherente. Este proceso de planificación anticipada reduce la probabilidad de encontrar inconsistencias, fallas de lógica o funcionalidades indefinidas durante las fases de desarrollo y pruebas.
 
 El diseño de la solución, en el marco del modelo en V, se aborda en dos etapas: primero se realiza el diseño de arquitectura y luego el diseño de componentes. Cada una de estas etapas se enfoca en un nivel de abstracción distinto del sistema. El diseño de arquitectura comprende la defición de la estructura general del sistema a través de módulos, mientras que el diseño de componentes se ocupa de los detalles internos de cada módulo.
 
@@ -22,21 +18,8 @@ A continuación, se explicará cada una de las etapas del diseño de solución, 
 \section{Diseño de Arquitectura}
 \label{sec:module-design}
 
-- Esta etapa se centra en tal cosa y es la primera, su entrada son los requerimientos, su salida es la arquitectura del sistema, que comprende módulos, interacciones y tecnologías.
-- Contar sobre la etapa de pruebas correspondiente del otro lado.
-- Criterios para separar módulos y definir las interfaces (basicamente usamos los estandares de la industria para apps webs de modo que en el futuro sea extensible, mantenible e integrable con otras fuentes de datos como iot en los procesos productivos).
-- Empezar a contar: Primero armé la arquitectura del sistema, separando en bloques frontend/api/datos. 
-- Contar que decidí separar los módulos segun rol y los compartidos aparte por el acoplamiento y separación de responsabilidades.
-- Contar para cada módulo la comparación y elección de tecnologías. 
-- Contar la comparación de blockchains y mencionar el apendice, justificar la elección de blockchain.
-- Explicar también las interfaces entre módulos (API rest en gral), pero si usé alguna librería para estas interfaces explicar cuál.
-- Contar sobre las combinación de blockchain y sql, y cómo se relacionan los datos de la blockchain con los datos de la base de datos sql. Esto con fines de escalabilidad y rendimiento. No se uso the graph por el alcance del trabajo, era un overkill para el tamaño del prototipo.
-- incluir un diagrama de despliegue que ilustre dónde se ejecutan los diferentes componentes (servidor web, base de datos, nodo de blockchain, etc.). Esto da una visión de cómo se vería el sistema en el entorno de producción.
-
---------
-
 La fase de diseño de arquitectura representa el primer paso en la traducción de los requerimientos del sistema hacia un sistema de software funcional. El diseño permite una visión global de la solución, asegurando que todos los componentes y módulos trabajen juntos de manera coherente previo a la implementación. A partir de los requerimientos previamente definidos, se establece un marco de trabajo de alto nivel que estructura la solución en componentes lógicos, delineando sus responsabilidades, las interacciones entre ellos y las tecnologías que los soportan. La salida de esta etapa es la arquitectura del sistema, la cual servirá de base para las decisiones de diseño a un nivel más granular. En el contexto del modelo en V, las decisiones tomadas en esta etapa se validan en la fase de pruebas de sistema, donde se verifica que la arquitectura en su conjunto cumple con las especificaciones definidas en los requerimientos funcionales y no funcionales del sistema.
-\begin{figure}[!htpb]
+\begin{figure}[!htb]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/software-architecture.png}
     \caption{Arquitectura del sistema}
@@ -53,9 +36,7 @@ A continuación, se describen las tecnologías seleccionadas, los patrones de di
 
 \subsection{Capa de Datos}
 
-La capa de datos constituye el cimiento de todo sistema de software. Se encarga de la persistencia, gestión y recuperación de toda la información del sistema. 
-
-Las bases de datos relacionales son el tipo de base de datos más utilizado actualmente para gestionar información estructurada. Los datos se organizan en tablas, con filas y columnas, y se pueden establecer relaciones entre las distintas tablas mediante claves únicas. Cada columna tiene tiene un nombre y un tipo de dato asociado, mientras que cada fila representa un registro único dentro de la tabla y su contenido debe cumplir con el tipo de dato definido para cada columna. Por ejemplo, se podría definir una tabla "Usuario", para almacenar información sobre los usuarios del sistema, incluyendo columnas como "nombre" de tipo texto, "correo electrónico" de tipo texto y "fecha de registro" de tipo fecha, entre otras columnas. Cada fila en esta tabla representaría un usuario específico, con su nombre, correo electrónico y la fecha en que se registró en el sistema, entre otros datos. Las principales ventajas de las bases de datos relacionales radican en su capacidad para garantizar la uniformidad de los datos a través de esquemas definidos para cada tabla, así como la facilidad para realizar consultas y análisis complejos de manera eficiente. Sin embargo, su naturaleza centralizada las hace susceptibles a manipulaciones manuales difíciles de detectar, lo que justifica la necesidad de una tecnología complementaria, como la blockchain, para registrar información que requiere garantías de integridad.
+La capa de datos constituye el cimiento de todo sistema de software. Se encarga de la persistencia, gestión y recuperación de toda la información del sistema. Las bases de datos relacionales son el tipo de base de datos más utilizado actualmente para gestionar información estructurada. Los datos se organizan en tablas, con filas y columnas, y se pueden establecer relaciones entre las distintas tablas mediante claves únicas. Cada columna tiene tiene un nombre y un tipo de dato asociado, mientras que cada fila representa un registro único dentro de la tabla y su contenido debe cumplir con el tipo de dato definido para cada columna. Por ejemplo, se podría definir una tabla "Usuario", para almacenar información sobre los usuarios del sistema, incluyendo columnas como "nombre" de tipo texto, "correo electrónico" de tipo texto y "fecha de registro" de tipo fecha, entre otras columnas. Cada fila en esta tabla representaría un usuario específico, con su nombre, correo electrónico y la fecha en que se registró en el sistema, entre otros datos. Las principales ventajas de las bases de datos relacionales radican en su capacidad para garantizar la uniformidad de los datos a través de esquemas definidos para cada tabla, así como la facilidad para realizar consultas y análisis complejos de manera eficiente. Sin embargo, su naturaleza centralizada las hace susceptibles a manipulaciones manuales difíciles de detectar, lo que justifica la necesidad de una tecnología complementaria, como la blockchain, para registrar información que requiere garantías de integridad.
 
 En este prototipo, la tecnología blockchain resulta apropiada para registrar la información clave del sistema, que requiere inmutabilidad y transparencia para fomentar la confianza entre los distintos actores. Ejemplos de este tipo de información puede ser la propiedad de los lotes de envases vidrio o la trazabilidad de los envases reciclados. Por este motivo, se tomó la decisión estratégica de combinar la blockchain con una base de datos relacional con el objetivo de resolver la necesidad de equilibrio entre la seguridad y la transparencia, con el rendimiento y la escalabilidad. La blockchain, por su naturaleza, provee una fuente de información segura y transparente, pero puede presentar limitaciones en cuanto a la velocidad de las transacciones y el volumen de datos que permite consultar eficientemente. Para abordar estas limitaciones, es que se decidió utilizar la blockchain como base de datos principal del sistema, mientras que se decidió utilizar una base de datos relacional complementaria para almacenar datos auxiliares e indexar los datos de acceso frecuente, como los perfiles de usuario, los metadatos de los lotes (id, propietario, estado, etc.) y otros datos de soporte que no requieren inmutabilidad. La relación entre ambas fuentes de datos se maneja mediante identificadores únicos que se almacenan en la blockchain, sirviendo como una referencia a los datos detallados en la base de datos relacional. La capa backend es responsable de mantener la consistencia entre ambas fuentes de información (blockchain y base de datos relacional) a la hora de persistir nueva información o actualizar información existente. Este enfoque híbrido permite proveer una recuperación de información ágil y una experiencia de usuario fluida sin poner en compromiso la integridad de los datos sensibles.
 
@@ -118,7 +99,8 @@ Dentro del entorno de Node.js, existen múltiples librerías y frameworks que fa
 
 Finalmente, para la interacción con la capa de datos, el backend se conecta a la base de datos relacional mediante librerías de conexión estandarizadas y a la blockchain a través de librerías de interacción con contratos inteligentes, lo que permite un acceso unificado a los datos, abstrayendo la complejidad de cada fuente de datos y proporcionando una interfaz coherente para la capa frontend del sistema.
 
-Capa de Presentación (Frontend)
+\subsection{Capa Frontend}
+
 La capa de presentación, conocida habitualmente como \textit{frontend}, es la interfaz de usuario web que permite a los distintos actores de la cadena de suministro interactuar con el sistema de trazabilidad del vidrio. Su objetivo es traducir la lógica de negocio y los datos que provienen de la API en una experiencia visual y funcional, permitiendo que los usuarios interactúen con el prototipo de manera intuitiva. El frontend es la cara visible del sistema completo.
 
 Para este prototipo, se tomó la decisión de implementar de forma desacoplada la interfaz de la lógica de negocio, con el objetivo de reforzar la mantenibilidad y flexibilidad del sistema. Esta separación es propicia para que la interfaz de usuario pueda evolucionar de manera independiente de la lógica, adaptándose a nuevas necesidades, experiencias de usuario o tecnologías sin afectar el funcionamiento del sistema. Con este esquema, es factible que en un futuro, cada actor de la cadena tenga acceso a una interfaz a medida de sus necesidades. Por ejemplo, para un productor de envases de vidrio, se podría desarrollar una aplicación de escritorio con métricas de negocio sobre su producción y venta, mientras que para los consumidores, se podría crear una aplicación móvil que muestre puntos de reciclaje y ofrezca incentivos por reciclar. Aunque el prototipo desarrollado para este trabajo final presenta una interfaz web unificada para todos los actores, el diseño modular facilita la creación de estas aplicaciones independientes en el futuro.
@@ -132,53 +114,85 @@ Luego de definir la arquitectura de la aplicación web, incluyendo la definició
 \section{Diseño de Componentes}
 \label{sec:components-design}
 
-- Esta etapa es la segunda y se centra en tal cosa, su entrada son los módulos y requerimientos y su salida es la arquitectura de componentes, que comprende estructura de pantallas, apis y contratos.
+La segunda etapa de diseño, el diseño de componentes, tiene como objetivo detallar la arquitectura interna de los módulos definidos en la fase anterior. Su propósito es traducir la arquitectura de alto nivel en un plan de construcción específico, que incluye la estructura de la interfaz de usuario, la arquitectura de la API y el modelo de datos. Esta fase toma como punto de partida los requerimientos del sistema y la arquitectura de módulos previamente definida, y su resultado es un conjunto de especificaciones detalladas que guiarán la implementación de cada módulo del software. De esta forma, se busca asegurar la cohesión interna de cada módulo y su correcta interacción con los demás. A su vez, cada decisión de diseño tomada en esta etapa se verificará posteriormente en la fase de pruebas de integración, que valida la correcta comunicación entre los componentes del sistema.
 
+A continuación, se presentarán las decisiones de diseño tomadas para cada uno de los módulos definidos en la arquitectura del sistema: la capa de datos, la capa de lógica de negocio (backend) y la capa de presentación (frontend).
 
+\subsection{Arquitectura de Datos}
 
-- Contar que elegi arch de módulos MVC en front, por qué y mostrar la división de funcionalidades por pantalla. Explicar que es MVC pero conciso y que se enfoque en por qué fue la elección correcta para esto, en lugar de ser una lección teórica.
-- Contar en el front que también se eligió el sistema de diseño y paleta de colores, íconos, disposición del sistema y personalidad. Se decidió que sea una plataforma web, no mobile.
-- Contar que elegí clean arch en back, por qué y mostrar la división de funcionalidades por módulo. Mostrar la división de dominio. Explicar que es clean arch pero conciso y que se enfoque en por qué fue la elección correcta para esto, en lugar de ser una lección teórica. Api mencionar los endpoints de cada modulo o la lista de modulos almenos con su dominio.
-- Contar cómo armé la arquitectura de contratos en la blockchain y el modelo de datos en sql para un trackeo eficiente, confiable y no redundante de información. Mostrar los DER y reexplicar en detalle su interacción. Contar qué cubre cada contrato y cada tabla.
-- Explicar como el repository+handler unifica ambas cosas
+El diseño de la arquitectura de datos representa un componente central de este trabajo, ya que debe integrar de manera transparente y eficiente la naturaleza descentralizada de la blockchain con la eficiencia y escalabilidad de una base de datos relacional para cumplir con los requerimientos no funcionales del sistema (RNF-01: Transparencia, RNF-03: Escalabilidad y RNF-06: Integridad). La solución definida durante la etapa de diseño de arquitectura propone un modelo de datos híbrido para optimizar el almacenamiento y la recuperación de información. En este esquema, la blockchain se utiliza como una capa de confianza inmutable, mientras que la base de datos SQL se encarga de la gestión de datos auxiliares que no requieren la inmutabilidad de la cadena de bloques. El diseño de componentes para esta arquitectura, por lo tanto, implica definir la estructura de los contratos inteligentes en la blockchain y el esquema de la base de datos relacional, asegurando que ambos sistemas interactúen de manera eficiente y coherente.
 
-
-- Transicionar al siguiente cap. Que es la implementación, que es la etapa de desarrollo de la solución, donde se implementan los módulos y componentes diseñados en las etapas anteriores. Que haber hecho este diseño permite una implementación más fluida y organizada, ya que se cuenta con una guía clara de cómo deben interactuar los diferentes componentes y módulos.
-
------- 
-
-Esta etapa toma como entrada los requerimientos del sistema y la arquitectura de módulos, y su salida es un conjunto de especificaciones detalladas que guiarán la implementación, asegurando la cohesión interna de cada módulo y su correcta interacción. Las decisiones de diseño tomadas en esta etapa se verifican en la fase de pruebas de integración, que valida la comunicación entre los componentes del sistema.
-
-La segunda etapa de diseño, el diseño de componentes, se ocupa de detallar la arquitectura interna de los módulos definidos en la fase anterior. Su propósito es traducir la arquitectura de alto nivel en un plan de construcción específico, que incluye la estructura de la interfaz de usuario, la arquitectura de la API y el modelo de datos. Esta fase toma como entrada los requerimientos del sistema y la arquitectura de módulos, y su salida es un conjunto de especificaciones detalladas que guiarán la implementación, asegurando la cohesión interna de cada módulo y su correcta interacción. Las decisiones de diseño tomadas en esta etapa se verifican en la fase de **pruebas de integración**, que valida la comunicación entre los componentes del sistema.
-
-### Arquitectura de la Interfaz de Usuario
-
-La interfaz de usuario se diseñó como una aplicación web de página única (SPA), lo que permite una experiencia de usuario fluida y reactiva, sin recargar la página en cada interacción. Se optó por una plataforma web en lugar de una aplicación móvil nativa para maximizar la accesibilidad y reducir la complejidad de desarrollo y mantenimiento, lo que es congruente con el alcance del prototipo. El diseño se estructuró siguiendo una arquitectura basada en componentes, inspirada en el patrón de desarrollo dirigido por componentes. Este enfoque permite la creación de elementos de interfaz reutilizables, modulares e independientes, que se agrupan en una biblioteca. Esta metodología facilita la construcción rápida y consistente de las vistas de la aplicación y mejora la mantenibilidad del código a largo plazo, ya que los componentes pueden ser actualizados sin afectar otras partes del sistema.
-
-La estructura de la interfaz de usuario se organizó por módulos funcionales y por rol de usuario, lo que se alinea con la división de responsabilidades establecida en el diseño de arquitectura. Por ejemplo, se definieron vistas específicas para el registro y gestión de lotes por parte de los productores, así como una interfaz de consulta para los consumidores. Adicionalmente, se creó un sistema de diseño que incluye la paleta de colores, la tipografía y la iconografía, con el fin de proporcionar una identidad visual consistente y una experiencia de usuario unificada en toda la plataforma.
-
-### Arquitectura de la Capa de Lógica de Negocio (API)
-
-Para la capa de la API, se adoptó la **Arquitectura Limpia** (Clean Architecture), un patrón de diseño que prioriza la separación de las reglas de negocio del resto de las dependencias. Esta elección se justifica por su capacidad para generar un sistema con un alto grado de desacoplamiento, lo que se traduce en una mayor testabilidad, mantenibilidad y flexibilidad. En este modelo, la lógica de negocio se ubica en el núcleo de la arquitectura, rodeada por capas que se encargan de la infraestructura, las interfaces de usuario y las bases de datos. Esta estructura permite que la lógica de negocio no se vea afectada por cambios en las tecnologías de implementación, como la base de datos o la interfaz de usuario, lo que prolonga la vida útil del sistema.
-
-La arquitectura de la API se dividió en módulos de dominio, con un enfoque en la lógica de negocio que encapsula cada funcionalidad del sistema. Por ejemplo, se definieron dominios para la gestión de usuarios, la trazabilidad de lotes y las transacciones. Cada uno de estos dominios expone un conjunto de _endpoints_ a través de una API REST, los cuales permiten realizar operaciones como la creación de un nuevo lote de vidrio, la transferencia de propiedad o la consulta del historial de un lote específico.
-
-### Arquitectura de Datos
-
-El diseño de la arquitectura de datos es un componente central de este trabajo, ya que debe integrar de manera transparente y eficiente la naturaleza descentralizada de la blockchain con la eficiencia y escalabilidad de una base de datos relacional. La solución propuesta utiliza un modelo de datos híbrido para optimizar el almacenamiento y la recuperación de información. La blockchain se utiliza como una capa de confianza inmutable, mientras que la base de datos SQL se encarga de la gestión de datos auxiliares que no requieren la inmutabilidad de la cadena de bloques.
-
-Los contratos inteligentes en la blockchain se diseñaron para almacenar solo la información mínima necesaria para garantizar la trazabilidad y la integridad, como un identificador único del lote de vidrio, la dirección del propietario actual y un historial de las transferencias de propiedad. Este enfoque minimiza los costos de transacción y maximiza la velocidad de la red. La base de datos SQL, por su parte, almacena los metadatos detallados de cada lote (por ejemplo, el tipo de vidrio, el color y el peso), así como la información de los usuarios y otros datos que requieren una consulta rápida y flexible. La relación entre los datos de la blockchain y la base de datos SQL se establece mediante el identificador único del lote, que sirve como clave de enlace.
-
-La relación entre las entidades de la base de datos se presenta en el siguiente diagrama.
-\begin{figure}[!htpb]
+\begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.8\textwidth]{Figures/database-der.jpeg}
-    \caption{Diagrama Entidad-Relación (DER) del modelo de datos.}
-    \label{fig:erd}
+    \includegraphics[width=0.8\textwidth]{Figures/data-lifecycle.png}
+    \caption{Diagrama de ciclo de vida de los envases.}
+    \label{fig:data-lifecycle}
 \end{figure}
 
-Para orquestar la comunicación entre la API, la base de datos SQL y la blockchain, se implementó un patrón de diseño que unifica las operaciones de lectura y escritura. Un **_repository_** se encarga de la lógica de acceso a los datos, y un **_handler_** coordina las operaciones entre los diferentes _repositories_. Por ejemplo, para registrar un nuevo lote, el _handler_ primero valida la información y luego instruye al _repository_ de la blockchain para registrar la transacción y al _repository_ SQL para almacenar los metadatos. Este patrón abstrae la complejidad de la arquitectura híbrida, ofreciendo una interfaz de programación unificada a la capa de lógica de negocio.
+En primera instancia, se definió la representación de los datos, tanto en la blockchain como en la base de datos relacional. Con base en los requerimientos del sistema y la investigación sobre el ciclo de vida del vidrio, se optó por representar cada envase o conjunto de envases con una estructura distinta en cada etapa de su vida útil. Esta decisión se tomó debido a que los envases tienen metadatos, propietarios y agrupaciones diferentes en cada fase del proceso. El flujo de estados de los envases de vidrio, como se observa en la Figura \ref{fig:data-lifecycle}, comienza con un lote de envases producido por el productor primario, que luego se vende a múltiples productores secundarios para crear lotes de productos envasados. Finalmente, los consumidores pueden llevar cada envase vacío a centros de reciclaje, donde se agrupan en lotes de reciclaje para su posterior reprocesamiento. Para mantener la trazabilidad completa del ciclo de vida, cada elemento posee una referencia a su ID de origen, lo que permite rastrear, a partir de un envase reciclado, el lote original en el que fue producido, su productor y sus metadatos.
 
----
+A partir de la representación de los datos, se diseñaron los contratos inteligentes en la blockchain para almacenar únicamente la información necesaria para garantizar la trazabilidad de los envases y la integridad de los datos, como un identificador único de cada lote de vidrio, sus metadatos esenciales de producción, el propietario actual y un historial de las transferencias de propiedad y de estado. Al igual que en un sistema de programación orientada a objetos (OOP), los contratos en Solidity implementan atributos que guardan el estado y métodos que permiten interactuar con él. En lugar de un único contrato monolítico, se decidió implementar tres contratos que interactúan entre sí para lograr mayor modularidad, mantenibilidad y desacoplamiento. A continuación, se detalla la arquitectura de cada uno de ellos, mientras que en la Figura \ref{fig:blockchain-architecture} se presenta un diagrama de la arquitectura de los contratos inteligentes.
 
-La culminación de la etapa de diseño, con las especificaciones detalladas de la arquitectura de componentes, da paso a la siguiente fase del trabajo: la implementación. Al contar con un plan claro que define la estructura del sistema, sus módulos, sus componentes y sus interacciones, el proceso de desarrollo se vuelve más fluido y organizado, ya que se dispone de una guía precisa para la construcción de la solución. El siguiente capítulo aborda el proceso de implementación, donde se materializarán los diseños aquí descritos.
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/blockchain-arch.png}
+    \caption{Diagrama de la arquitectura de smart contracts.}
+    \label{fig:blockchain-architecture}
+\end{figure}
+
+\textbf{Contrato 1: BaseBottlesBatchContract}
+ es el punto de partida del ciclo de vida del vidrio, encargado de gestionar la producción inicial de los envases. Sus responsabilidades incluyen registrar lotes de botellas recién fabricadas por el productor primario y sus metadatos (como la cantidad y composición), así como gestionar la transferencia de propiedad a productores secundarios. Sus métodos permiten crear, actualizar y eliminar lotes, además de consultar la información histórica de los mismos. La información de este contrato es consumida por el  contrato \textit{ProductBottlesBatchContract}, proporcionando una referencia al lote original para el siguiente eslabón de la cadena de trazabilidad.
+
+\textbf{Contrato 2: ProductBottlesBatchContract}
+ gestiona la segunda fase del ciclo de vida del vidrio, comprende el envasado y la comercialización de estos productos. Este contrato registra los lotes de productos terminados, asociando un código de seguimiento a cada uno y referenciando el lote de envases original del contrato \textit{BaseBottlesBatchContract}. Sus funciones permiten crear lotes de productos, registrar su venta y marcar aquellos envases que se convierten en residuos. La información de seguimiento generada en este contrato juega un rol central en el sistema de trazabilidad, ya que el código de seguimiento introducido en este contrato actúa como el eslabón intermedio que permite vincular el lote de origen de un envase de \textit{BaseBottlesBatchContract} con el envase en \textit{RecycleMaterialContract} cuando el consumidor lo desecha para su posterior reciclaje.
+
+\textbf{Contrato 3: RecycleMaterialContract}
+ cubre la gestión del final de la vida útil de los envases, desde su recolección como residuo hasta su procesamiento como material reciclado. Este contrato almacena los registros de los envases que han sido entregados para reciclaje, permitiendo crear nuevos lotes de material reciclado a partir de ellos. Sus métodos permiten registrar envases de desecho, crear lotes de material reciclado (agrupando envases previamente registrados) y transferir la propiedad de estos lotes a los productores primarios, cerrando de esta forma el ciclo de vida circular del vidrio. La información de seguimiento de los envases provista por el contrato \textit{ProductBottlesBatchContract} es consumida por este contrato, que a su vez genera nuevos lotes de material que pueden ser reutilizados por el contrato \textit{BaseBottlesBatchContract}.
+
+De forma complementaria a la arquitectura de contratos inteligentes, el diseño de la base de datos relacional almacena la información de los usuarios (relacionada con los requerimientos funcionales de autenticación y autorización) y una referencia al ID y propietario de cada lote y envase registrado en la blockchain. La relación entre los datos de la blockchain y la base de datos relacional se establece mediante el identificador único del lote, que sirve como clave de enlace y permite realizar consultas de metadatos detallados de cada lote. Adicionalmente, en la base de datos relacional se guarda una referencia a cada envase reciclado por los consumidores. Esto permite que cada consumidor pueda acceder al listado de envases que ha reciclado previamente y consultar si efectivamente ha sido procesado, cumpliendo así con el requerimiento funcional asociado (RF-023). En la Figura \ref{fig:der} se presenta un diagrama que ilustra la relación entre las entidades de la base de datos.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/db-der.png}
+    \caption{Diagrama Entidad-Relación (DER) del modelo de datos.}
+    \label{fig:der}
+\end{figure}
+
+\subsection{Arquitectura Backend}
+
+En el diseño de arquitectura de la capa de la capa backend se adoptó el patrón \textit{Clean Architecture} (Arquitectura Limpia), un modelo de diseño que prioriza la separación de las reglas de negocio de las dependencias externas. En este esquema, la implementación de la API se estructura en tres capas principales: \textit{Routers}, \textit{Handlers} y \textit{Repositories}. Los routers reciben las solicitudes HTTP y las dirigen al handler correspondientes, luego los handlers contienen la lógica de negocio y orquestan las operaciones, por último, los repositories se encargan de la interacción con las fuentes de datos (ya sea la base de datos relacional o la blockchain). La comunicación entre estas capas es unidireccional, lo que significa que las capas externas solo pueden acceder a las capas más internas, reforzando así la independencia de la lógica de negocio (Figura \ref{fig:clean-architecture}).
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.8\textwidth]{Figures/clean-architecture.png}
+\caption{Modelo Clean Architecture.}
+\label{fig:clean-architecture}
+\end{figure}
+
+La elección del patrón Clean Architecture se justifica por su capacidad para generar un sistema altamente desacoplado, lo que se traduce en una mayor  mantenibilidad del sistema y flexibilidad ante futuros cambios. La lógica de negocio, situada en el núcleo de la arquitectura (Handlers), se mantiene independiente de las tecnologías de implementación (infraestructura), la presentación de los datos (Routers) y las bases de datos (Repositories). Esto es particularmente ventajoso en un sistema de trazabilidad como el planteado en este trabajo, donde la lógica de negocio debe ser estable, pero la interfaz de usuario y las integraciones con otros sistemas (como plataformas de gestión o dispositivos IoT) pueden evolucionar. A su vez, en este proyecto la arquitectura de la API se ha dividido en módulos de dominio (por ejemplo, gestión de usuarios o trazabilidad de lotes), cada uno de los cuales expone un conjunto de endpoints a través de una API REST.
+
+En particular, para orquestar la comunicación entre la API, la base de datos relacional y la blockchain, se implementó un patrón de repositorios que unifica las operaciones de lectura y escritura. De esta forma, el Handler puede manejar todos los datos de manera uniforme, sin importar si el repositorio los obtuvo de la blockchain o de la base de datos relacional, ya que esta lógica de acceso a datos se abstrae en el repositorio. Por ejemplo, al registrar un nuevo lote, el handler valida la información y luego instruye al repositorio de la blockchain para registrar la transacción y al repositorio de la base de datos relacional para almacenar la referencia del lote. En este caso, el patrón de diseño Clean Architecture permite abstraer la complejidad de la arquitectura híbrida, proporcionando una interfaz de programación unificada a la capa de lógica de negocio.
+
+\subsection{Arquitectura Frontend}
+
+La interfaz de usuario del sistema se diseñó como una aplicación web, con el objetivo de proporcionar una experiencia de usuario fluida, accesible desde cualquier dispositivo con conexión a Internet y sin necesidad de instalar software adicional. La interfaz se estructuró en una arquitectura basada en componentes, un patrón de diseño que promueve la creación de elementos reutilizables, modulares e independientes, que es el patrón recomendado por librerías como React y frameworks como Next.js.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.8\textwidth]{Figures/frontend-architecture.png}
+\caption{Arquitectura de módulos frontend.}
+\label{fig:frontend-architecture}
+\end{figure}
+
+Para la estructuración interna del código, se eligió implementar una arquitectura MVC (Modelo-Vista-Controlador), que establece una clara separación de responsabilidades: la vista implementa la interfaz de usuario, el controlador maneja la lógica y las interacciones, y el modelo (en este caso, un servicio) se comunica con el backend. Esta metodología, combinada con la arquitectura de componentes, facilita una construcción rápida y consistente de cada vista, al mismo tiempo que mejora la mantenibilidad del código a largo plazo, ya que cada componente puede ser actualizado sin afectar otras partes del sistema. En la Figura \ref{fig:frontend-architecture} se ilustra la arquitectura de componentes y módulos del frontend.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.8\textwidth]{Figures/frontend-palette.jpg}
+\caption{Identidad de marca de la aplicación.}
+\label{fig:frontend-brand}
+\end{figure}
+
+La estructura de la interfaz de usuario se organizó en módulos funcionales por cada rol de usuario, lo que se alinea con la división de responsabilidades del diseño de arquitectura de backend y capa de datos. Se definieron vistas específicas para el registro y la gestión de lotes por parte de los productores, y una interfaz de consulta para los consumidores. Para asegurar una identidad visual consistente, se definió un sistema de diseño con una paleta de colores basada en tonalidades de verde con el objetivo de transmitir el compromiso ambiental del proyecto mediante la economía circular, así como también tipografías e iconografía que complementan esta estética. En la Figura \ref{fig:frontend-brand} se puede observar la una muestra de la identidad de marca de la aplicación, a través de su paleta de colores y un conjunto de componentes visuales.
+
+Con la definición de las especificaciones detalladas de la arquitectura de componentes para el frontend, el backend y la capa de datos, culmina la etapa de diseño y se completa el proceso de definición del modelo en V. Con un plan claro que define la estructura del sistema, sus módulos y sus interacciones, el proceso de desarrollo posterior puede ser más fluido, organizado y predecible. En el siguiente capítulo se abordará el proceso de implementación del prototipo tecnológico, a través del cual se materializarán los diseños aquí descritos en un software funcional que cumpla con los requerimientos establecidos.
