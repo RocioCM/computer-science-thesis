@@ -48,6 +48,8 @@ Un indicador representativo de la calidad del testing unitario es la covertura d
 \item Aplicación Frontend: se estableció una cobertura mínima del 60\%. Dado que el frontend del prototipo tiene fines demostrativos y no es una parte crítica del sistema, este umbral se consideró suficiente para garantizar el correcto funcionamiento de la interfaz de usuario sin requerir un esfuerzo excesivo en la escritura de pruebas.
 \end{itemize}
 
+% TODO: replace with the real numbers
+
 El proceso de pruebas unitarias permitió identificar y corregir algunos errores de manera temprana. En total, se detectaron y gestionaron 7 incidencias durante esta etapa de pruebas, que fueron registradas en Jira. De estas, 5 fueron resueltas, mientras que el resto se desestimó al no representar un fallo crítico ni un caso de uso posible para el sistema. En la Tabla \ref{tab:unit-testing-summary} se muestra un resumen de las pruebas unitarias realizadas, mientras que en el Apéndice \ref{cp:tests-execution-results} se puede consultar el detalle de la totalidad de casos de prueba.
 
 \begin{table}[!htpb]
@@ -58,14 +60,12 @@ El proceso de pruebas unitarias permitió identificar y corregir algunos errores
 \hline
 \textbf{Módulo} & \textbf{Coverage Objetivo} & \textbf{Coverage Alcanzado} & \textbf{Cant. de Pruebas} \
 \hline
-Contratos Inteligentes & 100\% & 100\% & 100 \
-API Backend & 80\% & 87.5\% & 270 \
-Aplicación Frontend & 60\% & 62.3\% & 250 \
+Contratos Inteligentes & 100\% & 100\% & 98 \
+API Backend & 80\% & 90.84\% & 317 \
+Aplicación Frontend & 60\% & 65.27\% & 286 \
 \hline
 \end{tabular}
 \end{table}
-
-% TODO: replace with the real numbers
 
 La ejecución automatizada de las pruebas unitarias proporciona una red de seguridad que facilita la revalidación del comportamiento del sistema, lo cual es relevante en un prototipo que podría expandirse en un futuro. La validación constante de la base de código antes de cualquier despliegue favorece la estabilidad y la calidad del sistema a largo plazo. Una vez que se ha verificado el funcionamiento de cada componente del sistema de forma individual, es posible continuar con la siguiente etapa de validación, donde se verificará la correcta interacción entre los módulos del sistema.
 \section{Pruebas de Integración}
