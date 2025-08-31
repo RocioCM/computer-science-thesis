@@ -1,37 +1,164 @@
 \chapter{Resultados de Pruebas Realizadas}
 \label{cp:tests-execution-results}
 
-En este trabajo, cuyo desarrollo siguió la metodología en V, se realizaron múltiples instancias de pruebas del prototipo tecnológico: pruebas unitarias, pruebas de integración, pruebas de sistema y pruebas de aceptación. Cada etapa incluyó la definición y ejecución de casos de pruebas, ya sean manuales o automatizadas, con el objetivo de validar que el sistema cumpliera con los requisitos funcionales y no funcionales establecidos en la fase de modelado de requerimientos. En este anexo se detallan los casos de uso de cada etapa de pruebas, los resultados obtenidos y las incidencias detectadas y resueltas durante el proceso.
+En este trabajo, cuyo desarrollo siguió la metodología en V, se realizaron múltiples instancias de pruebas del prototipo tecnológico: pruebas unitarias, pruebas de integración, pruebas de sistema y pruebas de aceptación. Cada etapa incluyó la definición y ejecución de casos de pruebas, ya sean manuales o automatizadas, con el objetivo de validar que el sistema cumpliera con los requisitos funcionales y no funcionales establecidos en la fase de modelado de requerimientos. En este apéndice se detallan los casos de uso de cada etapa de pruebas, los resultados obtenidos y las incidencias detectadas y resueltas durante el proceso.
 
 \section{Pruebas Unitarias}
 
-En la fase de pruebas unitarias, se desarrollaron y ejecutaron pruebas automatizadas para cada componente del sistema. Estas pruebas se centraron en validar la funcionalidad de los contratos inteligentes, la API backend y la interfaz frontend. Cada prueba fue diseñada para cubrir casos positivos y negativos, asegurando que cada unidad de código funcionara correctamente de manera aislada. En la Tabla \ref{tab:unit-tests-blockchain} se presenta un listado de las pruebas unitarias realizadas sobre los contratos inteligentes, en la Tabla \ref{tab:unit-tests-backend} las pruebas ejecutadas sobre la API backend, y en la Tabla \ref{tab:unit-tests-frontend} las pruebas realizadas sobre la interfaz frontend.
+En la fase de pruebas unitarias, se desarrollaron y ejecutaron pruebas automatizadas para cada componente del sistema. Estas pruebas se centraron en validar la funcionalidad de los contratos inteligentes, la API backend y la interfaz frontend. Cada prueba fue diseñada para cubrir casos positivos y negativos, asegurando que cada unidad de código funcionara correctamente de manera aislada. En la Tabla \ref{tab:unit-tests-blockchain} se presenta un listado de las pruebas unitarias realizadas sobre los contratos inteligentes, en la Tabla \ref{tab:unit-tests-backend} las pruebas ejecutadas sobre la API (backend), y en la Tabla \ref{tab:unit-tests-frontend} las pruebas realizadas sobre la interfaz (frontend).
 
-% TODO: fix this table rendering
+% TODO: fix this table rendering tabularx tabularx
 
-\begin{xltabular}{\textwidth}{@{} L{1.5cm} Y L{2.5cm} @{}}
+\begin{xltabular}{\textwidth}{@{} C{0.5cm} L{4.5cm} Y C{1.5cm} @{}}
 	\caption{Listado de pruebas unitarias realizadas sobre los contratos inteligentes}
 	\label{tab:unit-tests-blockchain}\\
 	\toprule
-	Número & Título & Resultado \\
+	\# & Componente & Título & Resultado \\
 	\midrule
 \endfirsthead
 
 \toprule
-Número & Título & Resultado \\
+\# & Componente & Título & Resultado \\
 \midrule
 \endhead
 
 \midrule
-\multicolumn{3}{r}{\footnotesize Continúa en la siguiente página}
+\multicolumn{4}{r}{\footnotesize Continúa en la siguiente página}
 \\\bottomrule
 \endfoot
 
 \bottomrule
 \endlastfoot
 
-1 & Vender lote de material reciclado exitosamente & \testSuccess \\
+1 & RecycledMaterialContract - Deployment & Establecer el propietario correcto & \testSuccess \\
+2 & RecycledMaterialContract - Deployment & Rechazar configuración de dirección de contrato base por no ser propietario & \testSuccess \\
+3 & RecycledMaterialContract - Deployment & Rechazar configuración de dirección de contrato de producto por no ser propietario & \testSuccess \\
+4 & RecycledMaterialContract - createWasteBottle & Crear una nueva botella de residuo & \testSuccess \\
+5 & RecycledMaterialContract - createWasteBottle & Rechazar creación por no ser propietario & \testSuccess \\
+6 & RecycledMaterialContract - deleteWasteBottle & Eliminar una botella de residuo existente & \testSuccess \\
+7 & RecycledMaterialContract - deleteWasteBottle & Rechazar eliminación de botella no existente & \testSuccess \\
+8 & RecycledMaterialContract - deleteWasteBottle & Rechazar eliminación de botella ya eliminada & \testSuccess \\
+9 & RecycledMaterialContract - deleteWasteBottle & Rechazar eliminación de botella reciclada & \testSuccess \\
+10 & RecycledMaterialContract - deleteWasteBottle & Rechazar eliminación por cuenta no autorizada & \testSuccess \\
+11 & RecycledMaterialContract - createRecycledMaterialBatch & Crear un nuevo lote de material reciclado & \testSuccess \\
+12 & RecycledMaterialContract - createRecycledMaterialBatch & Rechazar creación por no propietario & \testSuccess \\
+13 & RecycledMaterialContract - addWasteBottleToBatch & Agregar botella de residuo a lote & \testSuccess \\
+14 & RecycledMaterialContract - addWasteBottleToBatch & Rechazar agregar a lote no existente & \testSuccess \\
+15 & RecycledMaterialContract - addWasteBottleToBatch & Rechazar agregar botella no existente & \testSuccess \\
+16 & RecycledMaterialContract - addWasteBottleToBatch & Rechazar agregar botella ya reciclada & \testSuccess \\
+17 & RecycledMaterialContract - addWasteBottleToBatch & Rechazar agregar por cuenta no autorizada & \testSuccess \\
+18 & RecycledMaterialContract - removeWasteBottleFromBatch & Remover botella de residuo de lote & \testSuccess \\
+19 & RecycledMaterialContract - removeWasteBottleFromBatch & Rechazar remoción de lote no existente & \testSuccess \\
+20 & RecycledMaterialContract - removeWasteBottleFromBatch & Rechazar remoción de botella no existente & \testSuccess \\
+21 & RecycledMaterialContract - removeWasteBottleFromBatch & Rechazar remoción de botella que no está en el lote & \testSuccess \\
+22 & RecycledMaterialContract - removeWasteBottleFromBatch & Rechazar remoción por cuenta no autorizada & \testSuccess \\
+23 & RecycledMaterialContract - updateRecycledMaterialBatch & Actualizar lote existente & \testSuccess \\
+24 & RecycledMaterialContract - updateRecycledMaterialBatch & Rechazar actualización de lote no existente & \testSuccess \\
+25 & RecycledMaterialContract - updateRecycledMaterialBatch & Rechazar actualización de lote eliminado & \testSuccess \\
+26 & RecycledMaterialContract - updateRecycledMaterialBatch & Rechazar actualización de lote vendido & \testSuccess \\
+27 & RecycledMaterialContract - updateRecycledMaterialBatch & Rechazar eliminación por cuenta no autorizada & \testSuccess \\
+28 & RecycledMaterialContract - deleteRecycledMaterialBatch & Eliminar lote existente & \testSuccess \\
+29 & RecycledMaterialContract - deleteRecycledMaterialBatch & Rechazar eliminación de lote no existente & \testSuccess \\
+30 & RecycledMaterialContract - deleteRecycledMaterialBatch & Rechazar eliminación de lote ya eliminado & \testSuccess \\
+31 & RecycledMaterialContract - deleteRecycledMaterialBatch & Rechazar eliminación de lote vendido & \testSuccess \\
+32 & RecycledMaterialContract - deleteRecycledMaterialBatch & Rechazar eliminación por cuenta no autorizada & \testSuccess \\
+33 & RecycledMaterialContract - getWasteBottlesList & Recuperar lista de botellas de residuo & \testSuccess \\
+34 & RecycledMaterialContract - getWasteBottlesList & Retornar arreglo vacío si no se proporcionan índices & \testSuccess \\
+35 & RecycledMaterialContract - getWasteBottlesList & Manejar IDs no existentes correctamente & \testSuccess \\
+36 & RecycledMaterialContract - getRecycledMaterialBatchesList & Recuperar lista de lotes & \testSuccess \\
+37 & RecycledMaterialContract - getRecycledMaterialBatchesList & Retornar arreglo vacío si no se proporcionan índices & \testSuccess \\
+38 & RecycledMaterialContract - getRecycledMaterialBatchesList & Manejar IDs no existentes correctamente & \testSuccess \\
+39 & RecycledMaterialContract - recycleBaseBottles & Rechazar reciclaje por no propietario & \testSuccess \\
+40 & RecycledMaterialContract - sellRecycledMaterialBatch & Vender lote correctamente & \testSuccess \\
+41 & RecycledMaterialContract - sellRecycledMaterialBatch & Rechazar venta desde dirección no autorizada & \testSuccess \\
+42 & RecycledMaterialContract - sellRecycledMaterialBatch & Rechazar venta de lote no existente & \testSuccess \\
+43 & RecycledMaterialContract - sellRecycledMaterialBatch & Rechazar venta de lote ya vendido & \testSuccess \\
+44 & RecycledMaterialContract - sellRecycledMaterialBatch & Rechazar venta de lote eliminado & \testSuccess \\
+45 & BaseBottlesBatchContract - Deployment & Establecer el propietario correcto & \testSuccess \\
+46 & BaseBottlesBatchContract - createBaseBottlesBatch & Crear un nuevo lote de botellas base & \testSuccess \\
+47 & BaseBottlesBatchContract - getBaseBottlesBatch & Obtener un lote creado & \testSuccess \\
+48 & BaseBottlesBatchContract - getBaseBottlesBatch & No obtener lote no existente & \testSuccess \\
+49 & BaseBottlesBatchContract - updateBaseBottlesBatch & Actualizar un lote existente & \testSuccess \\
+50 & BaseBottlesBatchContract - updateBaseBottlesBatch & No actualizar un lote eliminado & \testSuccess \\
+51 & BaseBottlesBatchContract - deleteBaseBottlesBatch & Eliminar un lote & \testSuccess \\
+52 & BaseBottlesBatchContract - deleteBaseBottlesBatch & No eliminar un lote ya eliminado & \testSuccess \\
+53 & BaseBottlesBatchContract - getBaseBottlesBatchesList & Recuperar lista de lotes & \testSuccess \\
+54 & BaseBottlesBatchContract - recycleBaseBottles & Reciclar botellas correctamente & \testSuccess \\
+55 & BaseBottlesBatchContract - recycleBaseBottles & No reciclar más botellas que las disponibles & \testSuccess \\
+56 & BaseBottlesBatchContract - recycleBaseBottles & No reciclar un lote eliminado & \testSuccess \\
+57 & BaseBottlesBatchContract - sellBaseBottles & Vender botellas correctamente & \testSuccess \\
+58 & BaseBottlesBatchContract - sellBaseBottles & No vender más botellas que las disponibles & \testSuccess \\
+59 & BaseBottlesBatchContract - sellBaseBottles & No vender de un lote eliminado & \testSuccess \\
+60 & BaseBottlesBatchContract - rejectSoldBottles & No rechazar botellas vendidas desde dirección no autorizada & \testSuccess \\
+61 & BaseBottlesBatchContract - createBaseBottlesBatch & Rechazar si no es llamado por el propietario & \testSuccess \\
+62 & BaseBottlesBatchContract - updateBaseBottlesBatch & Rechazar si no es llamado por el propietario & \testSuccess \\
+63 & BaseBottlesBatchContract - deleteBaseBottlesBatch & Rechazar si no es llamado por el propietario & \testSuccess \\
+64 & BaseBottlesBatchContract - recycleBaseBottles & Rechazar si no es llamado por el propietario & \testSuccess \\
+65 & BaseBottlesBatchContract - sellBaseBottles & Rechazar si no es llamado por el propietario & \testSuccess \\
+66 & ProductBottlesBatchContract - Deployment & Establecer el propietario correcto & \testSuccess \\
+67 & ProductBottlesBatchContract - createProductBottlesBatch & Crear un nuevo lote de botellas de producto & \testSuccess \\
+68 & ProductBottlesBatchContract - updateTrackingCode & Actualizar código de seguimiento exitosamente & \testSuccess \\
+69 & ProductBottlesBatchContract - updateTrackingCode & Sobrescribir código de seguimiento & \testSuccess \\
+70 & ProductBottlesBatchContract - updateTrackingCode & Rechazar si el código ya está en uso & \testSuccess \\
+71 & ProductBottlesBatchContract - updateTrackingCode & Rechazar actualización de lote no existente & \testSuccess \\
+72 & ProductBottlesBatchContract - updateTrackingCode & Eliminar código de seguimiento exitosamente & \testSuccess \\
+73 & ProductBottlesBatchContract - updateTrackingCode & Rechazar cuando la cantidad disponible no coincide con la cantidad & \testSuccess \\
+74 & ProductBottlesBatchContract - deleteTrackingCode & Eliminar código de seguimiento exitosamente & \testSuccess \\
+75 & ProductBottlesBatchContract - deleteTrackingCode & Rechazar eliminación de lote no existente & \testSuccess \\
+76 & ProductBottlesBatchContract - deleteTrackingCode & Rechazar eliminación de lote vendido & \testSuccess \\
+77 & ProductBottlesBatchContract - getProductBottlesList & Recuperar lista de lotes de botellas & \testSuccess \\
+78 & ProductBottlesBatchContract - getProductBottlesList & Retornar arreglo vacío si no se proporcionan índices & \testSuccess \\
+79 & ProductBottlesBatchContract - getProductBottlesList & Manejar IDs no existentes correctamente & \testSuccess \\
+80 & ProductBottlesBatchContract - recycleProductBottles & Reciclar botellas correctamente & \testSuccess \\
+81 & ProductBottlesBatchContract - recycleProductBottles & Rechazar reciclaje de más botellas que las disponibles & \testSuccess \\
+82 & ProductBottlesBatchContract - sellProductBottle & Vender botellas correctamente & \testSuccess \\
+83 & ProductBottlesBatchContract - sellProductBottle & Rechazar venta de más botellas que las disponibles & \testSuccess \\
+84 & ProductBottlesBatchContract - getProductBottleByCode & Recuperar lote por código de seguimiento & \testSuccess \\
+85 & ProductBottlesBatchContract - getProductBottleByCode & Rechazar cuando el código no existe & \testSuccess \\
+86 & ProductBottlesBatchContract - rejectBottle & Rechazar lote de botellas base & \testSuccess \\
+87 & ProductBottlesBatchContract - rejectBottle & Rechazar rechazo de lote ya rechazado/eliminado & \testSuccess \\
+88 & ProductBottlesBatchContract - rejectBottle & Rechazar actualización de código de lote ya rechazado/eliminado & \testSuccess \\
+89 & ProductBottlesBatchContract - rejectBottle & Rechazar eliminación de código de lote ya rechazado/eliminado & \testSuccess \\
+90 & ProductBottlesBatchContract - rejectBottle & Rechazar reciclaje de lote ya rechazado/eliminado & \testSuccess \\
+91 & ProductBottlesBatchContract - rejectBottle & Rechazar venta de lote ya rechazado/eliminado & \testSuccess \\
+92 & ProductBottlesBatchContract - onlyContractOwner & Rechazar setBaseBottlesBatchContract por no ser propietario & \testSuccess \\
+93 & ProductBottlesBatchContract - onlyContractOwner & Rechazar createProductBottlesBatch por no ser propietario & \testSuccess \\
+94 & ProductBottlesBatchContract - onlyContractOwner & Rechazar updateTrackingCode por no ser propietario & \testSuccess \\
+95 & ProductBottlesBatchContract - onlyContractOwner & Rechazar deleteTrackingCode por no ser propietario & \testSuccess \\
+96 & ProductBottlesBatchContract - onlyContractOwner & Rechazar rejectBaseBottles por no ser propietario & \testSuccess \\
+97 & ProductBottlesBatchContract - onlyContractOwner & Rechazar recycleProductBottles por no ser propietario & \testSuccess \\
+98 & ProductBottlesBatchContract - onlyContractOwner & Rechazar sellProductBottle por no ser propietario & \testSuccess \\
+\end{xltabular}
 
+\begin{xltabular}{\textwidth}{@{} L{0.8cm} L{2.5cm} L{0.8cm} L{4cm} L{2cm} @{}}
+	\caption{Resumen de pruebas unitarias realizadas sobre la API backend}
+	\label{tab:unit-tests-backend}\\
+	\toprule
+	# & Módulo & Tests & Descripción & Resultado \\
+	\midrule
+\endfirsthead
+
+\toprule
+# & Módulo & Tests & Descripción & Resultado \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{5}{r}{\footnotesize Continúa en la siguiente página}
+\\\bottomrule
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+1 & Tracking API & 33 & Endpoints para seguimiento público de productos, lotes base, lotes de productos, botellas de residuo y lotes de reciclaje & \testSuccess \\
+2 & Consumer API & 41 & Gestión de botellas de residuo, consulta de origen de productos, gestión de recicladores y operaciones de consumidor & \testSuccess \\
+3 & Secondary Producer API & 44 & Gestión de lotes de productos secundarios, códigos de seguimiento, reciclaje y venta de productos & \testSuccess \\
+4 & Producer API & 54 & Gestión de lotes de botellas base, operaciones CRUD, venta, reciclaje y consulta de compradores & \testSuccess \\
+5 & Helpers & 36 & Utilidades auxiliares: autenticación Firebase, interacción blockchain, variables de entorno, logging, middleware y validaciones & \testSuccess \\
+6 & App Setup & 2 & Configuración y manejo de excepciones de la aplicación & \testSuccess \\
+7 & Auth API & 12 & Registro de usuarios, autenticación, gestión de perfiles y filtrado por roles & \testSuccess \\
+8 & Recycler API & 95 & Gestión completa de reciclaje: seguimiento de botellas, creación y gestión de lotes, asignación de botellas y ventas & \testSuccess \\
 
 \end{xltabular}
 
