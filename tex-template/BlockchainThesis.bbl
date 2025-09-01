@@ -591,60 +591,43 @@
       \verb https://www.verallia.com/re-use/en/publication/contents/templates/VERALLIA_WHITE-BOOK_EN.pdf
       \endverb
     \endentry
-    \entry{pending}{misc}{}
-      \name{author}{1}{}{%
-        {{hash=88183b946cc5f0e8c96b2e66e1c74a7e}{%
-           family={Unknown},
-           familyi={U\bibinitperiod}}}%
+    \entry{tripathi2023comprehensive}{article}{}
+      \name{author}{3}{}{%
+        {{hash=c8ff5d61b0ebdc57484cf282be6b4438}{%
+           family={Tripathi},
+           familyi={T\bibinitperiod},
+           given={Gautami},
+           giveni={G\bibinitperiod}}}%
+        {{hash=c26d97f29f8b14ad88300bc4d8432cc4}{%
+           family={Ahad},
+           familyi={A\bibinitperiod},
+           given={Mohd\bibnamedelima Abdul},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=25915f48b083b304205d95994b4ef3fd}{%
+           family={Casalino},
+           familyi={C\bibinitperiod},
+           given={Gabriella},
+           giveni={G\bibinitperiod}}}%
       }
-      \strng{namehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
-      \strng{fullhash}{88183b946cc5f0e8c96b2e66e1c74a7e}
-      \strng{bibnamehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
-      \strng{authorbibnamehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
-      \strng{authornamehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
-      \strng{authorfullhash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{f179015189ebca7dc123d3cf248abd1c}
+      \strng{fullhash}{451b636396d8becf6716c9dc966ba8ce}
+      \strng{bibnamehash}{f179015189ebca7dc123d3cf248abd1c}
+      \strng{authorbibnamehash}{f179015189ebca7dc123d3cf248abd1c}
+      \strng{authornamehash}{f179015189ebca7dc123d3cf248abd1c}
+      \strng{authorfullhash}{451b636396d8becf6716c9dc966ba8ce}
       \field{sortinit}{2}
       \field{sortinithash}{cbff857e587bcb4635511624d773949e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{month}{7}
-      \field{title}{Pending Reference}
-      \field{year}{2025}
-      \verb{urlraw}
-      \verb https://google.com
-      \endverb
-      \verb{url}
-      \verb https://google.com
-      \endverb
-    \endentry
-    \entry{satoshi2008bitcoin}{misc}{}
-      \name{author}{1}{}{%
-        {{hash=1977190f018b398e43ede3de043de8ea}{%
-           family={Nakamoto},
-           familyi={N\bibinitperiod},
-           given={Satoshi},
-           giveni={S\bibinitperiod}}}%
-      }
-      \strng{namehash}{1977190f018b398e43ede3de043de8ea}
-      \strng{fullhash}{1977190f018b398e43ede3de043de8ea}
-      \strng{bibnamehash}{1977190f018b398e43ede3de043de8ea}
-      \strng{authorbibnamehash}{1977190f018b398e43ede3de043de8ea}
-      \strng{authornamehash}{1977190f018b398e43ede3de043de8ea}
-      \strng{authorfullhash}{1977190f018b398e43ede3de043de8ea}
-      \field{sortinit}{2}
-      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{month}{10}
-      \field{note}{Original Bitcoin whitepaper}
-      \field{title}{Bitcoin: A Peer-to-Peer Electronic Cash System}
-      \field{year}{2008}
-      \verb{urlraw}
-      \verb https://bitcoin.org/bitcoin.pdf
-      \endverb
-      \verb{url}
-      \verb https://bitcoin.org/bitcoin.pdf
-      \endverb
+      \field{journaltitle}{Decision Analytics Journal}
+      \field{title}{A comprehensive review of blockchain technology: Underlying principles and historical background with future challenges}
+      \field{volume}{9}
+      \field{year}{2023}
+      \field{pages}{100344}
+      \range{pages}{1}
     \endentry
     \entry{sunny2022systematic}{article}{}
       \name{author}{7}{}{%
@@ -704,126 +687,6 @@
       \field{pages}{59155\bibrangedash 59177}
       \range{pages}{23}
     \endentry
-    \entry{tripathi2023comprehensive}{article}{}
-      \name{author}{3}{}{%
-        {{hash=c8ff5d61b0ebdc57484cf282be6b4438}{%
-           family={Tripathi},
-           familyi={T\bibinitperiod},
-           given={Gautami},
-           giveni={G\bibinitperiod}}}%
-        {{hash=c26d97f29f8b14ad88300bc4d8432cc4}{%
-           family={Ahad},
-           familyi={A\bibinitperiod},
-           given={Mohd\bibnamedelima Abdul},
-           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-        {{hash=25915f48b083b304205d95994b4ef3fd}{%
-           family={Casalino},
-           familyi={C\bibinitperiod},
-           given={Gabriella},
-           giveni={G\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Elsevier}%
-      }
-      \strng{namehash}{f179015189ebca7dc123d3cf248abd1c}
-      \strng{fullhash}{451b636396d8becf6716c9dc966ba8ce}
-      \strng{bibnamehash}{f179015189ebca7dc123d3cf248abd1c}
-      \strng{authorbibnamehash}{f179015189ebca7dc123d3cf248abd1c}
-      \strng{authornamehash}{f179015189ebca7dc123d3cf248abd1c}
-      \strng{authorfullhash}{451b636396d8becf6716c9dc966ba8ce}
-      \field{sortinit}{2}
-      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Decision Analytics Journal}
-      \field{title}{A comprehensive review of blockchain technology: Underlying principles and historical background with future challenges}
-      \field{volume}{9}
-      \field{year}{2023}
-      \field{pages}{100344}
-      \range{pages}{1}
-    \endentry
-    \entry{buterin2013ethereum}{article}{}
-      \true{moreauthor}
-      \true{morelabelname}
-      \name{author}{1}{}{%
-        {{hash=850981945102d0f671b6762173c8988a}{%
-           family={Buterin},
-           familyi={B\bibinitperiod},
-           given={Vitalik},
-           giveni={V\bibinitperiod}}}%
-      }
-      \strng{namehash}{fa265b80691610b5092f93ae4a80f9b7}
-      \strng{fullhash}{fa265b80691610b5092f93ae4a80f9b7}
-      \strng{bibnamehash}{fa265b80691610b5092f93ae4a80f9b7}
-      \strng{authorbibnamehash}{fa265b80691610b5092f93ae4a80f9b7}
-      \strng{authornamehash}{fa265b80691610b5092f93ae4a80f9b7}
-      \strng{authorfullhash}{fa265b80691610b5092f93ae4a80f9b7}
-      \field{sortinit}{3}
-      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{GitHub repository}
-      \field{title}{Ethereum white paper}
-      \field{volume}{1}
-      \field{year}{2013}
-      \field{pages}{22\bibrangedash 23}
-      \range{pages}{2}
-    \endentry
-    \entry{bartolomeo2020introduccion}{article}{}
-      \name{author}{2}{}{%
-        {{hash=23e1b38ff497404f4744c6ba799da498}{%
-           family={Bartolomeo},
-           familyi={B\bibinitperiod},
-           given={Alejandro},
-           giveni={A\bibinitperiod}}}%
-        {{hash=6d0fcc12bc9f01f443b51214f861d589}{%
-           family={Machin\bibnamedelima Urbay},
-           familyi={M\bibinitperiod\bibinitdelim U\bibinitperiod},
-           given={Gustavo},
-           giveni={G\bibinitperiod}}}%
-      }
-      \strng{namehash}{c32e8c916e568481e164bf64b668a76a}
-      \strng{fullhash}{e3d2a66ee920009c2974bca5b7b0509e}
-      \strng{bibnamehash}{c32e8c916e568481e164bf64b668a76a}
-      \strng{authorbibnamehash}{c32e8c916e568481e164bf64b668a76a}
-      \strng{authornamehash}{c32e8c916e568481e164bf64b668a76a}
-      \strng{authorfullhash}{e3d2a66ee920009c2974bca5b7b0509e}
-      \field{sortinit}{3}
-      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Ponencia presentada en Jornadas de Ciencias Econ{ó}micas. Buenos Aires}
-      \field{number}{8}
-      \field{title}{Introducci{ó}n a la tecnolog{ı́}a blockchain: su impacto en las Ciencias Econ{ó}micas}
-      \field{volume}{7}
-      \field{year}{2020}
-    \endentry
-    \entry{verma2023overview}{article}{}
-      \name{author}{1}{}{%
-        {{hash=d3e416d70a00d06c53df9dee45edef95}{%
-           family={Verma},
-           familyi={V\bibinitperiod},
-           given={V},
-           giveni={V\bibinitperiod}}}%
-      }
-      \strng{namehash}{d3e416d70a00d06c53df9dee45edef95}
-      \strng{fullhash}{d3e416d70a00d06c53df9dee45edef95}
-      \strng{bibnamehash}{d3e416d70a00d06c53df9dee45edef95}
-      \strng{authorbibnamehash}{d3e416d70a00d06c53df9dee45edef95}
-      \strng{authornamehash}{d3e416d70a00d06c53df9dee45edef95}
-      \strng{authorfullhash}{d3e416d70a00d06c53df9dee45edef95}
-      \field{sortinit}{4}
-      \field{sortinithash}{11cdaee3b18e01d77f3f428b13c1fc76}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Eduzone: International Peer Reviewed/Refereed Multidisciplinary Journal}
-      \field{number}{1}
-      \field{title}{An overview of Blockchain Technology: Past \& Future}
-      \field{volume}{12}
-      \field{year}{2023}
-      \field{pages}{100\bibrangedash 104}
-      \range{pages}{5}
-    \endentry
     \entry{taherdoost2023smart}{article}{}
       \name{author}{1}{}{%
         {{hash=ba45d2c436f47b89738118d7175d44da}{%
@@ -841,8 +704,8 @@
       \strng{authorbibnamehash}{ba45d2c436f47b89738118d7175d44da}
       \strng{authornamehash}{ba45d2c436f47b89738118d7175d44da}
       \strng{authorfullhash}{ba45d2c436f47b89738118d7175d44da}
-      \field{sortinit}{4}
-      \field{sortinithash}{11cdaee3b18e01d77f3f428b13c1fc76}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Information}
@@ -853,150 +716,65 @@
       \field{pages}{117}
       \range{pages}{1}
     \endentry
-    \entry{kalajdjieski2023databases}{article}{}
-      \name{author}{5}{}{%
-        {{hash=0184ee8991f7c6fbd4cc32f0f1bd10d5}{%
-           family={Kalajdjieski},
-           familyi={K\bibinitperiod},
-           given={Jovan},
-           giveni={J\bibinitperiod}}}%
-        {{hash=2d501ceb3a4927042d80a125cc6e3366}{%
-           family={Raikwar},
-           familyi={R\bibinitperiod},
-           given={Mayank},
-           giveni={M\bibinitperiod}}}%
-        {{hash=26a91a6d016a16c1cab0082c4e68b73e}{%
-           family={Arsov},
-           familyi={A\bibinitperiod},
-           given={Nino},
-           giveni={N\bibinitperiod}}}%
-        {{hash=56cb73ef263da574c629254240224123}{%
-           family={Velinov},
-           familyi={V\bibinitperiod},
-           given={Goran},
-           giveni={G\bibinitperiod}}}%
-        {{hash=4254bfd2d824a0bc08e83eeab7e36be6}{%
-           family={Gligoroski},
-           familyi={G\bibinitperiod},
-           given={Danilo},
-           giveni={D\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Elsevier}%
-      }
-      \strng{namehash}{3f763305af589f1b30e2d646ddbf40d5}
-      \strng{fullhash}{decb2243419d274d2f704ec60eabb34b}
-      \strng{bibnamehash}{3f763305af589f1b30e2d646ddbf40d5}
-      \strng{authorbibnamehash}{3f763305af589f1b30e2d646ddbf40d5}
-      \strng{authornamehash}{3f763305af589f1b30e2d646ddbf40d5}
-      \strng{authorfullhash}{decb2243419d274d2f704ec60eabb34b}
-      \field{sortinit}{4}
-      \field{sortinithash}{11cdaee3b18e01d77f3f428b13c1fc76}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Blockchain: Research and Applications}
-      \field{number}{1}
-      \field{title}{Databases fit for blockchain technology: A complete overview}
-      \field{volume}{4}
-      \field{year}{2023}
-      \field{pages}{100116}
-      \range{pages}{1}
-    \endentry
-    \entry{hoskinson2017we}{article}{}
+    \entry{ellenmacarthurfoundation2022}{online}{}
       \name{author}{1}{}{%
-        {{hash=4d83bc323808a449cc1eb292a8bdf5eb}{%
-           family={Hoskinson},
-           familyi={H\bibinitperiod},
-           given={Charles},
-           giveni={C\bibinitperiod}}}%
+        {{hash=655100dd9281a113f69cd0c6d3b53fd8}{%
+           family={Foundation},
+           familyi={F\bibinitperiod},
+           given={Ellen\bibnamedelima MacArthur},
+           giveni={E\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
       }
-      \strng{namehash}{4d83bc323808a449cc1eb292a8bdf5eb}
-      \strng{fullhash}{4d83bc323808a449cc1eb292a8bdf5eb}
-      \strng{bibnamehash}{4d83bc323808a449cc1eb292a8bdf5eb}
-      \strng{authorbibnamehash}{4d83bc323808a449cc1eb292a8bdf5eb}
-      \strng{authornamehash}{4d83bc323808a449cc1eb292a8bdf5eb}
-      \strng{authorfullhash}{4d83bc323808a449cc1eb292a8bdf5eb}
-      \field{sortinit}{5}
-      \field{sortinithash}{3c19c3776b658b3558e9e2e4840c01e2}
+      \strng{namehash}{655100dd9281a113f69cd0c6d3b53fd8}
+      \strng{fullhash}{655100dd9281a113f69cd0c6d3b53fd8}
+      \strng{bibnamehash}{655100dd9281a113f69cd0c6d3b53fd8}
+      \strng{authorbibnamehash}{655100dd9281a113f69cd0c6d3b53fd8}
+      \strng{authornamehash}{655100dd9281a113f69cd0c6d3b53fd8}
+      \strng{authorfullhash}{655100dd9281a113f69cd0c6d3b53fd8}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{IOHK (accessed 18 December 2017) https://whycardano. com}
-      \field{title}{Why we are building Cardano}
-      \field{year}{2017}
+      \field{title}{What is a circular economy?}
+      \field{urlday}{25}
+      \field{urlmonth}{6}
+      \field{urlyear}{2024}
+      \field{year}{2014}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.ellenmacarthurfoundation.org/topics/circular-economy-introduction/overview
+      \endverb
+      \verb{url}
+      \verb https://www.ellenmacarthurfoundation.org/topics/circular-economy-introduction/overview
+      \endverb
     \endentry
-    \entry{vaigandla2023review}{article}{}
-      \name{author}{4}{}{%
-        {{hash=049ebd115cf83521c62b6cd021fd9b12}{%
-           family={Vaigandla},
-           familyi={V\bibinitperiod},
-           given={Karthik\bibnamedelima Kumar},
-           giveni={K\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
-        {{hash=e39388ac0085c18e06d279c42b836c07}{%
-           family={Karne},
-           familyi={K\bibinitperiod},
-           given={RadhaKrishna},
-           giveni={R\bibinitperiod}}}%
-        {{hash=1c3624728e7f370632946c21606cad41}{%
-           family={Siluveru},
-           familyi={S\bibinitperiod},
-           given={Mounika},
-           giveni={M\bibinitperiod}}}%
-        {{hash=cf1812b52e761425133f6ac13389e483}{%
-           family={Kesoju},
-           familyi={K\bibinitperiod},
-           given={Madhavi},
-           giveni={M\bibinitperiod}}}%
+    \entry{vidriotransparente2024mendoza}{online}{}
+      \name{author}{1}{}{%
+        {{hash=90a3d69a8e8af4c5434a395e3bb6f49d}{%
+           family={Verallia},
+           familyi={V\bibinitperiod}}}%
       }
-      \strng{namehash}{e3ad34c3d3e10b6b6ffa6907e79a6e58}
-      \strng{fullhash}{3faa1671ac45a9026d0ce8bf36088ca6}
-      \strng{bibnamehash}{e3ad34c3d3e10b6b6ffa6907e79a6e58}
-      \strng{authorbibnamehash}{e3ad34c3d3e10b6b6ffa6907e79a6e58}
-      \strng{authornamehash}{e3ad34c3d3e10b6b6ffa6907e79a6e58}
-      \strng{authorfullhash}{3faa1671ac45a9026d0ce8bf36088ca6}
-      \field{sortinit}{5}
-      \field{sortinithash}{3c19c3776b658b3558e9e2e4840c01e2}
+      \strng{namehash}{90a3d69a8e8af4c5434a395e3bb6f49d}
+      \strng{fullhash}{90a3d69a8e8af4c5434a395e3bb6f49d}
+      \strng{bibnamehash}{90a3d69a8e8af4c5434a395e3bb6f49d}
+      \strng{authorbibnamehash}{90a3d69a8e8af4c5434a395e3bb6f49d}
+      \strng{authornamehash}{90a3d69a8e8af4c5434a395e3bb6f49d}
+      \strng{authorfullhash}{90a3d69a8e8af4c5434a395e3bb6f49d}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Mesopotamian Journal of CyberSecurity}
-      \field{title}{Review on blockchain technology: architecture, characteristics, benefits, algorithms, challenges and applications}
-      \field{volume}{2023}
-      \field{year}{2023}
-      \field{pages}{73\bibrangedash 84}
-      \range{pages}{12}
-    \endentry
-    \entry{sharabati2024blockchain}{article}{}
-      \name{author}{2}{}{%
-        {{hash=9fd9bb78442ad17b1ba6b28e8bd4073f}{%
-           family={Sharabati},
-           familyi={S\bibinitperiod},
-           given={Abdel-Aziz\bibnamedelima Ahmad},
-           giveni={A\bibinithyphendelim A\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-        {{hash=8dc3b5e0c32c12e6bf7d9d9aed93cd66}{%
-           family={Jreisat},
-           familyi={J\bibinitperiod},
-           given={Elias\bibnamedelima Radi},
-           giveni={E\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {MDPI}%
-      }
-      \strng{namehash}{d7bb82c544326c6fbda70f21ba5b1069}
-      \strng{fullhash}{c90077d38e3e92b09f72a85214d88089}
-      \strng{bibnamehash}{d7bb82c544326c6fbda70f21ba5b1069}
-      \strng{authorbibnamehash}{d7bb82c544326c6fbda70f21ba5b1069}
-      \strng{authornamehash}{d7bb82c544326c6fbda70f21ba5b1069}
-      \strng{authorfullhash}{c90077d38e3e92b09f72a85214d88089}
-      \field{sortinit}{5}
-      \field{sortinithash}{3c19c3776b658b3558e9e2e4840c01e2}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Sustainability}
-      \field{number}{7}
-      \field{title}{Blockchain technology implementation in supply chain management: a literature review}
-      \field{volume}{16}
+      \field{title}{Vidrio, una acción transparente}
+      \field{urlday}{9}
+      \field{urlmonth}{7}
+      \field{urlyear}{2024}
       \field{year}{2024}
-      \field{pages}{2823}
-      \range{pages}{1}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://ar.verallia.com/s/vidrio-une-accion-transparente?language=es_AR
+      \endverb
+      \verb{url}
+      \verb https://ar.verallia.com/s/vidrio-une-accion-transparente?language=es_AR
+      \endverb
     \endentry
     \entry{rejeb2023role}{article}{}
       \name{author}{6}{}{%
@@ -1040,8 +818,8 @@
       \strng{authorbibnamehash}{466cf21884c9669e0b84a0d43df5f899}
       \strng{authornamehash}{466cf21884c9669e0b84a0d43df5f899}
       \strng{authorfullhash}{4b849fbff060db28cb49f14e5c2ca2be}
-      \field{sortinit}{5}
-      \field{sortinithash}{3c19c3776b658b3558e9e2e4840c01e2}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Resources, Conservation \& Recycling Advances}
@@ -1049,6 +827,330 @@
       \field{volume}{17}
       \field{year}{2023}
       \field{pages}{200126}
+      \range{pages}{1}
+    \endentry
+    \entry{satoshi2008bitcoin}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=1977190f018b398e43ede3de043de8ea}{%
+           family={Nakamoto},
+           familyi={N\bibinitperiod},
+           given={Satoshi},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{1977190f018b398e43ede3de043de8ea}
+      \strng{fullhash}{1977190f018b398e43ede3de043de8ea}
+      \strng{bibnamehash}{1977190f018b398e43ede3de043de8ea}
+      \strng{authorbibnamehash}{1977190f018b398e43ede3de043de8ea}
+      \strng{authornamehash}{1977190f018b398e43ede3de043de8ea}
+      \strng{authorfullhash}{1977190f018b398e43ede3de043de8ea}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{10}
+      \field{note}{Original Bitcoin whitepaper}
+      \field{title}{Bitcoin: A Peer-to-Peer Electronic Cash System}
+      \field{year}{2008}
+      \verb{urlraw}
+      \verb https://bitcoin.org/bitcoin.pdf
+      \endverb
+      \verb{url}
+      \verb https://bitcoin.org/bitcoin.pdf
+      \endverb
+    \endentry
+    \entry{pending}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=88183b946cc5f0e8c96b2e66e1c74a7e}{%
+           family={Unknown},
+           familyi={U\bibinitperiod}}}%
+      }
+      \strng{namehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{fullhash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{bibnamehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{authorbibnamehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{authornamehash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \strng{authorfullhash}{88183b946cc5f0e8c96b2e66e1c74a7e}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{7}
+      \field{title}{Pending Reference}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb https://google.com
+      \endverb
+      \verb{url}
+      \verb https://google.com
+      \endverb
+    \endentry
+    \entry{gunawan2024review}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=c639e3613a2385016bff986265ab4b78}{%
+           family={Gunawan},
+           familyi={G\bibinitperiod},
+           given={Ali},
+           giveni={A\bibinitperiod}}}%
+        {{hash=66891d86ed3a7f9cd79beb76a8e58fe5}{%
+           family={Richard},
+           familyi={R\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod}}}%
+        {{hash=f969fd47b86c0167c77fbba8f5bd5d2d}{%
+           family={Chang},
+           familyi={C\bibinitperiod},
+           given={Sinclair\bibnamedelima Claus},
+           giveni={S\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=cb8286674a19ac1ec58dd7e136218bb7}{%
+           family={Shilvi},
+           familyi={S\bibinitperiod},
+           given={Shilvi},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {AIP Publishing}%
+      }
+      \strng{namehash}{6dfdefdb4d55b2bb2b0a6f455170b8f4}
+      \strng{fullhash}{fc0189b625fabebe37c659a50f039d9a}
+      \strng{bibnamehash}{6dfdefdb4d55b2bb2b0a6f455170b8f4}
+      \strng{authorbibnamehash}{6dfdefdb4d55b2bb2b0a6f455170b8f4}
+      \strng{authornamehash}{6dfdefdb4d55b2bb2b0a6f455170b8f4}
+      \strng{authorfullhash}{fc0189b625fabebe37c659a50f039d9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{a4b52e5432884761f50fb9571273b93e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{AIP Conference Proceedings}
+      \field{number}{1}
+      \field{title}{A review of data security of blockchain applications in social media}
+      \field{volume}{3026}
+      \field{year}{2024}
+    \endentry
+    \entry{buterin2013ethereum}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=850981945102d0f671b6762173c8988a}{%
+           family={Buterin},
+           familyi={B\bibinitperiod},
+           given={Vitalik},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{fa265b80691610b5092f93ae4a80f9b7}
+      \strng{fullhash}{fa265b80691610b5092f93ae4a80f9b7}
+      \strng{bibnamehash}{fa265b80691610b5092f93ae4a80f9b7}
+      \strng{authorbibnamehash}{fa265b80691610b5092f93ae4a80f9b7}
+      \strng{authornamehash}{fa265b80691610b5092f93ae4a80f9b7}
+      \strng{authorfullhash}{fa265b80691610b5092f93ae4a80f9b7}
+      \field{sortinit}{5}
+      \field{sortinithash}{3c19c3776b658b3558e9e2e4840c01e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{GitHub repository}
+      \field{title}{Ethereum white paper}
+      \field{volume}{1}
+      \field{year}{2013}
+      \field{pages}{22\bibrangedash 23}
+      \range{pages}{2}
+    \endentry
+    \entry{bartolomeo2020introduccion}{article}{}
+      \name{author}{2}{}{%
+        {{hash=23e1b38ff497404f4744c6ba799da498}{%
+           family={Bartolomeo},
+           familyi={B\bibinitperiod},
+           given={Alejandro},
+           giveni={A\bibinitperiod}}}%
+        {{hash=6d0fcc12bc9f01f443b51214f861d589}{%
+           family={Machin\bibnamedelima Urbay},
+           familyi={M\bibinitperiod\bibinitdelim U\bibinitperiod},
+           given={Gustavo},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{c32e8c916e568481e164bf64b668a76a}
+      \strng{fullhash}{e3d2a66ee920009c2974bca5b7b0509e}
+      \strng{bibnamehash}{c32e8c916e568481e164bf64b668a76a}
+      \strng{authorbibnamehash}{c32e8c916e568481e164bf64b668a76a}
+      \strng{authornamehash}{c32e8c916e568481e164bf64b668a76a}
+      \strng{authorfullhash}{e3d2a66ee920009c2974bca5b7b0509e}
+      \field{sortinit}{5}
+      \field{sortinithash}{3c19c3776b658b3558e9e2e4840c01e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Ponencia presentada en Jornadas de Ciencias Econ{ó}micas. Buenos Aires}
+      \field{number}{8}
+      \field{title}{Introducci{ó}n a la tecnolog{ı́}a blockchain: su impacto en las Ciencias Econ{ó}micas}
+      \field{volume}{7}
+      \field{year}{2020}
+    \endentry
+    \entry{verma2023overview}{article}{}
+      \name{author}{1}{}{%
+        {{hash=d3e416d70a00d06c53df9dee45edef95}{%
+           family={Verma},
+           familyi={V\bibinitperiod},
+           given={V},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{d3e416d70a00d06c53df9dee45edef95}
+      \strng{fullhash}{d3e416d70a00d06c53df9dee45edef95}
+      \strng{bibnamehash}{d3e416d70a00d06c53df9dee45edef95}
+      \strng{authorbibnamehash}{d3e416d70a00d06c53df9dee45edef95}
+      \strng{authornamehash}{d3e416d70a00d06c53df9dee45edef95}
+      \strng{authorfullhash}{d3e416d70a00d06c53df9dee45edef95}
+      \field{sortinit}{5}
+      \field{sortinithash}{3c19c3776b658b3558e9e2e4840c01e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Eduzone: International Peer Reviewed/Refereed Multidisciplinary Journal}
+      \field{number}{1}
+      \field{title}{An overview of Blockchain Technology: Past \& Future}
+      \field{volume}{12}
+      \field{year}{2023}
+      \field{pages}{100\bibrangedash 104}
+      \range{pages}{5}
+    \endentry
+    \entry{kalajdjieski2023databases}{article}{}
+      \name{author}{5}{}{%
+        {{hash=0184ee8991f7c6fbd4cc32f0f1bd10d5}{%
+           family={Kalajdjieski},
+           familyi={K\bibinitperiod},
+           given={Jovan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=2d501ceb3a4927042d80a125cc6e3366}{%
+           family={Raikwar},
+           familyi={R\bibinitperiod},
+           given={Mayank},
+           giveni={M\bibinitperiod}}}%
+        {{hash=26a91a6d016a16c1cab0082c4e68b73e}{%
+           family={Arsov},
+           familyi={A\bibinitperiod},
+           given={Nino},
+           giveni={N\bibinitperiod}}}%
+        {{hash=56cb73ef263da574c629254240224123}{%
+           family={Velinov},
+           familyi={V\bibinitperiod},
+           given={Goran},
+           giveni={G\bibinitperiod}}}%
+        {{hash=4254bfd2d824a0bc08e83eeab7e36be6}{%
+           family={Gligoroski},
+           familyi={G\bibinitperiod},
+           given={Danilo},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{3f763305af589f1b30e2d646ddbf40d5}
+      \strng{fullhash}{decb2243419d274d2f704ec60eabb34b}
+      \strng{bibnamehash}{3f763305af589f1b30e2d646ddbf40d5}
+      \strng{authorbibnamehash}{3f763305af589f1b30e2d646ddbf40d5}
+      \strng{authornamehash}{3f763305af589f1b30e2d646ddbf40d5}
+      \strng{authorfullhash}{decb2243419d274d2f704ec60eabb34b}
+      \field{sortinit}{6}
+      \field{sortinithash}{57e57fb8451e7fcfa45d1e069f6d3136}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Blockchain: Research and Applications}
+      \field{number}{1}
+      \field{title}{Databases fit for blockchain technology: A complete overview}
+      \field{volume}{4}
+      \field{year}{2023}
+      \field{pages}{100116}
+      \range{pages}{1}
+    \endentry
+    \entry{hoskinson2017we}{article}{}
+      \name{author}{1}{}{%
+        {{hash=4d83bc323808a449cc1eb292a8bdf5eb}{%
+           family={Hoskinson},
+           familyi={H\bibinitperiod},
+           given={Charles},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{4d83bc323808a449cc1eb292a8bdf5eb}
+      \strng{fullhash}{4d83bc323808a449cc1eb292a8bdf5eb}
+      \strng{bibnamehash}{4d83bc323808a449cc1eb292a8bdf5eb}
+      \strng{authorbibnamehash}{4d83bc323808a449cc1eb292a8bdf5eb}
+      \strng{authornamehash}{4d83bc323808a449cc1eb292a8bdf5eb}
+      \strng{authorfullhash}{4d83bc323808a449cc1eb292a8bdf5eb}
+      \field{sortinit}{6}
+      \field{sortinithash}{57e57fb8451e7fcfa45d1e069f6d3136}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IOHK (accessed 18 December 2017) https://whycardano. com}
+      \field{title}{Why we are building Cardano}
+      \field{year}{2017}
+    \endentry
+    \entry{vaigandla2023review}{article}{}
+      \name{author}{4}{}{%
+        {{hash=049ebd115cf83521c62b6cd021fd9b12}{%
+           family={Vaigandla},
+           familyi={V\bibinitperiod},
+           given={Karthik\bibnamedelima Kumar},
+           giveni={K\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=e39388ac0085c18e06d279c42b836c07}{%
+           family={Karne},
+           familyi={K\bibinitperiod},
+           given={RadhaKrishna},
+           giveni={R\bibinitperiod}}}%
+        {{hash=1c3624728e7f370632946c21606cad41}{%
+           family={Siluveru},
+           familyi={S\bibinitperiod},
+           given={Mounika},
+           giveni={M\bibinitperiod}}}%
+        {{hash=cf1812b52e761425133f6ac13389e483}{%
+           family={Kesoju},
+           familyi={K\bibinitperiod},
+           given={Madhavi},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{e3ad34c3d3e10b6b6ffa6907e79a6e58}
+      \strng{fullhash}{3faa1671ac45a9026d0ce8bf36088ca6}
+      \strng{bibnamehash}{e3ad34c3d3e10b6b6ffa6907e79a6e58}
+      \strng{authorbibnamehash}{e3ad34c3d3e10b6b6ffa6907e79a6e58}
+      \strng{authornamehash}{e3ad34c3d3e10b6b6ffa6907e79a6e58}
+      \strng{authorfullhash}{3faa1671ac45a9026d0ce8bf36088ca6}
+      \field{sortinit}{7}
+      \field{sortinithash}{c818dd9105a2852444fc9f5e145c294e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mesopotamian Journal of CyberSecurity}
+      \field{title}{Review on blockchain technology: architecture, characteristics, benefits, algorithms, challenges and applications}
+      \field{volume}{2023}
+      \field{year}{2023}
+      \field{pages}{73\bibrangedash 84}
+      \range{pages}{12}
+    \endentry
+    \entry{sharabati2024blockchain}{article}{}
+      \name{author}{2}{}{%
+        {{hash=9fd9bb78442ad17b1ba6b28e8bd4073f}{%
+           family={Sharabati},
+           familyi={S\bibinitperiod},
+           given={Abdel-Aziz\bibnamedelima Ahmad},
+           giveni={A\bibinithyphendelim A\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=8dc3b5e0c32c12e6bf7d9d9aed93cd66}{%
+           family={Jreisat},
+           familyi={J\bibinitperiod},
+           given={Elias\bibnamedelima Radi},
+           giveni={E\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MDPI}%
+      }
+      \strng{namehash}{d7bb82c544326c6fbda70f21ba5b1069}
+      \strng{fullhash}{c90077d38e3e92b09f72a85214d88089}
+      \strng{bibnamehash}{d7bb82c544326c6fbda70f21ba5b1069}
+      \strng{authorbibnamehash}{d7bb82c544326c6fbda70f21ba5b1069}
+      \strng{authornamehash}{d7bb82c544326c6fbda70f21ba5b1069}
+      \strng{authorfullhash}{c90077d38e3e92b09f72a85214d88089}
+      \field{sortinit}{7}
+      \field{sortinithash}{c818dd9105a2852444fc9f5e145c294e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Sustainability}
+      \field{number}{7}
+      \field{title}{Blockchain technology implementation in supply chain management: a literature review}
+      \field{volume}{16}
+      \field{year}{2024}
+      \field{pages}{2823}
       \range{pages}{1}
     \endentry
     \entry{diez2023web}{article}{}
@@ -1067,8 +1169,8 @@
       \strng{authorbibnamehash}{a7e1d0279d48ca826793cabda402d2c3}
       \strng{authornamehash}{a7e1d0279d48ca826793cabda402d2c3}
       \strng{authorfullhash}{a7e1d0279d48ca826793cabda402d2c3}
-      \field{sortinit}{7}
-      \field{sortinithash}{c818dd9105a2852444fc9f5e145c294e}
+      \field{sortinit}{8}
+      \field{sortinithash}{07edf88d4ea82509b9c4b4d13f41c452}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Web 3.0 y Blockchain en la Educaci{ó}n Secundaria}
@@ -1098,8 +1200,8 @@
       \strng{authorbibnamehash}{1af577f2d545d0e62ef027ca6cee7eef}
       \strng{authornamehash}{1af577f2d545d0e62ef027ca6cee7eef}
       \strng{authorfullhash}{48850fbb7a2373e2de7fdf29a2304cbc}
-      \field{sortinit}{7}
-      \field{sortinithash}{c818dd9105a2852444fc9f5e145c294e}
+      \field{sortinit}{8}
+      \field{sortinithash}{07edf88d4ea82509b9c4b4d13f41c452}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Practical Law Litigation}
@@ -1131,8 +1233,8 @@
       \strng{authorbibnamehash}{e1c8f9a3a00a82855de35d8d6817810f}
       \strng{authornamehash}{e1c8f9a3a00a82855de35d8d6817810f}
       \strng{authorfullhash}{883f0d3593228cc0c23036d4e56132a4}
-      \field{sortinit}{8}
-      \field{sortinithash}{07edf88d4ea82509b9c4b4d13f41c452}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Las tendencias en el uso del blockchain en el {á}rea de la cadena de suministro}
@@ -1163,8 +1265,8 @@
       \strng{authorbibnamehash}{776563eb8fccfc5d5bd735e5838271d7}
       \strng{authornamehash}{776563eb8fccfc5d5bd735e5838271d7}
       \strng{authorfullhash}{42fc107b07112f0292afd2263381a2cb}
-      \field{sortinit}{9}
-      \field{sortinithash}{1dd72ab054147731c9d824b49aba0534}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Econom{ı́}a industrial}
@@ -1175,36 +1277,275 @@
       \field{pages}{11\bibrangedash 20}
       \range{pages}{10}
     \endentry
-    \entry{ellenmacarthurfoundation2022}{online}{}
+    \entry{circularise2024}{online}{}
       \name{author}{1}{}{%
-        {{hash=655100dd9281a113f69cd0c6d3b53fd8}{%
-           family={Foundation},
-           familyi={F\bibinitperiod},
-           given={Ellen\bibnamedelima MacArthur},
-           giveni={E\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=a0997ee769c142b61cce23e0504778b0}{%
+           family={Circularise},
+           familyi={C\bibinitperiod}}}%
       }
-      \strng{namehash}{655100dd9281a113f69cd0c6d3b53fd8}
-      \strng{fullhash}{655100dd9281a113f69cd0c6d3b53fd8}
-      \strng{bibnamehash}{655100dd9281a113f69cd0c6d3b53fd8}
-      \strng{authorbibnamehash}{655100dd9281a113f69cd0c6d3b53fd8}
-      \strng{authornamehash}{655100dd9281a113f69cd0c6d3b53fd8}
-      \strng{authorfullhash}{655100dd9281a113f69cd0c6d3b53fd8}
-      \field{sortinit}{9}
-      \field{sortinithash}{1dd72ab054147731c9d824b49aba0534}
+      \strng{namehash}{a0997ee769c142b61cce23e0504778b0}
+      \strng{fullhash}{a0997ee769c142b61cce23e0504778b0}
+      \strng{bibnamehash}{a0997ee769c142b61cce23e0504778b0}
+      \strng{authorbibnamehash}{a0997ee769c142b61cce23e0504778b0}
+      \strng{authornamehash}{a0997ee769c142b61cce23e0504778b0}
+      \strng{authorfullhash}{a0997ee769c142b61cce23e0504778b0}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{What is a circular economy?}
-      \field{urlday}{25}
-      \field{urlmonth}{6}
+      \field{howpublished}{Sitio web}
+      \field{title}{Integrations}
+      \field{urlday}{20}
+      \field{urlmonth}{7}
       \field{urlyear}{2024}
-      \field{year}{2014}
+      \field{year}{2024}
       \field{urldateera}{ce}
       \verb{urlraw}
-      \verb https://www.ellenmacarthurfoundation.org/topics/circular-economy-introduction/overview
+      \verb https://www.circularise.com/feature/integrations
       \endverb
       \verb{url}
-      \verb https://www.ellenmacarthurfoundation.org/topics/circular-economy-introduction/overview
+      \verb https://www.circularise.com/feature/integrations
       \endverb
+    \endentry
+    \entry{circulor2024}{online}{}
+      \name{author}{1}{}{%
+        {{hash=d1e08ca5a8b8a5a141a229acc6c7544a}{%
+           family={Circulor},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{d1e08ca5a8b8a5a141a229acc6c7544a}
+      \strng{fullhash}{d1e08ca5a8b8a5a141a229acc6c7544a}
+      \strng{bibnamehash}{d1e08ca5a8b8a5a141a229acc6c7544a}
+      \strng{authorbibnamehash}{d1e08ca5a8b8a5a141a229acc6c7544a}
+      \strng{authornamehash}{d1e08ca5a8b8a5a141a229acc6c7544a}
+      \strng{authorfullhash}{d1e08ca5a8b8a5a141a229acc6c7544a}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Sitio web}
+      \field{title}{About Us}
+      \field{urlday}{20}
+      \field{urlmonth}{7}
+      \field{urlyear}{2024}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.circulor.com/about-us
+      \endverb
+      \verb{url}
+      \verb https://www.circulor.com/about-us
+      \endverb
+    \endentry
+    \entry{sandhiya2020investigating}{article}{}
+      \name{author}{2}{}{%
+        {{hash=01ad0bc606d3c25077944f52e717bc1c}{%
+           family={Sandhiya},
+           familyi={S\bibinitperiod},
+           given={R},
+           giveni={R\bibinitperiod}}}%
+        {{hash=de8f06d2eb4b5b5526204a34c5944195}{%
+           family={Ramakrishna},
+           familyi={R\bibinitperiod},
+           given={Seeram},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{02b41d795e5071f8ca7ab3d3bff0867d}
+      \strng{fullhash}{67630b839777a4f0ef51b79c64f8328a}
+      \strng{bibnamehash}{02b41d795e5071f8ca7ab3d3bff0867d}
+      \strng{authorbibnamehash}{02b41d795e5071f8ca7ab3d3bff0867d}
+      \strng{authornamehash}{02b41d795e5071f8ca7ab3d3bff0867d}
+      \strng{authorfullhash}{67630b839777a4f0ef51b79c64f8328a}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Materials Circular Economy}
+      \field{title}{Investigating the applicability of blockchain technology and ontology in plastics recycling by the adoption of ZERO plastic model}
+      \field{volume}{2}
+      \field{year}{2020}
+      \field{pages}{1\bibrangedash 12}
+      \range{pages}{12}
+    \endentry
+    \entry{BHUBALAN2022113631}{article}{}
+      \name{author}{9}{}{%
+        {{hash=5417994a9049b16fc281c7e13a46a3f7}{%
+           family={Bhubalan},
+           familyi={B\bibinitperiod},
+           given={Kesaven},
+           giveni={K\bibinitperiod}}}%
+        {{hash=5f5595ef248bd9391f581889a869cdb7}{%
+           family={Tamothran},
+           familyi={T\bibinitperiod},
+           given={Arularasu\bibnamedelima Muthaliar},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=0f3d17c13696716ff76a8cf12edcf462}{%
+           family={Kee},
+           familyi={K\bibinitperiod},
+           given={Seng\bibnamedelima Hon},
+           giveni={S\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=08aec33656a075a0ef0db2e612cb0dd9}{%
+           family={Foong},
+           familyi={F\bibinitperiod},
+           given={Shin\bibnamedelima Ying},
+           giveni={S\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+        {{hash=906bb349e5c07e6acc783d7256b3b846}{%
+           family={Lam},
+           familyi={L\bibinitperiod},
+           given={Su\bibnamedelima Shiung},
+           giveni={S\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=2d4790fd23fa68cdaf8b4bcace292d29}{%
+           family={Ganeson},
+           familyi={G\bibinitperiod},
+           given={Keisheni},
+           giveni={K\bibinitperiod}}}%
+        {{hash=07a64e3745ff200f8f438f19c0b20607}{%
+           family={Vigneswari},
+           familyi={V\bibinitperiod},
+           given={Sevakumaran},
+           giveni={S\bibinitperiod}}}%
+        {{hash=91e782e966e75a8db53eb630a93fe3b4}{%
+           family={Amirul},
+           familyi={A\bibinitperiod},
+           given={Al-Ashraf},
+           giveni={A\bibinithyphendelim A\bibinitperiod}}}%
+        {{hash=de8f06d2eb4b5b5526204a34c5944195}{%
+           family={Ramakrishna},
+           familyi={R\bibinitperiod},
+           given={Seeram},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{d8a145bdf854fcbf743ba51d143cf64e}
+      \strng{fullhash}{b10a508d18fccd6f3d15d241a5e811d9}
+      \strng{bibnamehash}{d8a145bdf854fcbf743ba51d143cf64e}
+      \strng{authorbibnamehash}{d8a145bdf854fcbf743ba51d143cf64e}
+      \strng{authornamehash}{d8a145bdf854fcbf743ba51d143cf64e}
+      \strng{authorfullhash}{b10a508d18fccd6f3d15d241a5e811d9}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0013-9351}
+      \field{journaltitle}{Environmental Research}
+      \field{title}{Leveraging blockchain concepts as watermarkers of plastics for sustainable waste management in progressing circular economy}
+      \field{volume}{213}
+      \field{year}{2022}
+      \field{pages}{113631}
+      \range{pages}{1}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.envres.2022.113631
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0013935122009586
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0013935122009586
+      \endverb
+      \keyw{Blockchain technology,Plastic circular economy,Waste management,Sustainability}
+    \endentry
+    \entry{reciclos2024}{misc}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labeltitlesource}{title}
+      \field{note}{Accedido: 2024-07-28}
+      \field{title}{RECICLOS}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.ecoembes.com/es/el-proceso-del-reciclaje-de-envases/reciclos
+      \endverb
+      \verb{url}
+      \verb https://www.ecoembes.com/es/el-proceso-del-reciclaje-de-envases/reciclos
+      \endverb
+    \endentry
+    \entry{colmena2024}{misc}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labeltitlesource}{title}
+      \field{note}{Accedido: 2024-07-28}
+      \field{title}{Colmena}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.colmenaproject.io/en#services
+      \endverb
+      \verb{url}
+      \verb https://www.colmenaproject.io/en#services
+      \endverb
+    \endentry
+    \entry{greenlypoints2024}{misc}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labeltitlesource}{title}
+      \field{note}{Accedido: 2024-07-28}
+      \field{title}{Greenly Points}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://maipu.gob.ar/maipu-estrena-su-innovador-punto-de-ecocanje-en-el-edificio-municipal/
+      \endverb
+      \verb{url}
+      \verb https://maipu.gob.ar/maipu-estrena-su-innovador-punto-de-ecocanje-en-el-edificio-municipal/
+      \endverb
+    \endentry
+    \entry{pressman2010ingenieria}{article}{}
+      \name{author}{1}{}{%
+        {{hash=c0a5d2e4214db4fe9b5222189a50fdab}{%
+           family={Pressman},
+           familyi={P\bibinitperiod},
+           given={Roger\bibnamedelima S},
+           giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{c0a5d2e4214db4fe9b5222189a50fdab}
+      \strng{fullhash}{c0a5d2e4214db4fe9b5222189a50fdab}
+      \strng{bibnamehash}{c0a5d2e4214db4fe9b5222189a50fdab}
+      \strng{authorbibnamehash}{c0a5d2e4214db4fe9b5222189a50fdab}
+      \strng{authornamehash}{c0a5d2e4214db4fe9b5222189a50fdab}
+      \strng{authorfullhash}{c0a5d2e4214db4fe9b5222189a50fdab}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Un enfoque pr{á}ctico}
+      \field{title}{Ingener{ı́}a de software}
+      \field{volume}{7}
+      \field{year}{2010}
+    \endentry
+    \entry{alaidaros2021kanban}{article}{}
+      \name{author}{3}{}{%
+        {{hash=6a62f24aa7d47f11d68952c35e6244b0}{%
+           family={Alaidaros},
+           familyi={A\bibinitperiod},
+           given={Hamzah},
+           giveni={H\bibinitperiod}}}%
+        {{hash=0b30bd0f789dd5f0b1804538dab8a0bb}{%
+           family={Omar},
+           familyi={O\bibinitperiod},
+           given={Mazni},
+           giveni={M\bibinitperiod}}}%
+        {{hash=d92a5aca0d3c9bae0b8bd3a31f477b6b}{%
+           family={Romli},
+           familyi={R\bibinitperiod},
+           given={Rohaida},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{8321bade9291162b95339570a2651daf}
+      \strng{fullhash}{49cba453c3cd9f7cdfe4c07d86c2106a}
+      \strng{bibnamehash}{8321bade9291162b95339570a2651daf}
+      \strng{authorbibnamehash}{8321bade9291162b95339570a2651daf}
+      \strng{authornamehash}{8321bade9291162b95339570a2651daf}
+      \strng{authorfullhash}{49cba453c3cd9f7cdfe4c07d86c2106a}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Independent Journal of Management \& Production}
+      \field{number}{8}
+      \field{title}{The state of the art of agile kanban method: challenges and opportunities}
+      \field{volume}{12}
+      \field{year}{2021}
+      \field{pages}{2535\bibrangedash 2550}
+      \range{pages}{16}
     \endentry
     \entry{androulaki2018hyperledger}{inproceedings}{}
       \true{moreauthor}
@@ -1277,242 +1618,7 @@
       \field{pages}{1\bibrangedash 15}
       \range{pages}{15}
     \endentry
-    \entry{dannen2017introducing}{book}{}
-      \name{author}{1}{}{%
-        {{hash=1482caac5d0fdcf3c7d4e44228bdb59e}{%
-           family={Dannen},
-           familyi={D\bibinitperiod},
-           given={Chris},
-           giveni={C\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Springer}%
-      }
-      \strng{namehash}{1482caac5d0fdcf3c7d4e44228bdb59e}
-      \strng{fullhash}{1482caac5d0fdcf3c7d4e44228bdb59e}
-      \strng{bibnamehash}{1482caac5d0fdcf3c7d4e44228bdb59e}
-      \strng{authorbibnamehash}{1482caac5d0fdcf3c7d4e44228bdb59e}
-      \strng{authornamehash}{1482caac5d0fdcf3c7d4e44228bdb59e}
-      \strng{authorfullhash}{1482caac5d0fdcf3c7d4e44228bdb59e}
-      \field{sortinit}{1}
-      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Introducing Ethereum and solidity}
-      \field{volume}{1}
-      \field{year}{2017}
-    \endentry
-    \entry{wood2016polkadot}{article}{}
-      \name{author}{1}{}{%
-        {{hash=9f252fbc7b8ff3c128b3e8dd806afa9b}{%
-           family={Wood},
-           familyi={W\bibinitperiod},
-           given={Gavin},
-           giveni={G\bibinitperiod}}}%
-      }
-      \strng{namehash}{9f252fbc7b8ff3c128b3e8dd806afa9b}
-      \strng{fullhash}{9f252fbc7b8ff3c128b3e8dd806afa9b}
-      \strng{bibnamehash}{9f252fbc7b8ff3c128b3e8dd806afa9b}
-      \strng{authorbibnamehash}{9f252fbc7b8ff3c128b3e8dd806afa9b}
-      \strng{authornamehash}{9f252fbc7b8ff3c128b3e8dd806afa9b}
-      \strng{authorfullhash}{9f252fbc7b8ff3c128b3e8dd806afa9b}
-      \field{sortinit}{1}
-      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{White paper}
-      \field{number}{2327}
-      \field{title}{Polkadot: Vision for a heterogeneous multi-chain framework}
-      \field{volume}{21}
-      \field{year}{2016}
-      \field{pages}{4662}
-      \range{pages}{1}
-    \endentry
-    \entry{she2022vechain}{inproceedings}{}
-      \name{author}{1}{}{%
-        {{hash=d2e6061c07f3dbbef28c9aadd6eb8007}{%
-           family={She},
-           familyi={S\bibinitperiod},
-           given={Zongda},
-           giveni={Z\bibinitperiod}}}%
-      }
-      \strng{namehash}{d2e6061c07f3dbbef28c9aadd6eb8007}
-      \strng{fullhash}{d2e6061c07f3dbbef28c9aadd6eb8007}
-      \strng{bibnamehash}{d2e6061c07f3dbbef28c9aadd6eb8007}
-      \strng{authorbibnamehash}{d2e6061c07f3dbbef28c9aadd6eb8007}
-      \strng{authornamehash}{d2e6061c07f3dbbef28c9aadd6eb8007}
-      \strng{authorfullhash}{d2e6061c07f3dbbef28c9aadd6eb8007}
-      \field{sortinit}{1}
-      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{Proceedings of the 2022 International Conference on Educational Informatization, E-commerce and Information System, Macao, China}
-      \field{title}{Vechain: A renovation of supply chain management—A look into its organization, current activity, and prospect}
-      \field{year}{2022}
-      \field{pages}{29\bibrangedash 30}
-      \range{pages}{2}
-    \endentry
-    \entry{chakravarty2019functional}{misc}{}
-      \true{moreauthor}
-      \true{morelabelname}
-      \name{author}{10}{}{%
-        {{hash=10f45878d8e01460d7971ded6eb40723}{%
-           family={Chakravarty},
-           familyi={C\bibinitperiod},
-           given={Manuel},
-           giveni={M\bibinitperiod}}}%
-        {{hash=48fd3bfb19448107dd49396bd579d27a}{%
-           family={Kireev},
-           familyi={K\bibinitperiod},
-           given={Roman},
-           giveni={R\bibinitperiod}}}%
-        {{hash=fe0b1610f01f4870b0bff6fbc56426cb}{%
-           family={MacKenzie},
-           familyi={M\bibinitperiod},
-           given={Kenneth},
-           giveni={K\bibinitperiod}}}%
-        {{hash=2fb656fcbf45d5dae466d678b33fba4e}{%
-           family={McHale},
-           familyi={M\bibinitperiod},
-           given={Vanessa},
-           giveni={V\bibinitperiod}}}%
-        {{hash=ff95f71368cad3ff359afac4f443d105}{%
-           family={M{ü}ller},
-           familyi={M\bibinitperiod},
-           given={Jann},
-           giveni={J\bibinitperiod}}}%
-        {{hash=25d577106d4e349a430c5558536e6c7b}{%
-           family={Nemish},
-           familyi={N\bibinitperiod},
-           given={Alexander},
-           giveni={A\bibinitperiod}}}%
-        {{hash=80a31be2354ca45b0b6e4843d8aa65ab}{%
-           family={Nester},
-           familyi={N\bibinitperiod},
-           given={Chad},
-           giveni={C\bibinitperiod}}}%
-        {{hash=aa122f52a9175534972d460cde0be8c1}{%
-           family={Jones},
-           familyi={J\bibinitperiod},
-           given={Michael\bibnamedelima Peyton},
-           giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
-        {{hash=6bc88c88b48cfd8a2c4dc566cd758fde}{%
-           family={Thompson},
-           familyi={T\bibinitperiod},
-           given={Simon},
-           giveni={S\bibinitperiod}}}%
-        {{hash=dc697da6d290e45d20a55d17f95cf42e}{%
-           family={Valentine},
-           familyi={V\bibinitperiod},
-           given={Rebecca},
-           giveni={R\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Technical report, IOHK}%
-      }
-      \strng{namehash}{ab133b7c5a496f77844730eba9348533}
-      \strng{fullhash}{68830ac3466e0f174cd71c7c6549f84c}
-      \strng{bibnamehash}{ab133b7c5a496f77844730eba9348533}
-      \strng{authorbibnamehash}{ab133b7c5a496f77844730eba9348533}
-      \strng{authornamehash}{ab133b7c5a496f77844730eba9348533}
-      \strng{authorfullhash}{68830ac3466e0f174cd71c7c6549f84c}
-      \field{sortinit}{1}
-      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Functional blockchain contracts}
-      \field{year}{2019}
-    \endentry
-    \entry{prodvidrio2024verallia}{online}{}
-      \name{author}{1}{}{%
-        {{hash=90a3d69a8e8af4c5434a395e3bb6f49d}{%
-           family={Verallia},
-           familyi={V\bibinitperiod}}}%
-      }
-      \strng{namehash}{90a3d69a8e8af4c5434a395e3bb6f49d}
-      \strng{fullhash}{90a3d69a8e8af4c5434a395e3bb6f49d}
-      \strng{bibnamehash}{90a3d69a8e8af4c5434a395e3bb6f49d}
-      \strng{authorbibnamehash}{90a3d69a8e8af4c5434a395e3bb6f49d}
-      \strng{authornamehash}{90a3d69a8e8af4c5434a395e3bb6f49d}
-      \strng{authorfullhash}{90a3d69a8e8af4c5434a395e3bb6f49d}
-      \field{sortinit}{1}
-      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Proceso de fabricación del vidrio}
-      \field{urlday}{9}
-      \field{urlmonth}{7}
-      \field{urlyear}{2024}
-      \field{year}{2024}
-      \field{urldateera}{ce}
-      \verb{urlraw}
-      \verb https://es.verallia.com/s/proceso-de-fabricacion-del-vidrio?language=es
-      \endverb
-      \verb{url}
-      \verb https://es.verallia.com/s/proceso-de-fabricacion-del-vidrio?language=es
-      \endverb
-    \endentry
-    \entry{pressman2010ingeneria}{article}{}
-      \name{author}{1}{}{%
-        {{hash=c0a5d2e4214db4fe9b5222189a50fdab}{%
-           family={Pressman},
-           familyi={P\bibinitperiod},
-           given={Roger\bibnamedelima S},
-           giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
-      }
-      \strng{namehash}{c0a5d2e4214db4fe9b5222189a50fdab}
-      \strng{fullhash}{c0a5d2e4214db4fe9b5222189a50fdab}
-      \strng{bibnamehash}{c0a5d2e4214db4fe9b5222189a50fdab}
-      \strng{authorbibnamehash}{c0a5d2e4214db4fe9b5222189a50fdab}
-      \strng{authornamehash}{c0a5d2e4214db4fe9b5222189a50fdab}
-      \strng{authorfullhash}{c0a5d2e4214db4fe9b5222189a50fdab}
-      \field{sortinit}{1}
-      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Un enfoque pr{á}ctico}
-      \field{title}{Ingener{ı́}a de software}
-      \field{volume}{7}
-      \field{year}{2010}
-    \endentry
-    \entry{alaidaros2021kanban}{article}{}
-      \name{author}{3}{}{%
-        {{hash=6a62f24aa7d47f11d68952c35e6244b0}{%
-           family={Alaidaros},
-           familyi={A\bibinitperiod},
-           given={Hamzah},
-           giveni={H\bibinitperiod}}}%
-        {{hash=0b30bd0f789dd5f0b1804538dab8a0bb}{%
-           family={Omar},
-           familyi={O\bibinitperiod},
-           given={Mazni},
-           giveni={M\bibinitperiod}}}%
-        {{hash=d92a5aca0d3c9bae0b8bd3a31f477b6b}{%
-           family={Romli},
-           familyi={R\bibinitperiod},
-           given={Rohaida},
-           giveni={R\bibinitperiod}}}%
-      }
-      \strng{namehash}{8321bade9291162b95339570a2651daf}
-      \strng{fullhash}{49cba453c3cd9f7cdfe4c07d86c2106a}
-      \strng{bibnamehash}{8321bade9291162b95339570a2651daf}
-      \strng{authorbibnamehash}{8321bade9291162b95339570a2651daf}
-      \strng{authornamehash}{8321bade9291162b95339570a2651daf}
-      \strng{authorfullhash}{49cba453c3cd9f7cdfe4c07d86c2106a}
-      \field{sortinit}{1}
-      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Independent Journal of Management \& Production}
-      \field{number}{8}
-      \field{title}{The state of the art of agile kanban method: challenges and opportunities}
-      \field{volume}{12}
-      \field{year}{2021}
-      \field{pages}{2535\bibrangedash 2550}
-      \range{pages}{16}
-    \endentry
   \enddatalist
-  \missing{pressman2010ingenieria}
 \endrefsection
 \endinput
 
