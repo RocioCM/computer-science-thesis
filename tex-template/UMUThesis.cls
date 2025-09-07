@@ -90,7 +90,7 @@
 \LoadClass[a4paper,11pt,twoside,openright]{report}
 
 %%% Load Babel Package (Language) %%%
-\expandafter\RequirePackage\expandafter[\LanguageOption]{babel}
+\usepackage[\LanguageOption]{babel}
 
 %%% Required Packages %%%
 \RequirePackage{ifthen} % Provides conditional statements.
