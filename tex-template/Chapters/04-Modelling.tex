@@ -113,10 +113,14 @@ ID & Título & Descripción & Deps \\
 
 \bottomrule
 \endlastfoot
-	RF-001 & Registrar usuarios & El sistema debe permitir registrar usuarios mediante correo electrónico u otro medio con diferentes roles para hacer uso de las distintas partes del sistema. Los roles disponibles en esta primera etapa son: Productor Primario, Productor Secundario, Consumidor y Reciclador. & - \\
+	RF-001 & Registrar usuarios & El sistema debe permitir registrar usuarios mediante correo electrónico u otro medio con diferentes roles para hacer uso de las distintas partes del sistema. \par Los roles disponibles en esta primera etapa son: \par
+  - Productor Primario \par
+  - Productor Secundario \par
+  - Consumidor \par
+  - Reciclador. & - \\
 	RF-002 & Ingresar a la plataforma & Todos los usuarios deben poder ingresar a la plataforma con su correo electrónico registrado mediante algún método de autenticación, por ejemplo, con contraseña. & RF-001 \\
 	RF-003 & Mantener sesión de usuario & Cada cuenta de usuarios debe poder mantener abiertas múltiples sesiones en simultaneo. El usuario debe cerrar una sesión individual en cualquier dispositivo. La sesión debe mantenerse abierta en el dispositivo a lo largo del tiempo a pesar de que se cierre el navegador o aplicación. & RF-002 \\
-	RF-004 & Validar Autorización & Cada rol de usuario debe tener ciertos permisos y un usuario con un rol dado no debe poder realizar acciones que requieran un permiso del que no goza. Detalle:\n Productor: CRUD productos.\n Comerciante: RU productos (transferencia de propiedad de productos)\n Consumidor: R productos (consultar composición de productos)\n Reciclador: R productos, CRUD lotes de reciclaje. \n Invitados (sin autenticación): permiso de lectura en todo el sistema (R productos, R lotes de reciclaje). & RF-002 \\
+	RF-004 & Validar Autorización & Cada rol de usuario debe tener ciertos permisos y un usuario con un rol dado no debe poder realizar acciones que requieran un permiso del que no goza. Detalle:\par - Productor Primario: crear, editar, consultar y eliminar envases.\par - Productor Secundario: editar, consultar y eliminar productos. \par - Consumidor: consultar composición de productos \par - Reciclador: consultar composición de productos, crear, editar, consultar y eliminar lotes de reciclaje. & RF-002 \\
 	RF-005 & Ver mi perfil de usuario & Cada usuario debe poder consultar la información personal asociada a su cuenta y modificar algunos datos: Email, Nombre Empresa/persona (modificable), Responsable (modificable), Nro teléfono (modificable), Dirección pública blockchain. & RF-002 \\
 	RF-006 & Cargar lotes de producción & El productor puede cargar lotes de producción de envases de vidrio incluyendo la siguiente información: Cantidad de envases, Peso por envase, Color, Composición, Espesor, entre otras. & RF-004 \\
 	RF-007 & Editar lotes de producción & El productor puede editar la información de producción en caso de error hasta antes de comercializar el lote. & RF-006 \\
@@ -125,7 +129,7 @@ ID & Título & Descripción & Deps \\
 	RF-010 & Consultar material reciclable ingresado & El productor puede ver la lista de los lotes o conjuntos de materiales reciclables que volvieron a ingresar a su fábrica (como compra a la recicladora o devoluciones desde bodegas). & RF-006, RF-018, RF-025 \\
 	RF-011 & Sacar de circulación envases & El productor puede marcar grupos de botellas de un lote como fuera de circulación o enviado a reciclar (en caso de rotura, falla o desaparición). & RF-006 \\
 	RF-012 & Vender envases a productores secundarios & El productor puede marcar cierta cantidad de envases del lote como vendidos a un productor secundario específico. Los envases dejan de ser propiedad del productor y ya no puede modificarlos ni revenderlos. & RF-006 \\
-	RF-013 & Asociar envase a código comercial & El productor secundario puede asociar un código de barras (u otro tipo de código visible en la etiqueta impresa de su producto, como QR) a conjuntos de botellas compradas. EL CÓDIGO DEBE GARANTIZAR UNICIDAD. & RF-012 \\
+	RF-013 & Asociar envase a código comercial & El productor secundario puede asociar un código de barras (u otro tipo de código visible en la etiqueta impresa de su producto, como QR) a conjuntos de botellas compradas. \textbf{El código debe garantizar unicidad}. & RF-012 \\
 	RF-014 & Modificar código comercial & El productor secundario puede editar la información de códigos asociados a envases hasta antes de vender el producto. & RF-013 \\
 	RF-015 & Eliminar código comercial & El productor secundario puede eliminar códigos asociados a envases hasta antes de vender el producto. & RF-013 \\
 	RF-016 & Consultar inventario de envases nuevos & El productor secundario puede ver la lista de conjuntos de envases que ha comprado pero aún no ha utilizado (no han sido asociados a ningún producto propio ni código). El productor puede confirmar conformidad o rechazar la compra. & RF-012 \\
