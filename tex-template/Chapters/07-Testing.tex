@@ -8,11 +8,12 @@ El presente capítulo aborda el proceso de pruebas del prototipo, un componente 
 A continuación, se detallan las cuatro etapas de pruebas integrales realizadas en el proyecto:
 
 \begin{itemize}
-\item Pruebas Unitarias: se enfocan en la validación del código a nivel de componente.
-\item Pruebas de Integración: verifican la interacción entre los módulos del sistema.
-\item Pruebas de Sistema: validan el cumplimiento de los requerimientos funcionales y no funcionales del prototipo en su totalidad.
-\item Pruebas de Aceptación con Usuarios: validan que el prototipo cumpla con las expectativas y necesidades del usuario final.
+\item \textbf{Pruebas Unitarias}: se enfocan en la validación del código a nivel de componente.
+\item \textbf{Pruebas de Integración}: verifican la interacción entre los módulos del sistema.
+\item \textbf{Pruebas de Sistema}: validan el cumplimiento de los requerimientos funcionales y no funcionales del prototipo en su totalidad.
+\item \textbf{Pruebas de Aceptación con Usuarios}: validan que el prototipo cumpla con las expectativas y necesidades del usuario final.
 \end{itemize}
+
 La Tabla \ref{tab:testing-comparison} presenta una comparación de estas etapas, destacando sus características y su alcance, como una guía visual para comprender la metodología de prueba aplicada.
 
 \begin{xltabular}{\textwidth}{@{} L{4cm} Y L{2cm} L{2cm} L{3cm} @{}}
@@ -25,10 +26,8 @@ La Tabla \ref{tab:testing-comparison} presenta una comparación de estas etapas,
 
 \toprule
 Etapa de Prueba & Frec. Ejecución & Tipo & Complejidad & Alcance \\
-\midrule
 \endhead
 
-\midrule
 \multicolumn{5}{r}{\footnotesize Continúa en la siguiente página}
 \\\bottomrule
 \endfoot
@@ -37,13 +36,16 @@ Etapa de Prueba & Frec. Ejecución & Tipo & Complejidad & Alcance \\
 \endlastfoot
 
 Pruebas Unitarias & Continua (por cada cambio) & Automatizada & Baja & Componentes \\
+\hline
 Pruebas de Integración & Antes de cada despliegue & Automatizada & Media & Interacción de componentes \\
+\hline
 Pruebas de Sistema & Al finalizar la implementación & Manual & Media-Alta & Requerimientos funcionales \\
+\hline
 Pruebas de Aceptación & Al finalizar la implementación & Manual & Alta & Experiencia del usuario \\
 
 \end{xltabular}
 
-A lo largo de este capítulo, se detallará la gestión de las incidencias halladas durante las pruebas. Los errores detectados en cada etapa de prueba fueron registrados y se les dio seguimiento en la herramienta Jira, asegurando que cada problema se resolviera antes de avanzar a la siguiente fase. El Apéndice \ref{cp:tests-execution-results} contiene los detalles de la ejecución de cada prueba, los resultados obtenidos y la gestión de las incidencias documentadas. A continuación, se describen en detalle cada una de las etapas de prueba mencionadas, proporcionando una visión completa del proceso de validación del prototipo.
+A lo largo de este capítulo, se detallará la gestión de las incidencias halladas durante las pruebas. Los errores detectados en cada etapa de prueba fueron registrados y se les dio seguimiento en la herramienta Jira, asegurando que cada problema se resolviera antes de avanzar a la siguiente fase. A continuación, se describen en detalle cada una de las etapas de prueba mencionadas, proporcionando una visión completa del proceso de validación del prototipo. Adicionalmente, el Apéndice \ref{cp:tests-execution-results} contiene los detalles de la ejecución de cada prueba, los resultados obtenidos y la gestión de las incidencias documentadas.
 
 \section{Pruebas Unitarias}
 \label{sec:unit-testing}
@@ -52,32 +54,41 @@ Las pruebas unitarias constituyen la base de la pirámide de pruebas y se corres
 
 El desarrollo de cada módulo del prototipo se realizó de forma conjunta con la escritura de sus pruebas unitarias. Se utilizó el framework Jest \footnote{https://jestjs.io/} en las tres capas del proyecto (contratos inteligentes, API y frontend), aunque con configuraciones específicas para cada entorno. Por ejemplo, en los contratos inteligentes, las pruebas unitarias se orientaron a verificar que la lógica de negocio se ejecute correctamente y que el estado de los contratos cambie como se espera. En el backend, se enfocaron en validar la lógica de negocios. En el frontend, se validó el comportamiento de los componentes, su estado interno y la interacción con la API.
 
-Un indicador representativo de la calidad de las pruebas unitarias es la cobertura de código (conocida comúnmente como \textit{coverage}), que mide el porcentaje de código fuente ejecutado por las pruebas. Este valor, si bien no garantiza la ausencia de errores, es una herramienta útil para evaluar la robustez del código. Los requisitos de cobertura mínima se definieron en función de la criticidad de cada módulo del sistema:
+Un indicador representativo de la calidad de las pruebas unitarias es la cobertura de código (conocida comúnmente como \textit{coverage}), que mide el porcentaje de código fuente ejecutado por las pruebas. Este valor, si bien no garantiza la ausencia de errores, es una herramienta útil para evaluar la robustez del código. Es importante destacar que, frecuentemente, una cobertura de código del 100\% puede no ser alcanzable o justificable, ya que existen bloques de código que no se pueden ejecutar en pruebas unitarias (debido a limitaciones del framework de pruebas), fragmentos de código que son difíciles de probar de forma aislada, casos de uso que se consideran de bajo riesgo de errores o puede tomarse la decisión de limitar el esfuerzo invertido en escribir pruebas unitarias por escasez de tiempo o recursos. Debido a estos desafíos, el objetivo en cada proyecto es alcanzar un umbral de cobertura que mitigue el riesgo de fallos en el funcionamiento del sistema, sin incurrir en un esfuerzo desproporcionado en la escritura de pruebas unitarias. Los requisitos de cobertura mínima para este proyecto se definieron en función de la criticidad de cada módulo del sistema:
 
 \begin{itemize}
-\item Contratos Inteligentes: se requirió una cobertura mínima del 100\%. Dado que los contratos son la base del sistema de trazabilidad y no pueden modificarse una vez desplegados, resulta fundamental garantizar que todos los caminos de ejecución del código estén cubiertos para minimizar el riesgo de errores una vez desplegados. Este es un estándar de la industria para contratos inteligentes.
-\item API Backend: se requirió una cobertura mínima del 80\%. Dado que la API representa el componente central del sistema como responsable de la comunicación con la blockchain y la base de datos, resulta relevante garantizar la calidad del código y minimizar el riesgo de errores en el manejo de datos. Por este motivo, se ha elegido este umbral de cobertura, que es un estándar habitual en la industria para aplicaciones de propósito general.
-\item Aplicación Frontend: se estableció una cobertura mínima del 60\%. Dado que el frontend del prototipo tiene fines demostrativos y no es una parte crítica del sistema, este umbral se consideró suficiente para garantizar el correcto funcionamiento de la interfaz de usuario sin requerir un esfuerzo excesivo en la escritura de pruebas.
+\item \textbf{Contratos Inteligentes}: se requirió una cobertura mínima del 100\%. Dado que los contratos son la base del sistema de trazabilidad y no pueden modificarse una vez desplegados, resulta fundamental garantizar que todos los caminos de ejecución del código estén cubiertos para minimizar el riesgo de errores una vez desplegados. Este es un estándar de la industria para contratos inteligentes.
+\item \textbf{API Backend}: se requirió una cobertura mínima del 80\%. Dado que la API representa el componente central del sistema como responsable de la comunicación con la blockchain y la base de datos, resulta relevante garantizar la calidad del código y minimizar el riesgo de errores en el manejo de datos. Por este motivo, se ha elegido este umbral de cobertura, que es un estándar habitual en la industria para aplicaciones de propósito general.
+\item \textbf{Aplicación Frontend}: se estableció una cobertura mínima del 60\%. Dado que el frontend del prototipo tiene fines demostrativos y no es una parte crítica del sistema, este umbral se consideró suficiente para garantizar el correcto funcionamiento de la interfaz de usuario sin requerir un esfuerzo excesivo en la escritura de pruebas.
 \end{itemize}
 
-El proceso de pruebas unitarias permitió identificar y corregir algunos errores de manera temprana. Los errores detectados en esta etapa fueron resueltos de manera inmediata, ya que las pruebas unitarias son cercanas a la implementación y permiten una rápida retroalimentación sobre el estado del código. En la Tabla \ref{tab:unit-testing-summary} se muestra un resumen de las pruebas unitarias realizadas, mientras que en el Apéndice \ref{cp:tests-execution-results} se puede consultar en mayor detalle el listado de casos de prueba.
+El proceso de pruebas unitarias permitió identificar y corregir algunos errores de manera temprana. Los errores detectados en esta etapa fueron resueltos de manera inmediata, ya que las pruebas unitarias son cercanas a la implementación y permiten una rápida retroalimentación sobre el estado del código. En la Tabla \ref{tab:unit-testing-summary} se muestra un resumen del objetivo de cobertura de cada módulo del sistema, el umbral alcanzado y la cantidad de pruebas unitarias implementadas, mientras que en el Apéndice \ref{cp:tests-execution-results} se puede consultar en mayor detalle el listado de casos de prueba de cada módulo.
 
-% TODO: Replace all tables that are not xltabular
+\begin{xltabular}{\textwidth}{@{} Y C{3.5cm} C{3.5cm} C{3.5cm} @{}}
+	\caption{Comparación de las etapas de prueba del prototipo de trazabilidad de vidrio}
+	\label{tab:testing-comparison}\\
+	\toprule
+	Módulo & Coverage Objetivo & Coverage Alcanzado & Cant. de Pruebas \\
+	\midrule
+\endfirsthead
 
-\begin{table}[!htb]
-\centering
-\caption{Resumen de Pruebas Unitarias}
-\label{tab:unit-testing-summary}
-\begin{tabular}{|l|c|c|c|}
-\hline
-\textbf{Módulo} & \textbf{Coverage Objetivo} & \textbf{Coverage Alcanzado} & \textbf{Cant. de Pruebas} \\
-\hline
+\toprule
+Módulo & Coverage Objetivo & Coverage Alcanzado & Cant. de Pruebas \\
+\endhead
+
+\multicolumn{4}{r}{\footnotesize Continúa en la siguiente página}
+\\\bottomrule
+\endfoot
+
+\bottomrule
+\endlastfoot
+
 Contratos Inteligentes & 100\% & 100\% & 98 \\
-API Backend & 80\% & 90.84\% & 317 \\
-Aplicación Frontend & 60\% & 65.27\% & 286 \\
 \hline
-\end{tabular}
-\end{table}
+API Backend & 80\% & 90.84\% & 317 \\
+\hline
+Aplicación Frontend & 60\% & 65.27\% & 286 \\
+\end{xltabular}
 
 La ejecución automatizada de las pruebas unitarias proporciona una capa de seguridad que facilita la revalidación del comportamiento del sistema, lo cual es relevante en un prototipo que podría expandirse en un futuro. La validación constante de la base de código antes de cualquier despliegue favorece la estabilidad y la calidad del sistema a largo plazo. Una vez que se ha verificado el funcionamiento de cada componente del sistema de forma individual, es posible continuar con la siguiente etapa de validación, donde se verificará la correcta interacción entre los módulos del sistema.
 
@@ -108,7 +119,8 @@ La fase final de validación del prototipo corresponde a las Pruebas de Aceptaci
 
 Dada la naturaleza de este trabajo como proyecto académico, la obtención de usuarios reales de la industria del vidrio para la ejecución de estas pruebas presentó una limitación. No obstante, se llevó a cabo un experimento controlado con un grupo de usuarios voluntarios del entorno académico. El experimento se realizó en un laboratorio de computación, donde cada usuario voluntario contó con una computadora de escritorio con acceso a Internet, desde donde pudo acceder al frontend del prototipo desplegado en el entorno de pruebas. La metodología de la prueba combinó una fase guiada y una fase libre, creando un entorno mixto, donde los participantes recibieron una guía para ejecutar una serie de casos de prueba predefinidos, seguidos de un período de exploración libre del sistema. Este enfoque permitió validar tanto los flujos de trabajo específicos como la usabilidad general del prototipo. Los participantes evaluaron tanto los requerimientos funcionales (por ejemplo, la capacidad de registrar un lote de vidrio) como los no funcionales (como la facilidad de uso y la transparencia de la información) registrando en una planilla la descripción del caso de prueba ejecutado y el resultado obtenido.
 
-La ejecución de las pruebas generó una retroalimentación detallada que se utilizó para identificar y resolver fallos, así como para mejorar la experiencia de usuario (UX) y el diseño de la interfaz. Se registraron en Jira un total de 9 incidencias y 3 sugerencias recibidas para su posterior seguimiento. Como resultado directo de estas pruebas, se realizaron mejoras en los flujos de navegación, la presentación de los datos de trazabilidad y el diseño visual de la aplicación. En el Apéndice \ref{cp:tests-execution-results} se encuentran documentados los casos de prueba ejecutados durante el experimento y la retroalimentación de los participantes. En las Figuras \ref{fig:uat-picture-1} y \ref{fig:uat-picture-2} se pueden observar fotografías tomadas durante la ejecución del experimento, donde se puede observar a los usuarios voluntarios del experimento utilizando el prototipo.
+La ejecución de las pruebas generó una retroalimentación detallada que se utilizó para identificar y resolver fallos, así como para mejorar la experiencia de usuario (UX) y el diseño de la interfaz. Los participantes en su conjunto registraron un total de 63 casos de prueba ejecutados. De los casos ejecutados, los participantes reportaron 16 casos donde el sistema que no funcionaba como esperaban.
+A partir de este relevamiento, se registraron en Jira un total de 9 incidencias y 3 sugerencias recibidas para su posterior seguimiento, teniendo en cuenta que algunos de los comportamientos reportados se repitieron en más de un caso. Como resultado directo de estas pruebas, se realizaron mejoras en los flujos de navegación, la presentación de los datos de trazabilidad y el diseño visual de la aplicación. En el Apéndice \ref{cp:tests-execution-results} se encuentran documentados de forma detallada los casos de prueba ejecutados durante el experimento, el listado de participantes y su retroalimentación. En las Figuras \ref{fig:uat-picture-1} y \ref{fig:uat-picture-2} se incluyen fotografías tomadas durante la ejecución del experimento, donde se puede observar a los usuarios voluntarios del experimento utilizando el prototipo.
 
 \begin{figure}[!htb]
 \centering
