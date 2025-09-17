@@ -45,7 +45,7 @@ Dentro de los enfoques tradicionales, el modelo en cascada es el más conocido, 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{Figures/model-waterfall.png}
-    \caption{Modelo en cascada. Fuente: \cite{pressman2010ingenieria}}
+    \caption[Modelo en cascada]{Modelo en cascada. Fuente: \cite{pressman2010ingenieria}}
 \end{figure}
 
 Otra opción considerada dentro de los enfoques tradicionales es el modelo en V, una extensión del modelo en cascada que empareja cada fase de desarrollo con una fase de prueba correspondiente. Esta estructura en forma de ``V`` busca una verificación sistemática en cada etapa, con el fin de detectar y corregir errores de forma temprana y minimizar riesgos al final del proyecto. A medida que el proyecto avanza hacia abajo en la primera mitad de la V, los requisitos y componentes del sistema son detallados cada vez más. Una vez completada la codificación, el proceso asciende por el lado derecho de la V, donde cada etapa de desarrollo anterior es validada a través de pruebas específicas. Este modelo es apropiado para proyectos que requieren altos estándares de calidad y donde los errores tempranos podrían tener consecuencias costosas o críticas. Aunque este modelo comparte algunas limitaciones con el modelo en cascada, como la dificultad para adaptarse a cambios significativos una vez que el proyecto está en curso, su estructura permite una mejor gestión del riesgo y calidad mediante la validación constante de cada etapa del desarrollo.
@@ -53,7 +53,7 @@ Otra opción considerada dentro de los enfoques tradicionales es el modelo en V,
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.6\textwidth]{Figures/model-v.png}
-	\caption{Modelo en V. Fuente: \cite{pressman2010ingenieria}}
+	\caption[Modelo en V]{Modelo en V. Fuente: \cite{pressman2010ingenieria}}
 \end{figure}
 
 Dentro del conjunto de modelos evolutivos, el modelo espiral es un enfoque destacado por combinar la iteración flexible de los prototipos con la rigurosidad sistemática del modelo en cascada \cite{pressman2010ingenieria}. Se distingue por su enfoque cíclico, diseñado para permitir el crecimiento incremental de un sistema mientras se gestionan y reducen los riesgos. La flexibilidad de esta metodología reside en su capacidad para adaptarse continuamente a las necesidades cambiantes del proyecto a través de iteraciones sucesivas. En cada ciclo de la espiral, el proceso contempla la planificación, la identificación de riesgos, el desarrollo y la evaluación de un prototipo o una sección del software, para luego planificar la siguiente iteración. Este enfoque iterativo permite a los desarrolladores y actores involucrados entender mejor los riesgos y reaccionar ante ellos en cada etapa del proyecto. El modelo espiral es particularmente útil en entornos dinámicos y en constante cambio, aunque su principal desafío radica en la necesidad de una evaluación continua y experta de los riesgos, lo que puede aumentar la complejidad de la gestión del proyecto.
@@ -61,7 +61,7 @@ Dentro del conjunto de modelos evolutivos, el modelo espiral es un enfoque desta
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.6\textwidth]{Figures/model-spiral.png}
-    \caption{Modelo espiral. Fuente: \cite{pressman2010ingenieria}}
+    \caption[Modelo espiral]{Modelo espiral. Fuente: \cite{pressman2010ingenieria}}
 \end{figure}
 
 Por otro lado, Scrum es una metodología ágil de desarrollo de software que se alinea con los principios del Manifiesto Ágil, promoviendo la flexibilidad, la colaboración continua y la adaptabilidad a los cambios \cite{pressman2010ingenieria}. Este modelo estructura el desarrollo en ciclos cortos y repetitivos denominados \textit{sprints}, típicamente de dos semanas. Al comenzar cada sprint, se seleccionan las tareas que se abordarán de la lista de pendientes del proyecto. Durante un sprint, no se permiten cambios en los requisitos, lo que proporciona estabilidad mientras el equipo aborda las tareas seleccionadas. El proceso incluye reuniones diarias breves, que ayudan a identificar y resolver problemas rápidamente y fomentan la autogestión del equipo. Al final de cada sprint, se presenta una demostración del incremento de software desarrollado, lo que facilita la retroalimentación hacia el equipo para influir en los siguientes incrementos. Scrum es particularmente efectivo en entornos donde la incertidumbre es alta, ya que permite la iteración continua y la evaluación constante de riesgos, haciendo que el proyecto se adapte a las expectativas de las distintas partes interesadas y a las circunstancias cambiantes. A su vez, su enfoque en la colaboración y la comunicación constante, hace que esta metodología sea apropiada para equipos medianos y grandes, donde la coordinación es importante y las reuniones diarias no representan una sobrecarga, sino una oportunidad para alinear esfuerzos y resolver impedimentos.
@@ -69,15 +69,15 @@ Por otro lado, Scrum es una metodología ágil de desarrollo de software que se 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.6\textwidth]{Figures/model-scrum.png}
-    \caption{Metodología Scrum. Fuente: \cite{pressman2010ingenieria}}
+    \caption[Metodología Scrum]{Metodología Scrum. Fuente: \cite{pressman2010ingenieria}}
 \end{figure}
 
 Finalmente, el método Kanban es un enfoque visual para la gestión del flujo de trabajo, cuyo objetivo principal es optimizar la eficiencia al prevenir la sobrecarga de tareas y eliminar cuellos de botella \cite{alaidaros2021kanban}. Se centra en un sistema dinámico, donde el trabajo solo se inicia cuando hay capacidad disponible, lo que se traduce en una mayor adaptabilidad y una respuesta más rápida a los cambios en las prioridades del proyecto. Este método propone implementar un tablero visual dividido en columnas que representan las diferentes etapas del proceso de desarrollo, por donde se mueven las tareas o tarjetas. Los principios de este modelo incluyen limitar el trabajo en curso, visualizar el flujo de tareas y medir su progreso para reconocer oportunidades de mejora. Kanban es una metodología de implementación ligera que se adapta bien a la situación actual de cualquier organización, es compatible con otras metodologías de trabajo y su implementación no requiere cambios estructurales. Sin embargo, su eficacia depende de una disciplina rigurosa y una comunicación constante para asegurar que el flujo visualizado en el tablero refleje la realidad actual del estado del proyecto.
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.6\textwidth]{Figures/model-kanban.png}
-    \caption{Tablero Kanban de ejemplo.}
+    \includegraphics[width=0.9\textwidth]{Figures/model-kanban.png}
+    \caption[Tablero Kanban]{Tablero Kanban de ejemplo.}
 \end{figure}
 
 Para el desarrollo del presente trabajo, se busca seleccionar una metodología que se adapte a las características del proyecto. Por lo tanto, el proceso de selección de metodología comienza prescindiendo aquellos enfoques que no se ajustan a las necesidades y características del proyecto. En primer lugar, se desestima el uso de la metodología Scrum debido a que requiere una participación activa y constante de un cliente para guiar los sprints, un rol que no es factible en el contexto de un proyecto académico individual. A su vez, las reuniones recurrentes de esta metodología pierden sentido en un equipo unipersonal, donde la comunicación constante y la coordinación del equipo no son necesarias. Por otro lado, el modelo Espiral no se considera apropiado para este trabajo debido a su alta complejidad para el alcance del prototipo. Este modelo se centra en la gestión de riesgos y la adaptación continua a los cambios. Sin embargo, dado que los requisitos de este trabajo están claramente definidos y la investigación y el análisis previos han minimizado la incertidumbre, la complejidad y el tiempo adicional que el modelo Espiral implicaría no se justifican para este proyecto.
