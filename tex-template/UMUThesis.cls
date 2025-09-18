@@ -15,11 +15,6 @@
 %%% Handle Class Options %%%
 \ExplSyntaxOn
 
-\cs_new:Npn \UMUthesis_check_color:n #1 {
-  \tl_set:Nn \l_tmpa_tl { #1 }
-  \color_set:nn { \l_tmpa_tl } { #1 }
-}
-
 \keys_define:nn { UMUthesis } {
     language .choices:nn = 
         { english, spanish } 
@@ -55,7 +50,6 @@
 
     linkcolor .code:n = {
         \tl_gset:Nn \g_UMUthesis_linkcolor_tl { #1 }
-        \UMUthesis_check_color:n { #1 }
         \tl_if_eq:NNTF \l_tmpa_tl \q_no_value {
             \tl_gset:Nn \g_UMUthesis_linkcolor_tl { black }
             \ClassWarningNoLine{UMUthesis}{Specified~'linkcolor'~not~available.~Defaulting~to~'black'}
@@ -83,7 +77,6 @@
 \newcommand{\ColorOption}{\g_UMUthesis_linkcolor_tl}
 \newcommand{\DocTypeOption}{\g_UMUthesis_doctype_tl}
 
-\ProcessKeyOptions[UMUthesis]
 \ExplSyntaxOff
 
 %%% Load Master Class %%%

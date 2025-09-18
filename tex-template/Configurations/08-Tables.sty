@@ -5,6 +5,12 @@
 \AtBeginEnvironment{xltabular}{\customtableformatting} % Apply to xltabular.
 \preto\longtable{\customtableformatting} % Apply to longtable.
 
+%%% Fix xltabular left margin alignment %%%
+% Remove paragraph indentation and set proper left margin for xltabular
+\AtBeginEnvironment{xltabular}{\par\noindent\hspace{0pt}}
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{\fill}
+
 
 %%% Captions %%%
 \captionsetup{skip=6pt} % Whitespace between figures/tables and the caption.

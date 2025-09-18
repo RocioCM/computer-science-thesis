@@ -4,12 +4,12 @@
 \patchcmd{\listoffigures}
 {\chapter*{\listfigurename}}
 {\chapter*{\listfigurename}\MakeLinkTarget*{listoffigures}%
-\addcontentsline{toc}{frontmatter}{\listfigurename}}{}{}
+\addcontentsline{toc}{chapter}{\listfigurename}}{}{}
 
 \patchcmd{\listoftables}
 {\chapter*{\listtablename}}
 {\chapter*{\listtablename}\MakeLinkTarget*{listoftables}%
-\addcontentsline{toc}{frontmatter}{\listtablename}}{}{}
+\addcontentsline{toc}{chapter}{\listtablename}}{}{}
 
 % Espaciado compacto para ToC
 \let\oldtableofcontents\tableofcontents
@@ -20,25 +20,11 @@
     \endgroup
 }
 
-\NewCommandCopy\l@frontmatter\l@chapter
-\NewCommandCopy\l@backmatter\l@chapter
-
-\providecommand*{\toclevel@frontmatter}{0}
-\providecommand*{\toclevel@backmatter}{0}
-
-\patchcmd{\l@frontmatter}{\bfseries}{\itshape}{}{}
-\patchcmd{\l@frontmatter}{\nobreak\hfil}{\upshape\nobreak\hfil}{}{}
-\patchcmd{\l@frontmatter}{1.0em}{3pt}{}{} 
-\patchcmd{\l@backmatter}{\bfseries}{\itshape}{}{}
-\patchcmd{\l@backmatter}{\nobreak\hfil}{\upshape\nobreak\hfil}{}{}
-
-\defbibheading{bibintoc}{\chapter*{#1}\addcontentsline{toc}{backmatter}{\refname}}
-
 \newcommand{\glossarytoc}{\MakeLinkTarget*{glossary}%
-\addcontentsline{toc}{frontmatter}{\glossaryname}}
+\addcontentsline{toc}{chapter}{\glossaryname}}
 
 \newcommand{\acronymtoc}{\MakeLinkTarget*{acronym}%
-\addcontentsline{toc}{frontmatter}{\acronymname}}
+\addcontentsline{toc}{chapter}{\acronymname}}
 
 % Align LoF and LoT entries to the corrected margin.
 \renewcommand*\l@figure{\@dottedtocline{1}{0em}{2.3em}} % Default: 1.5em/2.3em

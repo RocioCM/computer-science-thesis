@@ -1,11 +1,14 @@
 # Nombre del archivo principal (sin extensión)
 MAIN = BlockchainThesis
 
-# Imagen Docker con LaTeX + Biber
-LATEX_IMAGE = blang/latex:ctanfull
+# Imagen Docker con LaTeX + Biber + Pygments (minted)
+LATEX_IMAGE = latex-pygments:latest
+
+# Plataforma objetivo (Apple Silicon: amd64 por compatibilidad)
+DOCKER_PLATFORM ?= linux/amd64
 
 # Comando base para correr en Docker
-DOCKER_RUN = docker run --rm -v $(PWD):/data $(LATEX_IMAGE)
+DOCKER_RUN = docker run --rm --platform=$(DOCKER_PLATFORM) -v $(CURDIR):/data -w /data $(LATEX_IMAGE)
 
 # Archivos fuente
 # Incluir archivos en mayúsculas y subcarpetas relevantes para detectar cambios
@@ -22,15 +25,18 @@ BIB_SRC = $(wildcard *.bib) $(wildcard Bibliography/*.bib)
 # Regla principal: compilar PDF
 all: $(MAIN).pdf
 
+# Alias para compilar explícitamente
+pdf: $(MAIN).pdf
+
 # Paso 1: Generar PDF (detectar cambios en .tex o .bib)
 $(MAIN).pdf: $(TEX_SRC) $(BIB_SRC)
 	@echo "📄 Compilando $(MAIN).tex..."
-	$(DOCKER_RUN) xelatex -interaction=nonstopmode $(MAIN).tex
+# 	$(DOCKER_RUN) xelatex -interaction=nonstopmode -shell-escape $(MAIN).tex
 
-	@if [ "$(BIB_SRC)" != "" ] && grep -q "Citation" $(MAIN).log; then \
+	@if [ "$(BIB_SRC)" != "" ] || grep -q "Citation" $(MAIN).log; then \
 		echo "📚 Cambios en bibliografía detectados. Ejecutando Biber..."; \
 		$(DOCKER_RUN) biber $(MAIN); \
-		$(DOCKER_RUN) xelatex -interaction=nonstopmode $(MAIN).tex; \
+		$(DOCKER_RUN) xelatex -interaction=nonstopmode -shell-escape $(MAIN).tex; \
 	fi
 
 	@echo "✅ PDF generado: $(MAIN).pdf"
@@ -44,3 +50,9 @@ clean:
 cleanall: clean
 	@echo "🗑 Eliminando PDF..."
 	rm -f $(MAIN).pdf
+
+# Regla para construir la imagen Docker personalizada
+build:
+	docker build --platform=$(DOCKER_PLATFORM) -t $(LATEX_IMAGE) .
+
+.PHONY: all build pdf clean cleanall

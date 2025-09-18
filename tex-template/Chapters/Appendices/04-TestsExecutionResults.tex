@@ -9,7 +9,7 @@ En este trabajo, cuyo desarrollo siguió la metodología en V, se realizaron sec
 En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias automatizadas para cada componente del sistema. Estas pruebas tuvieron como objetivo validar la funcionalidad de los contratos inteligentes, la API backend y la interfaz frontend. Cada módulo de pruebas fue diseñado para cubrir casos de uso positivos y negativos, asegurando que cada unidad de código funcionara correctamente de manera aislada. En la Tabla \ref{tab:unit-tests-blockchain} se presenta un resumen de las pruebas unitarias realizadas sobre los contratos inteligentes, en la Tabla \ref{tab:unit-tests-backend} las pruebas ejecutadas sobre la API (backend), y en la Tabla \ref{tab:unit-tests-frontend} las pruebas realizadas sobre la interfaz (frontend). En total, se desarrollaron 98 pruebas unitarias automatizadas para los contratos inteligentes, 317 para el backend y 286 para el frontend, todas las cuales finalizaron con resultados satisfactorios sin fallos reportados. El listado completo de pruebas unitarias puede obtenerse a partir del código fuente (Sección \ref{sec:source-code}) siguiendo las instrucciones que se encuentran en el repositorio.
 
 
-\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{3cm} L{0.8cm} Y C{1.5cm} @{}}
+\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{4.2cm} C{0.8cm} Y C{2cm} @{}}
 	\caption{Resumen de pruebas unitarias realizadas sobre los contratos inteligentes}
 	\label{tab:unit-tests-blockchain}\\
 	\toprule
@@ -19,10 +19,8 @@ En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias
 
 \toprule
 \textbf{\#} & \textbf{Contrato} & \textbf{Tests} & \textbf{Descripción} & \textbf{Resultado} \\
-\midrule
 \endhead
 
-\midrule
 \multicolumn{5}{r}{\footnotesize Continúa en la siguiente página}
 \\\bottomrule
 \endfoot
@@ -31,13 +29,15 @@ En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias
 \endlastfoot
 
 1 & RecycledMaterialContract & 44 & Gestión de botellas de residuo, lotes de material reciclado, operaciones CRUD, reciclaje, venta y control de autorización & \testSuccess \\
+\hline
 2 & BaseBottlesBatchContract & 20 & Gestión de lotes de botellas base, operaciones CRUD, reciclaje, venta y control de autorización & \testSuccess \\
+\hline
 3 & ProductBottlesBatchContract & 32 & Gestión de lotes de botellas de producto, códigos de seguimiento, reciclaje, venta, rechazo y control de autorización & \testSuccess \\
 
 \end{xltabular}
 
 
-\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{3cm} L{0.8cm} Y C{1.5cm} @{}}
+\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{3cm} C{0.8cm} Y C{2cm} @{}}
 	\caption{Resumen de pruebas unitarias realizadas sobre la API backend}
 	\label{tab:unit-tests-backend}\\
 	\toprule
@@ -47,10 +47,8 @@ En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias
 
 \toprule
 \textbf{\#} & \textbf{Módulo} & \textbf{Tests} & \textbf{Descripción} & \textbf{Resultado} \\
-\midrule
 \endhead
 
-\midrule
 \multicolumn{5}{r}{\footnotesize Continúa en la siguiente página}
 \\\bottomrule
 \endfoot
@@ -59,17 +57,24 @@ En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias
 \endlastfoot
 
 1 & Tracking API & 33 & Endpoints para seguimiento público de productos, lotes base, lotes de productos, botellas de residuo y lotes de reciclaje & \testSuccess \\
+\hline
 2 & Consumer API & 41 & Gestión de botellas de residuo, consulta de origen de productos, gestión de recicladores y operaciones de consumidor & \testSuccess \\
+\hline
 3 & Secondary Producer API & 44 & Gestión de lotes de productos secundarios, códigos de seguimiento, reciclaje y venta de productos & \testSuccess \\
+\hline
 4 & Producer API & 54 & Gestión de lotes de botellas base, operaciones CRUD, venta, reciclaje y consulta de compradores & \testSuccess \\
+\hline
 5 & Helpers & 36 & Utilidades auxiliares: autenticación Firebase, interacción blockchain, variables de entorno, logging, middleware y validaciones & \testSuccess \\
+\hline
 6 & App Setup & 2 & Configuración y manejo de excepciones de la aplicación & \testSuccess \\
+\hline
 7 & Auth API & 12 & Registro de usuarios, autenticación, gestión de perfiles y filtrado por roles & \testSuccess \\
+\hline
 8 & Recycler API & 95 & Gestión completa de reciclaje: seguimiento de botellas, creación y gestión de lotes, asignación de botellas y ventas & \testSuccess \\
 
 \end{xltabular}
 
-\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{3cm} L{0.8cm} Y C{1.5cm} @{}}
+\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{3cm} C{0.8cm} Y C{2cm} @{}}
 	\caption{Resumen de pruebas unitarias realizadas sobre la interfaz frontend}
 	\label{tab:unit-tests-frontend}\\
 	\toprule
@@ -79,10 +84,8 @@ En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias
 
 \toprule
 \textbf{\#} & \textbf{Módulo} & \textbf{Tests} & \textbf{Descripción} & \textbf{Resultado} \\
-\midrule
 \endhead
 
-\midrule
 \multicolumn{5}{r}{\footnotesize Continúa en la siguiente página}
 \\\bottomrule
 \endfoot
@@ -91,15 +94,25 @@ En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias
 \endlastfoot
 
 1 & Auth Module & 8 & Páginas de login y registro, validaciones de formularios y manejo de errores de autenticación & \testSuccess \\
+\hline
 2 & Tracking Module & 25 & Página de seguimiento público, búsqueda por código, timeline y pestañas de diferentes tipos de lotes & \testSuccess \\
+\hline
 3 & Consumer Module & 4 & Página del consumidor, modales de búsqueda y reciclaje de botellas & \testSuccess \\
+\hline
 4 & Primary Producer Module & 6 & Inventario de productor primario, modales de gestión de lotes, venta y reciclaje & \testSuccess \\
+\hline
 5 & Secondary Producer Module & 5 & Gestión de lotes de productos secundarios, modales de formulario, detalle, venta y reciclaje & \testSuccess \\
+\hline
 6 & Recycler Module & 11 & Inventario de reciclador, gestión de botellas de residuo, asignación de lotes y modales asociados & \testSuccess \\
+\hline
 7 & Profile Module & 4 & Página de perfil de usuario, validaciones y actualización de datos & \testSuccess \\
+\hline
 8 & Common Components & 102 & Componentes reutilizables: botones, inputs, modales, tablas, iconos, tarjetas y elementos de UI & \testSuccess \\
+\hline
 9 & Auth Libraries & 48 & Servicios de autenticación Firebase, gestión de estado, sesiones y hooks de autenticación & \testSuccess \\
+\hline
 10 & Common Hooks & 12 & Hooks personalizados para manejo de estado, efectos y utilidades de componentes & \testSuccess \\
+\hline
 11 & Common Utils & 17 & Utilidades de formateo, logging, construcción de URLs y servicios de request & \testSuccess \\
 
 \end{xltabular}
@@ -113,7 +126,7 @@ La particularidad de las pruebas de integración es que requieren ser ejecutadas
 
 En esta etapa, el enfoque no fue la exhaustividad, sino la representatividad de los flujos críticos del sistema. Por este motivo, se seleccionaron casos de prueba que cubren los flujos más críticos y relevantes del sistema, asegurando que las interacciones entre los módulos funcionen como se espera en situaciones reales. En la Tabla \ref{tab:integration-testing-summary} se presenta un listado de los casos de prueba de integración ejecutados.
 
-\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{2.5cm} Y C{1.5cm} @{}}
+\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{2.5cm} Y C{2cm} @{}}
 	\caption{Listado de pruebas de integración realizadas sobre el sistema}
 	\label{tab:integration-testing-summary}\\
 	\toprule
@@ -123,10 +136,8 @@ En esta etapa, el enfoque no fue la exhaustividad, sino la representatividad de 
 
 \toprule
 \textbf{\#} & \textbf{Módulo} & \textbf{Descripción} & \textbf{Resultado} \\
-\midrule
 \endhead
 
-\midrule
 \multicolumn{4}{r}{\footnotesize Continúa en la siguiente página}
 \\\bottomrule
 \endfoot
@@ -135,22 +146,39 @@ En esta etapa, el enfoque no fue la exhaustividad, sino la representatividad de 
 \endlastfoot
 
 1 & Authentication & Registrar un nuevo usuario & \testSuccess \\
+\hline
 2 & Authentication & Obtener usuario autenticado después del registro & \testSuccess \\
+\hline
 3 & Authentication & Actualizar usuario autenticado después del registro & \testSuccess \\
+\hline
 4 & Consumer & Obtener origen del producto por código de seguimiento & \testSuccess \\
+\hline
 5 & Consumer & Crear una botella de residuo & \testSuccess \\
+\hline
 6 & Consumer & Obtener botellas de residuo paginadas del usuario & \testSuccess \\
+\hline
 7 & Producer & Crear un lote de botellas base & \testSuccess \\
+\hline
 8 & Producer & Consultar lote por ID & \testSuccess \\
+\hline
 9 & Producer & Listar lotes del usuario con paginación & \testSuccess \\
+\hline
 10 & Producer & Vender lote de botellas base & \testSuccess \\
+\hline
 11 & Producer & Reciclar lote de botellas base & \testSuccess \\
+\hline
 12 & Producer & Listar lotes reciclados del usuario & \testSuccess \\
+\hline
 13 & Secondary Producer & Asignar código de seguimiento a lote de producto & \testSuccess \\
+\hline
 14 & Secondary Producer & Reciclar lote de producto & \testSuccess \\
+\hline
 15 & Secondary Producer & Vender lote de producto (requiere código de seguimiento) & \testSuccess \\
+\hline
 16 & Secondary Producer & Obtener lotes de producto paginados & \testSuccess \\
+\hline
 17 & Recycler & Crear un lote de reciclaje & \testSuccess \\
+\hline
 18 & Recycler & Vender un lote de reciclaje & \testSuccess \\
 
 \end{xltabular}
@@ -165,7 +193,7 @@ Debido a la extensión de los casos de prueba, no se incluyen en este documento,
 
 Además de las pruebas manuales, se implementaron pruebas automatizadas para validar los requerimientos no funcionales del sistema. En este caso, se implementaron pruebas de carga y de seguridad. Las pruebas de seguridad buscan asegurar que se cumplen los requisitos de autenticación y autorización de usuarios especificados en las historias de usuario. Mientras que las pruebas de carga buscan evaluar el rendimiento del sistema bajo condiciones de alta demanda. Las pruebas de carga se realizaron en un entorno local utilizando la herramienta K6 \footnote{Load testing tool for engineering teams: https://k6.io/}, poniendo a prueba 3 endpoints representativos de la API y representan únicamente un resultado orientativo sobre cómo puede comportarse el sistema en un entorno de producción real, ya que el rendimiento dependerá de múltiples factores, como la infraestructura subyacente y la configuración del entorno. En la Tabla \ref{tab:system-testing-security} se presentan los resultados de las pruebas de seguridad realizadas, mientras que en la Tabla \ref{tab:system-testing-load} se presentan los resultados de las pruebas de carga.
 
-\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{3cm} L{0.8cm} Y C{1.5cm} C{2cm} @{}}
+\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{3cm} C{0.8cm} Y C{1.5cm} C{2cm} @{}}
 	\caption{Resumen de pruebas de sistema por módulo}
 	\label{tab:system-testing-summary}\\
 	\toprule
@@ -175,10 +203,8 @@ Además de las pruebas manuales, se implementaron pruebas automatizadas para val
 
 \toprule
 \textbf{\#} & \textbf{Módulo} & \textbf{Tests} & \textbf{Descripción} & \textbf{Resultado} & \textbf{Incidencias} \\
-\midrule
 \endhead
 
-\midrule
 \multicolumn{6}{r}{\footnotesize Continúa en la siguiente página}
 \\\bottomrule
 \endfoot
@@ -187,10 +213,15 @@ Además de las pruebas manuales, se implementaron pruebas automatizadas para val
 \endlastfoot
 
 1 & Auth Module & 9 & Registro, login, manejo de sesión, autorización, perfil de usuario (visualización y edición) & 8/9 OK & 1 \\
+\hline
 2 & Producers Module & 12 & Creación, edición y eliminación de lotes; validaciones de campos; consultas de historial y materiales; ventas y reciclaje; restricciones de operaciones sobre lotes vendidos & 9/12 OK & 2 \\
+\hline
 3 & Secondary Producers Module & 13 & Asociación, edición y eliminación de códigos; consultas de inventario; rechazo, reciclaje y venta de lotes; validación de restricciones en acciones sobre lotes vendidos & 10/13 OK & 2 \\
+\hline
 4 & Consumers Module & 5 & Consulta de trazabilidad, registro de envases reciclables, seguimiento de envases y validación de búsquedas según estado de comercialización & 3/5 OK & 2 \\
+\hline
 5 & Recyclers Module & 7 & Consulta de envases, creación, edición y eliminación de lotes reciclados; ventas de material reciclado; bloqueo de acciones sobre lotes vendidos & 6/7 OK & 1 \\
+\hline
 6 & Tracking Module & 9 & Búsqueda y trazabilidad de lotes base, productos, botellas recicladas y lotes de reciclaje; validación de habilitación de campos y mensajes de error & 8/9 OK & 1 \\
 
 \end{xltabular}
@@ -205,10 +236,8 @@ Además de las pruebas manuales, se implementaron pruebas automatizadas para val
 
 \toprule
 \textbf{\#} & \textbf{Módulo} & \textbf{Descripción} & \textbf{ID Jira} & \textbf{Estado} \\
-\midrule
 \endhead
 
-\midrule
 \multicolumn{5}{r}{\footnotesize Continúa en la siguiente página}
 \\\bottomrule
 \endfoot
@@ -217,16 +246,27 @@ Además de las pruebas manuales, se implementaron pruebas automatizadas para val
 \endlastfoot
 
 1 & Auth Module & Tras registrar usuario exitoso, los inputs quedan en estado de error en lugar de reiniciarse & SCRUM-43 & Resuelto \\
+\hline
 2 & Auth Module & Al acceder a ruta no permitida, la pantalla queda en blanco en lugar de mostrar mensaje de autorización denegada & SCRUM-42 & Resuelto \\
+\hline
 3 & Producers Module & Materiales reciclados no se mostraban en el listado del mismo productor & SCRUM-36 & Resuelto \\
+\hline
 4 & Producers Module & Error al intentar reciclar más unidades que las disponibles: se muestra mensaje genérico y la API devuelve 500 en lugar de 400 & SCRUM-37 & Resuelto \\
+\hline
 5 & Producers Module & Error al intentar vender más unidades que las disponibles: mensaje genérico y API devuelve 500 en lugar de 400 & SCRUM-37 & Resuelto \\
+\hline
 6 & Secondary Producers Module & Material reciclado no aparecía en dashboard del productor primario de origen tras reciclar lote & SCRUM-36 & Resuelto \\
+\hline
 7 & Secondary Producers Module & Error al reciclar más unidades que disponibles: mensaje genérico y API 500 en lugar de mensaje claro & SCRUM-37 & Resuelto \\
+\hline
 8 & Secondary Producers Module & Error al vender más unidades que disponibles: mensaje genérico y API 500 en lugar de mensaje claro & SCRUM-37 & Resuelto \\
+\hline
 9 & Consumers Module & Al dar seguimiento a envase, el modal no se abre (acción inactiva) & SCRUM-38 & Resuelto \\
+\hline
 10 & Consumers Module & Consumidor puede buscar códigos de botellas sin comercializar y se habilita acción de reciclaje (comportamiento no esperado) & SCRUM-39 & Resuelto \\
+\hline
 11 & Recyclers Module & Timeout al crear lote de material reciclado, API 500 aunque el lote se crea & SCRUM-44 & Resuelto \\
+\hline
 12 & Tracking Module & Error al buscar lote de reciclaje inexistente: se muestran placeholders vacíos en vez de mensaje de error adecuado & SCRUM-40 & Resuelto \\
 
 \end{xltabular}
@@ -241,10 +281,8 @@ Además de las pruebas manuales, se implementaron pruebas automatizadas para val
 
 \toprule
 \textbf{\#} & \textbf{Tipo} & \textbf{Descripción} & \textbf{Resultado} \\
-\midrule
 \endhead
 
-\midrule
 \multicolumn{4}{r}{\footnotesize Continúa en la siguiente página}
 \\\bottomrule
 \endfoot
@@ -253,29 +291,27 @@ Además de las pruebas manuales, se implementaron pruebas automatizadas para val
 \endlastfoot
 
 1 & Autenticación & Verifica que el acceso a un endpoint protegido sin credenciales retorne \texttt{401 Unauthorized} & \testSuccess \\
-
+\hline
 2 & Autenticación & Verifica que el acceso a un endpoint protegido con token inválido retorne \texttt{401 Unauthorized} & \testSuccess \\
-
+\hline
 3 & Autenticación & Verifica que el acceso a un endpoint protegido con token expirado retorne \texttt{401 Unauthorized} & \testSuccess \\
-
+\hline
 4 & Autorización & Verifica que el acceso a un endpoint protegido con rol no autorizado retorne \texttt{403 Forbidden} & \testSuccess \\
 
 \end{xltabular}
 
-\begin{xltabular}{\textwidth}{@{} L{0.5cm} C{3cm} C{3cm} C{2cm} C{3cm} @{}}
+\begin{xltabular}{\textwidth}{@{} Y C{3.5cm} C{3.5cm} C{3.5cm} C{3.5cm} @{}}
 	\caption{Resumen de pruebas de carga}
 	\label{tab:system-testing-load}\\
 	\toprule
-	\textbf{\#} & \textbf{Max. Conexiones} & \textbf{Solicitudes} & \textbf{Fallos} & \textbf{Duración Prom.} \\
+	\textbf{\#} & \textbf{Max. Conexiones} & \textbf{Solicitudes} & \textbf{Fallos} & \textbf{Duración Promedio} \\
 	\midrule
 \endfirsthead
 
 \toprule
-\textbf{\#} & \textbf{Max. Conexiones} & \textbf{Solicitudes} & \textbf{Fallos} & \textbf{Duración Prom.} \\
-\midrule
+\textbf{\#} & \textbf{Max. Conexiones} & \textbf{Solicitudes} & \textbf{Fallos} & \textbf{Duración Promedio} \\
 \endhead
 
-\midrule
 \multicolumn{5}{r}{\footnotesize Continúa en la siguiente página}
 \\\bottomrule
 \endfoot
@@ -284,8 +320,11 @@ Además de las pruebas manuales, se implementaron pruebas automatizadas para val
 \endlastfoot
 
 1 & 50  & 2173  & 0.00\% & 1.45s \\
+\hline
 2 & 100 & 5184  & 0.00\% & 5.35s \\
+\hline
 3 & 200 & 4332  & 0.00\% & 13.12s \\
+\hline
 4 & 1000 & 27171  & 95.71\% & 8.16s \\
 
 \end{xltabular}
@@ -297,7 +336,7 @@ En la instancia de pruebas de aceptación, se realizó un conjunto de pruebas ma
 
 El listado completo de casos de prueba ejecutados por cada participante se puede consultar en el siguiente enlace: \href{https://github.com/RocioCM/computer-science-thesis/blob/main/docs/Pruebas-de-Aceptacion_Test-Cases.pdf}{https://github.com/RocioCM/computer-science-thesis/blob/main/docs/Pruebas-de-Aceptacion_Test-Cases.pdf}
 
-\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{3cm} L{3cm} C{3cm} C{3cm} @{}}
+\begin{xltabular}{\textwidth}{@{} L{0.5cm} Y L{4cm} C{3.5cm} C{3.5cm} @{}}
 	\caption{Participantes en pruebas de aceptación de usuario}
 	\label{tab:acceptance-testing-users}\\
 	\toprule
@@ -307,10 +346,8 @@ El listado completo de casos de prueba ejecutados por cada participante se puede
 
 \toprule
 \textbf{\#} & \textbf{Nombre} & \textbf{Rol} & \textbf{Pruebas ejecutadas} & \textbf{Incidencias} \\
-\midrule
 \endhead
 
-\midrule
 \multicolumn{5}{r}{\footnotesize Continúa en la siguiente página}
 \\\bottomrule
 \endfoot
@@ -319,13 +356,21 @@ El listado completo de casos de prueba ejecutados por cada participante se puede
 \endlastfoot
 
 1 & Francisco & Productor Primario   & 4  & 0 \\
+\hline
 2 & Luciano   & Productor Primario   & 7  & 1 \\
+\hline
 3 & Facundo   & Productor Secundario & 1  & 1 \\
+\hline
 4 & Yeumen    & Productor Secundario & 9  & 1 \\
+\hline
 5 & Lucas     & Productor Secundario & 7  & 0 \\
+\hline
 6 & Micaela   & Consumidor           & 15 & 3 \\
+\hline
 7 & Agustín   & Consumidor           & 6  & 2 \\
+\hline
 8 & Andrés    & Reciclador           & 11 & 3 \\
+\hline
 9 & Lucía     & Reciclador           & 3  & 0 \\
 
 \end{xltabular}
@@ -340,10 +385,8 @@ El listado completo de casos de prueba ejecutados por cada participante se puede
 
 \toprule
 \textbf{\#} & \textbf{Rol} & \textbf{Descripción} & \textbf{ID Jira} & \textbf{Estado} \\
-\midrule
 \endhead
 
-\midrule
 \multicolumn{5}{r}{\footnotesize Continúa en la siguiente página}
 \\\bottomrule
 \endfoot
@@ -352,23 +395,23 @@ El listado completo de casos de prueba ejecutados por cada participante se puede
 \endlastfoot
 
 1 & Productor Primario & Inconsistencia en stock al rechazar lote vendido & SCRUM-52 & Resuelto \\
-
+\hline
 2 & Productor Secundario & Overflow en input number permite venta con valores inválidos & SCRUM-51 & Resuelto \\
-
+\hline
 3 & Productor Secundario & Campo de correo no reconocido correctamente en pantalla de venta & SCRUM-46 & Resuelto \\
-
+\hline
 4 & Consumidor & Error al guardar nombre de usuario con caracteres especiales/emoji & SCRUM-47 & Resuelto \\
-
+\hline
 5 & Consumidor & Al llegar al fin de la lista no se muestran las opciones disponibles & SCRUM-48 & Resuelto \\
-
+\hline
 6 & Consumidor & Errores al eliminar botellas recicladas o no recicladas (mensajes poco claros) & SCRUM-49 & Resuelto \\
-
+\hline
 7 & Consumidor & Problemas de navegación y visualización en seguimiento de envases & SCRUM-46 & Resuelto \\
-
+\hline
 8 & Reciclador & Estado pegado al cambiar rápidamente entre pestañas de disponibles/reciclados & SCRUM-50 & Resuelto \\
-
+\hline
 9 & Reciclador & Modal de detalle de envases no funciona correctamente & SCRUM-45 & Resuelto \\
-
+\hline
 10 & Reciclador & Tabla de envases no se refresca correctamente al cambiar de pestaña o cargar envases nuevos & SCRUM-34 & Resuelto \\
 
 \end{xltabular}

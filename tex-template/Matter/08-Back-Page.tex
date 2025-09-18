@@ -4,22 +4,21 @@
 \null
 \thispagestyle{empty}
 
-% TODO: choose backpage background image/color.
-
 % Back page
 
-       \newcommand\BackgroundPicBackPage{%
+\newcommand\BackgroundPicBackPage{%
     \put(0,0){%
-    \parbox[b][\paperheight]{\paperwidth}{%
-    \vfill
-    \centering
-    \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{Figures/Theme/Back-Page-BG.pdf}%
-    \vfill
-    }}}
+        \color{greencolor}\rule{\paperwidth}{\paperheight}%
+    }%
+    \put(0,0){%
+        \parbox[b][\paperheight]{\paperwidth}{%
+            \vfill
+            \centering
+            \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{Figures/Theme/Back-Page-BG.pdf}%
+            \vfill
+        }
+    }
+}
 
 
 \AddToShipoutPictureBG*{\BackgroundPicBackPage}
-
-\newgeometry{margin=1.98cm, top=1.47cm, bottom=1.47cm}
-\noindent\clearpage
-\restoregeometry

@@ -1,14 +1,11 @@
 %%% Document Macros and Extras %%%
 
-% Blank page with a warning indicating it is intentionally left blank.
+% Blank page without any message.
 \newcommand\blankpage{
     \clearpage
     \thispagestyle{empty}%
     \addtocounter{page}{1}%
     \vspace*{\fill}
-    \begin{center}
-        \textcolor{gray!50}{\textit{Página intencionalmente dejada en blanco.}}
-    \end{center}
     \vspace*{\fill}
     \clearpage
 } 
@@ -102,7 +99,6 @@
     \ifthenelse{\equal{\MediaOption}{paper}}{\plainblankpage}{\thispagestyle{plain}}%
 }
 
-
 \newcommand{\MediaOptionLogicAcr}{%
     \ifthenelse{\equal{\MediaOption}{paper}}{\plainblankpage}{\clearpage\thispagestyle{plain}}%
 }
@@ -114,9 +110,6 @@
 \newcommand{\MediaOptionLogicAnnexes}{%
     \ifthenelse{\equal{\MediaOption}{paper}}{\blankpage}{\clearpage}%
 }
-
-% Update various elements based on the '\MediaOption' value.
-
 
 % Set margins and indent
 
