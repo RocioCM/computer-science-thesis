@@ -44,7 +44,8 @@
 % Define the PDF document metadata.
 \AfterPreamble{
     \hypersetup{
-        hidelinks,
+        breaklinks=true,        % Allow line breaks in links
+        hidelinks=true,         % Hide link borders and colors
         pdfauthor={\GetFirstAuthor},
         pdftitle={\GetTitle},
         pdfproducer={LaTeX},

@@ -107,7 +107,11 @@
 \RequirePackage[toc,page]{appendix} % Formatting for appendices.
 \RequirePackage[acronym]{glossaries} % Create glossaries and acronyms.
 \RequirePackage[calc,datesep={/}]{datetime2} % Enhanced date and time formatting.
+\RequirePackage{url} % Improved line breaking in URLs.
 \RequirePackage[bookmarks,pdfusetitle]{hyperref} % Hyperlinks and PDF metadata.
+\RequirePackage{xurl} % Enhanced URL line breaking at any character (must be after hyperref).
+\RequirePackage{seqsplit} % Force line breaks in long sequences.
+
 \RequirePackage{xparse} % Advanced argument parsing for custom macros.
 \RequirePackage{typearea} % Page layout adjustments (KOMA-Script).
 \RequirePackage{eso-pic} % Adding elements to the page background.
@@ -130,6 +134,31 @@
 
 \tcbuselibrary{most} % Load most libraries from the tcolorbox package.
 \WarningsOff[blindtext] % Suppress warnings from the blindtext package.
+
+%%% URL Configuration %%%
+% Configure URL line breaking to prevent overflow
+\urlstyle{same} % Use the same font as the surrounding text
+\Urlmuskip=0mu plus 1mu % Allow some stretching between characters for better line breaks
+
+% More aggressive URL breaking configuration
+\def\UrlBreaks{\do\/\do-\do.\do:\do?\do&\do=\do_\do\%}
+\def\UrlBigBreaks{\do\{\do\}}
+\def\UrlSpecials{\do\ {\Url@space}\do\%{\Url@percent}\do\_{\Url@underscore}}
+
+% Additional line breaking allowances
+\emergencystretch=1em
+\tolerance=9999
+\hbadness=9999
+
+% Custom URL command with forced breaking as fallback
+\let\originalurl\url
+\renewcommand{\url}[1]{%
+  \begingroup
+  \def\UrlLeft{}%
+  \def\UrlRight{}%
+  \originalurl{#1}%
+  \endgroup
+}
 
 %%% Import Configurations - Maintain the Specified Order! %%%
 \usepackage{Configurations/00-Fonts}
