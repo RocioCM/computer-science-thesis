@@ -22,7 +22,7 @@ La fase de diseño de arquitectura representa el primer paso en la traducción d
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.8\linewidth]{Figures/software-architecture.png}
-    \caption{Arquitectura de módulos del sistema de trazabilidad de envases de vidrio basado en blockchain.}
+    \caption{Arquitectura de módulos del sistema de trazabilidad de envases de vidrio basado en blockchain}
     \label{fig:software-architecture}
 \end{figure}
 
@@ -100,7 +100,7 @@ Luego de realizar el análisis comparativo entre protocolos blockchain, se llega
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.9\linewidth]{Figures/blockchain-layer-2.png}
-    \caption{Funcionamiento de una cadena secundaria sobre Ethereum.}
+    \caption{Funcionamiento de una cadena secundaria sobre Ethereum}
     \label{fig:ethereum-layer-2}
 \end{figure}
 
@@ -119,7 +119,7 @@ Existen múltiples motivos que justifican la elección del entorno Node.js para 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\linewidth]{Figures/backend-api-rest.png}
-    \caption{Funcionamiento de una API RESTful.}
+    \caption{Funcionamiento de una API RESTful}
     \label{fig:api-rest}
 \end{figure}
 
@@ -139,7 +139,16 @@ La elección tecnológica para esta capa estuvo focalizada en encontrar framewor
 
 La comunicación del frontend con el backend se realiza exclusivamente a través de llamadas a la API RESTful. La interfaz no contiene la lógica de negocio, sino que actúa como un cliente ligero que envía datos al backend (por ejemplo, al registrar un nuevo lote) y recibe la respuesta, la cual es luego presentada al usuario. Este modelo garantiza que el frontend se enfoque en la interacción y la visualización, mientras la lógica crítica reside en el backend. Debido a que el frontend se enfoca únicamente en la visualización de información, es necesario implementar un sistema de autenticación y autorización unificado entre frontend y backend que permita a cada usuario visualizar e interactuar únicamente con las funcionalidades propias de su rol. Por este motivo, para gestionar la autenticación de usuarios este proyecto, se determinó hacer uso del servicio Firebase Authentication, que gestiona la autenticación de usuarios e implementa de forma abstracta el estándar de autorización OAuth 2.0, asegurando que solo los actores con los permisos adecuados puedan acceder a cada recurso del sistema.
 
-Luego de definir la arquitectura de la aplicación web, incluyendo la definición de capas, la comunicación entre ellas y los lenguajes de programación a utilizarse, es posible comenzar con la etapa de diseño de componentes. En esta segunda etapa de diseño, se define la arquitectura interna de cada capa o módulo definido en la etapa anterior. En la próxima sección, se detallará el diseño de componentes de este sistema, que abarca la estructura interna del frontend, la API y la capa de datos.
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/system-architecture.png}
+    \caption{Arquitectura del sistema con librerías elegidas para comunicación entre módulos}
+    \label{fig:system-architecture}
+\end{figure}
+
+% TODO: design this image.
+
+Luego de definir la arquitectura de la aplicación web, incluyendo la definición de capas, la comunicación entre ellas y los lenguajes de programación a utilizarse (Figura \ref{fig:system-architecture}), es posible comenzar con la etapa de diseño de componentes. En esta segunda etapa de diseño, se define la arquitectura interna de cada capa o módulo definido en la etapa anterior. En la próxima sección, se detallará el diseño de componentes de este sistema, que abarca la estructura interna del frontend, la API y la capa de datos.
 
 \section{Diseño de Componentes}
 \label{sec:components-design}
@@ -155,7 +164,7 @@ El diseño de la arquitectura de datos representa un componente central de este 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\linewidth]{Figures/data-lifecycle.png}
-    \caption{Diagrama de ciclo de vida de los envases.}
+    \caption{Diagrama de ciclo de vida de los envases}
     \label{fig:data-lifecycle}
 \end{figure}
 
@@ -166,7 +175,7 @@ A partir de la representación de los datos, se diseñaron los contratos intelig
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\linewidth]{Figures/uml-producer-contract.png}
-    \caption{Diagrama UML del Contrato de Envases (BaseBottlesBatchContract).}
+    \caption{Diagrama UML del Contrato de Envases (BaseBottlesBatchContract)}
     \label{fig:bottles-contract-uml}
 \end{figure}
 
@@ -176,7 +185,7 @@ A partir de la representación de los datos, se diseñaron los contratos intelig
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\linewidth]{Figures/uml-product-contract.png}
-    \caption{Diagrama UML del Contrato de Productos (ProductBottlesBatchContract).}
+    \caption{Diagrama UML del Contrato de Productos (ProductBottlesBatchContract)}
     \label{fig:product-contract-uml}
 \end{figure}
 
@@ -186,7 +195,7 @@ A partir de la representación de los datos, se diseñaron los contratos intelig
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\linewidth]{Figures/uml-recycling-contract.png}
-    \caption{Diagrama UML del Contrato de Reciclaje (RecycleMaterialContract).}
+    \caption{Diagrama UML del Contrato de Reciclaje (RecycleMaterialContract)}
     \label{fig:recycling-contract-uml}
 \end{figure}
 
@@ -198,7 +207,7 @@ De forma complementaria a la arquitectura de contratos inteligentes, el diseño 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{Figures/db-der.png}
-    \caption{Diagrama Entidad-Relación (DER) del modelo de datos.}
+    \caption{Diagrama Entidad-Relación (DER) del modelo de datos}
     \label{fig:der}
 \end{figure}
 
@@ -209,7 +218,7 @@ En el diseño de arquitectura de la capa backend se adoptó el patrón \textit{C
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=0.6\textwidth]{Figures/clean-architecture.png}
-\caption{Modelo Clean Architecture.}
+\caption{Modelo Clean Architecture}
 \label{fig:clean-architecture}
 \end{figure}
 
@@ -219,25 +228,32 @@ En particular, para orquestar la comunicación entre la API, la base de datos re
 
 \subsection{Arquitectura Frontend}
 
-La interfaz de usuario del sistema se diseñó como una aplicación web, con el objetivo de proporcionar una experiencia de usuario fluida, accesible desde cualquier dispositivo con conexión a Internet y sin necesidad de instalar software adicional. La interfaz se estructuró en una arquitectura basada en componentes, un patrón de diseño que promueve la creación de elementos reutilizables, modulares e independientes, que es el patrón recomendado por librerías como React y frameworks como Next.js.
+La interfaz de usuario del sistema se diseñó como una aplicación web, con el objetivo de proporcionar una experiencia de usuario fluida, accesible desde cualquier dispositivo con conexión a Internet y sin necesidad de instalar software adicional. Debido al alcance limitado del trabajo, se decidió implementar una interfaz diseñada para computadoras de escritorio, dado que es el caso de uso más frecuente en sistemas de gestión y trazabilidad. La aplicación podrá accederse en dispositivos móviles, pero no se ha priorizado la implementación adaptada para estos dispositivos, por lo que la interfaz puede resultar menos amigable en pantallas pequeñas. La interfaz se estructuró mediante una arquitectura basada en componentes, un patrón de diseño que promueve la creación de elementos reutilizables, modulares e independientes, que es el patrón recomendado por librerías como React y frameworks como Next.js.
 
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=0.8\textwidth]{Figures/frontend-architecture.png}
-\caption{Arquitectura de módulos frontend.}
+\caption{Arquitectura de módulos frontend}
 \label{fig:frontend-architecture}
 \end{figure}
 
 Para la estructuración interna del código, se eligió implementar una arquitectura MVC (Modelo-Vista-Controlador), que establece una clara separación de responsabilidades: la vista implementa la interfaz de usuario, el controlador maneja la lógica y las interacciones, y el modelo (en este caso, un servicio) se comunica con el backend. Esta metodología, combinada con la arquitectura de componentes, facilita una construcción rápida y consistente de cada vista, al mismo tiempo que mejora la mantenibilidad del código a largo plazo, ya que cada componente puede ser actualizado sin afectar otras partes del sistema. En la Figura \ref{fig:frontend-architecture} se ilustra la arquitectura de componentes y módulos del frontend.
 
 \begin{figure}[!htb]
-\centering
-\includegraphics[width=0.8\textwidth]{Figures/frontend-palette.png}
-\caption{Identidad de marca de la aplicación.}
-\label{fig:frontend-brand}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/frontend-navigation.png}
+    \caption{Diseño de la barra lateral de navegación de la aplicación para cada rol}
+    \label{fig:frontend-navigation}
 \end{figure}
 
-La estructura de la interfaz de usuario se organizó en módulos funcionales por cada rol de usuario, lo que se alinea con la división de responsabilidades del diseño de arquitectura de backend y capa de datos. Se definieron vistas específicas para el registro y la gestión de lotes por parte de los productores, y una interfaz de consulta para los consumidores. En el Apéndice \ref{cp:user-flows} se encuentran documentados los flujos de usuario para cada rol con imágenes de sus respectivas pantallas y las acciones que conectan el flujo.
+La estructura de la interfaz de usuario se organizó en módulos funcionales por cada rol de usuario, lo que se alinea con la división de responsabilidades del diseño de arquitectura de backend y capa de datos. Se definieron vistas específicas para el registro y la gestión de lotes por parte de los productores, y una interfaz de consulta para los consumidores. En la Figura \ref{fig:frontend-navigation} se puede observar el diseño de la navegación de la aplicación, que permite el acceso a las diferentes pantallas disponibles según el rol del usuario a través de una barra lateral que se muestra siempre en pantalla. En el Apéndice \ref{cp:user-flows} se encuentran documentados los flujos de usuario para cada rol con imágenes de sus respectivas pantallas y las acciones que conectan el flujo.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/frontend-palette.png}
+    \caption{Identidad de marca de la aplicación}
+    \label{fig:frontend-brand}
+\end{figure}
 
 Por otro lado, para asegurar una identidad visual consistente en la aplicación, se definió un sistema de diseño con una paleta de colores basada en tonalidades de verde con el objetivo de transmitir el compromiso ambiental del proyecto mediante la economía circular, así como también tipografías e iconografía que complementan esta estética. En la Figura \ref{fig:frontend-brand} se puede observar una muestra de la identidad de marca de la aplicación, a través de su paleta de colores y un conjunto de componentes visuales.
 
