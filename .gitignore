@@ -17,3 +17,5 @@ tex/**/*.bbl
 *.lot
 *.minted
 *.DS_Store
+*.pygstyle
+*.pygtex

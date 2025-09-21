@@ -31,9 +31,9 @@ pdf: $(MAIN).pdf
 # Paso 1: Generar PDF (detectar cambios en .tex o .bib)
 $(MAIN).pdf: $(TEX_SRC) $(BIB_SRC)
 	@echo "📄 Compilando $(MAIN).tex..."
-# 	$(DOCKER_RUN) xelatex -interaction=nonstopmode -shell-escape $(MAIN).tex
+	$(DOCKER_RUN) xelatex -interaction=nonstopmode -shell-escape $(MAIN).tex
 
-	@if [ "$(BIB_SRC)" != "" ] || grep -q "Citation" $(MAIN).log; then \
+	@if [ "$(BIB_SRC)" != "" ] || grep -q "Citation" $(MAIN).log 2>/dev/null; then \
 		echo "📚 Cambios en bibliografía detectados. Ejecutando Biber..."; \
 		$(DOCKER_RUN) biber $(MAIN); \
 		$(DOCKER_RUN) xelatex -interaction=nonstopmode -shell-escape $(MAIN).tex; \
@@ -45,6 +45,7 @@ $(MAIN).pdf: $(TEX_SRC) $(BIB_SRC)
 clean:
 	@echo "🧹 Limpiando temporales..."
 	rm -f *.aux *.bbl *.bcf *.blg *.log *.out *.run.xml *.toc *.lof *.lot *.fls *.fdb_latexmk
+	rm -rf _minted-*
 
 # Limpiar todo, incluido el PDF
 cleanall: clean
