@@ -19,84 +19,84 @@ Para cada funcionalidad del sistema, es posible identificar un flujo de trabajo 
 % TODO: add figure with the flow diagram here?
 
 \begin{listing}[!tb]
-\caption{Ejemplo de función para la creación de un lote de botellas de vidrio en la blockchain (Solidity)}
+\caption{Función para la creación de un lote de botellas de vidrio en la blockchain (Solidity)}
 \label{listing:solidity-create-batch-code}
 \begin{minted}{typescript}
-	function createBaseBottlesBatch(uint256 quantity, Bottle memory bottleType, address owner, string memory createdAt) external onlyContractOwner {
-    BaseBottlesBatch memory newBatch = BaseBottlesBatch({
-      id: nextBatchId,
-      quantity: quantity,
-      bottleType: bottleType,
-      owner: owner,
-      soldQuantity: 0,
-      createdAt: createdAt,
-      deletedAt: ''
-    });
+function createBaseBottlesBatch(uint256 quantity, Bottle memory bottleType, address owner, string memory createdAt) external onlyContractOwner {
+  BaseBottlesBatch memory newBatch = BaseBottlesBatch({
+    id: nextBatchId,
+    quantity: quantity,
+    bottleType: bottleType,
+    owner: owner,
+    soldQuantity: 0,
+    createdAt: createdAt,
+    deletedAt: ""
+  });
 
-    baseBottlesBatches[nextBatchId] = newBatch;
-    emit BaseBatchCreated(nextBatchId, owner);
-    nextBatchId++;
-  }
+  baseBottlesBatches[nextBatchId] = newBatch;
+  emit BaseBatchCreated(nextBatchId, owner);
+  nextBatchId++;
+}
 \end{minted}
 \end{listing}
 
 \begin{listing}[!tb]
-\caption{Ejemplo de función del repositorio de la API para la creación de un lote de botellas de vidrio (Node.js)}
+\caption{Función del repositorio de la API para la creación de un lote de botellas de vidrio (Node.js)}
 \label{listing:api-create-batch-code}
 \begin{minted}{typescript}
-  async function CreateBaseBottlesBatch(
-    batch: BaseBottlesBatch,
-  ): IResult<number> {
-    const createdAt = new Date().toISOString();
-    const result = await this.callContractMethod(
-      'createBaseBottlesBatch',
-      batch.quantity,
-      batch.bottleType,
-      batch.owner,
-      createdAt,
-    );
-    if (!result.ok) return result;
+async function CreateBaseBottlesBatch(
+  batch: BaseBottlesBatch,
+): IResult<number> {
+  const createdAt = new Date().toISOString();
+  const result = await this.callContractMethod(
+    'createBaseBottlesBatch',
+    batch.quantity,
+    batch.bottleType,
+    batch.owner,
+    createdAt,
+  );
+  if (!result.ok) return result;
 
-    // Get created batch id from events emmited or default to 0.
-    const batchId = result.data.find((event) => event.name === 'BaseBatchCreated')?.batchId ?? 0;
+  // Get created batch id from events emmited or default to 0.
+  const batchId = result.data.find((event) => event.name === 'BaseBatchCreated')?.batchId ?? 0;
 
-    return { ok: true, status: StatusCodes.OK, data: batchId };
-  }
+  return { ok: true, status: StatusCodes.OK, data: batchId };
+}
 \end{minted}
 \end{listing}
 
 \begin{listing}[!tb]
-\caption{Ejemplo de función para la creación de un lote de botellas de vidrio en el frontend (Next.js)}
+\caption{Función para la creación de un lote de botellas de vidrio en el frontend (Next.js)}
 \label{listing:frontend-create-batch-code}
 \begin{minted}{typescript}
-	function CreateBaseBottlesBatchButton = ({ form }): Props {
-		async function handleSubmit() {
-			const payload = data;
-			const { ok } = await createBatchService(payload);
-			if (ok) {
-				toast.success('Lote de botellas creado correctamente');
-			} else {
-				toast.error('Ocurrió un error al crear el lote de botellas');
-			}
-		};
+function CreateBaseBottlesBatchButton = ({ form }): Props {
+  async function handleSubmit() {
+    const payload = data;
+    const { ok } = await createBatchService(payload);
+    if (ok) {
+      toast.success('Lote de botellas creado correctamente');
+    } else {
+      toast.error('Ocurrió un error al crear el lote de botellas');
+    }
+  };
 
-		async function createBatchService(data: BottleBatch) {
-			try {
-				const res = await fetch(`/producer/batch`, {
-					method: 'POST',
-					body: JSON.stringify(data),
-				});
-				const data = await res.json();
-				return { ok: true, data: data.batchId };
-			} catch {
-				return { ok: false, data: null };
-			}
-		}
+  async function createBatchService(data: BottleBatch) {
+    try {
+      const res = await fetch(`/producer/batch`, {
+        method: 'POST',
+        body: JSON.stringify(data),
+      });
+      const data = await res.json();
+      return { ok: true, data: data.batchId };
+    } catch {
+      return { ok: false, data: null };
+    }
+  }
 
-		return (
-			<Button type="submit" onClick={handleSubmit}>Crear Lote</Button>
-		);
-	}
+  return (
+    <button type="submit" onClick={handleSubmit}>Crear Lote</button>
+  );
+}
 \end{minted}
 \end{listing}
 
@@ -115,11 +115,14 @@ En primer lugar, para la modularización y gestión del despliegue, se configura
 \caption{Comandos para construir y ejecutar el contenedor de la API con Docker}
 \label{listing:docker-api-commands}
 \begin{minted}{bash}
-	# Build the Docker image
-	docker build -t $DOCKER_TAG .
+# Build the Docker image
+docker build -t $DOCKER_TAG .
 
-	# Run the Docker container
-	docker run -d -e PORT -e DB_HOST -e DB_PORT -e DB_USER -e DB_PASS -e FIREBASE_CONFIG -e PRIVATE_KEY -e PROVIDER_URL -e BASE_BATCH_CONTRACT_ADDRESS -e PRODUCT_BATCH_CONTRACT_ADDRESS -e RECYCLING_CONTRACT_ADDRESS -p $EXTERNAL_PORT:$PORT --name $DOCKER_TAG $DOCKER_TAG
+# Run the Docker container
+docker run -d -e PORT -e DB_HOST -e DB_PORT -e DB_USER -e DB_PASS \
+ -e FIREBASE_CONFIG -e PRIVATE_KEY -e PROVIDER_URL -e BASE_BATCH_CONTRACT_ADDRESS \
+ -e PRODUCT_BATCH_CONTRACT_ADDRESS -e RECYCLING_CONTRACT_ADDRESS \
+ -p $EXTERNAL_PORT:$PORT --name $DOCKER_TAG $DOCKER_TAG
 \end{minted}
 \end{listing}
 
@@ -139,46 +142,46 @@ En el segundo nivel, se utilizó la especificación de OpenAPI \footnote{Estánd
 
 En la Figura \ref{fig:openapi-docs} se puede observar una captura de pantalla del sitio web con la documentación del endpoint de creación de lotes de botellas. Este sitio web fue generado automáticamente a partir de la especificación OpenAPI implementada en el Fragmento de Código \ref{listing:openapi-create-batch-code} y contiene información sobre el endpoint como el método HTTP, la URL, los parámetros esperados, los códigos de respuesta y ejemplos de solicitudes. Esta documentación interactiva sirve como referencia para desarrolladores que deseen integrar o extender la funcionalidad de la API, proporcionando una guía clara y confiable sobre cómo interactuar con el sistema.
 
+\begin{listing}[!htb]
+\caption{Descripción del endpoint para crear un lote de botellas mediante el estándar OpenAPI}
+\label{listing:openapi-create-batch-code}
+\begin{minted}{typescript}
+/** 
+ * POST /producer/batch
+ * @summary Crea un nuevo lote de botellas base
+ * @tags 2. Productor Primario - Operaciones para productores de botellas
+ * @param {CreateBaseBottlesBatchRequest} request.body.required - Datos del lote
+ * @security BearerAuth
+ * @return {CreationResponse} 201 - Lote creado exitosamente
+ * @return {ErrorResponse400} 400 - Datos de lote inválidos
+ * @return {ErrorResponse401} 401 - No autorizado
+ * @example request - Ejemplo de lote
+ * {
+ *   "quantity": 100,
+ *   "bottleType": {
+ *     "weight": 500,
+ *     "color": "Verde",
+ *     "thickness": 2,
+ *     "shapeType": "Cuello alto",
+ *     "originLocation": "Argentina",
+ *     "extraInfo": "Vidrio reciclado",
+ *     "composition": [{ "name": "Calcín", "amount": 100, "measureUnit": "%" }]
+ *   },
+ *   "createdAt": "2025-05-22T10:00:00Z"
+ * } 
+ */
+async function CreateBaseBottlesBatch(req: Request, res: Response) { 
+  /* Código del router... */ 
+}
+\end{minted}
+\end{listing}
+
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=\textwidth]{Figures/openapi-endpoint.png}
-	\caption{Documentación interactiva del endpoint de creación de un lote generada automáticamente a partir de la especificación OpenAPI}
+	\caption{Documentación interactiva del endpoint para crear un lote de botellas generada automáticamente a partir de la especificación OpenAPI}
 	\label{fig:openapi-docs}
 \end{figure}
-
-\begin{listing}[!tp]
-\caption{Descripción del endpoint para la creación de un lote de botellas de vidrio siguiendo el estándar OpenAPI}
-\label{listing:openapi-create-batch-code}
-\begin{minted}{typescript}
-	/**
-	 * POST /producer/batch
-	 * @summary Crea un nuevo lote de botellas base
-	 * @tags 2. Productor Primario - Operaciones para productores de botellas
-	 * @param {CreateBaseBottlesBatchRequest} request.body.required - Datos del lote
-	 * @security BearerAuth
-	 * @return {CreationResponse} 201 - Lote creado exitosamente
-	 * @return {ErrorResponse400} 400 - Datos de lote inválidos
-	 * @return {ErrorResponse401} 401 - No autorizado
-	 * @example request - Ejemplo de lote
-	 * {
-	 *   "quantity": 100,
-	 *   "bottleType": {
-	 *     "weight": 500,
-	 *     "color": "Verde",
-	 *     "thickness": 2,
-	 *     "shapeType": "Cuello alto",
-	 *     "originLocation": "Argentina",
-	 *     "extraInfo": "Vidrio reciclado",
-	 *     "composition": [{ "name": "Calcín", "amount": 100, "measureUnit": "%" }]
-	 *   },
-	 *   "createdAt": "2025-05-22T10:00:00Z"
-	 * }
-	 */
-	async function CreateBaseBottlesBatch(req: Request, res: Response) {
-		// Código del router...
-	}
-\end{minted}
-\end{listing}
 
 Finalmente, en el tercer nivel, cada repositorio cuenta con un archivo \textit{README} que actúa como una guía de referencia rápida para la configuración y operación del sistema. Estos archivos detallan los requisitos técnicos, la estructura del proyecto y los comandos para ejecutar pruebas y desplegar el sistema. A su vez, también se incluyó una explicación de la arquitectura de cada repositorio y una serie de enlaces de utilidad que pueden ser de ayuda para los desarrolladores que comiencen a interactuar con el código del proyecto.
 
