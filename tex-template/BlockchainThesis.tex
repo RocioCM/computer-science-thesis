@@ -14,9 +14,9 @@
 \input{Metadata/Metadata}
 
 %%% Loading of Glossary and Acronyms %%%
-% \makeglossaries
-% \loadglsentries{Matter/04-Glossary}
-% \loadglsentries[\acronymtype]{Matter/05-Acronyms}
+\makeglossaries
+\loadglsentries{Matter/04-Glossary}
+\loadglsentries[\acronymtype]{Matter/05-Acronyms}
 % TODO: fix glossary/acronyms are not printed in the document.
 
 \begin{document}
@@ -77,6 +77,7 @@
 \printbibliography[title={\refname},heading=bibintoc]
 
 %%% Print: Glossary and Acronyms %%%
+\glsaddallunused
 \glossarytoc\printnormalglossary
 \acronymtoc\printacronymglossary
 

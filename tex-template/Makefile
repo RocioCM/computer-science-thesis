@@ -39,7 +39,12 @@ $(MAIN).pdf: $(TEX_SRC) $(BIB_SRC)
 		$(DOCKER_RUN) xelatex -interaction=nonstopmode -shell-escape $(MAIN).tex; \
 	fi
 
-	@echo "🔄 Ejecutando pase final para actualizar TOC..."
+	@if [ -f "$(MAIN).glo" ] || [ -f "$(MAIN).acr" ]; then \
+		echo "📖 Procesando glosario y acrónimos..."; \
+		$(DOCKER_RUN) makeglossaries $(MAIN); \
+	fi
+
+	@echo "🔄 Ejecutando pase final para actualizar TOC y glosarios..."
 	$(DOCKER_RUN) xelatex -interaction=nonstopmode -shell-escape $(MAIN).tex
 
 	@echo "✅ PDF generado: $(MAIN).pdf"
@@ -48,6 +53,7 @@ $(MAIN).pdf: $(TEX_SRC) $(BIB_SRC)
 clean:
 	@echo "🧹 Limpiando temporales..."
 	rm -f *.aux *.bbl *.bcf *.blg *.log *.out *.run.xml *.toc *.lof *.lot *.fls *.fdb_latexmk
+	rm -f *.glo *.gls *.glg *.acr *.acn *.alg *.ist
 	rm -rf _minted-*
 
 # Limpiar todo, incluido el PDF
