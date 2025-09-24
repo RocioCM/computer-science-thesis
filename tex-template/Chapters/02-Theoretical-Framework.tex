@@ -88,8 +88,8 @@ A través de un proceso iterativo de validación, los nodos de la red trabajan d
 
 \begin{figure}[!tb]
     \centering
-    \includegraphics[width=0.8\textwidth]{Figures/block-creation.png}
-    \caption{Creación de una transacción y un bloque en una blockchain}
+    \includegraphics[width=\textwidth]{Figures/block-creation.png}
+    \caption{Proceso de creación de una transacción y un bloque en una blockchain}
     \label{fig:blockchain-working}
 \end{figure}
 
@@ -112,13 +112,13 @@ En su concepción original, estos contratos no dependían necesariamente de bloc
 
 Para codificar las reglas de un contrato inteligente, se emplean lenguajes de programación específicos adaptados a cada plataforma blockchain \cite{bartolomeo2020introduccion}. Un ejemplo prominente es \textit{Solidity} \cite{taherdoost2023smart}, utilizado en Ethereum, un lenguaje orientado a objetos diseñado específicamente para esta finalidad. Los contratos programados en Solidity pueden interactuar entre sí y con el estado global de la blockchain, habilitando la creación de aplicaciones descentralizadas (conocidas también como \textit{dApps}, por sus siglas en inglés) que operan de forma autónoma y sin intermediarios en la red \cite{buterin2013ethereum}.
 
-Un contrato inteligente se concibe como un conjunto de reglas y lógica de negocio codificadas. Cada contrato posee un código (las reglas, por ejemplo, en Solidity) y un estado (la información dinámica almacenada en la blockchain) \cite{buterin2013ethereum}. El código del contrato es inmutable una vez desplegado en la blockchain mediante una transacción, garantizando la permanencia de las reglas establecidas. Su estado, sin embargo, puede evolucionar a medida que se interactúa con el contrato a través de transacciones. Es importante destacar que, si bien se describen como auto-ejecutables por su automatismo al cumplir condiciones, su ejecución es llevada a cabo por los nodos de la red que validan las transacciones e integran los cambios de estado en la cadena \cite{buterin2013ethereum}. Tanto el código como el estado del contrato se almacenan en la blockchain, asegurando su transparencia y disponibilidad pública. Por ejemplo, un contrato inteligente podría gestionar un sistema de votación, donde los participantes envían sus votos y el contrato contabiliza automáticamente los resultados al finalizar el periodo de votación. En la Figura \ref{fig:smart-contract-process} se ilustra el proceso de creación y ejecución de un contrato inteligente, describiendo las etapas desde su definición hasta su implementación y ejecución en la blockchain.
+Un contrato inteligente se concibe como un conjunto de reglas y lógica de negocio codificadas. Cada contrato posee un código (las reglas, por ejemplo, en Solidity) y un estado (la información dinámica almacenada en la blockchain) \cite{buterin2013ethereum}. El código del contrato es inmutable una vez desplegado en la blockchain mediante una transacción, garantizando la permanencia de las reglas establecidas. Su estado, sin embargo, puede evolucionar a medida que se interactúa con el contrato a través de transacciones. Es importante destacar que, si bien se describen como auto-ejecutables por su automatismo al cumplir condiciones, su ejecución es llevada a cabo por los nodos de la red que validan las transacciones e integran los cambios de estado en la cadena \cite{buterin2013ethereum}. Tanto el código como el estado del contrato se almacenan en la blockchain, asegurando su transparencia y disponibilidad pública. Por ejemplo, un contrato inteligente podría gestionar un sistema de votación, donde los participantes envían sus votos y el contrato contabiliza automáticamente los resultados al finalizar el periodo de votación. En la Figura \ref{fig:smart-contract-process} se ilustra el proceso de de definición y utilización de un contrato inteligente en una blockchain.
 
 % TODO: use the votation example in this figure to explain the flow of contract creation and execution.
 \begin{figure}[!tb]
     \centering
-    \includegraphics[width=0.8\textwidth]{Figures/smart-contract-process-voting.png}
-    \caption{Proceso de creación y ejecución de un contrato inteligente}
+    \includegraphics[width=\textwidth]{Figures/smart-contract-process.png}
+    \caption{Ciclo de vida de un contrato inteligente}
     \label{fig:smart-contract-process}
 \end{figure}
 
