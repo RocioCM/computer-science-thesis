@@ -31,13 +31,16 @@ pdf: $(MAIN).pdf
 # Paso 1: Generar PDF (detectar cambios en .tex o .bib)
 $(MAIN).pdf: $(TEX_SRC) $(BIB_SRC)
 	@echo "📄 Compilando $(MAIN).tex..."
-	$(DOCKER_RUN) xelatex -interaction=nonstopmode -shell-escape $(MAIN).tex
+	$(DOCKER_RUN) xelatex -interaction=nonstopmode -shell-escape $(MAIN).tex || true
 
 	@if [ "$(BIB_SRC)" != "" ] || grep -q "Citation" $(MAIN).log 2>/dev/null; then \
 		echo "📚 Cambios en bibliografía detectados. Ejecutando Biber..."; \
 		$(DOCKER_RUN) biber $(MAIN); \
 		$(DOCKER_RUN) xelatex -interaction=nonstopmode -shell-escape $(MAIN).tex; \
 	fi
+
+	@echo "🔄 Ejecutando pase final para actualizar TOC..."
+	$(DOCKER_RUN) xelatex -interaction=nonstopmode -shell-escape $(MAIN).tex
 
 	@echo "✅ PDF generado: $(MAIN).pdf"
 
