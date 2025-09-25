@@ -45,7 +45,7 @@ Particularmente, en este trabajo se debe elegir una metodología de desarrollo d
 
 El Modelo en V (Figura \ref{fig:model-v}) es una extensión del \textit{Modelo en Cascada} que empareja cada fase de desarrollo con una fase de prueba correspondiente \cite{pressman2010ingenieria}. Este modelo propone una estructura de etapas en forma de ``V'', de modo que a medida que el proyecto avanza hacia abajo en la primera mitad de la V, los requerimientos y componentes del sistema son detallados cada vez más hasta llegar a la codificación, de forma similar al funcionamiento del Modelo en Cascada, donde cada fase debe completarse en orden sin contemplar posibles errores o cambios. Una vez completada la codificación, el proceso asciende por el lado derecho de la V, donde cada etapa de definición anterior es validada a través de pruebas específicas. A diferencia del Modelo en Cascada, el Modelo en V plantea una verificación sistemática en cada etapa, con el fin de detectar y corregir errores de forma temprana y minimizar riesgos al final del proyecto. Este modelo es apropiado para proyectos que requieren altos estándares de calidad y donde los errores tempranos podrían tener consecuencias costosas o críticas. En el caso de un prototipo basado en contratos inteligentes, la inmutabilidad de los contratos desplegados en la blockchain hace que la detección temprana de errores sea crítica para garantizar la calidad y la fiabilidad del prototipo final, ya que una vez desplegados, los contratos no pueden ser modificados para resolver errores o vulnerabilidades de seguridad.
 
-\begin{figure}[!htb]
+\begin{figure}[!tb]
 	\centering
 	\includegraphics[width=0.6\textwidth]{Figures/model-v.png}
 	\caption[Modelo en V]{Modelo en V. Fuente: \cite{pressman2010ingenieria}}
@@ -71,7 +71,7 @@ La elección de esta metodología híbrida busca mantener un enfoque sistemátic
 
 Utilizando el Modelo en V como marco de referencia, el desarrollo del sistema se concibe como un proceso estructurado que se divide en dos grandes fases: la fase descendente, que se enfoca en la definición, el diseño y la implementación, y la fase ascendente, que se centra en la verificación y las pruebas. A continuación, se detallan las actividades y los resultados esperados de cada una de las etapas del proceso de desarrollo, siguiendo el modelo en V, aplicado al prototipo de trazabilidad del vidrio basado en blockchain. En la Figura \ref{fig:methodology-v-grouped} se muestran las etapas del proceso de desarrollo en V agrupadas en bloques temáticos, con el fin de ilustrar de manera más clara las interacciones y dependencias entre las diferentes fases de desarrollo de este trabajo.
 
-\begin{figure}[!htb]
+\begin{figure}[!tb]
 	\centering
 	\includegraphics[width=0.6\textwidth]{Figures/model-v-grouped.png}
 	\caption{Modelo en V agrupado por etapas}

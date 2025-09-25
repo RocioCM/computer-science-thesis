@@ -20,9 +20,9 @@ A continuación, se explicará cada una de las etapas del diseño de solución, 
 
 La fase de diseño de arquitectura representa el primer paso en la traducción de los requerimientos del sistema hacia un sistema de software funcional. El diseño permite una visión global de la solución, asegurando que todos los componentes y módulos trabajen juntos de manera coherente previo a la implementación. A partir de los requerimientos previamente definidos, se establece un marco de trabajo de alto nivel que estructura la solución en componentes lógicos, delineando sus responsabilidades, las interacciones entre ellos y las tecnologías que los soportan. La salida de esta etapa es la arquitectura del sistema, la cual servirá de base para las decisiones de diseño a un nivel más granular. En el contexto del modelo en V, las decisiones tomadas en esta etapa se validan en la fase de pruebas de sistema, donde se verifica que la arquitectura en su conjunto cumple con las especificaciones definidas en los requerimientos funcionales y no funcionales del sistema.
 
-\begin{figure}[!htb]
+\begin{figure}[!b]
     \centering
-    \includegraphics[width=0.8\linewidth]{Figures/software-architecture.png}
+    \includegraphics[width=\linewidth]{Figures/software-architecture.png}
     \caption{Arquitectura de módulos del sistema de trazabilidad de envases de vidrio basado en blockchain}
     \label{fig:software-architecture}
 \end{figure}
@@ -98,7 +98,7 @@ En la Tabla \ref{tab:blockchain-comparison}, se presenta un resumen comparativo 
 
 Luego de realizar el análisis comparativo entre protocolos blockchain, se llega a la determinación de que Ethereum resulta ser la tecnología más adecuada para este trabajo por múltiples razones. En primer lugar, su naturaleza pública está alineada con el objetivo del proyecto, ya que permite a cualquier persona unirse a la red y verificar el estado de la cadena de forma transparente, sin necesidad de permisos, como puede ocurrir en las plataformas permisionadas como Hyperledger. A su vez, otro factor influyente en esta elección es la adopción del mecanismo de consenso \acrshort{pos} en la red Ethereum, que es más eficiente energéticamente que \acrshort{pow}, de modo que se alinea directamente con los objetivos de sostenibilidad ambiental del proyecto. Además, Ethereum posee la mayor comunidad de desarrolladores entre las plataformas analizadas y una alta adopción en la industria, lo que garantiza un soporte continuo y una amplia gama de herramientas y recursos a su disposición. Su lenguaje de programación, Solidity, es de alto nivel y fácil de aprender en comparación a lenguajes como Rust y Haskell, permitiendo la creación de aplicaciones complejas de manera eficiente. Finalmente, existe una amplia variedad de herramientas que permiten conectar otras tecnologías y sistemas con Ethereum, facilitando la integración con la base de datos relacional y la capa backend del sistema.
 
-\begin{figure}[!htb]
+\begin{figure}[!tb]
     \centering
     \includegraphics[width=0.9\linewidth]{Figures/blockchain-layer-2.png}
     \caption{Funcionamiento de una cadena secundaria sobre Ethereum}
@@ -117,7 +117,7 @@ Para la implementación de la capa backend se tomó la decisión de utilizar la 
 
 Existen múltiples motivos que justifican la elección del entorno Node.js para el desarrollo de la capa backend de este trabajo. En primer lugar, considerando el alcance limitado del trabajo, JavaScript resulta ser un lenguaje propicio debido a su baja curva de aprendizaje y su flexibilidad para ser utilizado tanto en la capa backend como en la capa frontend, lo que facilita el proceso de desarrollo al permitir que el mismo desarrollador trabaje en ambas capas sin necesidad de cambiar de lenguaje. Existen múltiples lenguajes y frameworks ampliamente utilizados en la industria para desarrollar la capa backend de aplicaciones web, como Java con Spring Boot, Python con Django o Flask y Ruby on Rails, pero la posibilidad de utilizar el mismo lenguaje tanto en frontend como en backend, simplifica el proceso de desarrollo en equipos pequeños o unipersonales y ayuda a facilitar el mantenimiento del código en el futuro. A su vez, Node.js ofrece un excelente soporte para la interacción con la red de Ethereum, mediante una serie de librerías ampliamente adoptadas y probadas en la comunidad, como pueden ser Ethers.js y Web3.js. Por último, la amplia adopción de Node.js en la industria y la disponibilidad de herramientas para pruebas unitarias facilitan el desarrollo y el mantenimiento del sistema. 
 
-\begin{figure}[!htb]
+\begin{figure}[!tb]
     \centering
     \includegraphics[width=\linewidth]{Figures/backend-api-rest.png}
     \caption{Funcionamiento de una API RESTful}
@@ -140,7 +140,7 @@ La elección tecnológica para esta capa estuvo focalizada en encontrar framewor
 
 La comunicación del frontend con el backend se realiza exclusivamente a través de llamadas a la \acrshort{api} RESTful. La interfaz no contiene la lógica de negocio, sino que actúa como un cliente ligero que envía datos al backend (por ejemplo, al registrar un nuevo lote) y recibe la respuesta, la cual es luego presentada al usuario. Este modelo garantiza que el frontend se enfoque en la interacción y la visualización, mientras la lógica crítica reside en el backend. Debido a que el frontend se enfoca únicamente en la visualización de información, es necesario implementar un sistema de autenticación y autorización unificado entre frontend y backend que permita a cada usuario visualizar e interactuar únicamente con las funcionalidades propias de su rol. Por este motivo, para gestionar la autenticación de usuarios en este proyecto, se determinó hacer uso del servicio Firebase Authentication, que gestiona la autenticación de usuarios e implementa de forma abstracta el estándar de autorización OAuth 2.0, asegurando que solo los actores con los permisos adecuados puedan acceder a cada recurso del sistema.
 
-\begin{figure}[!htb]
+\begin{figure}[!t]
     \centering
     \includegraphics[width=\linewidth]{Figures/system-architecture.png}
     \caption{Arquitectura del sistema con librerías elegidas para comunicación entre módulos}
@@ -160,7 +160,7 @@ A continuación, se presentarán las decisiones de diseño tomadas para cada uno
 
 El diseño de la arquitectura de datos representa un componente central de este trabajo, ya que debe integrar de manera transparente y eficiente la naturaleza descentralizada de la blockchain con la eficiencia y escalabilidad de una base de datos relacional para cumplir con los requerimientos no funcionales del sistema (RNF-01: Transparencia, RNF-03: Escalabilidad y RNF-06: Integridad). La solución definida durante la etapa de diseño de arquitectura propone un modelo de datos híbrido para optimizar el almacenamiento y la recuperación de información. En este esquema, la blockchain se utiliza como una capa de confianza inmutable, mientras que la base de datos relacional se encarga de la gestión de datos auxiliares que no requieren la inmutabilidad de la cadena de bloques. El diseño de componentes para esta arquitectura, por lo tanto, implica definir la estructura de los contratos inteligentes en la blockchain y el esquema de la base de datos relacional, asegurando que ambos sistemas interactúen de manera eficiente y coherente.
 
-\begin{figure}[!htb]
+\begin{figure}[!b]
     \centering
     \includegraphics[width=\linewidth]{Figures/data-lifecycle.png}
     \caption{Diagrama de ciclo de vida de los envases}
@@ -171,7 +171,7 @@ En primera instancia, se definió la representación de los datos, tanto en la b
 
 A partir de la representación de los datos, se diseñaron los contratos inteligentes en la blockchain para almacenar únicamente la información necesaria para garantizar la trazabilidad de los envases y la integridad de los datos, como un identificador único de cada lote de vidrio, sus metadatos esenciales de producción, el propietario actual y un historial de las transferencias de propiedad y de estado. Al igual que en un sistema de programación orientada a objetos (\acrshort{oop}), los contratos en Solidity implementan atributos que guardan el estado y métodos que permiten interactuar con él. En lugar de un único contrato monolítico, se decidió implementar tres contratos que interactúan entre sí para lograr mayor modularidad, mantenibilidad y desacoplamiento. A continuación, se detalla la arquitectura de cada uno de ellos, incluyendo sus responsabilidades y la interacción entre ellos. Para cada contrato, se presenta un diagrama de clases \acrshort{uml} que ilustra su estructura interna, junto con las estructuras de datos relacionadas. Un diagrama de clases \acrshort{uml} (\acrlong{uml}) es una herramienta visual que se usa en la ingeniería de software para modelar la estructura de un sistema orientado a objetos. Describe las clases con sus atributos (datos) y métodos (funciones), y las relaciones entre ellas. Permite visualizar la composición y las interacciones del sistema, facilitando la comunicación y el entendimiento entre los desarrolladores. De forma práctica, actúa como un mapa conceptual que detalla los componentes principales del software antes de su implementación. Dentro del diagrama, los nombres de clases y propiedades se describen en inglés, siguiendo las convenciones de nomenclatura estándar vigentes en programación en entornos profesionales. Posteriormente, en la etapa de codificación, todo el código será implementado en inglés siguiendo este estándar, por lo que se utilizarán los nombres definidos en los diagramas \acrshort{uml} para mantener la coherencia y facilitar la comprensión del código.
 
-\begin{figure}[!htb]
+\begin{figure}[!b]
     \centering
     \includegraphics[width=\linewidth]{Figures/uml-producer-contract.png}
     \caption{Diagrama \acrshort{uml} del Contrato de Envases (BaseBottlesBatchContract)}
@@ -181,7 +181,7 @@ A partir de la representación de los datos, se diseñaron los contratos intelig
 \textbf{Contrato de Envases: BaseBottlesBatchContract} (Figura \ref{fig:bottles-contract-uml})
  es el punto de partida del ciclo de vida del vidrio, encargado de gestionar la producción inicial de los envases. Sus responsabilidades incluyen registrar lotes de botellas recién fabricadas por el productor primario y sus metadatos (como la cantidad y composición), así como gestionar la transferencia de propiedad a productores secundarios. Sus métodos permiten crear, actualizar y eliminar lotes, además de consultar la información histórica de los mismos. La información de este contrato es consumida por el  contrato \textit{ProductBottlesBatchContract}, proporcionando una referencia al lote original para el siguiente eslabón de la cadena de trazabilidad.
 
-\begin{figure}[!htb]
+\begin{figure}[!t]
     \centering
     \includegraphics[width=\linewidth]{Figures/uml-product-contract.png}
     \caption{Diagrama \acrshort{uml} del Contrato de Productos (ProductBottlesBatchContract)}
@@ -191,7 +191,7 @@ A partir de la representación de los datos, se diseñaron los contratos intelig
 \textbf{Contrato de Productos: ProductBottlesBatchContract} (Figura \ref{fig:product-contract-uml})
  gestiona la segunda fase del ciclo de vida del vidrio, comprende el envasado y la comercialización de estos productos. Este contrato registra los lotes de productos terminados, asociando un código de seguimiento a cada uno y referenciando el lote de envases original del contrato \textit{BaseBottlesBatchContract}. Sus funciones permiten crear lotes de productos, registrar su venta y marcar aquellos envases que se convierten en residuos. La información de seguimiento generada en este contrato juega un rol central en el sistema de trazabilidad, ya que el código de seguimiento introducido en este contrato actúa como el eslabón intermedio que permite vincular el lote de origen de un envase de \textit{BaseBottlesBatchContract} con el envase en \textit{RecycleMaterialContract} cuando el consumidor lo desecha para su posterior reciclaje.
 
-\begin{figure}[!htb]
+\begin{figure}[!b]
     \centering
     \includegraphics[width=\linewidth]{Figures/uml-recycling-contract.png}
     \caption{Diagrama \acrshort{uml} del Contrato de Reciclaje (RecycleMaterialContract)}
@@ -203,7 +203,7 @@ A partir de la representación de los datos, se diseñaron los contratos intelig
 
 De forma complementaria a la arquitectura de contratos inteligentes, el diseño de la base de datos relacional almacena la información de los usuarios (relacionada con los requerimientos funcionales de autenticación y autorización) y una referencia al ID y propietario de cada lote y envase registrado en la blockchain. La relación entre los datos de la blockchain y la base de datos relacional se establece mediante el identificador único del lote, que sirve como clave de enlace y permite realizar consultas de metadatos detallados de cada lote. Adicionalmente, en la base de datos relacional se guarda una referencia a cada envase reciclado por los consumidores. Esto permite que cada consumidor pueda acceder al listado de envases que ha reciclado previamente y consultar si efectivamente ha sido procesado, cumpliendo así con el requerimiento funcional asociado (RF-023). En la Figura \ref{fig:der} se presenta un diagrama que ilustra la relación entre las entidades de la base de datos.
 
-\begin{figure}[!htb]
+\begin{figure}[!t]
     \centering
     \includegraphics[width=\textwidth]{Figures/db-der.png}
     \caption{\acrfull{der} del modelo de datos}
@@ -229,7 +229,7 @@ En particular, para orquestar la comunicación entre la API, la base de datos re
 
 La interfaz de usuario del sistema se diseñó como una aplicación web, con el objetivo de proporcionar una experiencia de usuario fluida, accesible desde cualquier dispositivo con conexión a Internet y sin necesidad de instalar software adicional. Debido al alcance limitado del trabajo, se decidió implementar una interfaz diseñada para computadoras de escritorio, dado que es el caso de uso más frecuente en sistemas de gestión y trazabilidad. La aplicación podrá accederse en dispositivos móviles, pero no se ha priorizado la implementación adaptada para estos dispositivos, por lo que la interfaz puede resultar menos amigable en pantallas pequeñas. La interfaz se estructuró mediante una arquitectura basada en componentes, un patrón de diseño que promueve la creación de elementos reutilizables, modulares e independientes, que es el patrón recomendado por librerías como React y frameworks como Next.js.
 
-\begin{figure}[!htb]
+\begin{figure}[!b]
 \centering
 \includegraphics[width=0.8\textwidth]{Figures/frontend-architecture.png}
 \caption{Arquitectura de módulos frontend}
@@ -238,7 +238,7 @@ La interfaz de usuario del sistema se diseñó como una aplicación web, con el 
 
 Para la estructuración interna del código, se eligió implementar una arquitectura \acrfull{mvc}, que establece una clara separación de responsabilidades: la vista implementa la interfaz de usuario, el controlador maneja la lógica y las interacciones, y el modelo (en este caso, un servicio) se comunica con el backend. Esta metodología, combinada con la arquitectura de componentes, facilita una construcción rápida y consistente de cada vista, al mismo tiempo que mejora la mantenibilidad del código a largo plazo, ya que cada componente puede ser actualizado sin afectar otras partes del sistema. En la Figura \ref{fig:frontend-architecture} se ilustra la arquitectura de componentes y módulos del frontend.
 
-\begin{figure}[!htb]
+\begin{figure}[!tb]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/frontend-navigation.png}
     \caption{Diseño de la barra lateral de navegación de la aplicación para cada rol}

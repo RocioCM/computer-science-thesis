@@ -86,6 +86,7 @@
 \usepackage[\LanguageOption]{babel}
 
 %%% Required Packages %%%
+\RequirePackage{morewrites} % Extend the number of output streams beyond 16.
 \RequirePackage{ifthen} % Provides conditional statements.
 \RequirePackage{etoolbox} % Advanced programming tools for LaTeX.
 \RequirePackage{graphicx} % For including and manipulating images.
