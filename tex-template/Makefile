@@ -28,24 +28,23 @@ all: $(MAIN).pdf
 # Alias para compilar explícitamente
 pdf: $(MAIN).pdf
 
+generate-pdf:
+	$(DOCKER_RUN) xelatex -interaction=nonstopmode -shell-escape $(MAIN).tex || true
+
 # Paso 1: Generar PDF (detectar cambios en .tex o .bib)
 $(MAIN).pdf: $(TEX_SRC) $(BIB_SRC)
 	@echo "📄 Compilando $(MAIN).tex..."
-	$(DOCKER_RUN) xelatex -interaction=nonstopmode -shell-escape $(MAIN).tex || true
+	make generate-pdf
 
-	@if [ "$(BIB_SRC)" != "" ] || grep -q "Citation" $(MAIN).log 2>/dev/null; then \
-		echo "📚 Cambios en bibliografía detectados. Ejecutando Biber..."; \
-		$(DOCKER_RUN) biber $(MAIN); \
-		$(DOCKER_RUN) xelatex -interaction=nonstopmode -shell-escape $(MAIN).tex; \
-	fi
+	echo "📚 Ejecutando Biber..."; \
+	$(DOCKER_RUN) biber $(MAIN); \
+	make generate-pdf
 
-	@if [ -f "$(MAIN).glo" ] || [ -f "$(MAIN).acr" ]; then \
-		echo "📖 Procesando glosario y acrónimos..."; \
-		$(DOCKER_RUN) makeglossaries $(MAIN); \
-	fi
-
-	@echo "🔄 Ejecutando pase final para actualizar TOC y glosarios..."
-	$(DOCKER_RUN) xelatex -interaction=nonstopmode -shell-escape $(MAIN).tex
+	echo "📖 Procesando glosario y acrónimos..."; \
+	$(DOCKER_RUN) makeglossaries $(MAIN); \
+	
+	echo "🔄 Ejecutando pase final para incorporar glosarios..."; \
+	make generate-pdf
 
 	@echo "✅ PDF generado: $(MAIN).pdf"
 

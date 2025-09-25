@@ -36,9 +36,9 @@
         { working, final } 
         { \tl_gset:Nn \g_UMUthesis_docstage_tl { #1 } },
     docstage / unknown .code:n = 
-        { \ClassWarningNoLine{UMUthesis}{Specified~'docstage'~not~available.~Defaulting~to~'working'} },
-    docstage .default:n = { working },
-    docstage .initial:n = { working },
+        { \ClassWarningNoLine{UMUthesis}{Specified~'docstage'~not~available.~Defaulting~to~'final'} },
+    docstage .default:n = { final },
+    docstage .initial:n = { final },
 
     media .choices:nn = 
         { paper, screen } 
