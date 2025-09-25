@@ -214,7 +214,7 @@ De forma complementaria a la arquitectura de contratos inteligentes, el diseño 
 
 En el diseño de arquitectura de la capa backend se adoptó el patrón \textit{Clean Architecture} (Arquitectura Limpia), un modelo de diseño que prioriza la separación de las reglas de negocio de las dependencias externas. En este esquema, la implementación de la API se estructura en tres capas principales: \textit{Routers}, \textit{Handlers} y \textit{Repositories}. Los routers reciben las solicitudes HTTP y las dirigen a los handlers correspondientes, luego los handlers contienen la lógica de negocio y orquestan las operaciones, por último, los repositories se encargan de la interacción con las fuentes de datos (ya sea la base de datos relacional o la blockchain). La comunicación entre estas capas es unidireccional, lo que significa que las capas externas solo pueden acceder a las capas más internas, reforzando así la independencia de la lógica de negocio (Figura \ref{fig:clean-architecture}).
 
-\begin{figure}[!htb]
+\begin{figure}[!b]
 \centering
 \includegraphics[width=0.6\textwidth]{Figures/clean-architecture.png}
 \caption{Modelo Clean Architecture}
@@ -240,12 +240,12 @@ Para la estructuración interna del código, se eligió implementar una arquitec
 
 \begin{figure}[!tb]
     \centering
-    \includegraphics[width=0.8\textwidth]{Figures/frontend-navigation.png}
-    \caption{Diseño de la barra lateral de navegación de la aplicación para cada rol}
+    \includegraphics[width=0.9\textwidth]{Figures/frontend-navigation.png}
+    \caption{Diseño de casos de la barra lateral de navegación de la aplicación para cada rol}
     \label{fig:frontend-navigation}
 \end{figure}
 
-La estructura de la interfaz de usuario se organizó en módulos funcionales por cada rol de usuario, lo que se alinea con la división de responsabilidades del diseño de arquitectura de backend y capa de datos. Se definieron vistas específicas para el registro y la gestión de lotes por parte de los productores, y una interfaz de consulta para los consumidores. En la Figura \ref{fig:frontend-navigation} se puede observar el diseño de la navegación de la aplicación, que permite el acceso a las diferentes pantallas disponibles según el rol del usuario a través de una barra lateral que se muestra siempre en pantalla. En el Apéndice \ref{cp:user-flows} se encuentran documentados los flujos de usuario para cada rol con imágenes de sus respectivas pantallas y las acciones que conectan el flujo.
+La estructura de la interfaz de usuario se organizó en módulos funcionales por cada rol de usuario, lo cual se alinea con la división de responsabilidades del diseño de arquitectura de backend y capa de datos. Por ejemplo, se definieron vistas específicas para el registro y la gestión de lotes por parte de los productores, y una interfaz de consulta para los consumidores. En la Figura \ref{fig:frontend-navigation} se puede observar el diseño de la navegación de la aplicación, que consiste en una barra lateral comprimida que se expande al posicionar el cursor sobre ella, mostrando accesos directos a las pantallas disponibles según el rol del usuario autenticado. El contenido de la barra lateral varía dinámicamente según el rol del usuario autenticado para permitir un acceso rápido a las funcionalidades relevantes para cada tipo de usuario. En el Apéndice \ref{cp:user-flows} se encuentran documentados los flujos de usuario para cada rol con imágenes de sus respectivas pantallas y las acciones que conectan el flujo.
 
 \begin{figure}[!htb]
     \centering
