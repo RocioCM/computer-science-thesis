@@ -144,57 +144,14 @@ El proceso de pruebas de integración no detectó fallos en la interacción entr
 
 Las pruebas de sistema constituyen la siguiente fase en el ciclo de validación y tienen como propósito verificar que el prototipo, en su conjunto, cumple con los requerimientos funcionales y no funcionales definidos al comenzar el proyecto. Esta etapa se corresponde con el diseño de arquitectura en el Modelo en V, y su objetivo es evaluar el comportamiento del sistema de manera integral para asegurar que la arquitectura implementada efectivamente logra cumplir los requerimientos establecidos.
 
-A diferencia de las pruebas unitarias y de integración, que fueron automatizadas, las pruebas de sistema se ejecutaron de manera manual. En primer lugar, se documentó de forma detallada cada caso de prueba a ejecutarse, incluyendo un título, requerimientos asociados, los pasos a seguir desde la perspectiva de un usuario, los datos de entrada (en caso de requerirlos) y los resultados esperados. Posteriormente, se ejecutó de forma manual cada caso de prueba, siguiendo los pasos definidos y registrando los resultados obtenidos. La metodología consistió en interactuar con la interfaz de usuario (frontend) del sistema y seguir los pasos detallados en el caso. En estas pruebas, se utilizó el sistema completo desplegado en el entorno de pruebas, sin emplear datos simulados ni probar funcionalidades de forma aislada. Esto permitió una validación precisa del comportamiento del prototipo, desde la perspectiva de un usuario, en un entorno que replicaba la realidad. A continuación, se muestra un ejemplo de un caso de prueba documentado para la creación exitosa de un lote de vidrio, mientras que en el Apéndice \ref{cp:tests-execution-results} se encuentran documentados todos los casos de prueba ejecutados durante esta etapa.
+A diferencia de las pruebas unitarias y de integración, que fueron automatizadas, las pruebas de sistema se ejecutaron de manera manual. En primer lugar, se documentó de forma detallada cada caso de prueba a ejecutarse, incluyendo un título, requerimientos asociados, los pasos a seguir desde la perspectiva de un usuario, los datos de entrada (en caso de requerirlos) y los resultados esperados. Posteriormente, se ejecutó de forma manual cada caso de prueba, siguiendo los pasos definidos y registrando los resultados obtenidos. La metodología consistió en interactuar con la interfaz de usuario (frontend) del sistema y seguir los pasos detallados en el caso. En estas pruebas, se utilizó el sistema completo desplegado en el entorno de pruebas, sin emplear datos simulados ni probar funcionalidades de forma aislada. Esto permitió una validación precisa del comportamiento del prototipo, desde la perspectiva de un usuario, en un entorno que replicaba la realidad. En la Figura \ref{fig:system-test-case-example} se muestra un ejemplo de un caso de prueba documentado para la creación exitosa de un lote de vidrio, mientras que en el Apéndice \ref{cp:tests-execution-results} se encuentran documentados todos los casos de prueba ejecutados durante esta etapa.
 
-% TODO: ensure blank space is not rendered here.
-
-\begin{center}
-\fbox{
-  \begin{minipage}{0.95\linewidth}
-    \vspace{0.3cm}
-
-		\textbf{ID:} PROD-001 \\
-		\textbf{Historia de usuario:} RF-006 - Cargar lotes de producción \\
-		\textbf{Caso de prueba:} Crear un lote con datos válidos \\
-		\textbf{Pantallas (rutas):} /producer \\
-		\textbf{Prioridad:} Alta \\
-		\textbf{Precondiciones:} Usuario Productor Primario (producer) autenticado \\
-		\textbf{Pasos de ejecución:} \\
-		1. Ir a Lotes producidos; \\
-		2. Tab o clic en botón 'Crear lote'; \\
-		3. Tab al campo 'Cantidad de envases'; clic e ingresar 100; \\
-		4. Tab al campo 'Peso por envase'; clic e ingresar 500; \\
-		5. Tab al desplegable 'Color del envase'; clic y seleccionar 'verde'; \\
-		6. Tab al campo 'Espesor'; clic e ingresar 2; \\
-		7. Tab al campo 'Tipo/forma del envase'; clic e ingresar 'cuello largo'; \\
-		8. Tab al campo 'Nombre del material'; clic e ingresar 'Vidrio'; \\
-		9. Tab al campo 'Cantidad de material'; clic e ingresar 100; \\
-		10. Tab al campo 'Unidad de medida'; clic e ingresar '\%'; \\
-		11. Tab al campo 'Fecha de producción'; clic y seleccionar 27-04-2025; \\
-		12. Tab al campo 'Localización de producción'; clic e ingresar 'Argentina'; \\
-		13. Tab al botón 'Crear'; presionar Enter o hacer clic
-    \vspace{0.2cm}
-
-		\textbf{Datos de prueba:} \\
-				quantity=100; \\
-				bottleType( \\
-					weight=500; \\
-					color=verde; \\
-					thickness=2; \\
-					shapeType=``cuello largo''; \\
-					originLocation=Argentina; \\
-					composition=[Vidrio:100\%]); \\
-				createdAt=27-04-2025
-    \vspace{0.2cm}
-
-		\textbf{Resultado esperado:} Se cierra modal; En listado aparece nuevo lote con ID asignado, cantidad 100, color verde y fecha 27/04/2025; Respuesta API POST /producer/batch → 201 ``Created'' con información del lote \\
-		\textbf{Resultado obtenido:} Resultado esperado \\
-		\textbf{Estado:} Exitoso \\
-		\textbf{Comentarios:} -
-    \vspace{0.3cm}
-  \end{minipage}
-}
-\end{center}
+\begin{figure}[!tb]
+	\centering
+	\includegraphics[width=0.9\textwidth]{Figures/system-test-case-example.png}
+	\caption{Caso de prueba documentado para la creación exitosa de un lote de vidrio}
+	\label{fig:system-test-case-example}
+\end{figure}
 
 A su vez, también se incluyeron pruebas de requerimientos no funcionales en esta etapa, como son la escalabilidad, el rendimiento y la seguridad del sistema. A pesar de las limitaciones de recursos del entorno de pruebas (debido a que se utilizaron plataformas gratuitas), se llevaron a cabo pruebas controladas para validar que el sistema puede cumplir con estos requerimientos en un entorno real. Los detalles y resultados de estas pruebas se documentaron junto con los casos de prueba funcionales en el Apéndice \ref{cp:tests-execution-results}.
 
@@ -209,7 +166,7 @@ Dada la naturaleza de este trabajo como proyecto académico, la obtención de us
 
 \begin{figure}[!htb]
 \centering
-\includegraphics[width=\textwidth]{Figures/uat-ui-redesign.png}
+\includegraphics[width=0.8\textwidth]{Figures/uat-ui-redesign.png}
 \caption{Rediseño de la interfaz de usuario de la pantalla de trazabilidad basado en la retroalimentación recibida}
 \label{fig:uat-ui-redesign}
 \end{figure}
