@@ -1,0 +1,26 @@
+%%% Chapters and Sections %%%
+\ifthenelse{\equal{\ChapterOption}{classic}}{
+    \titleformat{\chapter}[display]%
+    {\raggedleft\huge}%
+    {\raggedleft\fontsize{98}{10}\bfseries{\color{chapterdarkred}{\thechapter}}}%
+    {0pt}%
+    {\hspace{3cm}\crimsonfont\fontsize{26.8}{30}\selectfont}%
+}{}
+
+\ifthenelse{\equal{\ChapterOption}{fancy}}{%
+    \titleformat{\chapter}[display]
+    {\flushright\normalsize\Huge\color{black}}% 
+    {\crimsonfont\flushright\fontsize{84}{10}\bfseries%
+    {\tcbox[colback=greencolor,colframe=greencolor,coltext=white,arc=2pt,left=0.1em,right=0.1em,top=0.1em,bottom=0.1em]{\thechapter}}%
+    }{0pt}% <- incrementar el espacio vertical si lo deseas
+    {\addfontfeature{LetterSpace=2}\Huge\scshape}% <- y aquí también
+}{}
+
+\ifthenelse{\equal{\ChapterOption}{modern}}{
+    \titleformat{\chapter}[display]
+    {\normalsize\huge\color{black}}%
+    {\crimsonfont\flushright\fontsize{84}{10}\bfseries%
+    {\color{chaptergray}\raisebox{5pt}{\thechapter}}%
+    }{10pt}%
+    {\crimsonfont\addfontfeature{LetterSpace=6}\fontsize{28}{32}\MakeUppercase}%
+}{}

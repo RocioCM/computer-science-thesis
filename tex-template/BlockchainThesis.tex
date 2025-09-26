@@ -1,0 +1,87 @@
+%%% Document Options %%%
+\documentclass[
+    language=spanish, % Choose the language of the thesis. Available options: 'english', 'spanish'.
+    docstage=final, % Set the document stage. Available options: 'working', 'final'.
+    media=paper,
+    linkcolor=black!45!black,
+    chapterstyle=fancy,
+]{UMUthesis} % Refer to the Wiki for a list of available options.
+
+%%% Document Version %%%
+\DocumentVersion{1.3.0} % This is required only if the 'docstage' is set to 'working'.
+
+%%% Document Metadata %%%
+\input{Metadata/Metadata}
+
+%%% Loading of Glossary and Acronyms %%%
+\makeglossaries
+\loadglsentries{Matter/04-Glossary}
+\loadglsentries[\acronymtype]{Matter/05-Acronyms}
+
+\begin{document}
+
+%%% Front Matter %%%
+\include{Matter/00-Cover}
+
+%%% Roman Numeration %%%
+\pagenumbering{roman}
+
+%%% Frase celebre %%%
+\include{Matter/04-Famous-phrase}
+
+%%% Acknowledgements %%%
+\include{Matter/04-Acknowledgements}
+
+%%% Abstract %%%
+\include{Chapters/00-Abstract}
+
+%%% Table of Contents, List of Figures and List of Tables %%%
+\renewcommand{\contentsname}{Tabla de Contenidos}
+\renewcommand{\listtablename}{Índice de Tablas}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\listfigurename}{Índice de Figuras}
+
+\bookmarktocentry\tableofcontents
+
+\listoffigures
+\listoftables
+\cleardoublepage
+
+%%% Chapters of your thesis %%%%
+%%% Arabic Numeration %%%
+\pagenumbering{arabic}
+
+\include{Chapters/01-Introduction}
+\include{Chapters/02-Theoretical-Framework}
+\include{Chapters/03-Methodology}
+\include{Chapters/04-Modelling}
+\include{Chapters/05-Design}
+\include{Chapters/06-Implementation}
+\include{Chapters/07-Testing}
+
+%%% Conclusiones %%%
+
+\include{Chapters/08-Conclusions}
+
+%%% Appendices: Work that *YOU* Developed %%%
+\appendix
+\input{Matter/06-Appendices}
+\input{Chapters/Appendices/00-ExternalContent}
+\input{Chapters/Appendices/01-VeralliaInterview}
+\input{Chapters/Appendices/02-EuropeTrip}
+\input{Chapters/Appendices/03-UserFlow}
+\input{Chapters/Appendices/04-TestsExecutionResults}
+
+%%% Bibliography %%%
+\renewcommand{\refname}{Bibliografía}
+\printbibliography[title={\refname},heading=bibintoc]
+\cleardoublepage
+
+%%% Print: Glossary and Acronyms %%%
+\glossarytoc\printnormalglossary
+\acronymtoc\printacronymglossary
+
+%%% Back Page %%%
+\input{Matter/08-Back-Page}
+
+\end{document}

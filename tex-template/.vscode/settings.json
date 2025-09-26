@@ -1,0 +1,47 @@
+{
+	"latex-workshop.latex.tools": [
+		{
+			"name": "make",
+			"command": "make",
+			"args": []
+		},
+		{
+			"name": "xelatex",
+			"command": "xelatex",
+			"args": [
+				"-synctex=1",
+				"-interaction=nonstopmode",
+				"-file-line-error",
+				"-shell-escape",
+				"%DOC%"
+			]
+		},
+		{
+			"name": "lualatex",
+			"command": "lualatex",
+			"args": [
+				"-synctex=1",
+				"-interaction=nonstopmode",
+				"-file-line-error",
+				"-shell-escape",
+				"%DOC%"
+			]
+		}
+	],
+	"latex-workshop.latex.recipes": [
+		{
+			"name": "make",
+			"tools": ["make"]
+		},
+		{
+			"name": "XeLaTeX",
+			"tools": ["xelatex", "xelatex"]
+		},
+		{
+			"name": "LuaLaTeX",
+			"tools": ["lualatex", "lualatex"]
+		}
+	],
+	// "latex-workshop.latex.recipe.default": "make",
+	"editor.wordWrap": "on"
+}

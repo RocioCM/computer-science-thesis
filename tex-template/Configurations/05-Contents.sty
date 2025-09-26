@@ -1,0 +1,34 @@
+%%% Custom ToC Entries %%%
+\newcommand{\bookmarktocentry}{\pdfbookmark[0]{\contentsname}{toc}}
+\ProvideDocumentCommand\MakeLinkTarget{sO{}m}{%
+  \phantomsection
+  \hypertarget{#3}{}%
+}
+\patchcmd{\listoffigures}
+{\chapter*{\listfigurename}}
+{\chapter*{\listfigurename}\MakeLinkTarget*{listoffigures}%
+\addcontentsline{toc}{chapter}{\listfigurename}}{}{}
+
+\patchcmd{\listoftables}
+{\chapter*{\listtablename}}
+{\chapter*{\listtablename}\MakeLinkTarget*{listoftables}%
+\addcontentsline{toc}{chapter}{\listtablename}}{}{}
+
+% Espaciado compacto para ToC
+\let\oldtableofcontents\tableofcontents
+\renewcommand{\tableofcontents}{%
+    \begingroup
+    \setlength{\parskip}{0pt}
+    \oldtableofcontents
+    \endgroup
+}
+
+\newcommand{\glossarytoc}{\MakeLinkTarget*{glossary}%
+\addcontentsline{toc}{chapter}{\glossaryname}}
+
+\newcommand{\acronymtoc}{\MakeLinkTarget*{acronym}%
+\addcontentsline{toc}{chapter}{\acronymname}}
+
+% Align LoF and LoT entries to the corrected margin.
+\renewcommand*\l@figure{\@dottedtocline{1}{0em}{2.3em}} % Default: 1.5em/2.3em
+\let\l@table\l@figure

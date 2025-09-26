@@ -1,0 +1,36 @@
+%%% Tables %%%
+\newcommand{\customtableformatting}{\renewcommand{\arraystretch}{1.1}\small}
+\AtBeginEnvironment{tabular}{\customtableformatting} % Apply to tabular.
+\AtBeginEnvironment{tabularx}{\customtableformatting} % Apply to tabularx.
+\AtBeginEnvironment{xltabular}{\customtableformatting} % Apply to xltabular.
+\preto\longtable{\customtableformatting} % Apply to longtable.
+
+%%% Fix xltabular left margin alignment %%%
+% Remove paragraph indentation and set proper left margin for xltabular
+\AtBeginEnvironment{xltabular}{\par\noindent\hspace{0pt}}
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{\fill}
+
+
+%%% Captions %%%
+\captionsetup{skip=6pt} % Whitespace between figures/tables and the caption.
+\captionsetup{
+    labelfont={bf,small},
+    textfont={it,small}
+} % Caption font style.
+\captionsetup[table]{skip=4pt}
+
+%%% Lists %%%
+\setlist{noitemsep} % Customise spacing around and inside lists.
+
+\usepackage{array}      % newcolumntype
+\usepackage{ragged2e}   % \RaggedRight en columnas tipo p/X
+\usepackage{ltablex}    % = longtable + tabularx con columnas X multipágina
+\keepXColumns           % conserva el layout de X en saltos de página
+
+% Columnas auxiliares:
+% L{<ancho>} = p{<ancho>} alineada a la izquierda, con saltos y sin “\\” al final
+% Y = columna X alineada a la izquierda (se expande para rellenar el ancho)
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}

@@ -1,4 +1,7 @@
 *.aux
+*.acr
+*.acn
+*.alg
 *.fdb_latexmk
 *.fls
 *.log
@@ -8,3 +11,17 @@
 *.bcf
 *.synctex*
 *.xml
+*.acn
+*.glo
+*.glg
+*.gls
+*.mw
+*.ist
+*.out
+*.toc
+*.lof
+*.lot
+*.minted
+*.DS_Store
+*.pygstyle
+*.pygtex

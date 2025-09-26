@@ -1,0 +1,22 @@
+% Background for Cover Page
+\newcommand\BackgroundPicCover{%
+  \put(0,0){%
+    \color{greencolor}\rule{\paperwidth}{\paperheight}%
+  }%
+  \put(0,0){%
+    \parbox[b][\paperheight]{\paperwidth}{%
+      \vfill
+      \centering
+      \includegraphics[width=\paperwidth,height=\paperheight]{Figures/Theme/Front-Page-Cover.pdf}%
+      \vfill
+    }%
+  }%
+} %
+
+\begin{titlepage}
+  \AddToShipoutPictureBG*{\BackgroundPicCover}
+\end{titlepage}
+\MediaOptionLogicBlank
+
+%%% Blank page after cover %%%
+\newpage\null\thispagestyle{empty}\newpage

@@ -1,0 +1,32 @@
+%%% Fonts %%%
+\usepackage[T1]{fontenc} % Font encoding for extended character sets.
+\usepackage{newpxmath} % Use PX fonts for math (alternative to standard fonts).
+\usepackage{fvextra} % Enhanced customisation of verbatim environments.
+\usepackage{csquotes} % Context-sensitive quotation marks.
+\usepackage{fontspec} % Required for custom fonts with XeLaTeX or LuaLaTeX.
+
+\linespread{1.2} % Slightly increase line spacing.
+
+\setmainfont[
+    Path = Fonts/,
+    UprightFont = *-regular.otf,
+    ItalicFont = *-italic.otf,
+    BoldFont = *-bold.otf,
+    BoldItalicFont = *-bolditalic.otf,
+    LetterSpace = 0.7
+]{texgyrepagella}
+
+\newfontfamily\crimsonfont[
+    Path = Fonts/,
+    UprightFont = *-Regular.ttf,
+    ItalicFont = *-Italic.ttf,
+    BoldFont = *-Bold.ttf,
+    BoldItalicFont = *-BoldItalic.ttf,
+    LetterSpace = -0.5
+]{CrimsonText}
+
+\newfontfamily\plexsans[
+    Path = Fonts/,
+    UprightFont = *-VariableFont.ttf,
+    ItalicFont = *-Italic-VariableFont.ttf
+]{IBMPlexSans}

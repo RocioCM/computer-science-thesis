@@ -1,0 +1,176 @@
+% This is the UMU Thesis Class for LaTeX.
+% Open-Source template for writing theses at the University of Murcia.
+% Template Author Name: Enrique Pérez
+% Template Author Contact: enrique.perez2@um.es
+% Version: 1.0.0 - 2025/04/29
+% Public Repository: https://github.com/enriiquee/umu-thesis
+
+
+%%% Class Information %%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{UMUthesis}[2025 Thesis Class]
+
+\RequirePackage{expl3} % Required for writing LaTeX3 code in this class.
+
+%%% Handle Class Options %%%
+\ExplSyntaxOn
+
+\keys_define:nn { UMUthesis } {
+    language .choices:nn = 
+        { english, spanish } 
+        { \tl_gset:Nn \g_UMUthesis_mylanguage_tl { #1 } },
+    language / unknown .code:n = 
+        { \ClassWarningNoLine{UMUthesis}{Specified~'language'~not~available.~Defaulting~to~'spanish'} },
+    language .default:n = { spanish },
+    language .initial:n = { spanish },
+
+    chapterstyle .choices:nn = 
+        { classic, fancy, modern } 
+        { \tl_gset:Nn \g_UMUthesis_style_tl { #1 } },
+    chapterstyle / unknown .code:n = 
+        { \ClassWarningNoLine{UMUthesis}{Specified~'chapterstyle'~not~available.~Defaulting~to~'classic'} },
+    chapterstyle .default:n = { fancy },
+    chapterstyle .initial:n = { fancy },
+
+    docstage .choices:nn = 
+        { working, final } 
+        { \tl_gset:Nn \g_UMUthesis_docstage_tl { #1 } },
+    docstage / unknown .code:n = 
+        { \ClassWarningNoLine{UMUthesis}{Specified~'docstage'~not~available.~Defaulting~to~'final'} },
+    docstage .default:n = { final },
+    docstage .initial:n = { final },
+
+    media .choices:nn = 
+        { paper, screen } 
+        { \tl_gset:Nn \g_UMUthesis_media_tl { #1 } },
+    media / unknown .code:n = 
+        { \ClassWarningNoLine{UMUthesis}{Specified~'media'~not~available.~Defaulting~to~'paper'} },
+    media .default:n = { paper },
+    media .initial:n = { paper },
+
+    linkcolor .code:n = {
+        \tl_gset:Nn \g_UMUthesis_linkcolor_tl { #1 }
+        \tl_if_eq:NNTF \l_tmpa_tl \q_no_value {
+            \tl_gset:Nn \g_UMUthesis_linkcolor_tl { black }
+            \ClassWarningNoLine{UMUthesis}{Specified~'linkcolor'~not~available.~Defaulting~to~'black'}
+        }
+    },
+    linkcolor .default:n = { black },
+    linkcolor .initial:n = { black },
+
+    doctype .choices:nn = 
+        { thesis, report } 
+        { \tl_gset:Nn \g_UMUthesis_doctype_tl { #1 } },
+    doctype / unknown .code:n = 
+        { \ClassWarningNoLine{UMUthesis}{Specified~'doctype'~not~available.~Defaulting~to~'thesis'} },
+    doctype .default:n = { thesis },
+    doctype .initial:n = { thesis },
+    
+    unknown .code:n = 
+        { \ClassWarningNoLine{UMUthesis}{An~unknown~option~was~ignored.~Please~check~the~documentation~to~see~the~available~options} }
+}
+
+\newcommand{\LanguageOption}{\g_UMUthesis_mylanguage_tl}
+\newcommand{\ChapterOption}{\g_UMUthesis_style_tl}
+\newcommand{\DocStageOption}{\g_UMUthesis_docstage_tl}
+\newcommand{\MediaOption}{\g_UMUthesis_media_tl}
+\newcommand{\ColorOption}{\g_UMUthesis_linkcolor_tl}
+\newcommand{\DocTypeOption}{\g_UMUthesis_doctype_tl}
+
+\ExplSyntaxOff
+
+%%% Load Master Class %%%
+\LoadClass[a4paper,11pt,twoside,openright]{report}
+
+%%% Load Babel Package (Language) %%%
+\usepackage[\LanguageOption]{babel}
+
+%%% Required Packages %%%
+\RequirePackage{morewrites} % Extend the number of output streams beyond 16.
+\RequirePackage{ifthen} % Provides conditional statements.
+\RequirePackage{etoolbox} % Advanced programming tools for LaTeX.
+\RequirePackage{graphicx} % For including and manipulating images.
+\RequirePackage{subcaption} % Subfigures and side-by-side captions.
+\RequirePackage{tabularx} % Flexible-width tables.
+\RequirePackage{xltabular} % Same as tabularx but to be used in long tables.
+\RequirePackage{booktabs} % Professional table styling.
+\RequirePackage{multirow} % Support for multirow cells in tables.
+\RequirePackage{longtable} % Tables spanning multiple pages.
+\RequirePackage{caption} % Customisation of captions.
+\RequirePackage{enumitem} % Customisation of lists.
+\RequirePackage{amsmath} % Advanced mathematical expressions.
+\RequirePackage{amssymb} % Extended mathematical symbols.
+\RequirePackage[dvipsnames]{xcolor} % Extended color support.
+\RequirePackage{tcolorbox} % Creating colored and highlighted boxes.
+\RequirePackage{varwidth} % Allows variable-width boxes.
+\RequirePackage{titlesec} % Customisation of section and chapter titles.
+\RequirePackage{titling} % Control over title and titlepage formatting.
+\RequirePackage[toc,page]{appendix} % Formatting for appendices.
+\RequirePackage[acronym]{glossaries} % Create glossaries and acronyms.
+\RequirePackage[calc,datesep={/}]{datetime2} % Enhanced date and time formatting.
+\RequirePackage{url} % Improved line breaking in URLs.
+\RequirePackage[bookmarks,pdfusetitle]{hyperref} % Hyperlinks and PDF metadata.
+\RequirePackage{xurl} % Enhanced URL line breaking at any character (must be after hyperref).
+\RequirePackage{seqsplit} % Force line breaks in long sequences.
+
+\RequirePackage{xparse} % Advanced argument parsing for custom macros.
+\RequirePackage{typearea} % Page layout adjustments (KOMA-Script).
+\RequirePackage{eso-pic} % Adding elements to the page background.
+\RequirePackage{setspace} % Adjust line spacing.
+\RequirePackage[newfloat]{minted} % Syntax highlighting for code.
+\RequirePackage{silence} % Suppress specific package warnings.
+\RequirePackage{calc} % Infix notation arithmetic.
+\RequirePackage{contour} % Countour words in a given color.
+\RequirePackage[normalem]{ulem} % A better underline.
+\RequirePackage{mfirstuc} % Capitalise words in a sentence.
+\RequirePackage{tikz} % Create high-quality graphics programmatically.
+\RequirePackage{psvectorian} % To include in-text ornamatentions. 
+\RequirePackage{blindtext} % Generate placeholder text.
+\RequirePackage{pdfpages} % allows to insert pdf files
+\RequirePackage{lipsum} % Include loreipsun text
+\RequirePackage{emptypage} % Include empty page for openright
+
+
+
+
+\tcbuselibrary{most} % Load most libraries from the tcolorbox package.
+\WarningsOff[blindtext] % Suppress warnings from the blindtext package.
+
+%%% URL Configuration %%%
+% Configure URL line breaking to prevent overflow
+\urlstyle{same} % Use the same font as the surrounding text
+\Urlmuskip=0mu plus 1mu % Allow some stretching between characters for better line breaks
+
+% More aggressive URL breaking configuration
+\def\UrlBreaks{\do\/\do-\do.\do:\do?\do&\do=\do_\do\%}
+\def\UrlBigBreaks{\do\{\do\}}
+\def\UrlSpecials{\do\ {\Url@space}\do\%{\Url@percent}\do\_{\Url@underscore}}
+
+% Additional line breaking allowances
+\emergencystretch=1em
+\tolerance=9999
+\hbadness=9999
+
+% Custom URL command with forced breaking as fallback
+\let\originalurl\url
+\renewcommand{\url}[1]{%
+  \begingroup
+  \def\UrlLeft{}%
+  \def\UrlRight{}%
+  \originalurl{#1}%
+  \endgroup
+}
+
+%%% Import Configurations - Maintain the Specified Order! %%%
+\usepackage{Configurations/00-Fonts}
+\usepackage{Configurations/01-Colors}
+\usepackage{Configurations/02-Margins}
+\usepackage{Configurations/03-References}
+\usepackage{Configurations/04-Headers}
+\usepackage{Configurations/05-Contents}
+\usepackage{Configurations/06-Glossary}
+\usepackage{Configurations/07-Chapters}
+\usepackage{Configurations/08-Tables}
+\usepackage{Configurations/09-Code}
+\usepackage{Configurations/10-Macros}
+\usepackage{Configurations/11-Metadata}
