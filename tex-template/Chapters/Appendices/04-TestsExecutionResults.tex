@@ -6,7 +6,7 @@ En este trabajo, cuyo desarrollo siguió la metodología en V, se realizaron sec
 \section{Pruebas Unitarias}
 \label{sec:unit-testing-details}
 
-En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias automatizadas para cada componente del sistema. Estas pruebas tuvieron como objetivo validar la funcionalidad de los contratos inteligentes, la API backend y la interfaz frontend. Cada módulo de pruebas fue diseñado para cubrir casos de uso positivos y negativos, asegurando que cada unidad de código funcionara correctamente de manera aislada. En la Tabla \ref{tab:unit-tests-blockchain} se presenta un resumen de las pruebas unitarias realizadas sobre los contratos inteligentes, en la Tabla \ref{tab:unit-tests-backend} las pruebas ejecutadas sobre la API (backend), y en la Tabla \ref{tab:unit-tests-frontend} las pruebas realizadas sobre la interfaz (frontend). En total, se desarrollaron 98 pruebas unitarias automatizadas para los contratos inteligentes, 317 para el backend y 286 para el frontend, todas las cuales finalizaron con resultados satisfactorios sin fallos reportados. El listado completo de pruebas unitarias puede obtenerse a partir del código fuente (Sección \ref{sec:source-code}) siguiendo las instrucciones que se encuentran en el repositorio.
+En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias automatizadas para cada componente del sistema. Estas pruebas tuvieron como objetivo validar la funcionalidad de los contratos inteligentes, la API backend y la interfaz frontend. Cada módulo de pruebas fue diseñado para cubrir casos de uso positivos y negativos, asegurando que cada unidad de código funcionara correctamente de manera aislada. En la Tabla \ref{tab:unit-tests-blockchain} se presenta un resumen de las pruebas unitarias realizadas sobre los \glspl{contratointeligente}, en la Tabla \ref{tab:unit-tests-backend} las pruebas ejecutadas sobre la API (backend), y en la Tabla \ref{tab:unit-tests-frontend} las pruebas realizadas sobre la interfaz (\gls{frontend}). En total, se desarrollaron 98 pruebas unitarias automatizadas para los contratos inteligentes, 317 para el backend y 286 para el frontend, todas las cuales finalizaron con resultados satisfactorios sin fallos reportados. El listado completo de pruebas unitarias puede obtenerse a partir del código fuente (Sección \ref{sec:source-code}) siguiendo las instrucciones que se encuentran en el repositorio.
 
 
 \begin{xltabular}{\textwidth}{@{} L{0.5cm} L{4.2cm} C{0.8cm} Y C{2cm} @{}}
@@ -56,7 +56,7 @@ En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias
 \bottomrule
 \endlastfoot
 
-1 & Tracking API & 33 & Endpoints para seguimiento público de productos, lotes base, lotes de productos, botellas de residuo y lotes de reciclaje & \testSuccess \\
+1 & Tracking API & 33 & \Glspl{endpoint} para seguimiento público de productos, lotes base, lotes de productos, botellas de residuo y lotes de reciclaje & \testSuccess \\
 \hline
 2 & Consumer API & 41 & Gestión de botellas de residuo, consulta de origen de productos, gestión de recicladores y operaciones de consumidor & \testSuccess \\
 \hline
@@ -75,7 +75,7 @@ En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias
 \end{xltabular}
 
 \begin{xltabular}{\textwidth}{@{} L{0.5cm} L{3cm} C{0.8cm} Y C{2cm} @{}}
-	\caption{Resumen de pruebas unitarias realizadas sobre la interfaz frontend}
+	\caption{Resumen de pruebas unitarias realizadas sobre la interfaz \gls{frontend}}
 	\label{tab:unit-tests-frontend}\\
 	\toprule
 	\textbf{\#} & \textbf{Módulo} & \textbf{Tests} & \textbf{Descripción} & \textbf{Resultado} \\
@@ -120,7 +120,7 @@ En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias
 \section{Pruebas de Integración}
 \label{sec:integration-testing-details}
 
-En la fase de pruebas de integración, se verificó la interacción entre los diferentes módulos del sistema para asegurar que funcionaran correctamente en conjunto. Esto incluyó pruebas de la API y su comunicación con la base de datos y la blockchain. 
+En la fase de pruebas de integración, se verificó la interacción entre los diferentes módulos del sistema para asegurar que funcionaran correctamente en conjunto. Esto incluyó pruebas de la API y su comunicación con la \gls{basededatos} y la \gls{blockchain}. 
 
 La particularidad de las pruebas de integración es que requieren ser ejecutadas sobre el sistema completo (API, base de datos y blockchain); sin embargo, no requieren la interfaz de usuario. Esto se debe a que las pruebas de integración se centran en validar la correcta interacción entre los módulos del backend y la persistencia de datos, sin involucrar la capa de presentación. A su vez, todos los módulos mencionados deben probarse sin hacer uso de simulaciones ni \textit{mocks}, para garantizar que las interacciones sean reales y reflejen el comportamiento esperado en un entorno de producción. Por este motivo, se configuró un script para las pruebas de integración que se encarga de ejecutar una instancia local de la blockchain con los contratos desplegados, también levanta una base de datos local y la API, permitiendo así ejecutar las pruebas de integración en un entorno controlado que simula el entorno productivo, pero en local, sin otras dependencias externas. 
 
@@ -187,7 +187,7 @@ En esta etapa, el enfoque no fue la exhaustividad, sino la representatividad de 
 
 En el caso de las pruebas de sistema, estas buscan validar que el sistema completo funcione como se espera, cumpliendo con los requisitos funcionales y no funcionales establecidos. En esta etapa se realizaron pruebas manuales y automatizadas sobre un entorno de pruebas en la nube similar al de producción.
 
-En primera instancia, se llevaron a cabo pruebas manuales que incluyeron la verificación de flujos de usuario, así como la validación de la integración de la información entre los diferentes módulos del sistema. Estas pruebas se documentaron detalladamente para asegurar una correcta trazabilidad y facilitar la identificación de posibles problemas. Cada caso de prueba se diseñó previo a su ejecución, detallando el objetivo de la prueba, los requerimientos puestos a prueba, el módulo del sistema involucrado, los pasos a seguir y los resultados esperados. En la Tabla \ref{tab:system-testing-summary} se presenta un resumen de los casos de prueba de sistema ejecutados y sus resultados, incluyendo las incidencias relevadas. Mientras que en la Tabla \ref{tab:system-testing-bugs} se detallan las incidencias relevadas durante la ejecución de las pruebas de sistema, indicando su estado actual (resueltas o desestimadas), identificador de la incidencia en Jira y una breve descripción de cada una.
+En primera instancia, se llevaron a cabo pruebas manuales que incluyeron la verificación de flujos de usuario, así como la validación de la integración de la información entre los diferentes módulos del sistema. Estas pruebas se documentaron detalladamente para asegurar una correcta \gls{trazabilidad} y facilitar la identificación de posibles problemas. Cada caso de prueba se diseñó previo a su ejecución, detallando el objetivo de la prueba, los requerimientos puestos a prueba, el módulo del sistema involucrado, los pasos a seguir y los resultados esperados. En la Tabla \ref{tab:system-testing-summary} se presenta un resumen de los casos de prueba de sistema ejecutados y sus resultados, incluyendo las incidencias relevadas. Mientras que en la Tabla \ref{tab:system-testing-bugs} se detallan las incidencias relevadas durante la ejecución de las pruebas de sistema, indicando su estado actual (resueltas o desestimadas), identificador de la incidencia en Jira y una breve descripción de cada una.
 
 Debido a la extensión de los casos de prueba, no se incluyen en este documento, pero la lista completa se encuentra disponible en el siguiente enlace: \url{https://github.com/RocioCM/computer-science-thesis/blob/main/docs/Pruebas-de-Sistema_Test-Cases.pdf}
 
@@ -290,7 +290,7 @@ Además de las pruebas manuales, se implementaron pruebas automatizadas para val
 \bottomrule
 \endlastfoot
 
-1 & Autenticación & Verifica que el acceso a un endpoint protegido sin credenciales retorne \texttt{401 Unauthorized} & \testSuccess \\
+1 & Autenticación & Verifica que el acceso a un \gls{endpoint} protegido sin credenciales retorne \texttt{401 Unauthorized} & \testSuccess \\
 \hline
 2 & Autenticación & Verifica que el acceso a un endpoint protegido con token inválido retorne \texttt{401 Unauthorized} & \testSuccess \\
 \hline
