@@ -1,6 +1,9 @@
 %%% Custom ToC Entries %%%
 \newcommand{\bookmarktocentry}{\pdfbookmark[0]{\contentsname}{toc}}
-\ProvideDocumentCommand\MakeLinkTarget{sO{}m}{}
+\ProvideDocumentCommand\MakeLinkTarget{sO{}m}{%
+  \phantomsection
+  \hypertarget{#3}{}%
+}
 \patchcmd{\listoffigures}
 {\chapter*{\listfigurename}}
 {\chapter*{\listfigurename}\MakeLinkTarget*{listoffigures}%
