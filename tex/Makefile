@@ -38,7 +38,6 @@ $(MAIN).pdf: $(TEX_SRC) $(BIB_SRC)
 
 	echo "📚 Ejecutando Biber..."; \
 	$(DOCKER_RUN) biber $(MAIN); \
-	make generate-pdf
 
 	echo "📖 Procesando glosario y acrónimos..."; \
 	$(DOCKER_RUN) makeglossaries $(MAIN); \
