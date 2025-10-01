@@ -1,69 +1,35 @@
-%%% Bibliography %%%
+%%% Bibliografía %%%
 \usepackage[
     backend=biber, % Usar el backend biber.
-    sorting=none, % Ordenar la bibliografía según el orden de aparición.
-    style=numeric-comp, % Estilo de citas numérico comprimido.
+    sorting=nyt, % Ordenar por nombre, año, título (estándar APA).
+    style=ieee, % Estilo de citas numérico comprimido.
     sortcites=true,
+    giveninits=false, % Usar iniciales para los nombres de pila.
     natbib=true, % Compatibilidad con natbib.
-    maxnames=1 % Mostrar un autor principal seguido de "et al." si es necesario.
+    maxnames=5, % Mostrar hasta 5 autores antes de usar "et al."
+    minnames=1,
 ]{biblatex}
 
-\setlength\bibitemsep{1.5\itemsep} % Increase spacing between bibliography items.
-\setlength\bibhang{0pt} % Remove hanging indent for bibliography entries.
-\addbibresource{Bibliography/Bibliography.bib} % Load the bibliography file.
+\setlength\bibitemsep{1.5\itemsep} % Aumentar el espacio entre entradas de la bibliografía.
+\setlength\bibhang{0pt} % Eliminar sangría en las entradas de la bibliografía.
+\addbibresource{Bibliography/Bibliography.bib} % Cargar el archivo de bibliografía.
 
-% Configure citation style to include both author and year prominently.
-\ExecuteBibliographyOptions{maxcitenames=1}
-\DeclareFieldFormat{citehyperref}{%
-    \DeclareFieldAlias{bibhyperref}{noformat}%
-    \bibhyperref{#1}%
-}
+% Configuración específica para APA en español
+\DeclareLanguageMapping{spanish}{spanish-apa}
 
-\DeclareFieldFormat{textcitehyperref}{%
-    \DeclareFieldAlias{bibhyperref}{noformat}%
-    \bibhyperref{%
-        #1%
-        \ifbool{cbx:parens}
-        {\bibcloseparen\global\boolfalse{cbx:parens}}
-    {}}%
-}
-    
-\AfterPackage{biblatex}{%
-  % Guardar las definiciones originales, ahora sí existen
-  \savebibmacro{cite}%
-  \savebibmacro{textcite}%
-
-  % Redefinir las macros enganchándolas al hipervínculo
-  \renewbibmacro*{cite}{%
-    \printtext[citehyperref]{%
-      \restorebibmacro{cite}%
-      \usebibmacro{cite}}%
-  }%
-
-  \renewbibmacro*{textcite}{%
-    \ifboolexpr{
-      ( not test {\iffieldundef{prenote}} and
-        test {\ifnumequal{\value{citecount}}{1}} )
-      or
-      ( not test {\iffieldundef{postnote}} and
-        test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
-    }
-    {\DeclareFieldAlias{textcitehyperref}{noformat}}%
-    {}%
-    \printtext[textcitehyperref]{%
-      \restorebibmacro{textcite}%
-      \usebibmacro{textcite}}%
-  }%
-}
-
-
-% Add a "." after the number in the PDF bookmark.
-\def\Hy@numberline#1{\ifHy@bookmarksnumbered{#1.\hspace{0.3em}}\else#1\fi}
-
+% Comando simplificado para URLs que fuerza breaking en más caracteres
+\newcommand{\biburl}[1]{
+  \begingroup
+  \def\UrlBreaks{\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z\do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9\do\/\do\-\do\.\do\:\do\?\do\&\do\=\do\_\do\%\do\~\do\+\do\,\do\;\do\!\do\(\do\)\do\[\do\]\do\{\do\}\do\|\do\>\do\<\do\'\do\"\do\@\do\#\do\$}%
+  \Urlmuskip=0mu plus 1mu minus 1mu
+  \urlstyle{same}
+  \url{#1}
+  \endgroup
+} 
 
 % Redefinir formatos específicos para campos problemáticos
-\DeclareFieldFormat{issn}{ISSN\addcolon\space#1}
-\DeclareFieldFormat{isbn}{ISBN\addcolon\space#1}
-\DeclareFieldFormat{doi}{DOI\addcolon\space\url{#1}}
-\DeclareFieldFormat{url}{URL\addcolon\space\url{#1}}
+\DeclareFieldFormat{issn}{ISSN\space#1}
+\DeclareFieldFormat{isbn}{ISBN\space#1}
+\DeclareFieldFormat{url}{\biburl{#1}}
+\DeclareFieldFormat{doi}{\biburl{https://doi.org/#1}}
 
