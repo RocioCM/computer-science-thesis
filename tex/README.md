@@ -1,11 +1,11 @@
 # Tecnología Blockchain Aplicada a la Trazabilidad en la Cadena de Suministro de Vidrio para Lograr una Economía Circular
 
-> **Tesis de Grado** - Universidad Nacional de Cuyo  
-> **Autora**: Rocío Belén Corral  
-> **Supervisor**: Pablo Javier Vidal  
+> **Trabajo Final de Grado** - Universidad Nacional de Cuyo  
+> **Autora**: Rocío Belén Corral Mena  
+> **Supervisor**: Dr. Ing. Pablo Javier Vidal  
 > **Año**: 2025
 
-Esta tesis desarrolla un **prototipo de sistema de trazabilidad de envases de vidrio basado en tecnología blockchain**, diseñado para registrar y verificar cada etapa del ciclo de vida del vidrio, desde la producción hasta su reintroducción en la cadena de valor. El proyecto está enfocado en facilitar la implementación de una **economía circular** en la industria vitivinícola de Mendoza, Argentina.
+Este trabajo desarrolla un **prototipo de sistema de trazabilidad de envases de vidrio basado en tecnología blockchain**, diseñado para registrar y verificar cada etapa del ciclo de vida del vidrio, desde la producción hasta su reintroducción en la cadena de valor. El proyecto está enfocado en facilitar la implementación de una **economía circular** en la industria vitivinícola de Mendoza, Argentina.
 
 ## Compilación del PDF
 
@@ -38,7 +38,7 @@ xelatex -interaction=nonstopmode -shell-escape BlockchainThesis.tex
 📁 tex/
 ├── 📄 BlockchainThesis.tex          # Documento principal
 ├── 📄 UMUThesis.cls                 # Clase de documento UMU
-├── 📁 Chapters/                     # Capítulos de la tesis          # Conclusiones
+├── 📁 Chapters/                     # Capítulos del documento
 │   └── 📁 Appendices/                  # Apéndices
 ├── 📁 Configurations/               # Configuraciones de estilo
 ├── 📁 Bibliography/                 # Referencias bibliográficas
@@ -48,7 +48,7 @@ xelatex -interaction=nonstopmode -shell-escape BlockchainThesis.tex
 └── 📁 Fonts/                        # Fuentes personalizadas
 ```
 
-Este proyecto utiliza el template de [LaTeX de Tesis de la Universidad de Murcia (UMU)](https://www.overleaf.com/latex/templates/tesis-universidad-de-murcia-umu/fdtnqcmbxndr), adaptado para cumplir con los requisitos específicos de este trabajo de tesis.
+Este proyecto utiliza el template de [LaTeX de Tesis de la Universidad de Murcia (UMU)](https://www.overleaf.com/latex/templates/tesis-universidad-de-murcia-umu/fdtnqcmbxndr), adaptado para cumplir con los requisitos específicos de este trabajo final de grado.
 
 ### Archivos Temporales
 
