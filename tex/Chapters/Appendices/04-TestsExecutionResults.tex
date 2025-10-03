@@ -1,9 +1,9 @@
-\chapter{Casos de Prueba}
+\chapter[Casos de prueba]{Casos de Prueba}
 \label{cp:tests-execution-results}
 
 En este trabajo, cuyo desarrollo siguió la metodología en V, se realizaron secuencialmente múltiples instancias de pruebas del prototipo tecnológico: pruebas unitarias, pruebas de integración, pruebas de sistema y pruebas de aceptación. Cada etapa incluyó la definición y ejecución de casos de prueba, ya sean manuales o automatizados, con el objetivo de validar que el sistema cumpliera con los requisitos funcionales y no funcionales establecidos en la fase de modelado de requerimientos. En este apéndice se detallan los casos de uso de cada etapa de pruebas, los resultados obtenidos y las incidencias detectadas y resueltas durante el proceso.
 
-\section{Pruebas Unitarias}
+\section{Pruebas unitarias}
 \label{sec:unit-testing-details}
 
 En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias automatizadas para cada componente del sistema. Estas pruebas tuvieron como objetivo validar la funcionalidad de los contratos inteligentes, la API backend y la interfaz frontend. Cada módulo de pruebas fue diseñado para cubrir casos de uso positivos y negativos, asegurando que cada unidad de código funcionara correctamente de manera aislada. En la Tabla \ref{tab:unit-tests-blockchain} se presenta un resumen de las pruebas unitarias realizadas sobre los \glspl{contratointeligente}, en la Tabla \ref{tab:unit-tests-backend} las pruebas ejecutadas sobre la API (backend), y en la Tabla \ref{tab:unit-tests-frontend} las pruebas realizadas sobre la interfaz (\gls{frontend}). En total, se desarrollaron 98 pruebas unitarias automatizadas para los contratos inteligentes, 317 para el backend y 286 para el frontend, todas las cuales finalizaron con resultados satisfactorios sin fallos reportados. El listado completo de pruebas unitarias puede obtenerse a partir del código fuente (Sección \ref{sec:source-code}) siguiendo las instrucciones que se encuentran en el repositorio.
@@ -117,7 +117,7 @@ En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias
 
 \end{xltabular}
 
-\section{Pruebas de Integración}
+\section{Pruebas de integración}
 \label{sec:integration-testing-details}
 
 En la fase de pruebas de integración, se verificó la interacción entre los diferentes módulos del sistema para asegurar que funcionaran correctamente en conjunto. Esto incluyó pruebas de la API y su comunicación con la \gls{basededatos} y la \gls{blockchain}. 
@@ -183,7 +183,7 @@ En esta etapa, el enfoque no fue la exhaustividad, sino la representatividad de 
 
 \end{xltabular}
 
-\section{Pruebas de Sistema}
+\section{Pruebas de sistema}
 
 En el caso de las pruebas de sistema, estas buscan validar que el sistema completo funcione como se espera, cumpliendo con los requisitos funcionales y no funcionales establecidos. En esta etapa se realizaron pruebas manuales y automatizadas sobre un entorno de pruebas en la nube similar al de producción.
 
@@ -194,7 +194,7 @@ Debido a la extensión de los casos de prueba, no se incluyen en este documento,
 Además de las pruebas manuales, se implementaron pruebas automatizadas para validar los requerimientos no funcionales del sistema. En este caso, se implementaron pruebas de carga y de seguridad. Las pruebas de seguridad buscan asegurar que se cumplen los requisitos de autenticación y autorización de usuarios especificados en las historias de usuario. Mientras que las pruebas de carga buscan evaluar el rendimiento del sistema bajo condiciones de alta demanda. Las pruebas de carga se realizaron en un entorno local utilizando la herramienta K6 \footnote{Load testing tool for engineering teams: \url{https://k6.io/}}, poniendo a prueba 3 endpoints representativos de la API y representan únicamente un resultado orientativo sobre cómo puede comportarse el sistema en un entorno de producción real, ya que el rendimiento dependerá de múltiples factores, como la infraestructura subyacente y la configuración del entorno. En la Tabla \ref{tab:system-testing-security} se presentan los resultados de las pruebas de seguridad realizadas, mientras que en la Tabla \ref{tab:system-testing-load} se presentan los resultados de las pruebas de carga.
 
 \begin{xltabular}{\textwidth}{@{} L{0.5cm} L{3cm} C{0.8cm} Y C{1.5cm} C{2cm} @{}}
-	\caption{Resumen de pruebas de sistema por módulo}
+	\caption{Resumen de pruebas de sistema realizadas por módulo}
 	\label{tab:system-testing-summary}\\
 	\toprule
 	\textbf{\#} & \textbf{Módulo} & \textbf{Tests} & \textbf{Descripción} & \textbf{Resultado} & \textbf{Incidencias} \\
@@ -272,7 +272,7 @@ Además de las pruebas manuales, se implementaron pruebas automatizadas para val
 \end{xltabular}
 
 \begin{xltabular}{\textwidth}{@{} L{0.5cm} L{4cm} Y C{2cm} @{}}
-	\caption{Casos de prueba de seguridad ejecutados}
+	\caption{Casos de prueba de seguridad ejecutados sobre el sistema}
 	\label{tab:system-testing-security}\\
 	\toprule
 	\textbf{\#} & \textbf{Tipo} & \textbf{Descripción} & \textbf{Resultado} \\
@@ -301,7 +301,7 @@ Además de las pruebas manuales, se implementaron pruebas automatizadas para val
 \end{xltabular}
 
 \begin{xltabular}{\textwidth}{@{} Y C{3.5cm} C{3.5cm} C{3.5cm} C{3.5cm} @{}}
-	\caption{Resumen de pruebas de carga}
+	\caption{Resumen de pruebas de carga realizadas sobre el sistema}
 	\label{tab:system-testing-load}\\
 	\toprule
 	\textbf{\#} & \textbf{Max. Conexiones} & \textbf{Solicitudes} & \textbf{Fallos} & \textbf{Duración Promedio} \\
@@ -329,7 +329,7 @@ Además de las pruebas manuales, se implementaron pruebas automatizadas para val
 
 \end{xltabular}
 
-\section{Pruebas de Aceptación}
+\section{Pruebas de aceptación}
 \label{sec:acceptance-testing-details}
 
 En la instancia de pruebas de aceptación, se realizó un conjunto de pruebas manuales para validar el comportamiento del prototipo desde la perspectiva del usuario final. Estas pruebas se llevaron a cabo en un entorno controlado, donde los participantes interactuaron con el sistema y proporcionaron retroalimentación sobre su experiencia. Al comienzo de la sesión, se asignó un rol a cada participante y se le proporcionó una guía básica sobre el uso del sistema, asegurando que comprendieran las funcionalidades principales y los objetivos de las pruebas. En la Tabla \ref{tab:acceptance-testing-users} se presenta el listado de los participantes, junto con la cantidad de pruebas realizadas e incidencias generadas a partir de su interacción con el sistema. En la Tabla \ref{tab:acceptance-testing-bugs} se presenta un resumen de las incidencias detectadas durante las pruebas.
@@ -337,7 +337,7 @@ En la instancia de pruebas de aceptación, se realizó un conjunto de pruebas ma
 El listado completo de casos de prueba ejecutados por cada participante se puede consultar en el siguiente enlace: \url{https://github.com/RocioCM/computer-science-thesis/blob/main/docs/Pruebas-de-Aceptacion_Test-Cases.pdf}
 
 \begin{xltabular}{\textwidth}{@{} L{0.5cm} Y L{4cm} C{3.5cm} C{3.5cm} @{}}
-	\caption{Participantes en pruebas de aceptación de usuario}
+	\caption{Listado de participantes en pruebas de aceptación de usuario}
 	\label{tab:acceptance-testing-users}\\
 	\toprule
 	\textbf{\#} & \textbf{Nombre} & \textbf{Rol} & \textbf{Pruebas ejecutadas} & \textbf{Incidencias} \\

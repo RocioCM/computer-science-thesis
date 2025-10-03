@@ -47,12 +47,12 @@ Pruebas de Aceptación & Al finalizar la implementación & Manual & Alta & Exper
 
 A lo largo de este capítulo se detallará la gestión de las incidencias halladas durante las pruebas. Los errores detectados en cada etapa de prueba fueron registrados y se les dio seguimiento en la herramienta Jira, asegurando que cada problema se resolviera antes de avanzar a la siguiente fase. A continuación, se describen en detalle cada una de las etapas de prueba mencionadas, proporcionando una visión completa del proceso de validación del prototipo. Adicionalmente, el Apéndice \ref{cp:tests-execution-results} contiene los detalles de la ejecución de cada prueba, los resultados obtenidos y la gestión de las incidencias documentadas.
 
-\section{Pruebas Unitarias}
+\section{Pruebas unitarias}
 \label{sec:unit-testing}
 
 Las pruebas unitarias constituyen la base de la pirámide de pruebas y se corresponden directamente con la fase de codificación del Modelo en V. Su objetivo es validar la unidad más pequeña de código de forma aislada del resto del sistema, por ejemplo, un método de un contrato inteligente, un \gls{endpoint} de backend o un componente reutilizable del frontend. La naturaleza atómica de estas pruebas permite verificar que cada componente individual se comporte de acuerdo con las especificaciones de diseño antes de ser integrado con otras partes del prototipo. Para este proyecto, se implementaron pruebas unitarias automatizadas para permitir una verificación continua de la integridad del código a lo largo de todo el proceso de implementación y luego de cada modificación de código posterior.
 
-El desarrollo de cada módulo del prototipo se realizó de forma conjunta con la escritura de sus pruebas unitarias. Se utilizó el framework Jest \footnote{\url{https://jestjs.io/}} en las tres capas del proyecto (contratos inteligentes, API y \gls{frontend}), aunque con configuraciones específicas para cada entorno. Por ejemplo, en los contratos inteligentes, las pruebas unitarias se orientaron a verificar que la lógica de negocio se ejecute correctamente y que el estado de los contratos cambie como se espera. En el \gls{backend}, se enfocaron en validar la lógica de negocios. En el frontend, se validó el comportamiento de los componentes, su estado interno y la interacción con la API. En el Fragmento de Código \ref{listing:unit-test-api-example} se muestra un ejemplo de la prueba unitaria implementada para el caso de solicitud inválida en el endpoint de creación de un lote de vidrio en la API backend, mientras que en la Figura \ref{fig:unit-test-api-results} se puede observar la salida de la ejecución de todas las pruebas unitarias sobre ese endpoint, donde se imprimen los títulos de los casos de prueba ejecutados y su resultado.
+El desarrollo de cada módulo del prototipo se realizó de forma conjunta con la escritura de sus pruebas unitarias. Se utilizó el framework Jest \footnote{\url{https://jestjs.io/}} en las tres capas del proyecto (contratos inteligentes, API y \gls{frontend}), aunque con configuraciones específicas para cada entorno. Por ejemplo, en los contratos inteligentes, las pruebas unitarias se orientaron a verificar que la lógica de negocio se ejecute correctamente y que el estado de los contratos cambie como se espera. En el \gls{backend}, se enfocaron en validar la lógica de negocios. En el frontend, se validó el comportamiento de los componentes, su estado interno y la interacción con la API. En el Código \ref{listing:unit-test-api-example} se muestra un ejemplo de la prueba unitaria implementada para el caso de solicitud inválida en el endpoint de creación de un lote de vidrio en la API backend, mientras que en la Figura \ref{fig:unit-test-api-results} se puede observar la salida de la ejecución de todas las pruebas unitarias sobre ese endpoint, donde se imprimen los títulos de los casos de prueba ejecutados y su resultado.
 
 
 \begin{listing}[!tp]
@@ -114,14 +114,14 @@ El proceso de pruebas unitarias permitió identificar y corregir algunos errores
 
 Contratos Inteligentes & 100\% & 100\% & 98 \\
 \hline
-API Backend & 80\% & 90.84\% & 317 \\
+API backend & 80\% & 90.84\% & 317 \\
 \hline
-Aplicación Frontend & 60\% & 65.27\% & 286 \\
+Aplicación frontend & 60\% & 65.27\% & 286 \\
 \end{xltabular}
 
 La ejecución automatizada de las pruebas unitarias proporciona una capa de seguridad que facilita la revalidación del comportamiento del sistema, lo cual es relevante en un prototipo que podría expandirse en un futuro. La validación constante de la base de código antes de cualquier despliegue favorece la estabilidad y la calidad del sistema a largo plazo. Una vez que se ha verificado el funcionamiento de cada componente del sistema de forma individual, es posible continuar con la siguiente etapa de validación, donde se verificará la correcta interacción entre los módulos del sistema.
 
-\section{Pruebas de Integración}
+\section{Pruebas de integración}
 \label{sec:integration-testing}
 
 Las pruebas de integración se sitúan en la siguiente capa de la pirámide de pruebas. Su objetivo principal consiste en verificar que los distintos componentes y módulos del sistema interactúen correctamente y de forma coherente con sus responsabilidades. A diferencia de las pruebas unitarias, que validan el funcionamiento aislado de una unidad de código, las pruebas de integración evalúan el flujo de datos y las interacciones entre componentes para asegurar que sus interfaces y responsabilidades estén debidamente sincronizadas. Esta etapa de prueba se corresponde con la fase de diseño de componentes del Modelo en V, donde se definen las interacciones entre los módulos del sistema.
@@ -137,10 +137,8 @@ Para este proyecto, las pruebas de integración se diseñaron para ser automatiz
 
 El proceso de pruebas de integración no detectó fallos en la interacción entre los módulos. Se realizaron pruebas de integración para 18 casos de uso del sistema, los cuales se han documentado en el Apéndice \ref{cp:tests-execution-results}. En la Figura \ref{fig:integration-test-results} se puede observar la salida de la ejecución de las pruebas de integración. La ejecución de estas pruebas proporciona una capa de verificación adicional del sistema y se recomienda ejecutarlas de forma rutinaria antes de cada despliegue en un entorno productivo para mitigar los riesgos asociados a los cambios en el código que puedan afectar la interacción entre los módulos del sistema. Una vez que se ha validado la interacción de los componentes, la siguiente etapa consiste en verificar que el sistema en su totalidad cumpla con los requerimientos funcionales y no funcionales definidos al comenzar el proyecto.
 
-\section{Pruebas de Sistema}
+\section{Pruebas de sistema}
 \label{sec:system-testing}
-
-% TODO: why whitespace here?
 
 Las pruebas de sistema constituyen la siguiente fase en el ciclo de validación y tienen como propósito verificar que el prototipo, en su conjunto, cumple con los requerimientos funcionales y no funcionales definidos al comenzar el proyecto. Esta etapa se corresponde con el diseño de arquitectura en el Modelo en V, y su objetivo es evaluar el comportamiento del sistema de manera integral para asegurar que la arquitectura implementada efectivamente logra cumplir los requerimientos establecidos.
 
@@ -157,7 +155,7 @@ A su vez, también se incluyeron pruebas de requerimientos no funcionales en est
 
 El proceso de pruebas de sistema incluyó un total de 55 casos de prueba y resultó en la identificación de 7 incidencias, las cuales fueron registradas y rastreadas en la herramienta Jira hasta su resolución. La ejecución de estas pruebas permitió identificar y corregir errores, pero también puede servir como una base para futuras pruebas de regresión del sistema, ayudando a prevenir que cualquier cambio o nueva funcionalidad no afecte negativamente el comportamiento actual. Luego de esta etapa, el prototipo ya está listo para ser presentado a un grupo reducido de usuarios, quienes serán responsables de evaluar su funcionalidad durante las pruebas de aceptación.
 
-\section{Pruebas de Aceptación con Usuarios}
+\section{Pruebas de aceptación con usuarios}
 \label{sec:user-acceptance-testing}
 
 La fase final de validación del prototipo corresponde a las Pruebas de Aceptación con Usuarios (\acrshort{uat}, \acrlong{uat}). Esta etapa se enfoca en verificar que el sistema no solo funcione correctamente a nivel técnico, sino que también satisfaga las necesidades y expectativas del usuario final, tal como se definieron en la etapa de modelado de requerimientos del Modelo en V. En esta instancia, un grupo reducido de usuarios es convocado para utilizar el sistema en un entorno controlado, de forma similar a cómo utilizaría el sistema en su rutina habitual. 

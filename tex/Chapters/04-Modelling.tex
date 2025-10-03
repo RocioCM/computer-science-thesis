@@ -1,4 +1,4 @@
-\chapter[Modelado de Requerimientos]{Modelado de Requerimientos}
+\chapter[Modelado de requerimientos]{Modelado de Requerimientos}
 \label{cp:modelling}
 
 \parindent0pt
@@ -18,7 +18,7 @@ En el contexto del desarrollo de un prototipo de aplicación con tecnología blo
 
 El proceso dio inicio con una investigación exhaustiva del dominio del problema para identificar los actores clave y sus interacciones (Sección \ref{sec:domain-definition}). A partir de esta información, se elaboró una propuesta de valor para documentar las necesidades y expectativas de cada actor junto con posibles soluciones. Posteriormente, se modelaron los casos de uso para describir las funcionalidades del sistema desde la perspectiva del usuario (Sección \ref{sec:use-cases}). Estos casos de uso constituyeron la base para la definición formal de los requerimientos funcionales y no funcionales, incluyendo sus interdependencias (Sección \ref{sec:requirements-definition}). Finalmente, se redactaron \textit{historias de usuario} con un nivel de detalle suficiente para definir los criterios de aceptación, lo cual permitió iniciar las etapas de diseño de arquitectura, estimación de esfuerzo y planificación de la implementación.
 
-\section{Definición de Dominio}
+\section{Definición de dominio}
 \label{sec:domain-definition}
 
 El modelado de requerimientos inicia con la definición del dominio del problema. En el contexto de este proyecto, que busca la trazabilidad y valorización del vidrio, el objetivo es comprender el entorno en el que el sistema operará, identificando los actores y sus interacciones. El análisis establece la base para la construcción de los requerimientos del sistema.
@@ -79,7 +79,7 @@ El análisis detallado a través del canvas de propuesta de valor revela que los
 
 La información recopilada en esta fase proporciona una comprensión de las necesidades de los actores y sienta las bases para la siguiente etapa del modelado de requerimientos, donde se definirán los casos de uso del sistema con una perspectiva centrada en el usuario.
 
-\section{Modelado de Casos de Uso}
+\section{Modelado de casos de uso}
 \label{sec:use-cases}
 
 Después de definir el dominio y los actores, se procede a la identificación y modelado de los casos de uso. Un caso de uso es una técnica de modelado que describe, de manera detallada y estructurada, las interacciones entre un actor (un usuario o sistema externo) y el sistema para lograr un objetivo de negocio específico. Cada caso de uso representa una funcionalidad completa y significativa desde la perspectiva del usuario, garantizando que el sistema final sea útil para sus usuarios.
@@ -95,7 +95,7 @@ La Figura \ref{fig:use-case-diagram} presenta el diagrama de casos de uso elabor
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=\textwidth]{Figures/use-case-diagram.png}
-    \caption{Diagrama de Casos de Uso del sistema de trazabilidad de vidrio}
+    \caption{Diagrama de casos de uso del sistema de trazabilidad de vidrio}
     \label{fig:use-case-diagram}
 \end{figure}
 
@@ -103,7 +103,7 @@ El diagrama muestra que cada actor tiene un conjunto de casos de uso alineado co
 
 La lista de casos de uso sirve como punto de partida para la definición de los requerimientos funcionales y no funcionales del sistema, donde cada caso de uso se descompone en uno o más requerimientos específicos que describen las funcionalidades que el sistema debe implementar para cumplir con las expectativas de los actores.
 
-\section{Definición de Requerimientos}
+\section{Definición de requerimientos}
 \label{sec:requirements-definition}
 
 Después de identificar los casos de uso, se definen los requerimientos funcionales y no funcionales del sistema. Los requerimientos funcionales describen las funcionalidades específicas que el sistema debe ofrecer a los usuarios, mientras que los requerimientos no funcionales establecen las características de calidad que el sistema debe cumplir, tales como rendimiento, seguridad o usabilidad.
@@ -113,7 +113,7 @@ Los requerimientos se documentan de manera estructurada, asignando un identifica
 A partir de los casos de uso previamente identificados, se definieron 28 requerimientos funcionales y 6 requerimientos no funcionales para el sistema. Estos requerimientos se documentan en la etapa de modelado para su posterior seguimiento durante el desarrollo. Se establecen dependencias entre ellos, lo que permite identificar restricciones en el orden de implementación de las funcionalidades del sistema. Por ejemplo, el registro de un lote de vidrio (RF-006) es una dependencia para que dicho lote pueda ser recibido por un productor secundario para envasar productos (RF-016). La Tabla \ref{tab:functional-requirements} presenta los requerimientos funcionales, mientras que la Tabla \ref{tab:non-functional-requirements} muestra los requerimientos no funcionales definidos para el prototipo de trazabilidad de envases de vidrio basado en blockchain.
 
 \begin{xltabular}{\textwidth}{@{} L{1.5cm} L{2.5cm} Y L{1.5cm} @{}}
-	\caption{Requerimientos Funcionales del sistema de trazabilidad de envases de vidrio}
+	\caption{Requerimientos funcionales del sistema de trazabilidad de envases de vidrio}
 	\label{tab:functional-requirements}\\
 	\toprule
 	\textbf{ID} & \textbf{Título} & \textbf{Descripción} & \textbf{Deps.} \\
@@ -192,7 +192,7 @@ A partir de los casos de uso previamente identificados, se definieron 28 requeri
 \end{xltabular}
 
 \begin{xltabular}{\linewidth}{@{} L{1.5cm} L{2.5cm} Y @{}}
-	\caption{Requerimientos No Funcionales del sistema de trazabilidad de envases de vidrio}
+	\caption{Requerimientos no funcionales del sistema de trazabilidad de envases de vidrio}
 	\label{tab:non-functional-requirements}\\
 	\toprule
 	ID & Título & Descripción \\
@@ -224,9 +224,7 @@ RNF-06 & Integridad & Los datos de trazabilidad no deben poder ser alterados lue
 
 La lista de requerimientos funcionales y no funcionales sirve como base para la siguiente fase de modelado, en la que se definirán las historias de usuario y se planificará el desarrollo del sistema. A su vez, la lista de requerimientos se utilizará posteriormente en la validación y verificación del sistema, asegurando que todas las funcionalidades implementadas cumplan con las expectativas y necesidades de los usuarios.
 
-% TODO: why a big space is rendered here?
-
-\section{Historias de Usuario y Planificación}
+\section{Historias de usuario y planificación}
 \label{sec:user-stories}
 
 A partir de la definición de los requerimientos funcionales y no funcionales del sistema, se procede a la creación de las historias de usuario. Las historias de usuario permiten documentar las funcionalidades del sistema desde la perspectiva de sus actores, utilizando un formato estandarizado que describe el rol, la acción deseada y el beneficio esperado: ``Como [rol], quiero [acción], para [beneficio]''. Por ejemplo, ``Como Productor Primario, quiero poder editar la información de un lote de envases antes de su comercialización, para poder corregir cualquier error en los datos de producción y asegurar la precisión en el registro''. Esta forma de documentar requerimientos facilita la priorización de funcionalidades y la comprensión de las necesidades desde un enfoque centrado en el usuario a la hora de desarrollar el sistema.
