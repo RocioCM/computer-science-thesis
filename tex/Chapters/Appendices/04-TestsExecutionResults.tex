@@ -1,15 +1,14 @@
 \chapter[Casos de prueba]{Casos de Prueba}
 \label{cp:tests-execution-results}
 
-En este trabajo, cuyo desarrollo siguió el modelo en V, se realizaron secuencialmente múltiples instancias de pruebas del prototipo tecnológico: pruebas unitarias, pruebas de integración, pruebas de sistema y pruebas de aceptación. Cada etapa incluyó la definición y ejecución de casos de prueba, ya sean manuales o automatizados, con el objetivo de validar que el sistema cumpliera con los requisitos funcionales y no funcionales establecidos en la fase de modelado de requerimientos. En este apéndice se detallan los casos de uso de cada etapa de pruebas, los resultados obtenidos y las incidencias detectadas y resueltas durante el proceso.
+En este trabajo, cuyo desarrollo siguió el modelo en V, se realizaron secuencialmente múltiples instancias de pruebas del prototipo tecnológico: pruebas unitarias, pruebas de integración, pruebas de sistema y pruebas de aceptación. Cada etapa incluyó la definición y ejecución de casos de prueba, ya sean manuales o automatizados, con el objetivo de validar que el sistema cumpliera con los requerimientos funcionales y no funcionales establecidos en la fase de modelado de requerimientos. En este apéndice se detallan los casos de uso de cada etapa de pruebas, los resultados obtenidos y las incidencias detectadas y resueltas durante el proceso.
 
 \section{Pruebas unitarias}
 \label{sec:unit-testing-details}
 
-En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias automatizadas para cada componente del sistema. Estas pruebas tuvieron como objetivo validar la funcionalidad de los contratos inteligentes, la API backend y la interfaz frontend. Cada módulo de pruebas fue diseñado para cubrir casos de uso positivos y negativos, asegurando que cada unidad de código funcionara correctamente de manera aislada. En la Tabla \ref{tab:unit-tests-blockchain} se presenta un resumen de las pruebas unitarias realizadas sobre los \glspl{contratointeligente}, en la Tabla \ref{tab:unit-tests-backend} las pruebas ejecutadas sobre la API (backend), y en la Tabla \ref{tab:unit-tests-frontend} las pruebas realizadas sobre la interfaz (\gls{frontend}). En total, se desarrollaron 98 pruebas unitarias automatizadas para los contratos inteligentes, 317 para el backend y 286 para el frontend, todas las cuales finalizaron con resultados satisfactorios sin fallos reportados. El listado completo de pruebas unitarias puede obtenerse a partir del código fuente (Sección \ref{sec:source-code}) siguiendo las instrucciones que se encuentran en el repositorio.
+En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias automatizadas para cada componente del sistema. Estas pruebas tuvieron como objetivo validar la funcionalidad de los contratos inteligentes, la API \textit{backend} y la interfaz \textit{frontend}. Cada módulo de pruebas fue diseñado para cubrir casos de uso positivos y negativos, asegurando que cada unidad de código funcionara correctamente de manera aislada. En la Tabla \ref{tab:unit-tests-blockchain} se presenta un resumen de las pruebas unitarias realizadas sobre los \glspl{contratointeligente}, en la Tabla \ref{tab:unit-tests-backend} las pruebas ejecutadas sobre la API (\textit{\gls{backend}}), y en la Tabla \ref{tab:unit-tests-frontend} las pruebas realizadas sobre la interfaz (\textit{\gls{frontend}}). En total, se desarrollaron 98 pruebas unitarias automatizadas para los contratos inteligentes, 317 para el \textit{backend} y 286 para el \textit{frontend}, todas las cuales finalizaron con resultados satisfactorios sin fallos reportados. El listado completo de pruebas unitarias puede obtenerse a partir del código fuente (Sección \ref{sec:source-code}) siguiendo las instrucciones que se encuentran en el repositorio.
 
-
-\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{4.2cm} C{0.8cm} Y C{2cm} @{}}
+\begin{xltabular}{\textwidth}{@{} L{0.4cm} L{4.2cm} C{0.8cm} Y C{1.8cm} @{}}
 	\caption{Resumen de pruebas unitarias realizadas sobre los contratos inteligentes}
 	\label{tab:unit-tests-blockchain}\\
 	\toprule
@@ -37,8 +36,8 @@ En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias
 \end{xltabular}
 
 
-\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{3cm} C{0.8cm} Y C{2cm} @{}}
-	\caption{Resumen de pruebas unitarias realizadas sobre la API backend}
+\begin{xltabular}{\textwidth}{@{} L{0.4cm} L{3.2cm} C{0.8cm} Y C{1.8cm} @{}}
+	\caption{Resumen de pruebas unitarias realizadas sobre la API \textit{backend}}
 	\label{tab:unit-tests-backend}\\
 	\toprule
 	\textbf{\#} & \textbf{Módulo} & \textbf{Tests} & \textbf{Descripción} & \textbf{Resultado} \\
@@ -74,8 +73,8 @@ En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias
 
 \end{xltabular}
 
-\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{3cm} C{0.8cm} Y C{2cm} @{}}
-	\caption{Resumen de pruebas unitarias realizadas sobre la interfaz \gls{frontend}}
+\begin{xltabular}{\textwidth}{@{} L{0.4cm} L{3cm} C{0.7cm} Y C{1.8cm} @{}}
+	\caption{Resumen de pruebas unitarias realizadas sobre la interfaz \textit{\gls{frontend}}}
 	\label{tab:unit-tests-frontend}\\
 	\toprule
 	\textbf{\#} & \textbf{Módulo} & \textbf{Tests} & \textbf{Descripción} & \textbf{Resultado} \\
@@ -120,13 +119,13 @@ En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias
 \section{Pruebas de integración}
 \label{sec:integration-testing-details}
 
-En la fase de pruebas de integración, se verificó la interacción entre los diferentes módulos del sistema para asegurar que funcionaran correctamente en conjunto. Esto incluyó pruebas de la API y su comunicación con la \gls{basededatos} y la \gls{blockchain}. 
+En la fase de pruebas de integración, se verificó la interacción entre los diferentes módulos del sistema para asegurar que funcionaran correctamente en conjunto. Esto incluyó pruebas de la API y su comunicación con la \gls{basededatos} y la \textit{\gls{blockchain}}. 
 
-La particularidad de las pruebas de integración es que requieren ser ejecutadas sobre el sistema completo (API, base de datos y blockchain); sin embargo, no requieren la interfaz de usuario. Esto se debe a que las pruebas de integración se centran en validar la correcta interacción entre los módulos del backend y la persistencia de datos, sin involucrar la capa de presentación. A su vez, todos los módulos mencionados deben probarse sin hacer uso de simulaciones ni \textit{mocks}, para garantizar que las interacciones sean reales y reflejen el comportamiento esperado en un entorno de producción. Por este motivo, se configuró un script para las pruebas de integración que se encarga de ejecutar una instancia local de la blockchain con los contratos desplegados, también levanta una base de datos local y la API, permitiendo así ejecutar las pruebas de integración en un entorno controlado que simula el entorno productivo, pero en local, sin otras dependencias externas. 
+La particularidad de las pruebas de integración es que requieren ser ejecutadas sobre el sistema completo (API, base de datos y \textit{blockchain}); sin embargo, no requieren la interfaz de usuario. Esto se debe a que las pruebas de integración se centran en validar la correcta interacción entre los módulos del \textit{backend} y la persistencia de datos, sin involucrar la capa de presentación. A su vez, todos los módulos mencionados deben probarse sin hacer uso de simulaciones ni \textit{mocks}, para garantizar que las interacciones sean reales y reflejen el comportamiento esperado en un entorno de producción. Por este motivo, se configuró un \textit{script} para las pruebas de integración que se encarga de ejecutar una instancia local de la \textit{blockchain} con los contratos desplegados, también levanta una base de datos local y la API, permitiendo así ejecutar las pruebas de integración en un entorno controlado que simula el entorno productivo, pero en local, sin otras dependencias externas.
 
 En esta etapa, el enfoque no fue la exhaustividad, sino la representatividad de los flujos críticos del sistema. Por este motivo, se seleccionaron casos de prueba que cubren los flujos más críticos y relevantes del sistema, asegurando que las interacciones entre los módulos funcionen como se espera en situaciones reales. En la Tabla \ref{tab:integration-testing-summary} se presenta un listado de los casos de prueba de integración ejecutados.
 
-\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{2.5cm} Y C{2cm} @{}}
+\begin{xltabular}{\textwidth}{@{} L{0.4cm} L{3.3cm} Y C{1.8cm} @{}}
 	\caption{Listado de pruebas de integración realizadas sobre el sistema}
 	\label{tab:integration-testing-summary}\\
 	\toprule
@@ -157,17 +156,17 @@ En esta etapa, el enfoque no fue la exhaustividad, sino la representatividad de 
 \hline
 6 & Consumer & Obtener botellas de residuo paginadas del usuario & \testSuccess \\
 \hline
-7 & Producer & Crear un lote de botellas base & \testSuccess \\
+7 & Primary Producer & Crear un lote de botellas base & \testSuccess \\
 \hline
-8 & Producer & Consultar lote por ID & \testSuccess \\
+8 & Primary Producer & Consultar lote por ID & \testSuccess \\
 \hline
-9 & Producer & Listar lotes del usuario con paginación & \testSuccess \\
+9 & Primary Producer & Listar lotes del usuario con paginación & \testSuccess \\
 \hline
-10 & Producer & Vender lote de botellas base & \testSuccess \\
+10 & Primary Producer & Vender lote de botellas base & \testSuccess \\
 \hline
-11 & Producer & Reciclar lote de botellas base & \testSuccess \\
+11 & Primary Producer & Reciclar lote de botellas base & \testSuccess \\
 \hline
-12 & Producer & Listar lotes reciclados del usuario & \testSuccess \\
+12 & Primary Producer & Listar lotes reciclados del usuario & \testSuccess \\
 \hline
 13 & Secondary Producer & Asignar código de seguimiento a lote de producto & \testSuccess \\
 \hline
@@ -185,15 +184,15 @@ En esta etapa, el enfoque no fue la exhaustividad, sino la representatividad de 
 
 \section{Pruebas de sistema}
 
-En el caso de las pruebas de sistema, estas buscan validar que el sistema completo funcione como se espera, cumpliendo con los requisitos funcionales y no funcionales establecidos. En esta etapa se realizaron pruebas manuales y automatizadas sobre un entorno de pruebas en la nube similar al de producción.
+En el caso de las pruebas de sistema, estas buscan validar que el sistema completo funcione como se espera, cumpliendo con los requerimientos funcionales y no funcionales establecidos. En esta etapa se realizaron pruebas manuales y automatizadas sobre un entorno de pruebas en la nube similar al de producción.
 
 En primera instancia, se llevaron a cabo pruebas manuales que incluyeron la verificación de flujos de usuario, así como la validación de la integración de la información entre los diferentes módulos del sistema. Estas pruebas se documentaron detalladamente para asegurar una correcta \gls{trazabilidad} y facilitar la identificación de posibles problemas. Cada caso de prueba se diseñó previo a su ejecución, detallando el objetivo de la prueba, los requerimientos puestos a prueba, el módulo del sistema involucrado, los pasos a seguir y los resultados esperados. En la Tabla \ref{tab:system-testing-summary} se presenta un resumen de los casos de prueba de sistema ejecutados y sus resultados, incluyendo las incidencias relevadas. Mientras que en la Tabla \ref{tab:system-testing-bugs} se detallan las incidencias relevadas durante la ejecución de las pruebas de sistema, indicando su estado actual (resueltas o desestimadas), identificador de la incidencia en Jira y una breve descripción de cada una.
 
-Debido a la extensión de los casos de prueba, no se incluyen en este documento, pero la lista completa se encuentra disponible en el siguiente enlace: \url{https://github.com/RocioCM/computer-science-thesis/blob/main/docs/Pruebas-de-Sistema_Test-Cases.pdf}
+Debido a la extensión de los casos de prueba no se incluyen en este documento, pero la lista completa se encuentra disponible en el siguiente enlace: \url{https://github.com/RocioCM/computer-science-thesis/blob/main/docs/Pruebas-de-Sistema_Test-Cases.pdf}
 
-Además de las pruebas manuales, se implementaron pruebas automatizadas para validar los requerimientos no funcionales del sistema. En este caso, se implementaron pruebas de carga y de seguridad. Las pruebas de seguridad buscan asegurar que se cumplen los requisitos de autenticación y autorización de usuarios especificados en las historias de usuario. Mientras que las pruebas de carga buscan evaluar el rendimiento del sistema bajo condiciones de alta demanda. Las pruebas de carga se realizaron en un entorno local utilizando la herramienta K6 \footnote{Load testing tool for engineering teams: \url{https://k6.io/}}, poniendo a prueba 3 endpoints representativos de la API y representan únicamente un resultado orientativo sobre cómo puede comportarse el sistema en un entorno de producción real, ya que el rendimiento dependerá de múltiples factores, como la infraestructura subyacente y la configuración del entorno. En la Tabla \ref{tab:system-testing-security} se presentan los resultados de las pruebas de seguridad realizadas, mientras que en la Tabla \ref{tab:system-testing-load} se presentan los resultados de las pruebas de carga.
+Además de las pruebas manuales, se implementaron pruebas automatizadas para validar los requerimientos no funcionales del sistema. En este caso, se implementaron pruebas de carga y de seguridad. Las pruebas de seguridad buscan asegurar que se cumplen los requerimientos de autenticación y autorización de usuarios especificados en las historias de usuario. Mientras que las pruebas de carga buscan evaluar el rendimiento del sistema bajo condiciones de alta demanda. Las pruebas de carga se realizaron en un entorno local utilizando la herramienta K6\footnote{\textit{Load testing tool for engineering teams}: \url{https://k6.io/}}, poniendo a prueba 3 \textit{endpoints} representativos de la API y representan únicamente un resultado orientativo sobre cómo puede comportarse el sistema en un entorno de producción real, ya que el rendimiento dependerá de múltiples factores, como la infraestructura subyacente y la configuración del entorno. En la Tabla \ref{tab:system-testing-security} se presentan los resultados de las pruebas de seguridad realizadas, mientras que en la Tabla \ref{tab:system-testing-load} se presentan los resultados de las pruebas de carga.
 
-\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{3cm} C{0.8cm} Y C{1.5cm} C{2cm} @{}}
+\begin{xltabular}{\textwidth}{@{} L{0.4cm} L{3.2cm} C{0.7cm} Y C{1.6cm} C{1.9cm} @{}}
 	\caption{Resumen de pruebas de sistema realizadas por módulo}
 	\label{tab:system-testing-summary}\\
 	\toprule
@@ -226,7 +225,7 @@ Además de las pruebas manuales, se implementaron pruebas automatizadas para val
 
 \end{xltabular}
 
-\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{3cm} Y C{1.5cm} C{1.5cm} @{}}
+\begin{xltabular}{\textwidth}{@{} L{0.4cm} L{3.2cm} Y C{1.4cm} C{1.4cm} @{}}
 	\caption{Lista de errores hallados e incidencias relevadas en pruebas de sistema}
 	\label{tab:system-testing-bugs}\\
 	\toprule
@@ -271,7 +270,7 @@ Además de las pruebas manuales, se implementaron pruebas automatizadas para val
 
 \end{xltabular}
 
-\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{4cm} Y C{2cm} @{}}
+\begin{xltabular}{\textwidth}{@{} L{0.4cm} L{4cm} Y C{2cm} @{}}
 	\caption{Casos de prueba de seguridad ejecutados sobre el sistema}
 	\label{tab:system-testing-security}\\
 	\toprule
@@ -336,7 +335,7 @@ En la instancia de pruebas de aceptación, se realizó un conjunto de pruebas ma
 
 El listado completo de casos de prueba ejecutados por cada participante se puede consultar en el siguiente enlace: \url{https://github.com/RocioCM/computer-science-thesis/blob/main/docs/Pruebas-de-Aceptacion_Test-Cases.pdf}
 
-\begin{xltabular}{\textwidth}{@{} L{0.5cm} Y L{4cm} C{3.5cm} C{3.5cm} @{}}
+\begin{xltabular}{\textwidth}{@{} L{0.4cm} Y L{4cm} C{3.5cm} C{3.5cm} @{}}
 	\caption{Listado de participantes en pruebas de aceptación de usuario}
 	\label{tab:acceptance-testing-users}\\
 	\toprule
@@ -375,7 +374,7 @@ El listado completo de casos de prueba ejecutados por cada participante se puede
 
 \end{xltabular}
 
-\begin{xltabular}{\textwidth}{@{} L{0.5cm} L{3cm} Y L{1.5cm} C{2cm} @{}}
+\begin{xltabular}{\textwidth}{@{} L{0.4cm} L{3.5cm} Y C{1.4cm} C{1.6cm} @{}}
 	\caption{Lista de errores hallados e incidencias relevadas en pruebas de aceptación}
 	\label{tab:acceptance-testing-bugs}\\
 	\toprule
