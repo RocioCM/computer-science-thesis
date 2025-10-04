@@ -10,7 +10,7 @@ El objetivo principal es proporcionar una plataforma que permita a todos los par
 
 El proyecto está organizado en tres componentes principales:
 
-![Software Architecture](../implementation/assets/software-architecture.png)
+<img width="3040" height="1600" alt="Software Architecture" src="https://github.com/user-attachments/assets/faff146e-a4fc-4f82-aee3-1b0690642643" />
 
 ### 1. Blockchain (/blockchain)
 
@@ -48,7 +48,7 @@ Cada componente tiene su propio README con instrucciones detalladas sobre:
 - Pruebas y cobertura de código
 - Despliegue en producción
 
-Para comenzar con un componente específico, navega a la carpeta correspondiente y siga las instrucciones en su README.md:
+Para comenzar con un componente específico, simplemente hay que navegar a la carpeta correspondiente y seguir las instrucciones en su README.md:
 
 - [Documentación de Blockchain](./blockchain/README.md)
 - [Documentación de Backend API](./backend-api/README.md)
