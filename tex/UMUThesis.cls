@@ -144,7 +144,7 @@
 % More aggressive URL breaking configuration
 \def\UrlBreaks{\do\/\do-\do.\do:\do?\do&\do=\do_\do\%}
 \def\UrlBigBreaks{\do\{\do\}}
-\def\UrlSpecials{\do\ {\Url@space}\do\%{\Url@percent}\do\_{\Url@underscore}}
+\def\UrlSpecials{\do\ {\Url@space}\do\%{\Url@percent}}
 
 % Additional line breaking allowances
 \emergencystretch=1em
@@ -163,6 +163,7 @@
 
 %%% Import Configurations - Maintain the Specified Order! %%%
 \usepackage{Configurations/00-Fonts}
+\AtBeginDocument{\renewcommand{\UrlFont}{\crimsonfont}} % We redefine \UrlFont after fonts are loaded so that \crimsonfont is defined
 \usepackage{Configurations/01-Colors}
 \usepackage{Configurations/02-Margins}
 \usepackage{Configurations/03-References}
