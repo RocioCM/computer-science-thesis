@@ -207,7 +207,7 @@ const SideBar: React.FC<SideBarProps> = () => {
             </a>
 
             <a
-              href="mailto:support@tesis.com"
+              href="mailto:support@example.com"
               className="w-full flex items-center justify-center gap-2 bg-p3 text-n0 py-3 px-4 rounded-lg"
             >
               <FaIcon type="fa-solid fa-envelope" className="text-lg" />
