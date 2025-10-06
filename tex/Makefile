@@ -38,7 +38,6 @@ $(MAIN).pdf: $(TEX_SRC) $(BIB_SRC)
 
 	echo "📚 Ejecutando Biber..."; \
 	$(DOCKER_RUN) biber $(MAIN); \
-	make generate-pdf
 
 	echo "📖 Procesando glosario y acrónimos..."; \
 	$(DOCKER_RUN) makeglossaries $(MAIN); \
@@ -52,7 +51,7 @@ $(MAIN).pdf: $(TEX_SRC) $(BIB_SRC)
 clean:
 	@echo "🧹 Limpiando temporales..."
 	rm -f *.aux *.bbl *.bcf *.blg *.log *.out *.run.xml *.toc *.lof *.lot *.fls *.fdb_latexmk
-	rm -f *.glo *.gls *.glg *.acr *.acn *.alg *.ist
+	rm -f *.glo *.gls *.glg *.acr *.acn *.alg *.ist *.pyg *.mw
 	rm -rf _minted-*
 
 # Limpiar todo, incluido el PDF
