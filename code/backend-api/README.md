@@ -90,7 +90,7 @@ modules/ejemplo/
 ├── constants/           # Opcional: constantes específicas del módulo
 ├── domain/              # Entidades: objetos de dominio y DTOs
 ├── repositories/        # Repositorios para persistencia de datos
-├── moduleHandler.ts     # Casos de uso y lógica de negocios
+├── moduleHandler.ts     # Casos de uso y lógica de negocio
 ├── moduleRouter.ts      # Definición de rutas del módulo
 ```
 

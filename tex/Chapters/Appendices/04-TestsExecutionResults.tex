@@ -6,7 +6,7 @@ En este trabajo, cuyo desarrollo siguió el modelo en V, se realizaron secuencia
 \section{Pruebas unitarias}
 \label{sec:unit-testing-details}
 
-En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias automatizadas para cada componente del sistema. Estas pruebas tuvieron como objetivo validar la funcionalidad de los contratos inteligentes, la API \textit{backend} y la interfaz \textit{frontend}. Cada módulo de pruebas fue diseñado para cubrir casos de uso positivos y negativos, asegurando que cada unidad de código funcionara correctamente de manera aislada. En la Tabla \ref{tab:unit-tests-blockchain} se presenta un resumen de las pruebas unitarias realizadas sobre los \glspl{contratointeligente}, en la Tabla \ref{tab:unit-tests-backend} las pruebas ejecutadas sobre la API (\textit{\gls{backend}}), y en la Tabla \ref{tab:unit-tests-frontend} las pruebas realizadas sobre la interfaz (\textit{\gls{frontend}}). En total, se desarrollaron 98 pruebas unitarias automatizadas para los contratos inteligentes, 317 para el \textit{backend} y 286 para el \textit{frontend}, todas las cuales finalizaron con resultados satisfactorios sin fallos reportados. El listado completo de pruebas unitarias puede obtenerse a partir del código fuente (Sección \ref{sec:source-code}) siguiendo las instrucciones que se encuentran en el repositorio.
+En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias automatizadas para cada componente del sistema. Estas pruebas tuvieron como objetivo validar la funcionalidad de los contratos inteligentes, la API \textit{backend} y la interfaz \textit{frontend}. Cada módulo de pruebas fue diseñado para cubrir casos de uso positivos y negativos, asegurando que cada unidad de código funcionara correctamente de manera aislada. En la Tabla \ref{tab:unit-tests-blockchain} se presenta un resumen de las pruebas unitarias realizadas sobre los \glspl{contratointeligente}, en la Tabla \ref{tab:unit-tests-backend} las pruebas ejecutadas sobre la API (\textit{\gls{backend}}), y en la Tabla \ref{tab:unit-tests-frontend} las pruebas realizadas sobre la interfaz (\textit{\gls{frontend}}). En total, se desarrollaron 98 pruebas unitarias automatizadas para los contratos inteligentes, 317 para el \textit{backend} y 286 para el \textit{frontend}, todas las cuales finalizaron con resultados satisfactorios sin incidencias reportadas en la herramienta Jira. El listado completo de pruebas unitarias puede obtenerse a partir del código fuente (Sección \ref{sec:source-code}) siguiendo las instrucciones que se encuentran en el repositorio.
 
 \begin{xltabular}{\textwidth}{@{} L{0.4cm} L{4.2cm} C{0.8cm} Y C{1.8cm} @{}}
 	\caption{Resumen de pruebas unitarias realizadas sobre los contratos inteligentes}
@@ -55,21 +55,21 @@ En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias
 \bottomrule
 \endlastfoot
 
-1 & Tracking API & 33 & \Glspl{endpoint} para seguimiento público de productos, lotes base, lotes de productos, botellas de residuo y lotes de reciclaje & \testSuccess \\
+1 & App Setup & 2 & Configuración y manejo de excepciones de la aplicación & \testSuccess \\
 \hline
-2 & Consumer API & 41 & Gestión de botellas de residuo, consulta de origen de productos, gestión de recicladores y operaciones de consumidor & \testSuccess \\
+2 & Auth API & 12 & Registro de usuarios, autenticación, gestión de perfiles y filtrado por roles & \testSuccess \\
 \hline
-3 & Secondary Producer API & 44 & Gestión de lotes de productos secundarios, códigos de seguimiento, reciclaje y venta de productos & \testSuccess \\
+3 & Primary Producer API & 54 & Gestión de lotes de botellas base, operaciones CRUD, venta, reciclaje y consulta de compradores & \testSuccess \\
 \hline
-4 & Producer API & 54 & Gestión de lotes de botellas base, operaciones CRUD, venta, reciclaje y consulta de compradores & \testSuccess \\
+4 & Secondary Producer API & 44 & Gestión de lotes de productos secundarios, códigos de seguimiento, reciclaje y venta de productos & \testSuccess \\
 \hline
-5 & Helpers & 36 & Utilidades auxiliares: autenticación Firebase, interacción blockchain, variables de entorno, logging, middleware y validaciones & \testSuccess \\
+5 & Consumer API & 41 & Gestión de botellas de residuo y consulta de origen de productos & \testSuccess \\
 \hline
-6 & App Setup & 2 & Configuración y manejo de excepciones de la aplicación & \testSuccess \\
+6 & Recycler API & 95 & Gestión completa de reciclaje: seguimiento de botellas, creación y gestión de lotes, asignación de botellas y ventas & \testSuccess \\
 \hline
-7 & Auth API & 12 & Registro de usuarios, autenticación, gestión de perfiles y filtrado por roles & \testSuccess \\
+7 & Tracking API & 33 & \Glspl{endpoint} para seguimiento público de productos, lotes base, lotes de productos, botellas de residuo y lotes de reciclaje & \testSuccess \\
 \hline
-8 & Recycler API & 95 & Gestión completa de reciclaje: seguimiento de botellas, creación y gestión de lotes, asignación de botellas y ventas & \testSuccess \\
+8 & Helpers & 36 & Utilidades auxiliares: autenticación Firebase, interacción blockchain, variables de entorno, logging, middleware y validaciones & \testSuccess \\
 
 \end{xltabular}
 
@@ -92,17 +92,17 @@ En la fase de pruebas unitarias, se implementaron y ejecutaron pruebas unitarias
 \bottomrule
 \endlastfoot
 
-1 & Auth Module & 8 & Páginas de login y registro, validaciones de formularios y manejo de errores de autenticación & \testSuccess \\
+1 & Auth Module & 8 & Páginas de ingreso y registro, validaciones de formularios y manejo de errores de autenticación & \testSuccess \\
 \hline
-2 & Tracking Module & 25 & Página de seguimiento público, búsqueda por código, timeline y pestañas de diferentes tipos de lotes & \testSuccess \\
+2 & Primary Producer Module & 6 & Inventario de productor primario, modales de gestión de lotes, venta y reciclaje & \testSuccess \\
 \hline
-3 & Consumer Module & 4 & Página del consumidor, modales de búsqueda y reciclaje de botellas & \testSuccess \\
+3 & Secondary Producer Module & 5 & Gestión de lotes de productos secundarios, modales de formulario, detalle, venta y reciclaje & \testSuccess \\
 \hline
-4 & Primary Producer Module & 6 & Inventario de productor primario, modales de gestión de lotes, venta y reciclaje & \testSuccess \\
+4 & Consumer Module & 4 & Página del consumidor, modales de búsqueda y reciclaje de botellas & \testSuccess \\
 \hline
-5 & Secondary Producer Module & 5 & Gestión de lotes de productos secundarios, modales de formulario, detalle, venta y reciclaje & \testSuccess \\
+5 & Recycler Module & 11 & Inventario de reciclador, gestión de botellas de residuo, asignación de lotes y modales asociados & \testSuccess \\
 \hline
-6 & Recycler Module & 11 & Inventario de reciclador, gestión de botellas de residuo, asignación de lotes y modales asociados & \testSuccess \\
+6 & Tracking Module & 25 & Página de seguimiento público, búsqueda por código, timeline y pestañas de diferentes tipos de lotes & \testSuccess \\
 \hline
 7 & Profile Module & 4 & Página de perfil de usuario, validaciones y actualización de datos & \testSuccess \\
 \hline
@@ -190,7 +190,7 @@ En primera instancia, se llevaron a cabo pruebas manuales que incluyeron la veri
 
 Debido a la extensión de los casos de prueba no se incluyen en este documento, pero la lista completa se encuentra disponible en el siguiente enlace: \url{https://github.com/RocioCM/computer-science-thesis/blob/main/docs/Pruebas-de-Sistema_Test-Cases.pdf}
 
-Además de las pruebas manuales, se implementaron pruebas automatizadas para validar los requerimientos no funcionales del sistema. En este caso, se implementaron pruebas de carga y de seguridad. Las pruebas de seguridad buscan asegurar que se cumplen los requerimientos de autenticación y autorización de usuarios especificados en las historias de usuario. Mientras que las pruebas de carga buscan evaluar el rendimiento del sistema bajo condiciones de alta demanda. Las pruebas de carga se realizaron en un entorno local utilizando la herramienta K6\footnote{\textit{Load testing tool for engineering teams}: \url{https://k6.io/}}, poniendo a prueba 3 \textit{endpoints} representativos de la API y representan únicamente un resultado orientativo sobre cómo puede comportarse el sistema en un entorno de producción real, ya que el rendimiento dependerá de múltiples factores, como la infraestructura subyacente y la configuración del entorno. En la Tabla \ref{tab:system-testing-security} se presentan los resultados de las pruebas de seguridad realizadas, mientras que en la Tabla \ref{tab:system-testing-load} se presentan los resultados de las pruebas de carga.
+Además de las pruebas manuales, se implementaron pruebas automatizadas para validar los requerimientos no funcionales del sistema. En este caso, se implementaron pruebas de carga y de seguridad. Las pruebas de seguridad buscan asegurar que se cumplan los requerimientos de autenticación y autorización de usuarios especificados en las historias de usuario. Mientras que las pruebas de carga buscan evaluar el rendimiento del sistema bajo condiciones de alta demanda. Las pruebas de carga se realizaron en un entorno local utilizando la herramienta K6\footnote{\textit{Load testing tool for engineering teams}: \url{https://k6.io/}}, poniendo a prueba 3 \textit{endpoints} representativos de la API y representan únicamente un resultado orientativo sobre cómo puede comportarse el sistema en un entorno de producción real, ya que el rendimiento dependerá de múltiples factores, como la infraestructura subyacente y la configuración del entorno. En la Tabla \ref{tab:system-testing-security} se presentan los resultados de las pruebas de seguridad realizadas, mientras que en la Tabla \ref{tab:system-testing-load} se presentan los resultados de las pruebas de carga.
 
 \begin{xltabular}{\textwidth}{@{} L{0.4cm} L{3.2cm} C{0.7cm} Y C{1.6cm} C{1.9cm} @{}}
 	\caption{Resumen de pruebas de sistema realizadas por módulo}
@@ -211,7 +211,7 @@ Además de las pruebas manuales, se implementaron pruebas automatizadas para val
 \bottomrule
 \endlastfoot
 
-1 & Auth Module & 9 & Registro, login, manejo de sesión, autorización, perfil de usuario (visualización y edición) & 8/9 OK & 1 \\
+1 & Auth Module & 9 & Registro, ingreso, manejo de sesión, autorización, perfil de usuario (visualización y edición) & 8/9 OK & 1 \\
 \hline
 2 & Producers Module & 12 & Creación, edición y eliminación de lotes; validaciones de campos; consultas de historial y materiales; ventas y reciclaje; restricciones de operaciones sobre lotes vendidos & 9/12 OK & 2 \\
 \hline
@@ -226,7 +226,7 @@ Además de las pruebas manuales, se implementaron pruebas automatizadas para val
 \end{xltabular}
 
 \begin{xltabular}{\textwidth}{@{} L{0.4cm} L{3.2cm} Y C{1.4cm} C{1.4cm} @{}}
-	\caption{Lista de errores hallados e incidencias relevadas en pruebas de sistema}
+	\caption{Listado de errores hallados e incidencias relevadas en pruebas de sistema}
 	\label{tab:system-testing-bugs}\\
 	\toprule
 	\textbf{\#} & \textbf{Módulo} & \textbf{Descripción} & \textbf{ID Jira} & \textbf{Estado} \\
@@ -331,7 +331,7 @@ Además de las pruebas manuales, se implementaron pruebas automatizadas para val
 \section{Pruebas de aceptación}
 \label{sec:acceptance-testing-details}
 
-En la instancia de pruebas de aceptación, se realizó un conjunto de pruebas manuales para validar el comportamiento del prototipo desde la perspectiva del usuario final. Estas pruebas se llevaron a cabo en un entorno controlado, donde los participantes interactuaron con el sistema y proporcionaron retroalimentación sobre su experiencia. Al comienzo de la sesión, se asignó un rol a cada participante y se le proporcionó una guía básica sobre el uso del sistema, asegurando que comprendieran las funcionalidades principales y los objetivos de las pruebas. En la Tabla \ref{tab:acceptance-testing-users} se presenta el listado de los participantes, junto con la cantidad de pruebas realizadas e incidencias generadas a partir de su interacción con el sistema. En la Tabla \ref{tab:acceptance-testing-bugs} se presenta un resumen de las incidencias detectadas durante las pruebas.
+En la instancia de pruebas de aceptación, se realizó un conjunto de pruebas manuales para validar el comportamiento del prototipo desde la perspectiva del usuario final. Estas pruebas se llevaron a cabo en un entorno controlado, donde los participantes interactuaron con el sistema y proporcionaron retroalimentación sobre su experiencia. Al comienzo de la sesión, se asignó un rol a cada participante y se les proporcionó una guía básica sobre el uso del sistema, asegurando que comprendieran las funcionalidades principales y los objetivos de las pruebas. En la Tabla \ref{tab:acceptance-testing-users} se presenta el listado de los participantes, junto con la cantidad de pruebas realizadas e incidencias generadas a partir de su interacción con el sistema. En la Tabla \ref{tab:acceptance-testing-bugs} se presenta un resumen de las incidencias detectadas durante las pruebas.
 
 El listado completo de casos de prueba ejecutados por cada participante se puede consultar en el siguiente enlace: \url{https://github.com/RocioCM/computer-science-thesis/blob/main/docs/Pruebas-de-Aceptacion_Test-Cases.pdf}
 
@@ -375,7 +375,7 @@ El listado completo de casos de prueba ejecutados por cada participante se puede
 \end{xltabular}
 
 \begin{xltabular}{\textwidth}{@{} L{0.4cm} L{3.5cm} Y C{1.4cm} C{1.6cm} @{}}
-	\caption{Lista de errores hallados e incidencias relevadas en pruebas de aceptación}
+	\caption{Listado de errores hallados e incidencias relevadas en pruebas de aceptación}
 	\label{tab:acceptance-testing-bugs}\\
 	\toprule
 	\textbf{\#} & \textbf{Rol} & \textbf{Descripción} & \textbf{ID Jira} & \textbf{Estado} \\
@@ -393,7 +393,7 @@ El listado completo de casos de prueba ejecutados por cada participante se puede
 \bottomrule
 \endlastfoot
 
-1 & Productor Primario & Inconsistencia en stock al rechazar lote vendido & SCRUM-52 & Resuelto \\
+1 & Productor Primario & Inconsistencia en stock al rechazar lote \par vendido & SCRUM-52 & Resuelto \\
 \hline
 2 & Productor Secundario & Overflow en input number permite venta con valores inválidos & SCRUM-51 & Resuelto \\
 \hline
