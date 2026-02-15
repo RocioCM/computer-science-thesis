@@ -140,14 +140,14 @@ Para este prototipo, se tomó la decisión de implementar de forma desacoplada l
 
 La elección tecnológica para esta capa estuvo focalizada en encontrar \textit{frameworks} y librerías que promuevan la modularidad y la eficiencia durante el desarrollo. En primer lugar, se determinó utilizar React\footnote{\url{https://es.react.dev/}} como librería base para la construcción de la interfaz, debido a su modelo de desarrollo basado en componentes, que promueve la reutilización de código. A su vez, para potenciar React, se optó por hacer uso del \textit{framework} Next.js\footnote{\url{https://nextjs.org/docs}}, que agrega funcionalidades extra a React para facilitar aún más el desarrollo de aplicaciones web modulares y de alto rendimiento, combinando técnicas como generación de sitios estáticos y renderizado en el servidor. Por otro lado, para el diseño de las interfaces web se utiliza el lenguaje de estilado \gls{css}\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/CSS}}, que en este prototipo se complementó con el uso de la librería Tailwind \gls{css}\footnote{\url{https://tailwindcss.com/}} que promueve una estética moderna y una sintaxis simplificada dentro del código.
 
-La comunicación del \textit{frontend} con el \textit{\gls{backend}} se realiza exclusivamente a través de llamadas a la \gls{apirest}. La interfaz no contiene la lógica de negocio, sino que actúa como un cliente ligero que envía datos al \textit{backend} (por ejemplo, al registrar un nuevo lote) y recibe la respuesta, la cual es luego presentada al usuario. Este modelo garantiza que el \textit{frontend} se enfoque en la interacción y la visualización, mientras la lógica crítica reside en el \textit{backend}. Debido a que el \textit{frontend} se enfoca únicamente en la visualización de información, es necesario implementar un sistema de autenticación y autorización unificado entre \textit{frontend} y \textit{backend} que permita a cada usuario visualizar e interactuar únicamente con las funcionalidades propias de su rol. Por este motivo, para gestionar la autenticación de usuarios en este proyecto, se determinó hacer uso del servicio Firebase Authentication\footnote{\url{https://firebase.google.com/docs/auth}}, que gestiona la autenticación de usuarios e implementa de forma abstracta el estándar de autorización OAuth 2.0\footnote{\url{https://oauth.net/2/}}, asegurando que solo los actores con los permisos adecuados puedan acceder a cada recurso del sistema.
-
 \begin{figure}[!t]
     \centering
     \includegraphics[width=\linewidth]{Figures/system-architecture.png}
     \caption{Arquitectura del sistema con librerías elegidas para comunicación entre módulos}
     \label{fig:system-architecture}
 \end{figure}
+
+La comunicación del \textit{frontend} con el \textit{\gls{backend}} se realiza exclusivamente a través de llamadas a la \gls{apirest}. La interfaz no contiene la lógica de negocio, sino que actúa como un cliente ligero que envía datos al \textit{backend} (por ejemplo, al registrar un nuevo lote) y recibe la respuesta, la cual es luego presentada al usuario. Este modelo garantiza que el \textit{frontend} se enfoque en la interacción y la visualización, mientras la lógica crítica reside en el \textit{backend}. Debido a que el \textit{frontend} se enfoca únicamente en la visualización de información, es necesario implementar un sistema de autenticación y autorización unificado entre \textit{frontend} y \textit{backend} que permita a cada usuario visualizar e interactuar únicamente con las funcionalidades propias de su rol. Por este motivo, para gestionar la autenticación de usuarios en este proyecto, se determinó hacer uso del servicio Firebase Authentication\footnote{\url{https://firebase.google.com/docs/auth}}, que gestiona la autenticación de usuarios e implementa de forma abstracta el estándar de autorización OAuth 2.0\footnote{\url{https://oauth.net/2/}}, asegurando que solo los actores con los permisos adecuados puedan acceder a cada recurso del sistema.
 
 Por último, en la Figura \ref{fig:system-architecture} se puede observar la arquitectura general del sistema, donde Next.js se utiliza para el desarrollo del \textit{frontend}, que se comunica con el \textit{backend}, que se implementa en Node.js y utiliza el \textit{framework} Express.js para recibir las solicitudes, mientras que emplea librerías específicas para comunicarse con los contratos inteligentes en Solidity y con la base de datos relacional de MariaDB. 
 Luego de definir la arquitectura de la aplicación web, incluyendo la definición de capas, la comunicación entre ellas y los lenguajes de programación a utilizarse, es posible comenzar con la etapa de diseño de componentes. En esta segunda etapa de diseño, se define la arquitectura interna de cada capa o módulo definido en la etapa anterior. En la próxima sección, se detallará el diseño de componentes de este sistema, que abarca la estructura interna del \textit{frontend}, la API y la capa de datos.
@@ -172,7 +172,7 @@ El diseño de la arquitectura de datos representa un componente central de este 
 
 En primera instancia, se definió la representación de los datos, tanto en la \textit{blockchain} como en la base de datos relacional. Con base en los requerimientos del sistema y la investigación sobre el ciclo de vida del vidrio, se optó por representar cada envase o conjunto de envases con una estructura distinta en cada etapa de su vida útil. Esta decisión se tomó debido a que los envases tienen metadatos, propietarios y agrupaciones diferentes en cada fase del proceso. El flujo de estados de los envases de vidrio, como se observa en la Figura \ref{fig:data-lifecycle}, comienza con un lote de envases producido por el productor primario, que luego se vende a múltiples productores secundarios para crear lotes de productos envasados. Finalmente, los consumidores pueden llevar cada envase vacío a centros de reciclaje, donde se agrupan en lotes de reciclaje para su posterior reprocesamiento. Para mantener la \gls{trazabilidad} completa del ciclo de vida, cada elemento posee una referencia a su ID (identificador) de origen, lo que permite rastrear, a partir de un envase reciclado, el lote original en el que fue producido, su productor y sus metadatos.
 
-\begin{figure}[!b]
+\begin{figure}[!t]
     \centering
     \includegraphics[width=\linewidth]{Figures/uml-producer-contract.png}
     \caption{Diagrama \acrshort{uml} del Contrato de Envases (BaseBottlesBatchContract)}
@@ -204,7 +204,7 @@ A partir de la representación de los datos, se diseñaron los \glspl{contratoin
 \textbf{Contrato de reciclaje: RecycleMaterialContract} (Figura \ref{fig:recycling-contract-uml})
  cubre la gestión del final de la vida útil de los envases, desde su recolección como residuo hasta su procesamiento como material reciclado. Este contrato almacena los registros de los envases que han sido entregados para reciclaje, permitiendo crear nuevos lotes de material reciclado a partir de ellos. Sus métodos permiten registrar envases de desecho, crear lotes de material reciclado (agrupando envases previamente registrados) y transferir la propiedad de estos lotes a los productores primarios, cerrando de esta forma el ciclo de vida circular del vidrio. La información de seguimiento de los envases provista por el contrato \textit{ProductBottlesBatchContract} es consumida por este contrato, que a su vez genera nuevos lotes de material que pueden ser reutilizados por el contrato \textit{BaseBottlesBatchContract}.
 
-\begin{figure}[!b]
+\begin{figure}[!t]
     \centering
     \includegraphics[width=\textwidth]{Figures/db-der.png}
     \caption{Diagrama Entidad-Relación (\gls{der}) del modelo de datos}
@@ -217,7 +217,7 @@ De forma complementaria a la arquitectura de contratos inteligentes, el diseño 
 
 En el diseño de arquitectura de la capa \textit{\gls{backend}} se adoptó el patrón \textit{\Gls{cleanarchitecture}} (Arquitectura Limpia) \cite{martin2017clean}, un modelo de diseño que prioriza la separación de las reglas de negocio de las dependencias externas. En este esquema, la implementación de la API se estructura en tres capas principales: \textit{Routers}, \textit{Handlers} y \textit{Repositories}. Los \textit{routers} reciben las solicitudes HTTP y las dirigen a los \textit{handlers} correspondientes, luego los \textit{handlers} contienen la lógica de negocio y orquestan las operaciones, por último, los \textit{repositories} se encargan de la interacción con las fuentes de datos (ya sea la base de datos relacional o la \textit{blockchain}). La comunicación entre estas capas es unidireccional, lo que significa que las capas externas solo pueden acceder a las capas más internas, reforzando así la independencia de la lógica de negocio. La Figura \ref{fig:clean-architecture} ilustra cómo las interfaces externas (como el \textit{frontend} y otros sistemas) interactúan únicamente con los controladores (\textit{routers}), los cuales a su vez interactúan con los casos de uso (\textit{handlers}), que finalmente se comunican con las entidades (\textit{repositories}) para acceder al dominio (datos).
 
-\begin{figure}[!b]
+\begin{figure}[!t]
 \centering
 \includegraphics[width=0.6\textwidth]{Figures/clean-architecture.png}
 \caption{Modelo \textit{Clean Architecture}}
@@ -241,7 +241,7 @@ La interfaz de usuario del sistema se diseñó como una aplicación web, con el 
 
 Para la estructuración interna del código, se eligió implementar una arquitectura Modelo Vista-Controlador (\gls{mvc}), que establece una clara separación de responsabilidades: la vista implementa la interfaz de usuario, el controlador maneja la lógica y las interacciones, y el modelo (en este caso, un servicio) se comunica con el \textit{\gls{backend}}. Esta metodología, combinada con la arquitectura de componentes, facilita una construcción rápida y consistente de cada vista, al mismo tiempo que mejora la mantenibilidad del código a largo plazo, ya que cada componente puede ser actualizado sin afectar otras partes del sistema. En la Figura \ref{fig:frontend-architecture} se ilustra la arquitectura de componentes y módulos del \textit{frontend}, donde los usuarios navegan por las distintas vistas de la aplicación y cada una está compuesta por un módulo con un componente de vista, un controlador que implementa la lógica y un servicio que actúa como modelo, el cual se encarga de enviar solicitudes a la \gls{api} \textit{backend} para interactuar con los datos.
 
-\begin{figure}[!b]
+\begin{figure}[!t]
     \centering
     \includegraphics[width=\textwidth]{Figures/frontend-navigation.png}
     \caption{Diseño de casos de la barra lateral de navegación de la aplicación para cada rol}
@@ -250,7 +250,7 @@ Para la estructuración interna del código, se eligió implementar una arquitec
 
 La estructura de la interfaz de usuario se organizó en módulos funcionales por cada rol de usuario, lo cual se alinea con la división de responsabilidades del diseño de arquitectura de \textit{backend} y capa de datos. Por ejemplo, se definieron vistas específicas para el registro y la gestión de lotes por parte de los productores, junto con una interfaz de consulta para los consumidores. En la Figura \ref{fig:frontend-navigation} se puede observar el diseño de la navegación de la aplicación, que consiste en una barra lateral comprimida que se expande al posicionar el cursor sobre ella, mostrando accesos directos a las pantallas disponibles según el rol del usuario autenticado. El contenido de la barra lateral varía dinámicamente según el rol del usuario autenticado para permitir un acceso rápido a las funcionalidades relevantes para cada tipo de usuario. En el Apéndice \ref{cp:user-flows} se encuentran documentados los flujos de usuario para cada rol con imágenes de sus respectivas pantallas y las acciones que conectan el flujo.
 
-\begin{figure}[!t]
+\begin{figure}[!b]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/frontend-palette.png}
     \caption{Identidad de marca de la aplicación}
