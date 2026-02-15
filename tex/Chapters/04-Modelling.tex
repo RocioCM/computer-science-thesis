@@ -16,7 +16,7 @@ En el contexto del desarrollo de un prototipo de aplicación con tecnología \te
     \label{fig:requirements-modelling-process}
 \end{figure}
 
-El proceso dio inicio con una investigación exhaustiva del dominio del problema para identificar los actores clave y sus interacciones (Sección \ref{sec:domain-definition}). A partir de esta información, se elaboró una propuesta de valor para documentar las necesidades y expectativas de cada actor junto con posibles soluciones. Posteriormente, se modelaron los casos de uso para describir las funcionalidades del sistema desde la perspectiva del usuario (Sección \ref{sec:use-cases}). Estos casos de uso constituyeron la base para la definición formal de los requerimientos funcionales y no funcionales, incluyendo sus interdependencias (Sección \ref{sec:requirements-definition}). Finalmente, se redactaron \textit{historias de usuario} con un nivel de detalle suficiente para definir los criterios de aceptación, lo cual permitió iniciar las etapas de diseño de arquitectura, estimación de esfuerzo y planificación de la implementación.
+El proceso dio inicio con una investigación exhaustiva del dominio del problema para identificar los actores clave y sus interacciones (Sección \ref{sec:domain-definition}). A partir de esta información, se elaboró una propuesta de valor para documentar las necesidades y expectativas de cada actor junto con posibles soluciones. Posteriormente, se modelaron los casos de uso para describir las funcionalidades del sistema desde la perspectiva del usuario (Sección \ref{sec:use-cases}). Estos casos de uso constituyeron la base para la definición formal de los requerimientos funcionales y no funcionales, incluyendo sus interdependencias (Sección \ref{sec:requirements-definition}). Finalmente, se redactaron \textit{historias de usuario} con un nivel de detalle suficiente para definir los criterios de aceptación (Sección \ref{sec:user-stories}), lo cual permitió iniciar las etapas de diseño de arquitectura, estimación de esfuerzo y planificación de la implementación.
 
 \section{Definición de dominio}
 \label{sec:domain-definition}
@@ -75,7 +75,7 @@ La propuesta de valor de la solución de trazabilidad se analiza a través de cu
     \label{fig:value-proposition-canvas-recycler}
 \end{figure}
 
-El análisis detallado a través del \textit{canvas} de propuesta de valor revela que los principales desafíos se centran en la falta de transparencia y la ineficiencia de los procesos actuales involucrados en el ciclo de vida del vidrio. El Productor Primario necesita un flujo constante de materia prima reciclada de calidad para minimizar sus costos y cumplir con metas de sostenibilidad. A su vez, el Productor Secundario enfrenta el desafío de verificar la procedencia de los envases de vidrio para garantizar la seguridad alimentaria y, de esta manera, acceder a mercados regulados y sostenibles, cumpliendo sus propias metas de sostenibilidad. Por su parte, el Consumidor busca una forma simple de reciclar, con la seguridad de que su esfuerzo es valorado y recompensado, y desea tener la capacidad de conocer el impacto ambiental de los productos que adquiere. Finalmente, el Centro de Reciclaje se enfrenta a altos costos operativos y a falta de calidad en el material recibido, lo que dificulta su valorización. Estas problemáticas y expectativas compartidas se traducen en la necesidad de un sistema unificado y confiable, que permita a los actores verificar la procedencia del material, documentar cada etapa del ciclo de vida y ofrecer incentivos a los usuarios finales. Por lo tanto, los casos de uso del sistema se diseñan para abordar directamente estas necesidades, permitiendo el registro de lotes de producción de envases, consulta de la trazabilidad de cada unidad, gestión del reciclaje de los envases y verificación de la calidad del material reciclado.
+El análisis detallado a través del \textit{canvas} de propuesta de valor revela que los principales desafíos se centran en la falta de transparencia y la ineficiencia de los procesos actuales involucrados en el ciclo de vida del vidrio. El Productor Primario necesita un flujo constante de materia prima reciclada de calidad para minimizar sus costos y cumplir con metas de sostenibilidad. A su vez, el Productor Secundario enfrenta el desafío de verificar la procedencia de los envases de vidrio para garantizar la seguridad alimentaria y, de esta manera, acceder a mercados regulados y sostenibles, cumpliendo sus propias metas de sostenibilidad. Por su parte, el Consumidor busca una forma simple de reciclar, con la seguridad de que su esfuerzo es valorado y recompensado, y desea tener la capacidad de conocer el impacto ambiental de los productos que adquiere. Finalmente, el Centro de Reciclaje se enfrenta a altos costos operativos y a falta de calidad en el material recibido, lo que dificulta su valorización. Estas problemáticas y expectativas compartidas se traducen en la necesidad de un sistema unificado y confiable, que permita a los actores verificar la procedencia del material, documentar cada etapa del ciclo de vida y ofrecer incentivos a los usuarios finales. Por lo tanto, los casos de uso del sistema se deben diseñar para abordar directamente estas necesidades, permitiendo el registro de lotes de producción de envases, consulta de la trazabilidad de cada unidad, gestión del reciclaje de los envases y verificación de la calidad del material reciclado.
 
 La información recopilada en esta fase proporciona una comprensión de las necesidades de los actores y sienta las bases para la siguiente etapa del modelado de requerimientos, donde se definirán los casos de uso del sistema con una perspectiva centrada en el usuario.
 
@@ -90,7 +90,7 @@ Con el objetivo de acotar el alcance de este trabajo, se realiza el modelado de 
 
 En el prototipo de sistema de trazabilidad para envases de vidrio, los casos de uso comprenden tanto las acciones inherentes al ciclo de vida del material como las interacciones propias de una plataforma digital basada en \textit{blockchain}. El primer grupo de casos de uso describe las operaciones fundamentales del proceso de trazabilidad, como el registro de un nuevo lote de envases fabricado por parte del Productor Primario, la consulta del origen del envase por parte del Consumidor y la recepción de envases reciclables por el Centro de Reciclaje. El segundo grupo de casos de uso, por su parte, abarca las funcionalidades básicas del sistema, tales como la autenticación de usuarios y la visualización de datos en la interfaz.
 
-La Figura \ref{fig:use-case-diagram} presenta el diagrama de casos de uso elaborado para el sistema de trazabilidad de envases de vidrio para una economía circular, ilustrando las funcionalidades mínimas que debe implementar el sistema y los actores asociados a cada funcionalidad. Cada caso de uso está vinculado a un actor específico, lo que permite visualizar claramente las interacciones y responsabilidades de cada uno. En caso de que un caso de uso sea compartido por varios actores, se puede representar como un caso de uso heredado, indicando que varios actores pueden realizar la misma acción o funcionalidad.
+La Figura \ref{fig:use-case-diagram} presenta el diagrama de casos de uso elaborado para el sistema de trazabilidad de envases de vidrio para una economía circular, ilustrando las funcionalidades mínimas que debe implementar el sistema y los actores asociados a cada funcionalidad. Cada caso de uso está vinculado a un actor específico, lo que permite visualizar claramente las interacciones y responsabilidades de cada uno. En el escenario en que un caso de uso sea compartido por varios actores, se puede representar como un caso de uso heredado, indicando que varios actores pueden realizar la misma acción o funcionalidad.
 
 \begin{figure}[!htb]
     \centering
@@ -110,7 +110,7 @@ Después de identificar los casos de uso, se definen los requerimientos funciona
 
 Los requerimientos se documentan de manera estructurada, asignando un identificador único a cada requerimiento para su seguimiento durante las etapas posteriores de diseño, implementación y pruebas del sistema. La descripción de cada requerimiento incluye su propósito, las condiciones bajo las cuales se cumple y las dependencias con otros requerimientos. Un ejemplo de requerimiento funcional es que ``el sistema debe permitir al Productor de Vidrio registrar un nuevo lote de vidrio, especificando la cantidad y el tipo de vidrio'', mientras que un requerimiento no funcional puede ser que ``el sistema debe garantizar la seguridad de los datos del usuario mediante autenticación y autorización''.
 
-A partir de los casos de uso previamente identificados, se definieron 28 requerimientos funcionales y 6 requerimientos no funcionales para el sistema. Estos requerimientos se documentan en la etapa de modelado para su posterior seguimiento durante el desarrollo. Se establecen dependencias entre ellos, lo que permite identificar restricciones en el orden de implementación de las funcionalidades del sistema. Por ejemplo, el registro de un lote de vidrio (RF-006) es una dependencia para que dicho lote pueda ser recibido por un productor secundario para envasar productos (RF-016). La Tabla \ref{tab:functional-requirements} presenta los requerimientos funcionales junto con sus dependencias (\textit{deps.}), mientras que la Tabla \ref{tab:non-functional-requirements} muestra los requerimientos no funcionales definidos para el prototipo de trazabilidad de envases de vidrio basado en \textit{blockchain}.
+A partir de los casos de uso previamente identificados, se definieron 28 requerimientos funcionales y 6 requerimientos no funcionales para el sistema. Estos requerimientos se documentan en la etapa de modelado para su posterior seguimiento durante el desarrollo. Adicionalmente, se establecen dependencias entre ellos, lo que permite identificar restricciones en el orden de implementación de las funcionalidades del sistema. Por ejemplo, el registro de un lote de vidrio (RF-006) es una dependencia para que el lote pueda ser recibido por un Productor Secundario para envasar productos (RF-016). La Tabla \ref{tab:functional-requirements} presenta los requerimientos funcionales junto con sus dependencias (\textit{deps.}), mientras que la Tabla \ref{tab:non-functional-requirements} muestra los requerimientos no funcionales definidos para el prototipo de trazabilidad de envases de vidrio basado en \textit{blockchain}.
 
 \begin{xltabular}{\textwidth}{@{} L{1.1cm} L{3cm} Y L{1.2cm} @{}}
 	\caption{Requerimientos funcionales del sistema de trazabilidad de envases de vidrio}
@@ -138,7 +138,7 @@ A partir de los casos de uso previamente identificados, se definieron 28 requeri
 	\hline
 	RF-004 & Validar \par Autorización & Cada rol de usuario debe tener ciertos permisos y un usuario con un rol dado no debe poder realizar acciones que requieran un permiso del que no goza. Detalle:\par - Prod. Primario: crear, editar, consultar y eliminar envases.\par - Prod. Secundario: editar, consultar y eliminar productos. \par - Consumidor: consultar composición de productos \par - Reciclador: consultar composición de productos, crear, editar, consultar y eliminar lotes de reciclaje. & RF-002 \\
 	\hline
-	RF-005 & Ver mi perfil de usuario & Cada usuario debe poder consultar la información personal asociada a su cuenta y modificar algunos datos: Email, Nombre Empresa/persona (modificable), Responsable (modificable), Nro teléfono (modificable), Dirección pública \textit{blockchain}. & RF-002 \\
+	RF-005 & Ver mi perfil de usuario & Cada usuario debe poder consultar la información personal asociada a su cuenta y modificar algunos datos: Email, Nombre Empresa/persona (modificable), Responsable (modificable), Teléfono (modificable), Dirección pública \textit{blockchain}. & RF-002 \\
 	\hline
 	RF-006 & Cargar lotes de producción & El productor puede cargar lotes de producción de envases de vidrio incluyendo la siguiente información: Cantidad de envases, Peso por envase, Color, Composición, Espesor, entre otras. & RF-004 \\
 	\hline
@@ -162,7 +162,7 @@ A partir de los casos de uso previamente identificados, se definieron 28 requeri
 	\hline
 	RF-016 & Consultar inventario de envases nuevos & El productor secundario puede ver la lista de conjuntos de envases que ha comprado pero aún no ha utilizado (no han sido asociados a ningún producto propio ni código). El productor puede confirmar conformidad o rechazar la compra. & RF-012 \\
 	\hline
-	RF-017 & Rechazar envases recibidos & El productor secundario puede desconocer la transacción de transferencia de envases desde el productor en caso de no reconocer la compra o realizar una devolución por algún tipo de error. & RF-012 \\
+	RF-017 & Rechazar envases recibidos & El productor secundario puede desconocer la transacción de transferencia de envases desde el productor primario en caso de no reconocer la compra o realizar una devolución por algún tipo de error. & RF-012 \\
 	\hline
 	RF-018 & Sacar de circulación envases & El productor secundario puede devolver botellas en caso de no conformidad, fallas de fábrica o rotura. Estos envases pueden transferirse al productor como material reciclable o descartarse. & RF-012 \\
 	\hline
@@ -172,15 +172,15 @@ A partir de los casos de uso previamente identificados, se definieron 28 requeri
 	\hline
 	RF-021 & Consultar la historia de un envase & Mediante el código asociado a la botella, el ciudadano debe poder consultar el origen, composición y trazabilidad histórica de cualquier envase. & RF-013 \\
 	\hline
-	RF-022 & Marcar envase como reciclable & El ciudadano puede registrar un envase como ingresado al sistema de reciclaje escaneando su código. & RF-013 \\
+	RF-022 & Marcar envase como reciclable & El ciudadano puede registrar un envase como ingresado al sistema de reciclaje utilizando su código. & RF-013 \\
 	\hline
 	RF-023 & Dar seguimiento a envases & El ciudadano puede hacer seguimiento del destino y trazabilidad hasta la disposición final de todos los envases que ingresó al sistema de reciclaje. & RF-022 \\
 	\hline
-	RF-024 & Consultar información del envase para clasificación & El reciclador clasificador puede escanear el código de la botella y obtener información relevante sobre su composición para su correcta clasificación. & RF-013 \\
+	RF-024 & Consultar información del envase para clasificación & El reciclador puede escanear el código de la botella y obtener información relevante sobre su composición para su correcta clasificación. & RF-013 \\
 	\hline
-	RF-025 & Crear lotes de material reciclado & El reciclador puede crear lotes de material reciclado a partir de un conjunto de envases reciclables recibidos de los ciudadanos. Cada lote tiene los siguientes atributos: Peso, Dimensión (si aplica), Material, Composición. & RF-022 \\
+	RF-025 & Crear lotes de \par material reciclado & El reciclador puede crear lotes de material reciclado a partir de un conjunto de envases reciclables recibidos de los ciudadanos. Cada lote tiene los siguientes atributos: Peso, Dimensión (si aplica), Material, Composición, entre otros. & RF-022 \\
 	\hline
-	RF-026 & Editar lote de material reciclado & El reciclador puede editar la información de un lote en caso de error hasta antes de su comercialización. & RF-025 \\
+	RF-026 & Editar lote de \par material reciclado & El reciclador puede editar la información de un lote en caso de error hasta antes de su comercialización. & RF-025 \\
 	\hline
 	RF-027 & Eliminar lote de material reciclado & El reciclador puede eliminar un lote en caso de error hasta antes de su comercialización. & RF-025 \\
 	\hline
@@ -215,7 +215,7 @@ RNF-04 & Mantenibilidad & El sistema debe poder ser mantenible por otros desarro
 \hline
 RNF-05 & Interoperabilidad & El sistema debe ser integrable con múltiples sistemas de \textit{stock} y gestión de terceros preexistentes. \\
 \hline
-RNF-06 & Integridad & Los datos de trazabilidad no deben poder ser alterados luego de cargados sin dejar registro público de la modificación. \\
+RNF-06 & Integridad & Los datos de trazabilidad no deben poder ser alterados luego de ser cargados sin dejar registro público de la modificación. \\
 \end{xltabular}
 
 La lista de requerimientos funcionales y no funcionales sirve como base para la siguiente fase de modelado, en la que se definirán las historias de usuario y se planificará el desarrollo del sistema. A su vez, la lista de requerimientos se utilizará posteriormente en la validación y verificación del sistema, asegurando que todas las funcionalidades implementadas cumplan con las expectativas y necesidades de los usuarios.
@@ -246,8 +246,8 @@ A continuación se presenta un ejemplo de historia de usuario con sus respectivo
       \begin{itemize}
         \item El sistema debe mostrar una lista de todos los lotes creados por el productor con la siguiente información:
         \begin{itemize}
-          \item \textbf{Código de lote}
-          \item \textbf{Fecha de producción}
+          \item Código de lote
+          \item Fecha de producción
           \item Cantidad de envases
           \item Peso por envase
           \item Color
@@ -259,7 +259,7 @@ A continuación se presenta un ejemplo de historia de usuario con sus respectivo
         \item Al seleccionar un lote específico, el sistema debe mostrar los detalles completos, incluyendo:
         \begin{itemize}
           \item Espesor
-          \item \textbf{Fecha de producción}
+          \item Fecha de producción
           \item Observaciones adicionales
         \end{itemize}
       \end{itemize}
@@ -273,7 +273,7 @@ En el presente trabajo, se definieron un total de 28 historias de usuario, donde
 
 Cada historia de usuario se registró en la herramienta de gestión Jira\footnote{\url{https://www.atlassian.com/es/software/jira}}, con el objetivo de facilitar la gestión del proceso de desarrollo siguiendo la metodología Kanban. Como parte del proceso de planificación, se estimó el esfuerzo necesario para implementar la funcionalidad de cada historia de usuario y se registró en la herramienta Jira junto con la tarea correspondiente. La estimación del esfuerzo consideró la complejidad técnica, el tiempo requerido proyectado para implementarlo y las interdependencias entre las funcionalidades, lo que permitió una planificación objetiva del desarrollo.
 
-La planificación del proyecto se realizó mediante un diagrama de Gantt\footnote{\url{https://www.atlassian.com/es/agile/project-management/gantt-chart}}. Un diagrama de Gantt es una herramienta visual que muestra la secuencia de las tareas, sus dependencias y los plazos de implementación estimados. Este diagrama permite visualizar el cronograma del proyecto, facilitando la identificación de hitos y la gestión de recursos. En este caso, se utilizó para planificar las historias de usuario y su implementación en iteraciones o sprints, asegurando que todas las funcionalidades necesarias sean contempladas y ejecutadas de manera ordenada según sus dependencias.
+La planificación del proyecto se realizó mediante un diagrama de Gantt\footnote{\url{https://www.atlassian.com/es/agile/project-management/gantt-chart}}. Un diagrama de Gantt es una herramienta visual que muestra la secuencia de las tareas, sus dependencias y los plazos de implementación estimados. Este diagrama permite visualizar el cronograma del proyecto, facilitando la identificación de hitos y la gestión de recursos. En este caso, se utilizó para planificar el orden y tiempo de implementación de las historias de usuario, asegurando que todas las funcionalidades necesarias sean contempladas y ejecutadas de manera ordenada según sus dependencias.
 
 \begin{figure}[!tb]
   \centering
@@ -289,6 +289,6 @@ La planificación del proyecto se realizó mediante un diagrama de Gantt\footnot
   \label{fig:gantt-chart}
 \end{figure}
 
-En la Figura \ref{fig:jira-board}, se muestra una captura del tablero utilizado para el seguimiento del progreso de cada historia de usuario en la plataforma Jira, mientras que la Figura \ref{fig:gantt-chart} presenta el diagrama de Gantt creado para este proyecto. Con la planificación armada, se estimó que el desarrollo del sistema tendría una duración de 8 semanas, considerando una dedicación de 20 horas semanales, para implementar las 28 historias de usuario definidas. Esta estimación de tiempo corresponde exclusivamente al tiempo de codificación de funcionalidades del prototipo, ya que, posterior a la etapa de generación de código, se procede a la fase de codificación y ejecución de pruebas automatizadas y validación manual del sistema, donde es posible a su vez que se deban realizar ajustes o correcciones de programación en función de los resultados obtenidos.
+En la Figura \ref{fig:jira-board}, se muestra una captura del tablero utilizado para el seguimiento del progreso de cada historia de usuario en la plataforma Jira, mientras que la Figura \ref{fig:gantt-chart} presenta el diagrama de Gantt creado para este proyecto. Con la planificación armada, se estimó que el desarrollo del sistema tendría una duración de 8 semanas, considerando una dedicación de 20 horas semanales, para implementar las 28 historias de usuario definidas. Esta estimación de tiempo corresponde exclusivamente al tiempo de codificación de funcionalidades del prototipo. Ya que al finalizar la etapa de generación de código, comienza la fase de codificación y ejecución de pruebas automatizadas y validación manual del sistema, donde es posible que se deban realizar ajustes o correcciones de programación en función de los resultados obtenidos.
 
 Concluidas las fases de modelado de requerimientos y planificación, se establece la base para la siguiente etapa del proceso. El conjunto de requerimientos, casos de uso y la planificación detallada con las historias de usuario constituyen la referencia que guiará las fases de diseño, implementación y pruebas del sistema. En el próximo capítulo, se abordará el diseño de la arquitectura y los componentes del sistema, donde se definirán las soluciones tecnológicas y la estructura del software que implementará los requerimientos establecidos.
