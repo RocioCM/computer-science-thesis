@@ -6,7 +6,7 @@
 > **Año**: 2025
 
 - **Documento Final del Trabajo:** [Documento-TFG-LCC-Rocio-Corral.pdf](./Documento-TFG-LCC-Rocio-Corral.pdf)
-- **Slides de la presentación:** [Slides-TFG-LCC-Rocio-Corral.pdf](./Slides-TFG-LCC-Rocio-Corral.pdf)
+- **Slides de la presentación:** [Slides-Defensa-TFG-LCC-Rocio-Corral.pdf](./Slides-Defensa-TFG-LCC-Rocio-Corral.pdf)
 
 Este repositorio reúne todo el contenido desarrollado para el **Trabajo Final de Grado** de la carrera **Licenciatura en Ciencias de la Computación** de la **Universidad Nacional de Cuyo**. Este monorepo incluye la implementación del software (blockchain, backend y frontend), la documentación de proyecto y la memoria académica en LaTeX. Cada componente es independiente e incluye su propia guía y documentación:
 
